@@ -1,0 +1,451 @@
+#!/bin/bash
+####################################################################################################
+#
+# Copyright (c) 2021, Jamf, LLC.  All rights reserved.
+#
+#       Redistribution and use in source and binary forms, with or without
+#       modification, are permitted provided that the following conditions are met:
+#               * Redistributions of source code must retain the above copyright
+#                 notice, this list of conditions and the following disclaimer.
+#               * Redistributions in binary form must reproduce the above copyright
+#                 notice, this list of conditions and the following disclaimer in the
+#                 documentation and/or other materials provided with the distribution.
+#               * Neither the name of the JAMF Software, LLC nor the
+#                 names of its contributors may be used to endorse or promote products
+#                 derived from this software without specific prior written permission.
+#
+#       THIS SOFTWARE IS PROVIDED BY JAMF SOFTWARE, LLC "AS IS" AND ANY
+#       EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+#       WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+#       DISCLAIMED. IN NO EVENT SHALL JAMF SOFTWARE, LLC BE LIABLE FOR ANY
+#       DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+#       (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+#       LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+#       ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+#       (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+#       SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+####################################################################################################
+#  ProtectRemediation-ThreatPreventionFileQuarantine.sh
+#  
+#
+#  Created by Matt Taylor on 10/09/2021.
+#  
+# This script is designed as a response workflow executed by Jamf Pro after Jamf Protect completes a file quarantine event by the Threat Prevention feature.
+#
+# Script functions
+# - Optionally display a notification to the end-user regarding the event using the Mac@IBM Notifications tool
+# - Optionally perform an acquisition and upload of quarantined file(s) copied from the Jamf Protect quarantine directory, using AWS S3 or a custom, specified upload method
+# - Optionally perform a local backup of the quarantined malware file(s) if network connectivity to the S3 bucket isn't available
+# - Optionally perform a deletion of quarantined file(s) from the Jamf Protect quarantine directory
+# - Optionally call upon additional Jamf Pro Policies by a custom trigger
+# - Clean up the Extension Attribute file created by Jamf Protect and submit a Jamf Pro inventory to reset the workflow
+
+#####################################################
+############# Script Configuration Area #############
+#####################################################
+
+# Set the Extended Attribute value that the analytic in Jamf Protect will use to trigger the Jamf Pro integration and response workflow.  This is configured inside the analytic by enabling the 'Add to Jamf Pro Smart Group', is case sensitive and must match for this workflow to work
+# Note that this workflow requires a custom analytic detection monitoring for new files created in the /Library/Application Support/JamfProtect/Quarantine directory in order to function
+analyticEA="ThreatPreventionFileQuarantine"
+
+# Set the home directory for tools and resources for this Incident Response workflow
+# IMPORTANT: Several other variables depend on this so please be sure to read the documentation
+IRSupportDIR="/path/to/resources/folder"
+
+# Set whether to collect or remove just the most recently added file in the quarantine directory or all files
+# "all" = collect or remove all files in the quarantine directory
+# "latest" = collect or remove only the latest file in the quarantine directory
+files="latest"
+
+# Quarantined file deletion
+# Do you wish to delete the quarantined file?  Expected options are:
+# "yes" = file deletion
+# "no" = the file will not be deleted and will persist in the quarantine directory
+deleteFile="yes"
+
+# Set whether or not quarantined files will be collected for upload
+# Expected artefact collection options are:
+# "yes" = artefacts will be collected for upload
+# "no" = artefacts will not be collected for upload and the script will exit after completing the default removal actions
+artefactCollection="yes"
+
+# Backup artefacts to a local directory if there is no network connectivity available for upload
+# Expected options are:
+# "yes" = artefacts will be backed up to the specified directory
+# "no" = artefacts will not be backed up and will likely be lost if network connectivity isn't available at the time of upload
+artefactBackup="no"
+backupDIR=""$IRSupportDIR"/ArtefactBackups"
+
+# Expected artefact upload options are:
+# "local" = compress the files and save to /Users/Shared, removing the working directory afterwards
+# "s3" = compress the files and upload to the specified Amazon S3 Bucket, removing the working directory afterwards
+# "custom" = open space for a custom upload configuration to be placed
+artefactUpload="s3"
+
+# Set the options for using the Amazon AWS S3 upload option specified in the 'artefactUpload' variable
+# Importantly, the s3cmd folder is specified to be at in the $IRSupportDIR directory but this may differ per environment
+# The name of the S3 bucket to use
+bucket="bucketnamehere"
+# The path to the s3cmd binary (including the parent folder) to use for the upload
+s3cmdBinary=""$IRSupportDIR"/s3cmd/s3cmd"
+# The S3 Access Key to use
+s3AccessKey="accesskeyhere"
+# The S3 Secret Key to use
+s3SecretKey="secretkeyhere"
+# The region of the S3 bucket to use
+s3BucketRegion="regionhere"
+
+# Additional artefact collection from a Jamf Pro Policy
+# Set this to yes and provide a custom trigger to call a second Jamf Pro Policy for additional artefact collection following this event
+# "yes" = the Jamf Pro binary will be used to check for additional Policies
+# "no" = no action will be taken
+moreJamfPro="no"
+# The custom trigger value used to check for additional Policies
+customTrigger="replaceme"
+
+# This script will use the 'mac-ibm-notifications' tool to display an information window to the end-user about the event.  A signed and notarised version of this application can be downloaded from https://github.com/IBM/mac-ibm-notifications/releases and should be present on the device in order for it to be used.
+# Set whether or not to notify the user of this event
+# "yes" = the user will be notified
+# "no" = the user will not be notified and all actions will be silent
+notifyUser="yes"
+
+# The file path to the application:
+notificationApp=""$IRSupportDIR"/IBM Notifier.app/Contents/MacOS/IBM Notifier"
+
+# IBM Notifier Variables
+window="popup"
+barTitle="Acmesoft Information Security Notification"
+title="This is an important message from the Acmesoft Information Security Team"
+subTitle="You're receiving this notification because we've detected a known security threat on your Mac.\n\n**Do I need to do anything?**\n\nNo, the endpoint security tool protecting your device was able to neutralise the threat and quarantine the offending file.\n\n**The issue has been safely resolved and your Mac is secure**.  Click *Acknowledge* to confirm and close this window.\n\nClick *Learn More* to access a resource with tips for staying secure on your corporate device.\n\nPlease contact **email@corporate.com** if you have any questions."
+mainButtonLabel="Acknowledge"
+tertiaryButtonLabel="Learn More"
+tertiaryButtonType="link"
+tertiaryButtonPayload="additionalresourceURL"
+helpButtonType="infopopup"
+helpButtonPayload="This information is provided by the Acmesoft Information Security Team"
+iconPath=""$IRSupportDIR"/logo.png"
+
+#####################################################
+############ DO NOT EDIT BELOW THIS LINE ############
+#####################################################
+
+echo "Executing the incident response workflow now.."
+
+# Set the file quarantine directory from Jamf Protect
+quarantineDIR="/Library/Application Support/JamfProtect/Quarantine"
+
+#####################################################
+###### Notification Section ######
+# Begin the process of notifying the user
+if [[ "$notifyUser" == "yes" ]] && [[ -f "$notificationApp" ]]; then
+
+    echo "User notification is enabled and the notification app is available to use.  The end-user will be notified of the event."
+    
+    # Capture the logged-in User
+    loggedInUser=$(scutil <<< "show State:/Users/ConsoleUser" | /usr/bin/awk '/Name :/ && ! /loginwindow/ { print $3 }')
+    
+    /usr/bin/sudo -u ${loggedInUser} "$notificationApp" -type "$window" -bar_title "$barTitle" -title "$title" -subtitle "$subTitle" -always_on_top -main_button_label "$mainButtonLabel" -tertiary_button_label "$tertiaryButtonLabel" -tertiary_button_cta_type "$tertiaryButtonType" -tertiary_button_cta_payload "$tertiaryButtonPayload" -help_button_cta_type "$helpButtonType" -help_button_cta_payload "$helpButtonPayload" -icon_path "$iconPath" &
+
+elif [[ "$notifyUser" == "yes" ]] && [[ ! -f "$notificationApp" ]]; then
+
+    echo "User notification is enabled but the notification app is not available for use so the user will not be notified."
+    
+elif [[ "$notifyUser" == "no" ]]; then
+
+    echo "User notification is disabled so the user will not be notified."
+    
+fi
+
+#####################################################
+###### Upload Section ######
+
+# Begin acquisition of the malware sample if this function is enabled
+if [[ "$artefactCollection" == "yes" ]]; then
+
+	echo "Artefact collection is enabled and will now begin.."
+	
+    workingDirectory="/private/tmp/QuarantinedFiles"
+    
+    /bin/mkdir -p "$workingDirectory"
+    
+    # Perform a collection of the quarantined files based upon the configuration of this script
+    if [[ "$files" == "latest" ]]; then
+    
+    	echo "Only the latest quarantined file will be collected.."
+    	
+        # Find the most recently added file that was quarantined by Jamf Protect
+        quarantinedFiles=$(/bin/ls -lrt "$quarantineDIR" | /usr/bin/tail -n 1 | /usr/bin/awk '{ print$NF }')
+
+        # Copy the folder to the working directory
+        /bin/cp -R "$quarantineDIR"/"$quarantinedFiles" "$workingDirectory"
+        
+    elif [[ "$files" == "all" ]]; then
+        
+        echo "All files in the quarantine directory will be collected.."
+        
+        # Copy the entire contents of the quarantine directory to the working directory
+        /bin/cp -R "$quarantineDIR"/* "$workingDirectory"
+
+    fi
+
+    # Process the upload of the artefacts to the nominated S3 bucket using the existing .s3cfg configuration file
+    file="$(date +%Y%m%d_%H%M)-$(hostname -s)-QuarantinedFiles.tar.gz"
+    
+    # Move into the working directory and compress the quarantined file(s) for upload
+    cd "$workingDirectory" && /usr/bin/tar czf "$file" *
+    
+    # Check for network connectivity
+    if /usr/bin/nc -zdw1 s3.amazonaws.com 443; then
+    	
+    	networkUP="yes"
+    	echo "Can the device connect to the S3 bucket for upload? Result: ${networkUP}"
+    
+    else
+    	
+    	networkUP="no"
+    	echo "Can the device connect to the S3 bucket for upload? Result: ${networkUP}"
+    	
+    fi
+    
+    # Backup local files if necessary and configured to do so
+    if [[ "$artefactBackup" == "yes" ]] && [[ "$networkUP" == "no" ]]; then
+    
+    	echo "Network connectivity to Amazon S3 is unavailable and local backup is enabled, so artefacts will now be backed up.."
+    	
+    	# Check for and make the backup directory if it doesn't already exist
+    	[[ ! -d "$backupDIR" ]] && /bin/mkdir -p "$backupDIR"
+    	
+    	# Copy the file to the backup directory
+    	/bin/cp "$file" "$backupDIR"
+    	
+    	# Remove permissions for users to access this file
+    	[[ -f "$backupDIR"/"$file" ]] && chmod 000 "$backupDIR"/"$file"
+    	
+    fi
+    
+    # Check for configuration to use the 's3' upload workflow and the presence of the s3cmd configuration file and if present, process the upload of the file and clean up afterwards
+    if [[ "$artefactUpload" == "s3" ]] && [[ "$s3AccessKey" != "replaceme" ]] && [[ "$s3SecretKey" != "replaceme" ]] && [[ "$s3BucketRegion" != "replaceme" ]] && [[ "$networkUP" == "yes" ]]; then
+        
+        # Create the required s3cmd configuration file using the S3 access key, secret key and bucket region variables specified earlier
+        /usr/bin/tee /var/root/.s3cfg &>/dev/null <<EOF
+[default]
+access_key = "${s3AccessKey}"
+access_token =
+add_encoding_exts =
+add_headers =
+bucket_location = "${s3BucketRegion}"
+ca_certs_file =
+cache_file =
+check_ssl_certificate = True
+check_ssl_hostname = True
+cloudfront_host = cloudfront.amazonaws.com
+connection_max_age = 5
+connection_pooling = True
+content_disposition =
+content_type =
+default_mime_type = binary/octet-stream
+delay_updates = False
+delete_after = False
+delete_after_fetch = False
+delete_removed = False
+dry_run = False
+enable_multipart = True
+encrypt = False
+expiry_date =
+expiry_days =
+expiry_prefix =
+follow_symlinks = False
+force = False
+get_continue = False
+gpg_command = None
+gpg_decrypt = %(gpg_command)s -d --verbose --no-use-agent --batch --yes --passphrase-fd %(passphrase_fd)s -o %(output_file)s %(input_file)s
+gpg_encrypt = %(gpg_command)s -c --verbose --no-use-agent --batch --yes --passphrase-fd %(passphrase_fd)s -o %(output_file)s %(input_file)s
+gpg_passphrase =
+guess_mime_type = True
+host_base = s3.amazonaws.com
+host_bucket = %(bucket)s.s3.amazonaws.com
+human_readable_sizes = False
+invalidate_default_index_on_cf = False
+invalidate_default_index_root_on_cf = True
+invalidate_on_cf = False
+kms_key =
+limit = -1
+limitrate = 0
+list_md5 = False
+log_target_prefix =
+long_listing = False
+max_delete = -1
+mime_type =
+multipart_chunk_size_mb = 15
+multipart_copy_chunk_size_mb = 1024
+multipart_max_chunks = 10000
+preserve_attrs = True
+progress_meter = True
+proxy_host =
+proxy_port = 0
+public_url_use_https = False
+put_continue = False
+recursive = False
+recv_chunk = 65536
+reduced_redundancy = False
+requester_pays = False
+restore_days = 1
+restore_priority = Standard
+secret_key = "${s3SecretKey}"
+send_chunk = 65536
+server_side_encryption = False
+signature_v2 = False
+signurl_use_https = False
+simpledb_host = sdb.amazonaws.com
+skip_existing = False
+socket_timeout = 300
+ssl_client_cert_file =
+ssl_client_key_file =
+stats = False
+stop_on_error = False
+storage_class =
+throttle_max = 100
+upload_id =
+urlencoding_mode = normal
+use_http_expect = False
+use_https = True
+use_mime_magic = True
+verbosity = WARNING
+website_endpoint = http://%(bucket)s.s3-website-%(location)s.amazonaws.com/
+website_error =
+website_index = index.html
+EOF
+        
+        echo "Beginning the artefact upload.."
+        
+        # Upload the file
+        "$s3cmdBinary" put "$file" s3://"${bucket}"/"${file}"
+        
+        # Remove the s3cmd configuration file
+        [[ -f /var/root/.s3cfg ]] && /bin/rm /var/root/.s3cfg
+    
+    else
+    
+        echo "Artefact collection and the S3 upload function was enabled but one of the required S3 upload variables was not configured correctly so this function was aborted."
+        
+    fi
+    
+    # Check for the configuration to use the 'custom' upload workflow
+    if [[ "$artefactUpload" == "custom" ]]; then
+        
+        ###################################
+        # Custom upload code should go here
+        ###################################
+        echo "The custom upload option was chosen but no custom code was provided so the operation was aborted."
+        
+    fi
+    
+    # Move out of the working directory to allow us to delete it
+    cd "$IRSupportDIR"
+    
+    # Make sure the working directory variable isn't rempty before removing it
+    if [[ ! -z "$workingDirectory" ]]; then
+        
+        echo "Removing the temporary working directory.."
+        /bin/rm -rf "$workingDirectory"
+    
+    else
+    
+        echo "Attempted to remove the temporary working directory but the action was aborted as no path was provided."
+    
+    fi
+
+else
+
+    echo "Artefact acquisition was not enabled and therefore was skipped."
+
+fi
+
+#####################################################
+###### File Removal Section ######
+# Delete the quarantined file(s) if configured to do so
+if [[ "$deleteFile" == "yes" ]]; then
+
+    echo "Deletion of quarantined files is enabled and will now begin."
+    
+    if [[ "$files" == "latest" ]]; then
+    
+        # Find the most recently added file that was quarantined by Jamf Protect
+        quarantinedFiles=$(/bin/ls -lrt "$quarantineDIR" | /usr/bin/tail -n 1 | /usr/bin/awk '{ print$NF }')
+    
+        # Validate the variables then safely delete the most recently added file in the quarantine directory
+        if [[ ! -z "$quarantineDIR" ]] && [[ ! -z "$quarantinedFiles" ]]; then
+        
+            echo "Deleting the most recently quarantined file.."
+            /bin/rm -rf "$quarantineDIR"/"$quarantinedFiles"
+        
+        else
+        
+            echo "Removal action aborted as no path was provided."
+            
+        fi
+        
+    elif [[ "$files" == "all" ]]; then
+    
+        if [[ ! -z "$quarantineDIR" ]]; then
+    
+            echo "Deleting all files in the quarantine directory.."
+            # Validate the variables then safely delete all files within the quarantine directory
+            /bin/rm -rf "$quarantineDIR"/*
+        
+        else
+        
+            echo "Removal action aborted as no path was provided."
+        
+        fi
+        
+    fi
+    
+else
+
+    echo "Deletion of quarantined files is not enabled."
+    
+fi
+
+#####################################################
+###### Additional Incident Response Workflow Section ######
+# Trigger any additional Policies from Jamf Pro as configured
+if [[ "$moreJamfPro" == "yes" ]] && [[ "$customTrigger" != "replaceme" ]]; then
+    
+    echo "Calling additional Jamf Pro Policy workflows as configured to do so."
+    
+    # Call the custom trigger Jamf Policy
+    /usr/local/bin/jamf policy -event "$customTrigger" &
+
+elif [[ "$moreJamfPro" == "yes" ]] && [[ "$customTrigger" == "replaceme" ]]; then
+
+    echo "Additional Jamf Po Policy workflows were configured to be called but no custom trigger was specified in the configuration section of this script.  As such this step was skipped."
+    
+elif [[ "$moreJamfPro" == "no" ]]; then
+
+    echo "As per configuration, no additional Jamf Pro Policies will be called."
+    
+fi
+
+#####################################################
+###### Cleanup and Resolution Section ######
+# Clean up the Jamf Protect and Jamf Pro remediation workflow files and submit a new inventory report to cause the device to fall out of the Jamf Pro response Smart Group
+if [[ ! -z "$analyticEA" ]]; then
+
+	echo "Cleaning up the extension attribute file created by Jamf Protect to reset this workflow"
+	
+    # Delete the extension attribute file created by Jamf Protect
+    /bin/rm "/Library/Application Support/JamfProtect/groups/${analyticEA}"
+
+else
+
+    echo "Attempted to clean up the extension attribute file created by Jamf Protect to reset this workflow but no file path was provided."
+    
+fi
+
+# Submit a new Jamf Pro inventory submission to cause the device to leave the workflow Smart Group
+/usr/local/bin/jamf recon
+
+# Exit the script appropriately
+exit 0
