@@ -1,0 +1,16 @@
+# ThreatPreventionFileQuaratine
+#
+# This Analytic predicate may be used to detect new file quarantine events from the Threat Prevention feature of Jamf Protect, where known malware is detected via a signature match and the offending file contained and moved to the quarantine directory.
+# This detection functions by monitoring for new file creations in the Jamf Protect file quarantine directory: /Library/Application Support/JamfProtect/Quarantine
+#
+# Analytic Predicate:
+
+$event.isNewFile == 1 AND $event.path MATCHES [c] "/Library/Application Support/JamfProtect/Quarantine/.*/.*"
+
+# Required Analytic Configuration:
+
+Sensor Event Type: GPFSEvent
+Level: 0
+
+# Recommended Analytic Configuration:
+Actions: Log

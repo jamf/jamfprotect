@@ -1,0 +1,8 @@
+# This graphQL mutation can be used with the Jamf Protect API to delete an existing, specific Custom Prevent List entry in the Threat Prevention database.
+# The ID of the Custom Prevent List entry must be known and can be sourced manually from the Jamf Protect Console or via a query to list all Custom Prevent List entries.
+
+mutation deletePreventList{
+  deletePreventList(id: id-here){
+    id
+  }
+}

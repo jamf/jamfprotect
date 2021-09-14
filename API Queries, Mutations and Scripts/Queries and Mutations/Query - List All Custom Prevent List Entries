@@ -1,0 +1,27 @@
+# This graphQL query can be used with the Jamf Protect API to list all configured Custom Prevent List entries in the Threat Prevention database.
+
+query listPreventLists{
+  listPreventLists(input: 
+  {
+    order: {
+      direction : ASC 
+      field : name
+    }
+  }
+  )
+  {
+    items {
+      id
+      list
+      type
+      count
+      tags
+      name
+      created
+    }
+    pageInfo
+    {
+      total
+    }
+  }
+}

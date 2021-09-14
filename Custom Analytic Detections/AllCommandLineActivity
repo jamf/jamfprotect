@@ -1,0 +1,16 @@
+# AllCommandLineActivity
+#
+# This Analytic predicate may be used to report on all command-line activity on the endpoint.
+# This detection functions by monitoring for processes created that have an associated TTY and are determined to be created through a shell.
+#
+# Analytic Predicate:
+
+$event.type == 1 AND $event.process.tty != nil AND $event.process.parent.isShell == 1
+
+# Required Analytic Configuration:
+
+Sensor Event Type: GPProcessEvent
+Level: 0
+
+# Recommended Analytic Configuration:
+Actions: Log

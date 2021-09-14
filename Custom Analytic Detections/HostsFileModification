@@ -1,0 +1,16 @@
+# HostsFileModification
+#
+# This Analytic predicate may be used to report on all modifications made to the /etc/hosts file on an endpoint.
+# This detection functions by monitoring for modifications made to the /etc/hosts file path.
+#
+# Analytic Predicate:
+
+$event.isModified == 1 AND $event.path ==[cd] "/private/etc/hosts"
+
+# Required Analytic Configuration:
+
+Sensor Event Type: GPFSEvent
+Level: 0
+
+# Recommended Analytic Configuration:
+Actions: Log

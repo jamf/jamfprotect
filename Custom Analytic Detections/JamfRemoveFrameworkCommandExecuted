@@ -1,0 +1,16 @@
+# JamfRemoveFrameworkCommandExecuted
+#
+# This Analytic predicate may be used to report on users executing a 'jamf removeFramework' command on their device in an attempt to remove the Jamf Pro management framework.  Please note that this will report on the usage of the command, not it's success or failure in actually removing the framework.  
+# This detection functions by monitoring for process creation with the 'jamf' binary and the required command-line argument.
+#
+# Analytic Predicate:
+
+$event.type == 1 AND $event.process.path == "/usr/local/jamf/bin/jamf" AND commandLine contains "removeFramework"
+
+# Required Analytic Configuration:
+
+Sensor Event Type: GPProcessEvent
+Level: 1
+
+# Recommended Analytic Configuration:
+Actions: Log

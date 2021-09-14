@@ -1,0 +1,16 @@
+# AllCurlActivity
+#
+# This Analytic predicate may be used to report on all activity of the 'curl' binary on endpoints.
+# This detection functions by monitoring for process creation involving binaries carrying the signing information of 'com.apple.curl'.
+#
+# Analytic Predicate:
+
+$event.type == 1 AND $event.process.signingInfo.appid == "com.apple.curl"
+
+# Required Analytic Configuration:
+
+Sensor Event Type: GPProcessEvent
+Level: 0
+
+# Recommended Analytic Configuration:
+Actions: Log

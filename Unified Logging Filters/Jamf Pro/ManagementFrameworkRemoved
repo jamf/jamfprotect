@@ -1,0 +1,8 @@
+# ManagementFrameworkRemoved
+#
+# This Unified Log filter may be used to report on successful removal of the Jamf Pro management framework.
+# This filter functions by monitoring logging from the Jamf Pro management binary subsystem and for event messages containing known strings that indicate a successful removal.
+#
+# Filter Predicate:
+
+(subsystem =="com.jamf.management.binary" AND eventMessage CONTAINS "Removing JAMF Preferences file") || (subsystem == "com.jamf.management.binary" and eventMessage CONTAINS "Removing JAMF Daemon Log files") || (subsystem == "com.jamf.management.binary" and eventMessage CONTAINS "Removing self service") || (subsystem == "com.jamf.management.binary" and eventMessage CONTAINS "Removing scheduled tasks")

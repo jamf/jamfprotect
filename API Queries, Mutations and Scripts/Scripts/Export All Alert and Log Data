@@ -1,0 +1,133 @@
+#!/usr/bin/env python3
+
+# This example Python script below does the following:
+# - Obtains an access token.
+# - Completes listLogs and listAlerts query requests that returns all logs reported to Jamf Protect. You can change the Resources variable to export alerts, logs, or both.
+# - Exports all alert and log data in JSON format /tmp/ProtectAlerts.json
+
+# Keep the following in mind when using this script:
+# - You must define the PROTECT_INSTANCE, CLIENT_ID, and PASSWORD variables to match your Jamf Protect environment. The PROTECT_INSTANCE variable is your tenant name (e.g., your-tenant), which is included in your tenant URL (e.g., https://your-tenant.protect.jamfcloud.com).
+# - This example script leverages the requests Python library python3.
+
+
+import sys
+import requests
+import json
+PROTECT_INSTANCE = ""
+CLIENT_ID = ""
+PASSWORD = ""
+RESOURCES = ["Logs", "Alerts"]
+JSON_OUTPUT_FILE = "/tmp/ProtectAlerts.json"
+def get_access_token(protect_instance, client_id, password):
+    """Gets a reusable access token to authenticate requests to the Jamf
+    Protect API"""
+    token_url = f"https://{protect_instance}.protect.jamfcloud.com/token"
+    payload = {
+        "client_id": client_id,
+        "password": password,
+    }
+    resp = requests.post(token_url, json=payload)
+    resp.raise_for_status()
+    resp_data = resp.json()
+    print(
+        f"Access token granted, valid for {int(resp_data['expires_in'] // 60)} minutes."
+    )
+    return resp_data["access_token"]
+def make_api_call(protect_instance, access_token, query, variables=None):
+    """Sends a GraphQL query to the Jamf Protect API, and returns the
+    response."""
+    if variables is None:
+        variables = {}
+    api_url = f"https://{protect_instance}.protect.jamfcloud.com/graphql"
+    payload = {"query": query, "variables": variables}
+    headers = {"Authorization": access_token}
+    resp = requests.post(
+        api_url,
+        json=payload,
+        headers=headers,
+    )
+    resp.raise_for_status()
+    return resp.json()
+LIST_LOGS_QUERY = """
+        query listLogs(
+            $page_size: Int
+            $next: String
+        ) {
+            listLogs(
+                input: {
+                    pageSize: $page_size
+                    next: $next
+                }
+            ) {
+                items {
+                        log
+                        computer {
+                            hostName
+                        }
+                        created
+                    }
+                        pageInfo {
+                                next
+                    }
+                }
+            }
+        """
+LIST_ALERTS_QUERY = """
+        query listAlerts(
+            $page_size: Int
+            $next: String
+        ) {
+            listAlerts(
+                input: {
+                    pageSize: $page_size
+                    next: $next
+                }
+            ) {
+                items {
+                        alert
+                        computer {
+                            hostName
+                        }
+                        created
+                    }
+                        pageInfo {
+                                next
+                    }
+                }
+            }
+        """
+def __main__():
+    # Get the access token
+    access_token = get_access_token(PROTECT_INSTANCE, CLIENT_ID, PASSWORD)
+    if not set(RESOURCES).issubset({"Alerts", "Logs"}):
+        print("Unexpected resource type. Expected either 'Alerts' or 'Logs'.")
+        sys.exit(1)
+    combined_results = {}
+    for resource_type in RESOURCES:
+        if resource_type == "Logs":
+            query = LIST_LOGS_QUERY
+        elif resource_type == "Alerts":
+            query = LIST_ALERTS_QUERY
+        results = []
+        next_token = None
+        page_count = 1
+        print("Retrieving paginated results:")
+        while True:
+            print(f"  Retrieving page {page_count} of results...")
+            vars = {
+                "page_size": 100,
+                "next": next_token,
+            }
+            resp = make_api_call(PROTECT_INSTANCE, access_token, query, vars)
+            next_token = resp["data"][f"list{resource_type}"]["pageInfo"]["next"]
+            results.extend(resp["data"][f"list{resource_type}"]["items"])
+            if next_token is None:
+                break
+            page_count += 1
+        print(f"Found {len(results)} {resource_type} matching filter.\n")
+        combined_results[resource_type.lower()] = results
+    print(f"Writing results to '{JSON_OUTPUT_FILE}'")
+    with open(JSON_OUTPUT_FILE, "w") as output:
+        json.dump(combined_results, output, sort_keys=True, indent=4)
+if __name__ == "__main__":
+    __main__()

@@ -1,0 +1,16 @@
+# LaunchDaemonDeleted
+#
+# This Analytic predicate may be used to report on the deletion of LaunchDaemons.
+# This detection functions by monitoring for deletion events on any files within known file paths for LaunchDaemons.
+#
+# Analytic Predicate:
+
+$event.type == 1 AND $event.path MATCHES[cd] "(:?/System)?/Library/LaunchDaemons/.*.plist"
+
+# Required Analytic Configuration:
+
+Sensor Event Type: GPFSEvent
+Level: 0
+
+# Recommended Analytic Configuration:
+Actions: Log
