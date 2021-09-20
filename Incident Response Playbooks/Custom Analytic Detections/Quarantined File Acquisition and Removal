@@ -233,8 +233,8 @@ FileCollection () {
 
 # Compress the artefacts for upload
 CompressArtefacts () {
-    # Process the upload of the artefacts to the nominated S3 bucket using the existing .s3cfg configuration file
-    file="$(date +%Y%m%d_%H%M)-$(hostname -s)-JPIR-Artefacts.tar.gz"
+    # Process the upload of the artefacts to the nominated S3 bucket
+    file="$(date +%Y%m%d_%H%M)-${serialNumber}-JPIR-Artefacts.tar.gz"
     
     # Move into the working directory and compress the quarantined file(s) for upload
     cd "$workingDIR" && /usr/bin/tar czf "$file" *
