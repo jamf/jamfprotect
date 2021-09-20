@@ -84,18 +84,17 @@ s3BucketRegion=""
 artefactBackup="no"
 backupDIR="${IRSupportDIR}/ArtefactBackups"
 
+# Quarantined file settings
 # Set whether to collect or remove just the most recently added file in the quarantine directory or all files
 # "all" = collect or remove all files in the quarantine directory
 # "latest" = collect or remove only the latest file in the quarantine directory
 files="latest"
-
-# Quarantined file deletion
 # Do you wish to delete the quarantined file?  Expected options are:
 # "yes" = file deletion
 # "no" = the file will not be deleted and will persist in the quarantine directory
 deleteFile="yes"
 
-# Additional artefact collection from a Jamf Pro Policy
+# Additional artefact collection from a Jamf Pro Policy settings
 # Set this to yes and provide a custom trigger to call a second Jamf Pro Policy for additional artefact collection following this event
 # "yes" = the Jamf Pro binary will be used to check for additional Policies
 # "no" = no action will be taken
@@ -130,7 +129,22 @@ iconPath="${IRSupportDIR}/logo.png"
 
 ################# Script Functions ##################
 
-# User notification
+# Check for quarantined files to confirm if the script should continue
+CheckForFiles () {
+    if [[ -z $(/bin/ls -A "$quarantineDIR") ]]; then
+        
+        echo "There are no files in the Jamf Protect quarantine directory so this incident response workflow will now abort."
+        
+        exit 1
+        
+    else
+    
+        echo "There are files present in the Jamf Protect quarantine directory so this incident response workflow will now start."
+        
+    fi
+}
+
+# End-user notification of the event
 UserNotification () {
     if [[ "$notifyUser" == "yes" ]] && [[ -f "$notificationApp" ]]; then
 
@@ -228,6 +242,74 @@ CompressArtefacts () {
     cd /Users/Shared
 }
 
+# Upload the artefacts to the Amazon S3 service using the AWS CLI
+AcquireArtefacts () {
+    if [[ ! -z "$bucket" ]] && [[ ! -z "$s3AccessKeyID" ]] && [[ ! -z "$s3SecretKey" ]] && [[ ! -z "$s3BucketRegion" ]]; then
+    
+        echo "Artefact acquisition is enabled and the required variables are not empty so the upload operation will begin now.."
+    
+        # Set variables required for the AWS S3 service upload
+        export AWS_ACCESS_KEY_ID="$s3AccessKeyID"
+        export AWS_SECRET_ACCESS_KEY="$s3SecretKey"
+        export AWS_DEFAULT_REGION="$s3BucketRegion"
+    
+        # Check for the AWS binary being installed and Upload the file to the S3 bucket if so
+        if [[ -f "$awsBinary" ]]; then
+            
+            echo "The AWS binary is present, initiating the upload.."
+            "$awsBinary" s3 cp "$workingDIR"/"$file" s3://"$bucket"
+            
+            export uploadStatus=$?
+            
+            # Report back the status of the upload.  If 0 then the upload was successful, if any code other than 0 than it was a failure
+            if [[ "$uploadStatus" -eq 0 ]]; then
+                
+                echo "The artefact upload to the S3 service was successful and finished with exit code ${uploadStatus}."
+                
+            else
+            
+                echo "The artefact upload to the S3 service failed with error code ${uploadStatus}."
+                
+            fi
+            
+        else
+        
+            echo "Artefact acquisition was enabled and configured but the AWS binary wasn't available to use so the operation was aborted."
+            # Record a failure for artefact backup operation
+            export uploadStatus="1"
+            
+        fi
+    
+    else
+        
+        # Artefact acquisition was enabled but was misconfigured
+        echo "Artefact acquisition was enabled but misconfigured so the operation was aborted."
+        echo "Artefact acquisition configuration: ${artefactAcquisition}"
+        # Record a failure for artefact backup operation
+        export uploadStatus="1"
+        
+    fi
+}
+
+# Check for the required network connectivity to use the AWS S3 service
+NetworkCheckAndUpload () {
+    if /usr/bin/nc -zdw1 s3.amazonaws.com 443; then
+        
+        networkUP="yes"
+        echo "Can the device connect to the S3 bucket for upload? Result: ${networkUP}"
+        echo "Network connectivity is available so the artefect upload will proceed.."
+    
+        # Call function
+        AcquireArtefacts
+    
+    else
+        
+        networkUP="no"
+        echo "Can the device connect to the S3 bucket for upload? Result: ${networkUP}"
+        
+    fi
+}
+
 # Backup the artefacts if confiugred to do so
 ArtefactBackup () {
     echo "Backing up of acquired artefacts is enabled and the operation will now proceed."
@@ -257,50 +339,28 @@ ArtefactBackup () {
     fi
 }
 
-# Check for the required network connectivity to use the AWS S3 service
-NetworkCheck () {
-    if /usr/bin/nc -zdw1 s3.amazonaws.com 443; then
-        
-        networkUP="yes"
-        echo "Can the device connect to the S3 bucket for upload? Result: ${networkUP}"
+# Perform a backup of artefacts if the conditions to do so are met
+BackupOperation () {
+    if [[ "$uploadStatus" != 0 ]] && [[ "$artefactBackup" == "yes" ]]; then
     
-    else
+        echo "Network connectivity is available but the artefact upload to the S3 service failed.  Artefact backup is enabled so this operation will now begin."
+        # Call function
+        ArtefactBackup
         
-        networkUP="no"
-        echo "Can the device connect to the S3 bucket for upload? Result: ${networkUP}"
-        
-    fi
-}
+    elif [[ "$uploadStatus" != 0 ]] && [[ "$artefactBackup" == "no" ]]; then
+    
+        echo "Network connectivity is available but the artefact upload to the S3 service failed.  Artefact backup is disabled so this operation will be skipped."
 
-# Upload the artefacts to the Amazon S3 service using the AWS CLI
-AcquireArtefacts () {
-    if [[ ! -z "$bucket" ]] && [[ ! -z "$s3AccessKeyID" ]] && [[ ! -z "$s3SecretKey" ]] && [[ ! -z "$s3BucketRegion" ]]; then
+    elif [[ "$networkUP" == "no" ]] && [[ "$artefactBackup" == "yes" ]]; then
     
-        echo "Artefact acquisition is enabled and the required variables are not empty so the upload operation will begin now.."
-    
-        # Set variables required for the AWS S3 service upload
-        export AWS_ACCESS_KEY_ID="$s3AccessKeyID"
-        export AWS_SECRET_ACCESS_KEY="$s3SecretKey"
-        export AWS_DEFAULT_REGION="$s3BucketRegion"
-    
-        # Check for the AWS binary being installed and Upload the file to the S3 bucket if so
-        if [[ -f "$awsBinary" ]]; then
-            
-            echo "The AWS binary is present, initiating the upload.."
-            "$awsBinary" s3 cp "$workingDIR"/"$file" s3://"$bucket"
-            
-        else
+        echo "Network connectivity is unavailable and artefact backup is enabled so the backup operation will now begin.."
+        # Call function
+        ArtefactBackup
         
-            echo "Artefact acquisition was enabled and configured but the AWS binary wasn't available to use so the operation was aborted."
-            
-        fi
+    elif [[ "$networkUP" == "no" ]] && [[ "$artefactBackup" == "no" ]]; then
     
-    else
-        
-        # Artefact acquisition was enabled but was misconfigured
-        echo "Artefact acquisition was enabled but misconfigured so the operation was aborted."
-        echo "Artefact acquisition configuration: ${artefactAcquisition}"
-        
+        echo "Network connectivity is unavailable and artefact backup is disabled."
+
     fi
 }
 
@@ -393,10 +453,11 @@ CleanUp () {
 #####################################################
 set -o nounset
 
-echo "Executing the incident response workflow now.."
-
 # Set the file quarantine directory from Jamf Protect
 quarantineDIR="/Library/Application Support/JamfProtect/Quarantine"
+
+# Call function
+CheckForFiles
 
 #####################################################
 ###### End-user Notification Section ######
@@ -405,12 +466,12 @@ quarantineDIR="/Library/Application Support/JamfProtect/Quarantine"
 UserNotification
 
 #####################################################
-###### Upload Section ######
+###### Acquisition, Upload and Backup Section #######
 
 # Begin acquisition of the malware sample if this function is enabled
 if [[ "$artefactAcquisition" == "yes" ]]; then
 
-	echo "Artefact collection is enabled and will now begin.."
+    echo "Artefact collection is enabled and will now begin.."
 	
     # Call function
     CreateWorkingDIR
@@ -425,27 +486,10 @@ if [[ "$artefactAcquisition" == "yes" ]]; then
     CompressArtefacts
     
     # Call function
-    NetworkCheck
+    NetworkCheckAndUpload
 
-    # Backup local files if necessary and configured to do so
-    if [[ "$networkUP" == "no" ]] && [[ "$artefactBackup" == "yes" ]]; then
-    
-        echo "Network connectivity is unavailable and artefact backup is enabled so the backup operation will now begin.."
-    	# Call function
-        ArtefactBackup
-        
-    elif [[ "$networkUP" == "no" ]] && [[ "$artefactBackup" == "no" ]]; then
-    
-        echo "Network connectivity is unavailable and artefact backup is disabled."
-    
-    elif [[ "$networkUP" == "yes" ]]; then
-    
-        echo "Network connectivity is available so the artefect upload will proceed.."
-    
-        # Call function
-        AcquireArtefacts
-        
-    fi
+    # Call function
+    BackupOperation
 
 else
 
@@ -454,19 +498,19 @@ else
 fi
 
 #####################################################
-###### File Removal Section ######
+############### File Removal Section ################
 
 # Call function
 FileDeletion
 
 #####################################################
-###### Additional Incident Response Workflow Section ######
+#### Additional Jamf Pro Policy Workflow Section ####
 
 # Call function
 AdditionalJamfProPolicy
 
 #####################################################
-###### Cleanup and Resolution Section ######
+########## Cleanup and Resolution Section ###########
 
 # Call function
 CleanUp
