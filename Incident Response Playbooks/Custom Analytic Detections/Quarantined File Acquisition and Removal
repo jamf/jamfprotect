@@ -78,9 +78,10 @@ s3SecretKey=""
 s3BucketRegion=""
 
 # Artefact backup settings
-# Enable or disable backup of acquired artefacts should network connectivity to the S3 bucket not be availble.  Expected options are:
+# Enable or disable backup of acquired artefacts should no network connectivity for the upload be available or if the upload is attempted but fails.  Expected options are:
 # "yes" = artefacts will be backed up
 # "no" = artefacts will not be backed up
+# IMPORTANT: This is a valuable feature to ensure that quarantined files can be gathered.  Pair with an Extension Attribute in Jamf Pro to add an additional collection workflow for failed uploads after thef act.
 artefactBackup="no"
 backupDIR="${IRSupportDIR}/ArtefactBackups"
 
