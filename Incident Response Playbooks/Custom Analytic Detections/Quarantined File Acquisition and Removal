@@ -189,7 +189,7 @@ FileCollection () {
         echo "Only the latest quarantined file will be collected.."
         
         # Find the most recently added file that was quarantined by Jamf Protect
-        quarantinedFiles=$(/bin/ls -lrt "$quarantineDIR" | /usr/bin/tail -n 1 | /usr/bin/awk '{ print$NF }')
+        quarantinedFiles=$(/bin/ls -lrtA "$quarantineDIR" | /usr/bin/tail -n 1 | /usr/bin/awk '{ print$NF }')
 
         # Copy the folder to the working directory
         /bin/cp -R "$quarantineDIR"/"$quarantinedFiles" "$workingDIR"
@@ -208,7 +208,7 @@ FileCollection () {
         echo "Only the latest quarantined file will be collected.."
         
         # Find the most recently added file that was quarantined by Jamf Protect
-        quarantinedFiles=$(/bin/ls -lrt "$quarantineDIR" | /usr/bin/tail -n 1 | /usr/bin/awk '{ print$NF }')
+        quarantinedFiles=$(/bin/ls -lrtA "$quarantineDIR" | /usr/bin/tail -n 1 | /usr/bin/awk '{ print$NF }')
 
         # Copy the folder to the working directory
         /bin/cp -R "$quarantineDIR"/"$quarantinedFiles" "$workingDIR"
