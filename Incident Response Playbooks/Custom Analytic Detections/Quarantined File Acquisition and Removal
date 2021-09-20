@@ -37,7 +37,7 @@
 # Script functions
 # - Optionally display a notification to the end-user regarding the event using the Mac@IBM Notifications tool
 # - Optionally perform an acquisition and upload of quarantined file(s) copied from the Jamf Protect quarantine directory, using AWS's S3 service
-# - Optionally perform a local backup of the quarantined malware file(s) if network connectivity to the S3 bucket isn't available
+# - Optionally perform a local backup of the quarantined malware file(s) if network connectivity to the S3 bucket isn't available or if the upload fails for any reason
 # - Optionally perform a deletion of quarantined file(s) from the Jamf Protect quarantine directory
 # - Optionally call upon additional Jamf Pro Policies by a custom trigger
 # - Clean up the Extension Attribute file created by Jamf Protect and submit a Jamf Pro inventory to reset the workflow
