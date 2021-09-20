@@ -321,14 +321,18 @@ FileDeletion () {
             echo "Deleting all files in the quarantine directory.."
             # Validate the variables then safely delete all files within the quarantine directory
             /bin/rm -rf "${quarantineDIR:?}"/*
+            
+        else
+        
+            echo "File deletion is enabled but no valid option was chosen for the 'files' variable so the operation was aborted."
         
         fi
     
     else
 
-        echo "Deletion of quarantined files is not enabled."
+        echo "Deletion of quarantined files is not enabled so this operation was skipped."
     
-fi
+    fi
 }
 
 
