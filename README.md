@@ -5,7 +5,7 @@ A repository for open-source resources created for use with or alongside Jamf Pr
 
 ## What types of resources can I find within this repository?
 
-***Incident Response Playbooks***
+***SOAR Playbooks***
 
 Leverage the powerful integration between Jamf Protect and Jamf Pro to rapidly respond to and remediate security incidents on endpoints through automation.
 
