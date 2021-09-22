@@ -5,4 +5,4 @@
 #
 # Filter Predicate:
 
-process == 'sharingd' and subsystem = 'com.apple.sharing' and category = 'AirDrop' and composedMessage BEGINSWITH[cd] 'startSending'
+process == "sharingd" and subsystem = "com.apple.sharing" and category = "AirDrop" and composedMessage BEGINSWITH[cd] "startSending"
