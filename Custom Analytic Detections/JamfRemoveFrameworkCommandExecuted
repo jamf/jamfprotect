@@ -5,7 +5,7 @@
 #
 # Analytic Predicate:
 
-$event.type == 1 AND $event.process.path == "/usr/local/jamf/bin/jamf" AND commandLine contains "removeFramework"
+$event.type == 1 AND $event.process.signingInfo.appid == "com.jamfsoftware.jamf" AND $event.process.commandLine contains "removeFramework"
 
 # Required Analytic Configuration:
 
