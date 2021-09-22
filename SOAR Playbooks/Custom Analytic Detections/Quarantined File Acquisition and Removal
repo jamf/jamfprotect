@@ -165,6 +165,18 @@ UserNotification () {
     fi
 }
 
+# Check for and create the IRSupport directory if necessary
+CheckIRSupportDIR () {
+    echo "Checking that the ${IRSupportDIR} directory exists.."
+    
+    if [[ ! -d "$IRSupportDIR" ]]; then
+    
+        echo "The ${IRSupportDIR} directory doesn't exist so it will be created."
+        /bin/mkdir -p "$IRSupportDIR"
+    
+    fi
+}
+
 # Create the working directory
 CreateWorkingDIR () {
     echo "Creating the temporary working directory.."
@@ -473,7 +485,10 @@ UserNotification
 if [[ "$artefactAcquisition" == "yes" ]]; then
 
     echo "Artefact collection is enabled and will now begin.."
-	
+    
+    # Call function
+    CheckIRSupportDIR
+    
     # Call function
     CreateWorkingDIR
     
