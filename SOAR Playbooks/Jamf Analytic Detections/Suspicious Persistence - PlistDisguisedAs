@@ -70,7 +70,7 @@ artefactAcquisition="yes"
 # Location of the AWS CLI binary, a default symlink path is used and may be retained.
 awsBinary="/usr/local/bin/aws"
 # The name of the target S3 bucket resource
-bucket=""
+s3Bucket=""
 # The S3 Access Key ID to use for the upload
 s3AccessKeyID=""
 # The S3 Secret Key to use for the upload
@@ -324,7 +324,7 @@ ArtefactBackup () {
 
 # Attempt to upload the artefacts to the Amazon S3 service
 AcquireArtefacts () {
-    if [[ ! -z "$bucket" ]] && [[ ! -z "$s3AccessKeyID" ]] && [[ ! -z "$s3SecretKey" ]] && [[ ! -z "$s3BucketRegion" ]]; then
+    if [[ ! -z "$s3Bucket" ]] && [[ ! -z "$s3AccessKeyID" ]] && [[ ! -z "$s3SecretKey" ]] && [[ ! -z "$s3BucketRegion" ]]; then
     
         echo "Artefact acquisition is enabled and the required variables are not empty so the upload operation will begin now.."
     
@@ -337,7 +337,7 @@ AcquireArtefacts () {
         if [[ -f "$awsBinary" ]]; then
             
             echo "The AWS binary is present, initiating the upload.."
-            "$awsBinary" s3 cp "$workingDIR"/"$file" s3://"$bucket"
+            "$awsBinary" s3 cp "$workingDIR"/"$file" s3://"$s3Bucket"
             
             export uploadStatus=$?
             
