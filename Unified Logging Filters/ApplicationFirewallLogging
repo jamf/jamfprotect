@@ -1,0 +1,28 @@
+# ApplicationFirewallLogging
+#
+# This Unified Log filter may be used to report on logging from the Application Firewall in macOS.
+# This filter functions by monitoring logging from the com.apple.alf subsystem.
+#
+# Filter Predicate:
+
+subsystem == "com.apple.alf"
+
+# Additional Information:
+# 
+# In order to enable logging output from the Application Firewall on macOS 11.x and below the following commands must be executed on the endpoint:
+# 
+
+/usr/libexec/ApplicationFirewall/socketfilterfw --setloggingmode on
+/usr/libexec/ApplicationFirewall/socketfilterfw --setloggingopt detail
+
+# The following commands can be used to check the status of the logging and logging option settings:
+
+/usr/libexec/ApplicationFirewall/socketfilterfw --getloggingmode
+/usr/libexec/ApplicationFirewall/socketfilterfw --getloggingopt
+
+#
+# 
+# If executing these commands locally in Terminal 'sudo' will be required.
+#
+# By default private data (such as IP addresses and ports) will be redacted by Apple's Private Logging feature.  In order to disable this for the Application Firewall logging specifically this configuration profile may be enforced:
+# https://github.com/usnistgov/macos_security/blob/monterey/includes/com.apple.alf.private_data.mobileconfig
