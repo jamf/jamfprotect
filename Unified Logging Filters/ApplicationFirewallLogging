@@ -15,9 +15,9 @@ subsystem == "com.apple.alf"
 /usr/libexec/ApplicationFirewall/socketfilterfw --setloggingmode on
 /usr/libexec/ApplicationFirewall/socketfilterfw --setloggingopt detail
 
-# In macOS 12 and above these settings can be managed through MDM with a configuration profile 
+# In macOS 12 and above these settings can be managed through MDM with a configuration profile: https://developer.apple.com/documentation/devicemanagement/firewall
 
-# The following commands can be used to check the status of the logging and logging option settings: https://developer.apple.com/documentation/devicemanagement/firewall
+# The following commands can be used to check the status of the logging and logging option settings: 
 
 /usr/libexec/ApplicationFirewall/socketfilterfw --getloggingmode
 /usr/libexec/ApplicationFirewall/socketfilterfw --getloggingopt
