@@ -10,7 +10,7 @@ $event.type == 0 AND $event.device.removable == 1 AND $event.device.writable != 
 # Required Analytic Configuration:
 
 Sensor Event Type: GPUSBEvent
-Level: 0
+Level: 1
 
 # Recommended Analytic Configuration:
-Actions: Log
+Severity: Informational
