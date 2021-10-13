@@ -10,7 +10,7 @@ $event.isNewFile == 1 AND $event.path MATCHES [c] "/Library/Application Support/
 # Required Analytic Configuration:
 
 Sensor Event Type: GPFSEvent
-Level: 0
+Level: 1
 
 # Recommended Analytic Configuration:
-Actions: Log
+Severity: Informational
