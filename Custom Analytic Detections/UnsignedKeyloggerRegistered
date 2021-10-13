@@ -10,7 +10,7 @@ $event.source.signingInfo.signerType == 4
 # Required Analytic Configuration:
 
 Sensor Event Type: GPKeylogRegisterEvent
-Level: 0
+Level: 1
 
 # Recommended Analytic Configuration:
-Actions: Alert
+Severity: Medium
