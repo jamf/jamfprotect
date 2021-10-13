@@ -10,7 +10,7 @@ $event.type == 1 AND $event.process.tty != nil AND $event.process.parent.isShell
 # Required Analytic Configuration:
 
 Sensor Event Type: GPProcessEvent
-Level: 0
+Level: 1
 
 # Recommended Analytic Configuration:
 Severity: Informational
