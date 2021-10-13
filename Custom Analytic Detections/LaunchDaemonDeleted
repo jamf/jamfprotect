@@ -5,12 +5,12 @@
 #
 # Analytic Predicate:
 
-$event.type == 1 AND $event.path MATCHES[cd] "(:?/System)?/Library/LaunchDaemons/.*\\.plist"
+$event.type == 1 AND $event.path MATCHES[cd] "(:?/System|/Users/[\\w_\\.\\-]{1,83})?/Library/LaunchDaemons/.*\\.plist"
 
 # Required Analytic Configuration:
 
 Sensor Event Type: GPFSEvent
-Level: 0
+Level: 1
 
 # Recommended Analytic Configuration:
-Actions: Log
+Severity: Informational
