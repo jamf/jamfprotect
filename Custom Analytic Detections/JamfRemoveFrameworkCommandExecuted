@@ -5,12 +5,12 @@
 #
 # Analytic Predicate:
 
-$event.type == 1 AND $event.process.signingInfo.appid == "com.jamfsoftware.jamf" AND $event.process.commandLine contains "removeFramework"
+$event.type == 1 AND $event.process.signingInfo.appid == "com.jamfsoftware.jamf" AND $event.process.commandLine CONTAINS "removeFramework"
 
 # Required Analytic Configuration:
 
 Sensor Event Type: GPProcessEvent
-Level: 1
+Level: 0
 
 # Recommended Analytic Configuration:
-Actions: Log
+Severity: Informational
