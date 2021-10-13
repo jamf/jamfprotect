@@ -13,4 +13,4 @@ Sensor Event Type: GPProcessEvent
 Level: 0
 
 # Recommended Analytic Configuration:
-Actions: Log
+Severity: Informational
