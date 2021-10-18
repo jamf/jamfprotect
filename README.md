@@ -23,7 +23,7 @@ Unified Log filter predicates to streamline rich system, user, application and n
 
 More information on Unified Log filtering can be found [here](https://docs.jamf.com/jamf-protect/documentation/Unified_Logging.html).
 
-### API Queries, Mutations and Scripts
+### Jamf Protect API Scripts
 
 Jamf Protect's GraphQL API can be used to streamline endpoint and configuration management, compliance reporting and general tenant management.
 
