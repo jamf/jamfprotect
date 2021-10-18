@@ -98,7 +98,7 @@ if [[ "$notifyUser" == "yes" ]] && [[ -f "$notificationApp" ]]; then
     echo "User notification is enabled and the notification app is available to use.  The end-user will be notified of the event."
     
     # Capture the logged-in User
-    loggedInUser=$(scutil <<< "show State:/Users/ConsoleUser" | /usr/bin/awk '/Name :/ && ! /loginwindow/ { print $3 }')
+    loggedInUser=$(/usr/sbin/scutil <<< "show State:/Users/ConsoleUser" | /usr/bin/awk '/Name :/ && ! /loginwindow/ { print $3 }')
     
     /usr/bin/sudo -u ${loggedInUser} "$notificationApp" -type "$window" -bar_title "$barTitle" -title "$title" -subtitle "$subTitle" -always_on_top -main_button_label "$mainButtonLabel" -tertiary_button_label "$tertiaryButtonLabel" -tertiary_button_cta_type "$tertiaryButtonType" -tertiary_button_cta_payload "$tertiaryButtonPayload" -help_button_cta_type "$helpButtonType" -help_button_cta_payload "$helpButtonPayload" -icon_path "$iconPath" &
 
