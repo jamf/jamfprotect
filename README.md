@@ -38,4 +38,4 @@ More information on using Extension Attributes with Jamf Pro can be found [here]
 ### Please see the [Wiki](https://github.com/jamf/jamfprotect/wiki) for specific information on each resource in this repository.
 
 #
-## Please note that all resoruces contained within this repository are provided as-is and are not officially supported by Jamf Support.
+## Please note that all resources contained within this repository are provided as-is and are not officially supported by Jamf Support.
