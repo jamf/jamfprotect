@@ -7,7 +7,7 @@ Customers of Jamf Protect are able to leverage resources in this repository such
 
 ### SOAR Playbooks
 
-Leverage the powerful integration between Jamf Protect and Jamf Pro to rapidly respond to and remediate security incidents on endpoints through automation.
+Leverage the powerful integration between Jamf Protect and Jamf Pro to rapidly respond to security incidents on managed endpoints through automation.
 
 More information on this Jamf portfolio integration can be found [here](https://docs.jamf.com/jamf-protect/documentation/Setting_Up_Analytic_Remediation_With_Jamf_Pro.html).
 
