@@ -39,8 +39,7 @@
 #####################################################
 
 ########## Packet Filter Firewall Settings ##########
-# These are the required ports and IP range for persisting APNs connectivity on macOS devices.  Please refer to Apple's documentation for more information: https://support.apple.com/en-gb/HT210060.  Values in the variable must be separated by a comma and space.
-apnsPorts="53, 8443, 443, 80, 5223, 2195, 2196, 2197"
+# This is the required IP range for persisting APNs connectivity on macOS devices.  Please refer to Apple's documentation for more information: https://support.apple.com/en-gb/HT210060.  Values in the variable must be separated by a comma and space.
 apnsIPRange="17.0.0.0/8"
 
 # The naming convention to use for any preference files created throughout this workflow.  This will be used for preference files so must be in domain naming format, such as 'com.acmesoft.isolate' and will often be followed by .plist, as an exmaple.
