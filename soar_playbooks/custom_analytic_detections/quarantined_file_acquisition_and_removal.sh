@@ -108,7 +108,7 @@ customTrigger=""
 # Set whether or not to notify the user of this event
 # "yes" = the user will be notified
 # "no" = the user will not be notified and all actions will be silent
-notifyUser="yes"
+notifyUser="no"
 notificationApp="${IRSupportDIR}/IBM Notifier.app/Contents/MacOS/IBM Notifier"
 
 # IBM Notifier app settings.  This can be configured as desired per the workflow and end-user communication required.
