@@ -93,13 +93,24 @@ EOF
 /usr/sbin/chown root:wheel /etc/pf.anchors/"$fileName".pf.conf
 /bin/chmod 755 /etc/pf.anchors/"$fileName".pf.conf
 
-# Create the KeepJamf FireWall policy
+# Create the isolation PF fireWall policy
 /usr/bin/tee /etc/pf.anchors/"$fileName".pf.rules <<EOF
 			
 			# Safe List
-
-			block drop out proto { tcp, udp } from any to any port { ${apnsPorts} }
-			pass out proto { tcp, udp } from any to { ${apnsIPRange}, ${JamfProInstance} } port { ${apnsPorts} }
+            # Block all incoming connections
+            block in all
+            # Pass in incoming connections from Apple addresses and Jamf Pro
+            pass in from { ${apnsIPRange}, ${JamfProInstance} } to any no state
+            
+            ## Pass in DHCP
+            pass in inet proto udp from port 67 to port 68
+            pass in inet6 proto udp from port 547 to port 546
+            
+            # Block all outgoing connections
+            block out from any to any no state
+            
+            # Pass out outgoing connections to Apple addresses and Jamf Pro
+            pass out from any to { ${apnsIPRange}, ${JamfProInstance} } no state
 EOF
 
 # Set permissions
