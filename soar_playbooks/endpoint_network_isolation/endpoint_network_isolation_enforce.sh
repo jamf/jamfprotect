@@ -115,7 +115,7 @@ GetJamfProURL () {
 # Create the Packet Filter anchor file and set permissions
 CreatePFAnchor () {
 
-    # Create the KeepJamf Anchor
+    # Create the Anchor
 /usr/bin/tee /etc/pf.anchors/"$fileName".pf.conf <<EOF
     anchor ${fileName}
     load anchor ${fileName} from "/etc/pf.anchors/${fileName}.pf.rules"
