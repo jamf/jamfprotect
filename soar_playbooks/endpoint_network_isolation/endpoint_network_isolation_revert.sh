@@ -29,6 +29,7 @@
 
 # written by Matthieu Castel, Jamf May 2021
 # edited by Matt Taylor, Jamf September 2021
+# v1.5
 
 # Restore network connectivity by disabling the packet filter restrictions
 
