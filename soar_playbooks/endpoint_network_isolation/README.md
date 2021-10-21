@@ -4,7 +4,7 @@ This SOAR playbook is built to isolate an endpoint and prevent it from communica
 
 The isolation mechanism is achieved using the Packet Filter (pfctl) binary on macOS and will block all inbound and outbound traffic from the endpoint except that which is needed for network connectivity to approved Apple and Jamf services.  
 
-This ensures that the endpoint can continue to communicate with Jamf Pro for both non-MDM (e.g. a policy and script) and MDM-driven management (e.g. a configuration profile) for use in responding to a security event.
+#### This ensures that the endpoint can continue to communicate with Jamf Pro for both non-MDM (e.g. a policy and script) and MDM-driven management (e.g. a configuration profile) for use in responding to a security event.
 
 There are three components to the playbook:
 
