@@ -36,25 +36,25 @@
 ############# Script Configuration Area #############
 #####################################################
 
+# INCIDENT RESPONSE RESOURCES FOLDER
 # Set the home directory for tools and resources for this Incident Response workflow
 # IMPORTANT: Several other variables depend on this so please be sure to read the documentation
-IRSupportDIR="/path/to/resources/folder"
+IRSupportDIR="/Library/Application Support/IRSupport"
 
+# FILE NAMING CONVENTION
 # The naming convention to use for any preference files created throughout this workflow.  This will be used for preference files so must be in domain naming format, such as 'com.acmesoft.isolate' and will often be followed by .plist, as an exmaple.
 # IMPORTANT: This value must match the value used for the same variable in the enforce stage of this incident response workflow.
 fileName="com.acmesoft.isolate"
 
-########## User Notification Settings ##########
+# USER NOTIFICATION SETTINGS
 # This script will use the 'mac-ibm-notifications' tool to display an information window to the end-user about the event.  A signed and notarised version of this application can be downloaded from https://github.com/IBM/mac-ibm-notifications/releases and should be present on the device in order for it to be used.
 # Set whether or not to notify the user of this event
 # "yes" = the user will be notified
 # "no" = the user will not be notified and all actions will be silent
-notifyUser="yes"
-
-# The file path to the application:
+notifyUser="no"
 notificationApp="${IRSupportDIR}/IBM Notifier.app/Contents/MacOS/IBM Notifier"
 
-# IBM Notifier Variables
+# IBM Notifier app settings.  This can be configured as desired per the workflow and end-user communication required.
 window="popup"
 barTitle="Acmesoft Information Security Notification"
 title="This is an important message from the Acmesoft Information Security Team"
