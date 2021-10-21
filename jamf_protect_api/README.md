@@ -8,7 +8,5 @@ Documentation on the Jamf Protect API can be found [here](https://docs.jamf.com/
 ## API Scripts
 The scripts contained within this repository are written in either bash or python.
 
-<info here regarding python libraries>
-
 #
 ## Please note that all resoruces contained within this repository are provided as-is and are not officially supported by Jamf Support.
