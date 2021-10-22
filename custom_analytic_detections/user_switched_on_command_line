@@ -1,0 +1,16 @@
+# user_switched_on_command_line
+#
+# This Analytic predicate may be used to report on all usage of the 'su' binary to switch user on the command-line, completed through an interactive shell on the endpoint.
+# This detection functions by monitoring for su processes created that have an associated TTY and are determined to be created through a fully interactive shell, such as those from a Terminal session.
+#
+# Analytic Predicate:
+
+$event.type == 1 AND $event.process.tty != nil AND $event.process.parent.isShell == 1 AND $event.process.signingInfo.appid == "com.apple.su"
+
+# Required Analytic Configuration:
+
+Sensor Event Type: GPProcessEvent
+Level: 1
+
+# Recommended Analytic Configuration:
+Severity: Informational
