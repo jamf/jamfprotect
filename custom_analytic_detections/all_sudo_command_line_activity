@@ -1,0 +1,16 @@
+# all_sudo_command_line_activity
+#
+# This Analytic predicate may be used to report on all command-line activity completed through an interactive shell on the endpoint that involves escalating privileges with sudo.  This will not report on sudo usage outside of an interactive shell, such as via a Jamf Pro policy script.
+# This detection functions by monitoring for sudo processes created that have an associated TTY and are determined to be created through a fully interactive shell, such as those from a Terminal session.
+#
+# Analytic Predicate:
+
+$event.type == 1 AND $event.process.tty != nil AND $event.process.parent.isShell == 1 AND $event.process.signingInfo.appid == "com.apple.sudo"
+
+# Required Analytic Configuration:
+
+Sensor Event Type: GPProcessEvent
+Level: 1
+
+# Recommended Analytic Configuration:
+Severity: Informational
