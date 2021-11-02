@@ -1,8 +1,0 @@
-# AirDropTransfersFromEndpoint
-#
-# This Unified Log filter may be used to report on AirDrop transfer events originating from the endpoint.
-# This filter functions by monitoring logging from the sharingd process, it's related subsystem and for event messaging containing a known string indicating an AirDrop transfer has been initiated.
-#
-# Filter Predicate:
-
-process == "sharingd" and subsystem = "com.apple.sharing" and category = "AirDrop" and composedMessage BEGINSWITH[cd] "startSending"
