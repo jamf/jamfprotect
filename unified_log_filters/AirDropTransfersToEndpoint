@@ -1,9 +1,0 @@
-# AirDropTransfersToEndpoint
-#
-# This Unified Log filter may be used to report on inbound AirDrop transfer events to the endpoint, including file save location.
-# This filter functions by monitoring logging from the sharingd process, it's related subsystem and for event messaging containing a known strings indicating an inbound AirDrop transfer has been initiated.
-#
-# Filter Predicate:
-
-process == "sharingd" AND subsystem == "com.apple.sharing" AND category == "AirDrop" AND (eventMessage BEGINSWITH[cd] "SDAirDropReceiveManager: Received event AskUser for transfer" OR eventMessage BEGINSWITH[cd] "Saving transfer to" OR eventMessage BEGINSWITH[cd] "User response: Accepted for transfer" OR eventMessage BEGINSWITH[cd] "Sending Ask response" OR eventMessage BEGINSWITH[cd] "SDAirDropReceiveManager: Received event Started" OR eventMessage BEGINSWITH[cd] "New incoming transfer" OR eventMessage BEGINSWITH[cd] "Received Upload request" OR eventMessage BEGINSWITH[cd] "AirDrop destination set to" OR eventMessage BEGINSWITH[cd] "SDAirDropFileZipper:" OR eventMessage BEGINSWITH[cd] "SDAirDropReceiveManager: Received event Finished for transfer" OR eventMessage BEGINSWITH[cd] "Triggering action <SFAirDropAction" OR eventMessage BEGINSWITH[cd] "Relinquishing access to destination URL")
-
