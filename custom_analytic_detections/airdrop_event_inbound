@@ -1,0 +1,16 @@
+# airdrop_event_inbound
+#
+# This Analytic predicate may be used to report on inbound file downloads from the AirDrop service.
+# This detection functions by monitoring for file system activity in a known location by the sharingd service and will provide the file name, save destination path and user involved.
+#
+# Analytic Predicate:
+
+$event.type == 3 AND $event.prevFile BEGINSWITH "/private/var/folders/" AND NOT $event.path BEGINSWITH "/var/folders/" AND $event.process.signingInfo.appid == "com.apple.sharingd"
+
+# Required Analytic Configuration:
+
+Sensor Event Type: GPFSEvent
+Level: 1
+
+# Recommended Analytic Configuration:
+Severity: Informational
