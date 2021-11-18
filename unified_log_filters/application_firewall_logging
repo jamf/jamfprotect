@@ -1,4 +1,4 @@
-# ApplicationFirewallLogging
+# application_firewall_logging
 #
 # This Unified Log filter may be used to report on logging from the Application Firewall in macOS.
 # This filter functions by monitoring logging from the com.apple.alf subsystem.

@@ -1,4 +1,4 @@
-# GatekeeperBypassByUser
+# gatekeeper_bypassed_by_user_during_file_access
 #
 # This Unified Log filter may be used to report on events where a user bypassed Gatekeeper to open a file.
 # This filter functions by monitoring logging containing event messaging with a known string indicating a bypass event occurred.  Please note that the typo in 'sucessfully' is required due to a typo in macOS logging.

@@ -1,4 +1,4 @@
-# ManagementFrameworkRemoved
+# jamf_pro_management_framework_removal
 #
 # This Unified Log filter may be used to report on successful removal of the Jamf Pro management framework.
 # This filter functions by monitoring logging from the Jamf Pro management binary subsystem and for event messages containing known strings that indicate a successful removal.

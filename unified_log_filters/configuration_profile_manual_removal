@@ -1,4 +1,4 @@
-# ManualConfigurationProfileRemoval
+# configuration_profile_manual_removal
 #
 # This Unified Log filter may be used to report on manual removals of a configuration profile by a user.  Automatic removal, such as those from an MDM server like Jamf Pro, will not be logged.
 # This filter functions by monitoring logging from the ManagedClient subsystem, mdmclient process and the MDMDaemon category and event message containing a string known to indicate a successful, manual removal of a configuration profile.

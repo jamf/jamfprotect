@@ -1,0 +1,17 @@
+# .template_unified_log_filter
+#
+# This Unified Log filter may be used to report on <insert general description of unified log filter purpose>.
+# This filter functions by monitoring logging from <insert specific explanation of each component of the filter predicate>.
+
+# Filter Predicate(s):
+
+<insert unified log filter predicate here>
+
+# Example output:
+
+<insert redacted example output here>
+
+# Additional Information:
+
+# <insert additional information and usage instructions here>
+
