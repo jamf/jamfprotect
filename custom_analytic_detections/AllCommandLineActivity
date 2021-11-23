@@ -1,6 +1,6 @@
 # AllCommandLineActivity
 #
-# This Analytic predicate may be used to report on all command-line activity on the endpoint.
+# This analytic predicate may be used to report on all command-line activity on the endpoint.
 # This detection functions by monitoring for processes created that have an associated TTY and are determined to be created through a fully interactive shell, such as those from a Terminal session.
 #
 # Analytic Predicate:
