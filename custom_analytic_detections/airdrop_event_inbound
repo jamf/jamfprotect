@@ -5,12 +5,12 @@
 #
 # Analytic Predicate:
 
-$event.type == 3 AND $event.prevFile BEGINSWITH "/private/var/folders/" AND NOT $event.path BEGINSWITH "/var/folders/" AND $event.process.signingInfo.appid == "com.apple.sharingd"
+$event.type == 3 AND $event.prevFile BEGINSWITH "/private/var/folders/" AND NOT $event.path MATCHES "(/Users/[^/]+/Library/Sharing/|/var/folders/).*" AND $event.process.signingInfo.appid == "com.apple.sharingd"
 
 # Required Analytic Configuration:
 
 Sensor Event Type: GPFSEvent
-Level: 1
+Level: 0
 
 # Recommended Analytic Configuration:
 Severity: Informational
