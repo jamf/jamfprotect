@@ -1,0 +1,22 @@
+# filevault_config_changes
+#
+# This Custom Analytic may be used to report on changes made to FileVault settings that may be considered undesirable or suspicious and in need of remediation.
+# This detection functions by monitoring for usage of the fdesetup binary used with specific binary verbs that reduce or entirely disable the security provided by FileVault.
+# Verbs monitored in this custom analytic:          
+# disable          = disables FileVault
+# add              = adds additional FileVault users    
+# changerecovery   = adds or updates the current recovery key
+# removerecovery   = removes the current recovery key
+
+# Analytic Predicate(s):
+
+$event.type == 1 AND $event.process.signingInfo.appid == "com.apple.fdesetup" AND ($event.process.commandLine CONTAINS[cd] "disable" OR $event.process.commandLine CONTAINS[cd] "add" OR $event.process.commandLine CONTAINS[cd] "changerecovery" OR $event.process.commandLine CONTAINS[cd] "removerecovery")
+
+# Required Analytic Configuration:
+
+Sensor Event Type: GPProcessEvent
+
+# Recommended Analytic Configuration:
+
+Severity: Low
+Level: 0
