@@ -24,7 +24,7 @@ Level: 0
 # Targeting specific process event types
 # In order to target a specific process event (e.g. creation, exit) we must include the type condition in the analytic predicate:
 # $event.type == 1      This will identify process creations
-# $event.type == 2      This will identify process exists
+# $event.type == 2      This will identify process exits
 
 
 ## Targeting processes by identifiers
