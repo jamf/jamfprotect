@@ -10,7 +10,7 @@
 
 # Analytic Predicate(s):
 
-$event.type == 1 AND $event.process.signingInfo.appid == "com.apple.spctl" AND ($event.process.commandLine CONTAINS[cd] "--global-disable" OR $event.process.commandLine CONTAINS[cd] "--master-disable" OR $event.process.commandLine CONTAINS[cd] "--disable" OR $event.process.commandLine CONTAINS[cd] "--remove")
+$event.type == 1 AND $event.process.signingInfo.appid == "com.apple.spctl" AND ($event.process.commandLine CONTAINS[cd] " --global-disable " OR $event.process.commandLine CONTAINS[cd] " --master-disable " OR $event.process.commandLine CONTAINS[cd] " --disable " OR $event.process.commandLine CONTAINS[cd] " --remove ")
 
 # Required Analytic Configuration:
 
