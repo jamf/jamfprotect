@@ -3,15 +3,20 @@
 # This example Python script below does the following:
 # - Obtains an access token.
 # - Completes a listComputers query request that returns all computers.
+# - Processes compliance summary scorecard for each computer.
 # - Exports computer information into a CSV format file.
 
 # Keep the following in mind when using this script:
-# - You must define the PROTECT_INSTANCE, CLIENT_ID, and PASSWORD variables to match your Jamf Protect environment. The PROTECT_INSTANCE variable is your tenant name (e.g., your-tenant), which is included in your tenant URL (e.g., https://your-tenant.protect.jamfcloud.com).
-# - This example script leverages the requests Python library python3.
+# - You must define the PROTECT_INSTANCE, CLIENT_ID, and PASSWORD variables to
+#   match your Jamf Protect environment. The PROTECT_INSTANCE variable is your
+#   tenant name (eg. your-tenant), which is included in your tenant URL (eg.
+#   https://your-tenant.protect.jamfcloud.com).
+# - This script requires the 3rd party Python library 'requests'
 
 
 from datetime import datetime
 import csv
+
 import requests
 
 PROTECT_INSTANCE = ""
@@ -87,7 +92,6 @@ LIST_COMPUTERS_QUERY = """
           osPatch
           osString
           scorecard {
-            label
             pass
             enabled
           } 
@@ -180,10 +184,15 @@ def __main__():
 
             fieldnames = list(computers[0].keys())
 
-            # Add insights scorecard fields
-            fieldnames.extend(
-                ["insightsCompliant", "insightsNoncompliant", "insightsDisabled"]
-            )
+            if "scorecard" in fieldnames:
+               
+                # Remove raw scorecard field from output 
+                fieldnames.pop(fieldnames.index('scorecard'))
+
+                # Add processed insights scorecard fields
+                fieldnames.extend(
+                    ["insightsCompliant", "insightsNoncompliant", "insightsDisabled"]
+                )
 
             # Make hostName the first column if included in results
             if "hostName" in fieldnames:

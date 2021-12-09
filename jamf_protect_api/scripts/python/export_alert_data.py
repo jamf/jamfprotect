@@ -2,17 +2,23 @@
 
 # This example Python script below does the following:
 # - Obtains an access token.
-# - Completes a listAlerts query request that returns all logs reported to Jamf Protect, with filtering by severity.
+# - Completes a listAlerts query request that returns all logs reported to Jamf
+#   Protect, with filtering by severity.
 # - Exports all alert data in JSON format /tmp/ProtectAlerts.json
 
 # Keep the following in mind when using this script:
-# - You must define the PROTECT_INSTANCE, CLIENT_ID, and PASSWORD variables to match your Jamf Protect environment. The PROTECT_INSTANCE variable is your tenant name (e.g., your-tenant), which is included in your tenant URL (e.g., https://your-tenant.protect.jamfcloud.com).
-# - This example script leverages the requests Python library python3.
+# - You must define the PROTECT_INSTANCE, CLIENT_ID, and PASSWORD variables to
+#   match your Jamf Protect environment. The PROTECT_INSTANCE variable is your
+#   tenant name (eg. your-tenant), which is included in your tenant URL (eg.
+#   https://your-tenant.protect.jamfcloud.com).
+# - This script requires the 3rd party Python library 'requests'
 
 
 import sys
-import requests
+from datetime import datetime
 import json
+
+import requests
 
 PROTECT_INSTANCE = ""
 CLIENT_ID = ""
@@ -20,7 +26,7 @@ PASSWORD = ""
 
 MIN_SEVERITY = "Low"  # Valid values: "Informational", "Low", "Medium", "High"
 MAX_SEVERITY = "High"  # Valid values: "Informational", "Low", "Medium", "High"
-JSON_OUTPUT_FILE = "/tmp/ProtectAlerts.json"
+JSON_OUTPUT_FILE = f"Jamf_Protect_Alerts_{datetime.utcnow().strftime('%Y-%m-%d')}.json"
 
 
 def get_access_token(protect_instance, client_id, password):
