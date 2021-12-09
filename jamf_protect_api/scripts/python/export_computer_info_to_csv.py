@@ -65,17 +65,32 @@ def make_api_call(protect_instance, access_token, query, variables=None):
 
 
 LIST_COMPUTERS_QUERY = """
-    query listComputers(
-      $page_size: Int
-      $next: String
-    ) {
-      listComputers(
-        input: {
-          pageSize: $page_size
-          next: $next
-        }
-      ) {
+    query listComputers($page_size: Int, $next: String) {
+      listComputers(input: { pageSize: $page_size, next: $next }) {
         items {
+          serial
+          uuid
+          updated
+          checkin
+          insightsUpdated
+          version
+          signaturesVersion
+          installType
+          plan {
+            hash
+            id
+            name
+            logLevel
+          }
+          osMajor
+          osMinor
+          osPatch
+          osString
+          scorecard {
+            label
+            pass
+            enabled
+          } 
           arch
           certid
           created
@@ -83,25 +98,8 @@ LIST_COMPUTERS_QUERY = """
           kernelVersion
           memorySize
           modelName
-          osMajor
-          osMinor
-          osPatch
-          osString
-          plan {
-            id
-            name
-          }
-          serial
-          updated
-          uuid
-          version
-          insights
-          insightsUpdated
-          checkin
-          signaturesVersion
           label
           tags
-          installType
         }
         pageInfo {
           next
@@ -109,6 +107,38 @@ LIST_COMPUTERS_QUERY = """
       }
     }
     """
+
+
+def process_scorecard(scorecard_data):
+
+    scorecard_dict = {}
+
+    compliant = 0
+    noncompliant = 0
+    disabled = 0
+
+    if (
+        isinstance(scorecard_data, list)
+        and scorecard_data
+        and {"enabled", "pass"}.issubset(scorecard_data[0].keys())
+    ):
+
+        for item in scorecard_data:
+
+            if not item["enabled"]:
+                disabled += 1
+            elif item["pass"]:
+                compliant += 1
+            else:
+                noncompliant += 1
+
+        scorecard_dict = {
+            "insightsCompliant": compliant,
+            "insightsNoncompliant": noncompliant,
+            "insightsDisabled": disabled,
+        }
+
+    return scorecard_dict
 
 
 def __main__():
@@ -150,14 +180,22 @@ def __main__():
 
             fieldnames = list(computers[0].keys())
 
+            # Add insights scorecard fields
+            fieldnames.extend(
+                ["insightsCompliant", "insightsNoncompliant", "insightsDisabled"]
+            )
+
             # Make hostName the first column if included in results
             if "hostName" in fieldnames:
                 fieldnames.insert(0, fieldnames.pop(fieldnames.index("hostName")))
 
-            writer = csv.DictWriter(output, fieldnames=fieldnames)
+            writer = csv.DictWriter(output, fieldnames=fieldnames, restval="No data")
 
             writer.writeheader()
+
             for computer in computers:
+
+                computer.update(process_scorecard(computer.pop("scorecard")))
                 writer.writerow(computer)
 
     else:
