@@ -31,7 +31,7 @@ def get_access_token(protect_instance, client_id, password):
     """Gets a reusable access token to authenticate requests to the Jamf
     Protect API"""
 
-    token_url = f"https://{protect_instance}.stage-protect.jamfcloud.com/token"
+    token_url = f"https://{protect_instance}.protect.jamfcloud.com/token"
 
     payload = {
         "client_id": client_id,
@@ -56,7 +56,7 @@ def make_api_call(protect_instance, access_token, query, variables=None):
     if variables is None:
         variables = {}
 
-    api_url = f"https://{protect_instance}.stage-protect.jamfcloud.com/graphql"
+    api_url = f"https://{protect_instance}.protect.jamfcloud.com/graphql"
     payload = {"query": query, "variables": variables}
 
     headers = {"Authorization": access_token}
