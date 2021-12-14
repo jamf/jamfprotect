@@ -20,10 +20,10 @@ An API Client must be created within Jamf Protect in order to interface with the
 The API Client created may be used by other scripts and tools and offers administrative access to your tenant so be sure to **securely** record the Client ID and Password details for future use.
 
 ### Script Variables
-Each script contained within this repository requires three variables to be configured appropriately in order to run successfully.  They can be found at the top of each script and are:
-PROTECT_INSTANCE = ""
-CLIENT_ID = ""
-PASSWORD = ""
+Each script contained within this repository requires three variables to be configured appropriately in order to run successfully.  They can be found at the top of each script and are:  
+PROTECT_INSTANCE = ""  
+CLIENT_ID = ""  
+PASSWORD = ""  
 
 You must define the PROTECT_INSTANCE, CLIENT_ID, and PASSWORD variables in the provided scripts to match your Jamf Protect environment. 
 - The PROTECT_INSTANCE variable is your tenant name (e.g., your-tenant), which is included in your tenant URL (e.g., https://your-tenant.protect.jamfcloud.com)
@@ -37,24 +37,24 @@ The scripts within this section are written in Python and require Python 3 to ru
 
 ### **requests** Library
 The Python scripts within this repository utilise the third-party Python library **requests**.  Running this script without the **requests** library installed will result in the following error:
-
-`Traceback (most recent call last):
-  File "/Users/username/Documents/generate_computer_compliance_report.py", line 19, in <module>
-    import requests
+  
+`Traceback (most recent call last):  
+  File "/Users/username/Documents/generate_computer_compliance_report.py", line 19, in <module>. 
+    import requests. 
 ModuleNotFoundError: No module named 'requests'`
 
-**Installing the requests library**
-The **requests** library can be installed by opening Terminal.app (/Applications/Utilities/Terminal.app) on your Mac, after Python3 has been installed, and running this command:
+**Installing the requests library**  
+The **requests** library can be installed by opening Terminal.app (/Applications/Utilities/Terminal.app) on your Mac, after Python3 has been installed, and running this command:  
 `pip3 install requests`
-
-A successful installation should end in the following:
+  
+A successful installation should end in the following:  
 `Installing collected packages: requests
 Successfully installed requests-XX.XX.XX`
 
 ## How to run these Python scripts
 Once the dependencies above have been met you will be able to run these Python scripts with the following steps:
 1) Open Terminal.app from within /Applications/Utilities/
-2) Run this command:
+2) Run this command:  
 `python3 /path/to/desired_script.py`
 
 ### What format is used for files created by these scripts?
