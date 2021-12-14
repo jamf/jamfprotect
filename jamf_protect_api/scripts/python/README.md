@@ -53,8 +53,9 @@ Successfully installed requests-XX.XX.XX`
 
 ## How to run these Python scripts
 Once the dependencies above have been met you will be able to run these Python scripts with the following steps:
-1) Open Terminal.app from within /Applications/Utilities/
-2) Run this command:  
+1) Obtain a copy of the desired .py script on your Mac (either by cloning this repository locally or simply copying the script contents into a local .py file)
+2) Open Terminal.app from within /Applications/Utilities/
+3) Run this command:  
 `python3 /path/to/desired_script.py`
 
 ### What format is used for files created by these scripts?
