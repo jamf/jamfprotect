@@ -5,12 +5,6 @@ A repository for open-source resources created for use with or alongside Jamf Pr
 
 Customers of Jamf Protect are able to leverage resources in this repository such as:
 
-### SOAR Playbooks
-
-Leverage the powerful integration between Jamf Protect and Jamf Pro to rapidly respond to security incidents on managed endpoints through automation.
-
-More information on this Jamf portfolio integration can be found [here](https://docs.jamf.com/jamf-protect/documentation/Setting_Up_Analytic_Remediation_With_Jamf_Pro.html).
-
 ### Custom Analytics (Behavioural Detection)
 
 Custom Analytic predicates to extend the behavioural detection capability of Jamf Protect.
@@ -28,6 +22,12 @@ More information on Unified Log filtering can be found [here](https://docs.jamf.
 Jamf Protect's GraphQL API can be used to streamline endpoint and configuration management, compliance reporting and general tenant management.
 
 More information on the Jamf Protect API can be found [here](https://docs.jamf.com/jamf-protect/documentation/Jamf_Protect_API.html).
+
+### SOAR Playbooks
+
+Leverage the powerful integration between Jamf Protect and Jamf Pro to streamline remediation of security incidents on managed endpoints through automation.
+
+More information on this Jamf portfolio integration can be found [here](https://docs.jamf.com/jamf-protect/documentation/Setting_Up_Analytic_Remediation_With_Jamf_Pro.html).
 
 ### Jamf Pro Extension Attributes
 
