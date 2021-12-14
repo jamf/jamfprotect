@@ -36,12 +36,7 @@ The scripts within this section are written in Python and require Python 3 to ru
 2) A direct installation package from [python.org](https://www.python.org/downloads/macos/)
 
 ### **requests** Library
-The Python scripts within this repository utilise the third-party Python library **requests**.  Running this script without the **requests** library installed will result in the following error:
-  
-`Traceback (most recent call last):  
-  File "/Users/username/Documents/generate_computer_compliance_report.py", line 19, in <module>. 
-    import requests. 
-ModuleNotFoundError: No module named 'requests'`
+The Python scripts within this repository utilise the third-party Python library **requests**.  Running this script without the **requests** library installed will result in the following error: `ModuleNotFoundError: No module named 'requests'`
 
 **Installing the requests library**  
 The **requests** library can be installed by opening Terminal.app (/Applications/Utilities/Terminal.app) on your Mac, after Python3 has been installed, and running this command:  
