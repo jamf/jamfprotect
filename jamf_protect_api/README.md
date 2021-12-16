@@ -6,7 +6,7 @@ To learn more about GraphQL, see the [Introduction to GraphQL](https://graphql.o
 Documentation on the Jamf Protect API can be found [here](https://docs.jamf.com/jamf-protect/documentation/Jamf_Protect_API.html).
 
 ## API Scripts
-The scripts contained within this repository are written in either bash or python.
+The scripts contained within this repository are written in either Bash or Python, with specific guidance for each provided within their respective sections.
 
 #
 ## Please note that all resoruces contained within this repository are provided as-is and are not officially supported by Jamf Support.

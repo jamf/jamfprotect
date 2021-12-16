@@ -2,27 +2,22 @@
 
 # This example Python script below does the following:
 # - Obtains an access token.
-# - Completes a listComputers query request that returns computers that have not checked in during a defined time range.
-# - For each returned computer, prompts the user to decide if they want to delete the computer from Jamf Protect using a deleteComputer mutation.
+# - Completes a listComputers query request that returns computers that have
+#   not checked in during a defined time range.
+# - For each returned computer, prompts the user to decide if they want to
+#   delete the computer from Jamf Protect using a deleteComputer mutation.
 
 # Keep the following in mind when using this script:
-# - You must define the PROTECT_INSTANCE, CLIENT_ID, and PASSWORD variables to match your Jamf Protect environment. The PROTECT_INSTANCE variable is your tenant name (e.g., your-tenant), which is included in your tenant URL (e.g., https://your-tenant.protect.jamfcloud.com).
-# - Running this example script in your environment may delete computers and data stored in the Jamf Protect Cloud. Make sure to test this script before using it in a production environment.
-# - This example script leverages the requests Python library python3.
+# - You must define the PROTECT_INSTANCE, CLIENT_ID, and PASSWORD variables to
+#   match your Jamf Protect environment. The PROTECT_INSTANCE variable is your
+#   tenant name (eg. your-tenant), which is included in your tenant URL (eg.
+#   https://your-tenant.protect.jamfcloud.com).
+# - This script requires the 3rd party Python library 'requests'
  
-# After the script runs, you should receive an output that prompts you to delete or keep each computer that has not checked in with Jamf Protect since the date defined in the script. For each prompt, you can enter y to delete the computer or n to keep the computer in Jamf Protect.
-
-# > python example_1.py
-# Access token granted, valid for 1281 minutes.
-# Found 3 computers matching filter.
-# 
-# Delete computer 'Tamara Newton's Mac' (last checkin 2020-08-17T02:41:00.907839Z)? y/N n
-# Skipping deletion of 'Tamara Newton's Mac.
-# Delete computer 'Carrie Mcdowell's Mac' (last checkin 2020-08-12T02:56:20.145733Z)? y/N y
-# Deleted computer 'Carrie Mcdowell's Mac'.
-# Delete computer 'Ryan Gamble's Mac' (last checkin 2020-07-14T02:14:36.420006Z)? y/N n
-# Skipping deletion of 'Ryan Gamble's Mac.
-# Done.
+# As the script runs, you will receive output that prompts you to delete or
+# keep each computer that has not checked in with Jamf Protect since the date
+# defined in the script. For each prompt, you can enter 'y' to delete the
+# computer or 'n' to keep the computer in Jamf Protect.
 
  
 import datetime
