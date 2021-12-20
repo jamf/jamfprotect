@@ -19,7 +19,18 @@ The process for implementing these filters in Jamf Protect is straight forward:
 3. Create a new Filter object in Jamf Protect (Unified Logging > Add New Filter) and paste the predicate in the Filter field
 4. Add a name and tags as desired
 
-**See the [Jamf Protect Wiki](https://github.com/jamf/jamfprotect/wiki/Unified-Log-Filtering) for more information on testing with Unified Log filters, as well as dealing with private data from the Unified Log**
+## Enabling Private Data from the Unified Log
+By default the Unified Log will redact information deemed to be sensitive, generally that which will identify a computer or user.  In some cases, such as that in which the computer is a corporately owned and managed device, there may be a need to ascertain such information and as such, private data logging can be enabled through a configuration profile.  See [this Jamf blog](https://www.jamf.com/blog/unified-logs-how-to-enable-private-data/) for instructions on doing so.
+
+Data from the Unified Log that has been redacted can be identified by the presence of **<private>** in the returned log enntry.  An example entry in the Unified Log for a password change where the data has been redacted would be:
+
+`Password changed for <private>`
+
+The same string returned on a device with private data logging enabled would be:
+
+`Password changed for your-username`
+
+**See the [Jamf Protect Wiki](https://github.com/jamf/jamfprotect/wiki/Unified-Log-Filtering) for more information on testing with Unified Log filters.**
 
 #
 ## Please note that all resources contained within this repository are provided as-is and are not officially supported by Jamf Support.
