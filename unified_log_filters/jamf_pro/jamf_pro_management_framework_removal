@@ -5,4 +5,16 @@
 #
 # Filter Predicate:
 
-(subsystem =="com.jamf.management.binary" AND eventMessage CONTAINS "Removing JAMF Preferences file") || (subsystem == "com.jamf.management.binary" and eventMessage CONTAINS "Removing JAMF Daemon Log files") || (subsystem == "com.jamf.management.binary" and eventMessage CONTAINS "Removing self service") || (subsystem == "com.jamf.management.binary" and eventMessage CONTAINS "Removing scheduled tasks")
+subsystem == "com.jamf.management.binary" AND process == "jamf" AND processImagePath == "/usr/local/jamf/bin/jamf" AND (eventMessage CONTAINS "Removing JAMF Preferences file" OR eventMessage CONTAINS "Removing JAMF Daemon Log files" OR eventMessage CONTAINS "Removing self service" OR eventMessage CONTAINS "Removing scheduled tasks")
+
+# Example Output:
+n/a
+
+# Additional Information:
+
+n/a
+
+# Private Data Expected
+# See https://github.com/jamf/jamfprotect/wiki/Unified-Log-Filtering
+
+No
