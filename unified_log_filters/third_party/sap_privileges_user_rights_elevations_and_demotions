@@ -1,0 +1,22 @@
+# sap_privileges_user_rights_elevations_and_demotions
+#
+# This Unified Log filter may be used to report on logging from SAP Privileges.app.
+# This filter functions by monitoring logging from corp.sap.privileges.helper process and event messages containing SAPCorp.
+
+# Filter Predicate(s):
+
+process == "corp.sap.privileges.helper" AND eventMessage CONTAINS "SAPCorp"
+
+# Example output:
+
+2021-12-15 09:52:30.905329-0500  xxxxxx corp.sap.privileges.helper[9364]: SAPCorp: User <username> has now standard user rights
+2021-12-15 09:53:31.734594-0500  xxxxxx corp.sap.privileges.helper[9398]: SAPCorp: User <username> has now admin rights
+
+# Additional Information:
+
+https://github.com/SAP/macOS-enterprise-privileges/wiki/Frequently-Asked-Questions
+
+# Private Data Expected
+# See https://github.com/jamf/jamfprotect/wiki/Unified-Log-Filtering
+
+No

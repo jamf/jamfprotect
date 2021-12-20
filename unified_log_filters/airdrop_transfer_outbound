@@ -1,0 +1,21 @@
+# airdrop_transfer_outbound
+#
+# This Unified Log filter may be used to report on outbound AirDrop file transfers from the Mac.
+# This filter functions by monitoring logging from an AirDrop process spawning from a valid location and a logged string known to indicate an outbound file transfer was offered.
+
+# Filter Predicate(s):
+
+subsystem == "com.apple.sharing" AND process == "AirDrop" AND processImagePath BEGINSWITH "/System/Library" AND eventMessage BEGINSWITH "Successfully issued sandbox extension for"
+
+# Example output:
+
+2021-XX-XX XX:XX:XX.205187+0000 XXXXXXX Default XXXXXXX 27436 0 AirDrop: (Sharing) [com.apple.sharing:Framework] Successfully issued sandbox extension for /Users/username/Documents/sensitiveData.pdf
+
+# Additional Information:
+
+The file path in the log message is that of the file that was shared via the outbound AirDrop transfer.  Please also note that this filter will trigger as soon as the Mac user selects a target device in the AirDrop share menu, regardless of whether that user then chooses to accept or deny the transfer.
+
+# Private Data Expected
+# See https://github.com/jamf/jamfprotect/wiki/Unified-Log-Filtering
+
+No

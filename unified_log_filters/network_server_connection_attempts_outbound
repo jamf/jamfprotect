@@ -1,0 +1,22 @@
+# network_server_connection_attempts_outbound
+#
+# This Unified Log filter may be used to report on network server connection attempts from the Mac endpoint, such as mounting an SMB share or connecting to an FTP server through Finder's Connect to Server service.
+# This filter functions by monitoring logging from NetAuthSysAgent, the process used for these connections.
+
+# Filter Predicate(s):
+
+process == "NetAuthSysAgent" AND subsystem == "com.apple.NetAuthAgent" AND category == "IPC" AND eventMessage BEGINSWITH "URL = "
+
+# Example output:
+
+2021-XX-XX XX:XX:XX.676891+0000 XXXXXXX Default XXXXXXX XXXX 0 NetAuthSysAgent: (loginsupport) [com.apple.NetAuthAgent:IPC] URL = smb://127.0.0.1
+2021-XX-XX XX:XX:XX.676891+0000 XXXXXXX Default XXXXXXX XXXX 0 NetAuthSysAgent: (loginsupport) [com.apple.NetAuthAgent:IPC] URL = ftp://127.0.0.1
+
+# Additional Information:
+
+Log entries will appear from connection attempts rather than completed, successful connections.
+
+# Private Data Expected
+# See https://github.com/jamf/jamfprotect/wiki/Unified-Log-Filtering
+
+No
