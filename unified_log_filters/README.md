@@ -22,7 +22,7 @@ The process for implementing these filters in Jamf Protect is straight forward:
 ## Enabling Private Data from the Unified Log
 By default the Unified Log will redact information deemed to be sensitive, generally that which will identify a computer or user.  In some cases, such as that in which the computer is a corporately owned and managed device, there may be a need to ascertain such information and as such, private data logging can be enabled through a configuration profile.  See [this Jamf blog](https://www.jamf.com/blog/unified-logs-how-to-enable-private-data/) for instructions on doing so.
 
-Data from the Unified Log that has been redacted can be identified by the presence of **<private>** in the returned log entry.  An example entry in the Unified Log for a password change where the data has been redacted would be:
+Data from the Unified Log that has been redacted can be identified by the presence of `<private>` in the returned log entry.  An example entry in the Unified Log for a password change where the data has been redacted would be:
 
 `Password changed for <private>`
 
