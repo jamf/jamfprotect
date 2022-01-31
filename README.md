@@ -33,7 +33,7 @@ More information on this Jamf portfolio integration can be found [here](https://
 
 Extend Jamf Pro's natively inventory reporting capabilities with customisable data collection regarding Jamf Protect, enabling powerful remediation and conditional access workflows through device management.  
 
-More information on using Extension Attributes with Jamf Pro can be found [here](https://docs.jamf.com/10.32.0/jamf-pro/administrator-guide/Computer_Extension_Attributes.html).
+More information on using Extension Attributes with Jamf Pro can be found [here](https://docs.jamf.com/jamf-pro/administrator-guide/Computer_Extension_Attributes.html).
 
 ### Please see the [Wiki](https://github.com/jamf/jamfprotect/wiki) for specific information on each resource in this repository.
 
