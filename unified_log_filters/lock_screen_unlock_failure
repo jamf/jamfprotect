@@ -11,6 +11,10 @@
 
 processImagePath BEGINSWITH "/System/Library/CoreServices" AND process == "loginwindow" AND eventMessage CONTAINS[c] "INCORRECT"
 
+# Example output:
+
+2022-XX-XX XX:XX:XX.233347-0800 XXXXXX Default XXX 1322 0 loginwindow: [com.apple.loginwindow.logging:Standard] -[LWDefaultScreenLockUI authFailWithMessage:] | enter. INCORRECT password
+
 # Additional Information:
 
 Useful for identifying frequent failed screen unlock attempts.
