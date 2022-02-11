@@ -1,0 +1,26 @@
+# lock_screen_unlock_failure
+#
+# This Unified Log filter may be used to report on failed unlock attempts at the macOS lock screen.
+# This filter functions by monitoring logging from loginwindow process where the event messaging contains a known string indicating a failed unlock attempt.
+# 
+# Tested macOS Versions:
+# - macOS 12
+# - macOS 11
+#
+# Filter Predicate:
+
+processImagePath BEGINSWITH "/System/Library/CoreServices" AND process == "loginwindow" AND eventMessage CONTAINS[c] "INCORRECT"
+
+# Example output:
+
+2022-XX-XX XX:XX:XX.233347-0800 XXXXXX Default XXX 1322 0 loginwindow: [com.apple.loginwindow.logging:Standard] -[LWDefaultScreenLockUI authFailWithMessage:] | enter. INCORRECT password
+
+# Additional Information:
+
+Useful for identifying frequent failed screen unlock attempts.
+
+# Private Data Expected
+# See https://github.com/jamf/jamfprotect/wiki/Unified-Log-Filtering
+
+No
+
