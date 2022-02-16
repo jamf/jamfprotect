@@ -69,7 +69,7 @@ def make_api_call(protect_instance, access_token, query, variables=None):
     return resp.json()
 
 
-GET_PLAN = """
+GET_PLAN_QUERY = """
     query getPlan($id: ID!) {
         getPlan(id: $id) {
             name
@@ -96,7 +96,7 @@ LIST_ANALYTICS_QUERY = """
     }
 """
 
-SET_PLAN_ANALYTICS = """
+SET_PLAN_ANALYTICS_QUERY = """
     mutation setPlanAnalytics($id: ID!, $input: PlanAnalytics!) {
         setPlanAnalytics(id: $id, input: $input) {
             analytics {
@@ -121,7 +121,7 @@ def __main__():
 
     # Get Analytics associated with the Plan
     variables = {"id": PLAN_ID}
-    resp = make_api_call(PROTECT_INSTANCE, access_token, GET_PLAN, variables)
+    resp = make_api_call(PROTECT_INSTANCE, access_token, GET_PLAN_QUERY, variables)
 
     plan_name = resp["data"]["getPlan"]["name"]
     current_plan_jamf_analytics = [
@@ -157,7 +157,7 @@ def __main__():
         },
     }
 
-    resp = make_api_call(PROTECT_INSTANCE, access_token, SET_PLAN_ANALYTICS, variables)
+    resp = make_api_call(PROTECT_INSTANCE, access_token, SET_PLAN_ANALYTICS_QUERY, variables)
 
     print("Done.")
 
