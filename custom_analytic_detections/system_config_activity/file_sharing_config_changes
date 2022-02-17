@@ -1,0 +1,21 @@
+# file_sharing_config_changes
+#
+# This Custom Analytic may be used to report on File Sharing (smbd) being enabled or disabled on the host endpoint.
+# This detection functions by monitoring for a launchctl command executed by macOS when a user toggles the File Sharing feature off or on inside System Preferences > Sharing.
+
+# Analytic Predicate(s):
+
+File Sharing Enabled
+$event.type == 1 AND $event.process.signingInfo.appid == "com.apple.xpc.launchctl" AND $event.process.commandLine CONTAINS[cd] " load " AND $event.process.commandLine CONTAINS[cd] "/System/Library/LaunchDaemons/com.apple.smbd.plist"
+
+File Sharing Disabled
+$event.type == 1 AND $event.process.signingInfo.appid == "com.apple.xpc.launchctl" AND $event.process.commandLine CONTAINS[cd] " unload " AND $event.process.commandLine CONTAINS[cd] "/System/Library/LaunchDaemons/com.apple.smbd.plist"
+
+# Required Analytic Configuration:
+
+Sensor Event Type: Process Event
+
+# Recommended Analytic Configuration:
+
+Severity: Informational
+Level: 0
