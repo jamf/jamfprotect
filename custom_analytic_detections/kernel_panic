@@ -1,0 +1,19 @@
+# kernel_panic
+#
+# This Custom Analytic may be used to detect a kernel panic on the host system. Although not necessarily related to malicious activity, it can be useful for triaging issues on a end-users system.
+# This detection functions by monitoring for the deletion of the current.panic file.
+
+# NOTE: The current.panic file is initially written to disk when Jamf Protect is not actively running after the device kernel panics, when the machine is rebooting and before the Protect system extension is enabled. This file is subsequently deleted after the user gets to the  login window. This is when Protect will trigger on this event. If the machine does not restart or the kernel panic causes memory corruption that prevents the machine from rebooting or powering on, this detection will not trigger.
+
+# Analytic Predicate(s):
+
+$event.type == 1 AND $event.path ==[cd] "/private/var/db/PanicReporter/current.panic"
+
+# Required Analytic Configuration:
+
+Sensor Event Type: File System Event
+
+# Recommended Analytic Configuration:
+
+Severity: Informational
+Level: 0
