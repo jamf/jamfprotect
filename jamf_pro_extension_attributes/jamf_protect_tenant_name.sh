@@ -10,7 +10,7 @@
 jamfProtectBinaryLocation="/usr/local/bin/protectctl"
 
 if [ -f "$jamfProtectBinaryLocation" ]; then
-    jamfProtectTenant=$("$jamfProtectBinaryLocation" info | awk -F 'Tenant: ' '{print $2}' | xargs)
+    jamfProtectTenant=$("$jamfProtectBinaryLocation" info | /usr/bin/awk -F': ' '/Tenant/{print $2}' | /usr/bin/xargs)
 else
 	jamfProtectTenant="Protect binary does not exist"
 fi

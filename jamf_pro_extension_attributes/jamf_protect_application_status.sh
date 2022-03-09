@@ -10,7 +10,7 @@
 jamfProtectBinaryLocation="/usr/local/bin/protectctl"
 
 if [[ -f "$jamfProtectBinaryLocation" ]]; then
-	jamfProtectStatus=$("$jamfProtectBinaryLocation" info | /usr/bin/awk -F 'Status: ' '{print $2}' | /usr/bin/xargs)
+	jamfProtectStatus=$("$jamfProtectBinaryLocation" info | /usr/bin/awk -F': ' '/Status/{print $2}' | /usr/bin/xargs)
 else
 	jamfProtectStatus="Protect binary does not exist"
 fi
