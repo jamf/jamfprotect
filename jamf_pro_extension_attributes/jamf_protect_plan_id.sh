@@ -10,7 +10,7 @@
 jamfProtectBinaryLocation="/usr/local/bin/protectctl"
 
 if [ -f "$jamfProtectBinaryLocation" ]; then
-    jamfProtectPlanID=$("$jamfProtectBinaryLocation" info | awk -F 'Plan ID: ' '{print $2}' | xargs)
+    jamfProtectPlanID=$("$jamfProtectBinaryLocation" info | /usr/bin/awk -F': ' '/Plan ID/{print $2}' | /usr/bin/xargs)
 else
 	jamfProtectPlanID="Protect binary not found"
 fi

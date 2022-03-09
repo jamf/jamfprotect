@@ -10,7 +10,7 @@
 jamfProtectBinaryLocation="/usr/local/bin/protectctl"
 
 if [ -f "$jamfProtectBinaryLocation" ]; then
-    jamfProtectLastCheckin=$("$jamfProtectBinaryLocation" info | awk -F 'Last Check-in:' '{print $2}' | xargs)
+    jamfProtectLastCheckin=$("$jamfProtectBinaryLocation" info | /usr/bin/awk -F': ' '/Last Check-in/{print $2}' | /usr/bin/xargs)
 else
 	jamfProtectLastCheckin="Protect binary not found"
 fi
