@@ -1,0 +1,21 @@
+# builtin_apache_config_changes
+#
+# This Custom Analytic may be used to report on Apache (httpd) being enabled or disabled on the host endpoint.
+# This detection functions by monitoring for a launchctl command executed by macOS when a user enables httpd via /usr/sbin/apachectl.
+
+# Analytic Predicate(s):
+
+Apache Enabled
+$event.type == 1 AND $event.process.signingInfo.appid == "com.apple.xpc.launchctl" $event.process.commandLine CONTAINS[cd] " load " AND $event.process.commandLine CONTAINS[cd] "/System/Library/LaunchDaemons/org.apache.httpd.plist"
+
+Apache Disabled
+$event.type == 1 AND $event.process.signingInfo.appid == "com.apple.xpc.launchctl" AND $event.process.commandLine CONTAINS[cd] " unload " AND $event.process.commandLine CONTAINS[cd] "/System/Library/LaunchDaemons/org.apache.httpd.plist"
+
+# Required Analytic Configuration:
+
+Sensor Event Type: Process Event
+
+# Recommended Analytic Configuration:
+
+Severity: Informational
+Level: 0
