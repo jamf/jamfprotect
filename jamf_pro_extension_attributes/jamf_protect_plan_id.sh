@@ -10,9 +10,10 @@
 jamfProtectBinaryLocation="/usr/local/bin/protectctl"
 
 if [ -f "$jamfProtectBinaryLocation" ]; then
-    jamfProtectPlanID=$("$jamfProtectBinaryLocation" info | /usr/bin/awk -F': ' '/Plan ID/{print $2}' | /usr/bin/xargs)
+  plist=$($jamfProtectBinaryLocation info --plist)
+  jamfProtectPlanID=$(/usr/libexec/PlistBuddy -c "Print PlanID" /dev/stdin <<<"$plist")
 else
-	jamfProtectPlanID="Protect binary not found"
+  jamfProtectPlanID="Protect binary not found"
 fi
 
 echo "<result>$jamfProtectPlanID</result>"
