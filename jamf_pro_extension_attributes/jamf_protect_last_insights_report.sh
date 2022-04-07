@@ -10,7 +10,8 @@
 jamfProtectBinaryLocation="/usr/local/bin/protectctl"
 
 if [ -f "$jamfProtectBinaryLocation" ]; then
-    jamfProtectInfoInsightsSync=$("$jamfProtectBinaryLocation" info | /usr/bin/awk -F': ' '/Last Insights/{print $2}' | /usr/bin/xargs)
+	plist=$($jamfProtectBinaryLocation info --plist)
+	jamfProtectInfoInsightsSync=$(/usr/libexec/PlistBuddy -c "Print LastInsightsSync" /dev/stdin <<<"$plist")
 else
 	jamfProtectInfoInsightsSync="Protect binary not found"
 fi

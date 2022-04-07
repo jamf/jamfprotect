@@ -10,7 +10,8 @@
 jamfProtectBinaryLocation="/usr/local/bin/protectctl"
 
 if [ -f "$jamfProtectBinaryLocation" ]; then
-    jamfProtectVersion=$("$jamfProtectBinaryLocation" version | /usr/bin/awk -F': ' '/Version/{print $2}')
+	plist=$($jamfProtectBinaryLocation info --plist)
+	jamfProtectVersion=$(/usr/libexec/PlistBuddy -c "Print Version" /dev/stdin <<<"$plist")
 else
 	jamfProtectVersion="Protect binary not found"
 fi

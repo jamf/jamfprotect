@@ -10,7 +10,8 @@
 jamfProtectBinaryLocation="/usr/local/bin/protectctl"
 
 if [[ -f "$jamfProtectBinaryLocation" ]]; then
-	jamfProtectStatus=$("$jamfProtectBinaryLocation" info | /usr/bin/awk -F': ' '/Status/{print $2}' | /usr/bin/xargs)
+	plist=$($jamfProtectBinaryLocation info --plist)
+	jamfProtectStatus=$(/usr/libexec/PlistBuddy -c "Print Status" /dev/stdin <<<"$plist")
 else
 	jamfProtectStatus="Protect binary does not exist"
 fi
