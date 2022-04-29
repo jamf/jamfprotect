@@ -1,4 +1,4 @@
-# NonWritableUSBInserted
+# usb_insertion_non_writable
 #
 # This Analytic predicate may be used to report on the insertion of non-writable USB devices, such as phones or computer accessories.
 # This detection functions by monitoring for removable device insertion events where the device hardware is determined to be removable and non-writable.
@@ -9,8 +9,8 @@ $event.type == 0 AND $event.device.removable == 1 AND $event.device.writable != 
 
 # Required Analytic Configuration:
 
-Sensor Event Type: GPUSBEvent
-Level: 1
+Sensor Event Type: USB Event
+Level: 0
 
 # Recommended Analytic Configuration:
 Severity: Informational

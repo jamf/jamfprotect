@@ -9,8 +9,8 @@ $event.type == 1 AND $event.process.tty != nil AND $event.process.signingInfo.ap
 
 # Required Analytic Configuration:
 
-Sensor Event Type: GPProcessEvent
-Level: 1
+Sensor Event Type: Process Event
+Level: 0
 
 # Recommended Analytic Configuration:
 Severity: Informational

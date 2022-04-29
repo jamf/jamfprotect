@@ -1,4 +1,4 @@
-# LaunchctlUnloadandBootoutEvents
+# launchctl_unload_and_bootout_events
 #
 # This Analytic predicate may be used to report on all unload or bootout events by the 'launchctl' binary.
 # This detection functions by monitoring for processes created by the launchctl binary where a process argument contains the 'unload' or 'bootout' arguments.
@@ -9,8 +9,8 @@ $event.type == 1 AND $event.process.signingInfo.appid == "com.apple.xpc.launchct
 
 # Required Analytic Configuration:
 
-Sensor Event Type: GPProcessEvent
-Level: 1
+Sensor Event Type: Process Event
+Level: 0
 
 # Recommended Analytic Configuration:
 Severity: Informational

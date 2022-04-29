@@ -1,4 +1,4 @@
-# ApplicationBundleTrashed
+# app_bundle_trashed
 #
 # This Analytic predicate may be used to report on removal of applications on macOS by the trash / move to bin function.
 # This detection functions by monitoring for the creation of new directories on the OS in a path containing .Trash, indicating it was moved to trash.
@@ -9,7 +9,7 @@ $event.isNewDirectory == 1 AND $event.path ENDSWITH[cd] ".app" AND $event.path.s
 
 # Required Analytic Configuration:
 
-Sensor Event Type: GPFSEvent
+Sensor Event Type: File System Event
 Level: 0
 
 # Recommended Analytic Configuration:

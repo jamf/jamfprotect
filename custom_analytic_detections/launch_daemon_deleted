@@ -1,4 +1,4 @@
-# LaunchDaemonDeleted
+# launch_daemon_deleted
 #
 # This Analytic predicate may be used to report on the deletion of LaunchDaemons.
 # This detection functions by monitoring for deletion events on any files within known file paths for LaunchDaemons.
@@ -9,8 +9,8 @@ $event.type == 1 AND $event.path MATCHES[cd] "(:?/System|/Users/[\\w_\\.\\-]{1,8
 
 # Required Analytic Configuration:
 
-Sensor Event Type: GPFSEvent
-Level: 1
+Sensor Event Type: File System Event
+Level: 0
 
 # Recommended Analytic Configuration:
 Severity: Informational

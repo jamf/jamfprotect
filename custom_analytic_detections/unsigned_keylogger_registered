@@ -1,4 +1,4 @@
-# UnsignedKeyloggerRegistered
+# unsigned_keylogger_registered
 #
 # This Analytic predicate may be used to report on registration of unsigned keyloggers on an endpoint.
 # This detection functions by monitoring for keylogger registration events where the signing information of the keylogger is unable to be obtained or verified.
@@ -9,8 +9,8 @@ $event.source.signingInfo.signerType == 4
 
 # Required Analytic Configuration:
 
-Sensor Event Type: GPKeylogRegisterEvent
-Level: 1
+Sensor Event Type: Keylog Register Event
+Level: 0
 
 # Recommended Analytic Configuration:
 Severity: Medium
