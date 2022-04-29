@@ -1,7 +1,7 @@
-# UserPrivilegeRemovalViaSystemRunScript
-#
+# user_privilege_demotion_by_dseditgroup_and_system_executed_script
+# 
 # This Analytic predicate may be used to report on a user's privilege removal through a shell script with the 'dseditgroup' binary and initiated by a system task.  This method is commonly used by organisations to demote users automatically as a part of a self-initiated escalation process from Self Service.
-# This Analytic pairs will with the UserPrivilegeEscalationViaSelfService custom Analytic also in this repository.
+# This Analytic pairs well with the user_privilege_escalation_by_dseditgroup_binary_and_jamf_self_service custom Analytic also in this repository.
 # This detection functions by monitoring for process creation with a binary carrying the signing information of 'com.apple.dseditgroup', a command-line argument of '-o edit -d' (required to escalate privileges with this binary) and with the parent process originating from a script / system task, such as a LaunchDaemon.
 #
 # Analytic Predicate:
@@ -10,8 +10,8 @@ $event.type == 1 AND $event.process.signingInfo.appid == "com.apple.dseditgroup"
 
 # Required Analytic Configuration:
 
-Sensor Event Type: GPProcessEvent
-Level: 1
+Sensor Event Type: Process Event
+Level: 0
 
 IMPORTANT: The predicate must be updated to accurately reflect the path to the shell script executing the dseditgroup command.
 

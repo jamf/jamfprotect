@@ -1,4 +1,4 @@
-# UserCreatedByDSCLBinary
+# user_created_by_dscl
 #
 # This Analytic predicate may be used to report on user creation achieved using the 'dscl' binary on macOS.
 # This detection functions by monitoring for processes created with a binary carrying the com.apple.dscl identifier and have a process argument containing the '-create' argument used to create a user.
@@ -9,8 +9,8 @@ $event.type == 1 AND $event.process.signingInfo.appid == "com.apple.dscl" AND $e
 
 # Required Analytic Configuration:
 
-Sensor Event Type: GPProcessEvent
-Level: 1
+Sensor Event Type: Process Event
+Level: 0
 
 # Recommended Analytic Configuration:
 Severity: Informational

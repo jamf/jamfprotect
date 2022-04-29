@@ -9,7 +9,7 @@ $event.type == 3 AND $event.prevFile BEGINSWITH "/private/var/folders/" AND NOT 
 
 # Required Analytic Configuration:
 
-Sensor Event Type: GPFSEvent
+Sensor Event Type: File System Event
 Level: 0
 
 # Recommended Analytic Configuration:
