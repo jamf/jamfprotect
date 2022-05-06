@@ -11,10 +11,9 @@ jamfProtectBinaryLocation="/usr/local/bin/protectctl"
 
 if [[ -f "$jamfProtectBinaryLocation" ]]; then
 	plist=$($jamfProtectBinaryLocation info --plist)
-	jamfProtectInfoInsightsSync=$(/usr/libexec/PlistBuddy -c "Print LastInsightsSync" /dev/stdin <<<"$plist")
-    read d m dn t tz y <<< ${jamfProtectInfoInsightsSync//[- ]/ }
-	m=$(/bin/date -jf %B $m '+%m')
-	result=$(/bin/echo "$y"-"$m"-"$dn" "$t")
+    xpath="/plist/dict/date[preceding-sibling::key='LastInsightsSync'][1]/text()"
+    jamfProtectInfoInsightsSync=$( /bin/echo $plist | /usr/bin/xpath -e "${xpath}" 2>/dev/null)
+    result=$(/bin/date -j -f "%Y-%m-%dT%H:%M:%SZ" "$jamfProtectInfoInsightsSync" "+%Y-%m-%d %H:%M:%S")
 else
 	result="Protect binary not found"
 fi
