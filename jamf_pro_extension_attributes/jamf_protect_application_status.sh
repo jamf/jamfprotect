@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 # Extension Attribute to display the status of Jamf Protect
 
 # Created by macstuff.dev - Melwin Moeskops 
