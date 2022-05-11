@@ -8,10 +8,10 @@
 # - Obtains an access token.
 # - Performs a listAnalytics query that returns a list of all available
 #   Analytics.
-# - Writes the list to a temporary json file (created on first run of the script)
-# - Compares the data pulled with the data in local temp file
-# - If the hash value of an analytic is different, then a Microsoft Teams webhook will 
-# be sent and the admin will be alerted with a link to the analytic. 
+# - Writes the list to a json file (created on first run of the script)
+# - Compares the data pulled with the data in local json file
+# - If the hash value of an analytic is different, then a Microsoft Teams webhook will
+# be sent and the admin will be alerted with a link to the analytic.
 
 # Keep the following in mind when using this script:
 #
@@ -28,6 +28,9 @@ from datetime import datetime
 PROTECT_INSTANCE = ""
 CLIENT_ID = ""
 PASSWORD = ""
+
+TEAMS_URL = ""
+
 
 def get_access_token(protect_instance, client_id, password):
     """Gets a reusable access token to authenticate requests to the Jamf
@@ -62,6 +65,7 @@ def make_api_call(protect_instance, access_token, query, variables=None):
     resp.raise_for_status()
     return resp.json()
 
+
 LIST_ANALYTICS_QUERY = """
     query listAnalytics{
         listAnalytics{
@@ -79,60 +83,54 @@ LIST_ANALYTICS_QUERY = """
     }
 """
 
-def teams_webhook(uuid,name,sev,desc,jamf,created,updated):
-    TEAMS_URL = ""
-    
-    createdDate = datetime.strptime(created,'%Y-%m-%dT%H:%M:%S.%fZ')
-    updatedDate = datetime.strptime(updated,'%Y-%m-%dT%H:%M:%S.%fZ')
 
-    if createdDate == updatedDate:
-        analyticType = "New"
-    else:
-        analyticType = "Updated"
-    
-    if jamf:
-        jamfText="Jamf"
-    else:
-        jamfText="Custom Analytic"
-    
+def teams_webhook(uuid, name, sev, desc, jamf, created, updated, analyticType):
+
+    createdDate = datetime.strptime(created, "%Y-%m-%dT%H:%M:%S.%fZ")
+    updatedDate = datetime.strptime(updated, "%Y-%m-%dT%H:%M:%S.%fZ")
+
+    analytic_source = "Jamf" if jamf else "Custom Analytic"
+
     payload = {
-            "@type": "MessageCard",
-            "summary": "Jamf Protect Analytic",
-            "sections": [{
+        "@type": "MessageCard",
+        "summary": "Jamf Protect Analytic",
+        "sections": [
+            {
                 "activityTitle": f"{analyticType} Jamf Protect Analytic",
                 "activitySubtitle": f"{PROTECT_INSTANCE.upper()}",
-                "facts": [{
-                    "name": "Name",
-                    "value": f"{name}"
-                }, {
-                    "name": "Severity",
-                    "value": f"{sev}"
-                }, {
-                    "name": "Owner",
-                    "value": f"{jamfText}"
-                }, {
-                    "name": "Description",
-                    "value": f"{desc}"
-                }, {
-                    "name": "Created",
-                    "value": f"{createdDate.strftime('%Y-%m-%d %H:%M')}"
-                }, {
-                    "name": "Modified",
-                    "value": f"{updatedDate.strftime('%Y-%m-%d %H:%M')}"
-                }],
-                "markdown": "true"
-            }],
-            "potentialAction": [{
+                "facts": [
+                    {"name": "Name", "value": f"{name}"},
+                    {"name": "Severity", "value": f"{sev}"},
+                    {"name": "Owner", "value": f"{analytic_source}"},
+                    {"name": "Description", "value": f"{desc}"},
+                    {
+                        "name": "Created",
+                        "value": f"{createdDate.strftime('%Y-%m-%d %H:%M')}",
+                    },
+                    {
+                        "name": "Modified",
+                        "value": f"{updatedDate.strftime('%Y-%m-%d %H:%M')}",
+                    },
+                ],
+                "markdown": "true",
+            }
+        ],
+        "potentialAction": [
+            {
                 "@type": "OpenUri",
                 "name": "View Analytic in Jamf Protect",
-                "targets": [{
-                    "os": "default",
-                    "uri": f"https://{PROTECT_INSTANCE}.protect.jamfcloud.com/analytics/{uuid}"
-                    }]
-                }]
+                "targets": [
+                    {
+                        "os": "default",
+                        "uri": f"https://{PROTECT_INSTANCE}.protect.jamfcloud.com/analytics/{uuid}",
+                    }
+                ],
+            }
+        ],
     }
     teams_resp = requests.post(TEAMS_URL, json=payload)
     print(teams_resp.status_code)
+
 
 def __main__():
 
@@ -142,22 +140,25 @@ def __main__():
     # Get all available Analytics
     resp = make_api_call(PROTECT_INSTANCE, access_token, LIST_ANALYTICS_QUERY)
 
-    jamf_analytics_dict = {
-        a["hash"]: a for a in resp["data"]["listAnalytics"]["items"]
-    }
+    jamf_analytics_dict = {a["hash"]: a for a in resp["data"]["listAnalytics"]["items"]}
 
-    # Check if temp file exists, if not, create and dump json
-    if os.path.exists('/tmp/analytics.json') == False:
-        print('Creating JSON file')
-        with open('/tmp/analytics.json', 'w') as output:
+    # Check if json file exists, if not, create and dump json
+    if (
+        os.path.exists("/var/tmp/jamf-protect-analytics-update-teams-webhook.json")
+        == False
+    ):
+        print("Creating JSON file")
+        with open(
+            "/var/tmp/jamf-protect-analytics-update-teams-webhook.json", "w"
+        ) as output:
             json.dump(jamf_analytics_dict, output)
 
-    output = json.load(open('/tmp/analytics.json', 'r'))
-
-    # Check diff betweetn temp json file and new pull
-    new_jamf_analytics = set(jamf_analytics_dict).difference(
-        output
+    output = json.load(
+        open("/var/tmp/jamf-protect-analytics-update-teams-webhook.json", "r")
     )
+
+    # Check diff betweetn json json file and new pull
+    new_jamf_analytics = set(jamf_analytics_dict).difference(output)
 
     if not new_jamf_analytics:
         print(f"Nothing to see here.")
@@ -166,10 +167,24 @@ def __main__():
     print(f"New analytics available.")
     for a_hash in new_jamf_analytics:
         new_analytic = jamf_analytics_dict[a_hash]
-        teams_webhook(new_analytic['uuid'],new_analytic['name'],new_analytic['severity'],new_analytic['description'],new_analytic['jamf'],new_analytic['created'],new_analytic['updated'])
-        print('Removing JSON file.')
-        os.remove('/tmp/analytics.json')
-    
+        if any(new_analytic["uuid"] in d.values() for d in output.values()):
+            new_analytic["analyticType"] = "Updated"
+        else:
+            new_analytic["analyticType"] = "New"
+        teams_webhook(
+            new_analytic["uuid"],
+            new_analytic["name"],
+            new_analytic["severity"],
+            new_analytic["description"],
+            new_analytic["jamf"],
+            new_analytic["created"],
+            new_analytic["updated"],
+            new_analytic["analyticType"],
+        )
+        print("Removing JSON file.")
+        os.remove("/var/tmp/jamf-protect-analytics-update-teams-webhook.json")
+
+
 if __name__ == "__main__":
 
     __main__()
