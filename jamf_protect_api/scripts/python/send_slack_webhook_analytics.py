@@ -143,28 +143,32 @@ def __main__():
     jamf_analytics_dict = {a["hash"]: a for a in resp["data"]["listAnalytics"]["items"]}
 
     # Check if json file exists, if not, create and dump json
-    if os.path.exists("/var/tmp/jamf-protect-analytics-update-slack-webhook") == False:
+    if not os.path.exists("/var/tmp/jamf-protect-analytics-update-slack-webhook.json"):
         print("Creating JSON file")
         with open(
             "/var/tmp/jamf-protect-analytics-update-slack-webhook", "w"
         ) as output:
             json.dump(jamf_analytics_dict, output)
+            return
 
     output = json.load(
         open("/var/tmp/jamf-protect-analytics-update-slack-webhook.json", "r")
     )
 
     # Check diff between json file and new pull
-    new_jamf_analytics = set(jamf_analytics_dict).difference(output)
+    new_or_updated_analytics = set(jamf_analytics_dict).difference(output)
 
-    if not new_jamf_analytics:
+    if not new_or_updated_analytics:
         print(f"Nothing to see here.")
         return
 
-    print(f"New analytics available.")
-    for a_hash in new_jamf_analytics:
+    print(f"New or updated analytics available.")
+    for a_hash in new_or_updated_analytics:
         new_analytic = jamf_analytics_dict[a_hash]
-        if any(new_analytic["uuid"] in d.values() for d in output.values()):
+        if any(
+            new_analytic["uuid"] == old_analytic["uuid"]
+            for old_analytic in output.values()
+        ):
             new_analytic["analyticType"] = "Updated"
         else:
             new_analytic["analyticType"] = "New"
@@ -178,8 +182,11 @@ def __main__():
             new_analytic["updated"],
             new_analytic["analyticType"],
         )
-        print("Removing JSON file.")
-        os.remove("/var/tmp/jamf-protect-analytics-update-slack-webhook.json")
+
+    print(f"Updating JSON file for next run.")
+    with open("/var/tmp/analytics.json", "w") as output:
+        json.dump(jamf_analytics_dict, output)
+        return
 
 
 if __name__ == "__main__":
