@@ -142,7 +142,7 @@ def __main__():
 
     jamf_analytics_dict = {a["hash"]: a for a in resp["data"]["listAnalytics"]["items"]}
 
-    # Check if json file exists, if not, create and dump json
+    # Check is JSON file exists
     if os.path.exists("/var/tmp/jamf-protect-analytics-update-slack-webhook.json"):
 
         output = json.load(
@@ -177,7 +177,7 @@ def __main__():
                 new_analytic["analyticType"],
             )
 
-    print(f"Updating JSON file for next run.")
+    print(f"Generating JSON file for next run.")
     with open(
         "/var/tmp/jamf-protect-analytics-update-slack-webhook.json", "w"
     ) as output:
