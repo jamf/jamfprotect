@@ -153,10 +153,10 @@ def __main__():
         new_or_updated_analytics = set(jamf_analytics_dict).difference(output)
 
         if not new_or_updated_analytics:
-            print(f"No new or updated analytics.")
+            print("No new or updated analytics.")
             return
 
-        print(f"New or updated analytics available.")
+        print("New or updated analytics available.")
         for a_hash in new_or_updated_analytics:
             new_analytic = jamf_analytics_dict[a_hash]
             if any(
