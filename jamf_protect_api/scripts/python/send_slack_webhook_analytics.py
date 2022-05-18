@@ -32,6 +32,8 @@ PASSWORD = ""
 SLACK_URL = "https://hooks.slack.com/services"
 SLACK_TOKEN = ""
 
+JSON_OUTPUT_FILE = "/var/tmp/jamf-protect-analytics-update-slack-webhook.json"
+
 
 def get_access_token(protect_instance, client_id, password):
     """Gets a reusable access token to authenticate requests to the Jamf
@@ -143,11 +145,9 @@ def __main__():
     jamf_analytics_dict = {a["hash"]: a for a in resp["data"]["listAnalytics"]["items"]}
 
     # Check is JSON file exists
-    if os.path.exists("/var/tmp/jamf-protect-analytics-update-slack-webhook.json"):
+    if os.path.exists(JSON_OUTPUT_FILE):
 
-        output = json.load(
-            open("/var/tmp/jamf-protect-analytics-update-slack-webhook.json", "r")
-        )
+        output = json.load(open(JSON_OUTPUT_FILE, "r"))
 
         # Check diff between json file and new pull
         new_or_updated_analytics = set(jamf_analytics_dict).difference(output)
@@ -177,10 +177,8 @@ def __main__():
                 new_analytic["analyticType"],
             )
 
-    print(f"Generating JSON file for next run.")
-    with open(
-        "/var/tmp/jamf-protect-analytics-update-slack-webhook.json", "w"
-    ) as output:
+    print("Generating JSON file for next run.")
+    with open(JSON_OUTPUT_FILE, "w") as output:
         json.dump(jamf_analytics_dict, output)
 
 
