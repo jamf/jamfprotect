@@ -1,0 +1,17 @@
+# sudoers_file_modification
+#
+# This Analytic predicate may be used to report on all modifications made to the /etc/sudoers file on an endpoint.
+# This detection functions by monitoring for modifications made to the /etc/sudoers file path.
+#
+# Analytic Predicate(s):
+
+$event.path == "/etc/sudoers" AND $event.isModified == 1
+
+# Required Analytic Configuration:
+
+Sensor Event Type: File System Event
+
+# Recommended Analytic Configuration:
+
+Severity: Informational
+Level: 0

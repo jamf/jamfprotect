@@ -1,0 +1,17 @@
+# packet_filter_modification
+#
+# This Analytic predicate may be used to report on modifications to the Packet Filter on macOS
+# This detection functions by monitoring for processes created with a binary carrying the com.apple.pfctl identifier and have a process argument containing one of the following arguments "-F all" "-d" "-e -f" "-e"
+#
+# Analytic Predicate(s):
+
+$event.type == 1 AND $event.process.signingInfo.appid == "com.apple.pfctl" AND ($event.process.commandLine CONTAINS "-F all" OR $event.process.commandLine CONTAINS "-d" OR $event.process.commandLine CONTAINS "-e -f" OR $event.process.commandLine CONTAINS "-e") OR $file.path == "/etc/pf.conf" AND $file.isModified == 1
+
+# Required Analytic Configuration:
+
+Sensor Event Type: Process Event
+
+# Recommended Analytic Configuration:
+
+Severity: Informational
+Level: 0
