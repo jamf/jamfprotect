@@ -54,6 +54,10 @@
 ############# Script Configuration Area #############
 #####################################################
 
+# LOGGED IN USER
+# Getting the current logged in user
+loggedInUser=$(stat -f %Su /dev/console)
+
 # PACKET FILTER FIREWALL SETTINGS
 # This is the required IP range for persisting APNs connectivity on macOS devices.  Please refer to Apple's documentation for more information: https://support.apple.com/en-gb/HT210060.  Values in the variable must be separated by a comma and space.
 apnsIPRange="17.0.0.0/8"
