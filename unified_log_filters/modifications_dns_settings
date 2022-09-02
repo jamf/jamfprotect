@@ -1,0 +1,15 @@
+# modifications_dns_settings
+#
+# This Unified Log filter may be used to report on enabling or disabling the DNS Settings filter in Network Preferences.
+# This filter functions by monitoring logging from the NetworkExtension subsystem, nehelper/nesessionmanager process and event message containing a string known to indicate enablement or disablement of the DNS Settings filter in Network System Preferences. 
+
+# Filter Predicate(s):
+
+subsystem == "com.apple.networkextension" and process == "nehelper" and eventMessage CONTAINS "DNS settings are enabled" OR subsystem == "com.apple.networkextension" and process == "nesessionmanager" and eventMessage contains "status changed to disconnected, last stop reason Configuration was disabled"'
+
+# Example output:
+
+2022-XX-XX 14:00:17.4XXX27+XXXX 0x12ee26   Default     0x417f45             208    0    nehelper: (NetworkExtension) [com.apple.networkextension:] DNS settings are enabled
+
+2022-09-02 14:23:01.163871+0200 0x131146   Default     0x0                  764    0    nesessionmanager: [com.apple.networkextension:] NESMDNSSettingsSession[DNS Settings:1FEB95F4-5499-4BAA-AE37-9C8994F91C6D]: status changed to disconnected, last stop reason Configuration was disabled
+
