@@ -1,7 +1,7 @@
 # modifications_dns_settings
 #
 # This Unified Log filter may be used to report on enabling or disabling the DNS Settings filter in Network Preferences.
-# This filter functions by monitoring logging from the NetworkExtension subsystem, nehelper/nesessionmanager process and event message containing a string known to indicate enablement or disablement of the DNS Settings filter in Network System Preferences. 
+# This filter functions by monitoring logging from the NetworkExtension subsystem, nehelper / nesessionmanager process and event message containing a string known to indicate enablement or disablement of the DNS Settings filter in Network System Preferences. 
 
 # Filter Predicate(s):
 
