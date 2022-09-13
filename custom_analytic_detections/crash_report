@@ -5,7 +5,8 @@
 
 # Analytic Predicate(s):
 
-$event.isNewFile == 1 AND $event.path MATCHES[cd] "(:?/System|/Users/[\\w_\\.\\-]{1,83})?/Library/Logs/DiagnosticReports/.*\\.ips"
+$event.isNewFile == 1 AND 
+$event.path MATCHES[cd] "(:?/System|/Users/[\\w_\\.\\-]{1,83})?/Library/Logs/DiagnosticReports/.*\\.ips"
 
 # Required Analytic Configuration:
 

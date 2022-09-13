@@ -5,7 +5,9 @@
 #
 # Analytic Predicate(s):
 
-$event.type == 1 AND $event.process.signingInfo.appid == "com.apple.fdesetup" AND $event.process.commandLine CONTAINS "authrestart"
+$event.type == 1 AND 
+$event.process.signingInfo.appid == "com.apple.fdesetup" AND 
+$event.process.commandLine CONTAINS "authrestart"
 
 # Required Analytic Configuration:
 
