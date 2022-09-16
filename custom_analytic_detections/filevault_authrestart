@@ -1,0 +1,19 @@
+# filevault_authrestart
+#
+# This Analytic predicate may be used to report on FileVault Authenticated reboots achieved using the 'fdesetup' binary on macOS.
+# This detection functions by monitoring for processes created with a binary carrying the com.apple.fdesetup identifier and have a process argument containing the 'authrestart' argument to perform an authenticated restart.
+#
+# Analytic Predicate(s):
+
+$event.type == 1 AND 
+$event.process.signingInfo.appid == "com.apple.fdesetup" AND 
+$event.process.commandLine CONTAINS "authrestart"
+
+# Required Analytic Configuration:
+
+Sensor Event Type: Process Event
+
+# Recommended Analytic Configuration:
+
+Severity: Informational
+Level: 0
