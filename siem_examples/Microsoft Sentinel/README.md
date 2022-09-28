@@ -1,10 +1,10 @@
-# Microsoft Azure Sentinel
-The files contained in this repository provides example workbooks and queries for Microsoft Azure Sentinel with having Jamf Protect as data source.
+# Microsoft Sentinel
+The files contained in this repository provides example workbooks and queries for Microsoft Sentinel with having Jamf Protect as data source.
 
 **Steps to use example workbooks contained within this repository:**
 
 1. Navigate to _https://portal.azure.com_
-2. Navigate to Azure Sentinel
+2. Navigate to Microsoft Sentinel
 3. Navigate to the Sentinel Workspace that is being used for Jamf Protect
 4. Navigate to Workbooks and continuing in My Workbooks
 5. Click on + Add Workbook
@@ -21,7 +21,7 @@ The files contained in this repository provides example workbooks and queries fo
 
 1. Open the .json file with your preferred text editor and find and replace jamfprotect_CL with your custom Log Type Name. (You can find the Log Type Name in Jamf Protect -> Administrative -> Data -> Microsoft Sentinel -> Log Type) and save the file. 
 2. Navigate to _https://portal.azure.com_
-3. Navigate to Azure Sentinel
+3. Navigate to Microsoft Sentinel
 4. Navigate to the Sentinel Workspace that is being used for Jamf Protect
 5. Navigate to Analytics
 6. Click on the import button in the top menu bar
