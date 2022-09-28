@@ -13,7 +13,7 @@ The general flow of the operations that occur through this operation is as follo
 2. The event data is either being forwarded from Protect Cloud to the SIEM or from direct the macOS endpoint to the SIEM, depending on the chosen integration.
 
 In this repository you will find examples for:
-- [ ] Microsoft Azure Sentinel
+- [ ] Microsoft Sentinel
 - [ ] Soon to be added - Splunk
 
 **Disclaimer:** All resources contained in this repository are provided as-is and are not officially supported by Jamf Support.
