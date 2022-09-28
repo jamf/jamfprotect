@@ -10,4 +10,4 @@ The general flow of the operations that occur through this operation is as follo
 In this repository you will find examples for:
 - [ ] Microsoft Azure Sentinel
 
-## Please note that all resources contained within this repository are provided as-is and are not officially supported by Jamf Support.
+**Disclaimer:** All resources contained in this repository are provided as-is and are not officially supported by Jamf Support.
