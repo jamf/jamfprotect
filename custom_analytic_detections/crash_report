@@ -1,0 +1,18 @@
+# crash_report
+#
+# This Custom Analytic may be used to detect a crash report on the host system. Although not necessarily related to malicious activity, it can be useful for triaging issues on a end-users system.
+# This detection functions by monitoring for the creation of the Crash Report files.
+
+# Analytic Predicate(s):
+
+$event.isNewFile == 1 AND 
+$event.path MATCHES[cd] "(:?/System|/Users/[\\w_\\.\\-]{1,83})?/Library/Logs/DiagnosticReports/.*\\.ips"
+
+# Required Analytic Configuration:
+
+Sensor Event Type: File System Event
+
+# Recommended Analytic Configuration:
+
+Severity: Informational
+Level: 0
