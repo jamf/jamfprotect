@@ -9,7 +9,10 @@ The concept of this playbook is as following:
 3. The end user is being presented with a workflow to either keep the external media mounted as read-only in case it's not encrypted, or encrypt it with a password and have it mounted as read-write, depending on the storage type volume the workflow encrypts the disk with no loss of data, or in case of Microsoft Visual Data we need to re-format the disk.
 
 **Dependencies**
-- [ ] [IBMNotifier] (https://github.com/IBM/mac-ibm-notifications/releases)
+- [ ] IBMNotifier (https://github.com/IBM/mac-ibm-notifications/releases)
+
+**Important**
+Please read through and test this script intensively prior adding it to your production environment, as in some cases the end-user agree's to erase the external disk.
 
 ![First Prompt](https://github.com/jamf/jamfprotect/blob/project/add_removable_media_encryption_workflow/soar_playbooks/encrypt_unencrypted_removable_storage_media/Images/Encryption_Workflow_1.png)
 
