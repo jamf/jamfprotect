@@ -9,6 +9,8 @@ The concept of this playbook is as following:
 3. The end user is being presented with a workflow to either keep the external media mounted as read-only in case it's not encrypted, or encrypt it with a password and have it mounted as read-write, depending on the storage type volume the workflow encrypts the disk with no loss of data, or in case of Microsoft Visual Data we need to re-format the disk.
 
 **Dependencies**
+- [ ] SwiftDialog (https://github.com/bartreardon/swiftDialog/releases)
+or
 - [ ] IBMNotifier (https://github.com/IBM/mac-ibm-notifications/releases)
 
 **Important**
