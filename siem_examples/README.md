@@ -1,6 +1,9 @@
 # SIEM Examples
 
-Jamf Protect supports forwarding data to 3rd party security information and events management solutions (SIEM), this provides value to IT and Security teams that are using a SIEM to collect all kinds of data points into a single solution.
+Jamf Protect supports the following methods of providing a 3rd party security information and events management solutions (SIEM) with data attributes, this provides value to IT and Security teams that are using a SIEM to collect all kinds of data points into a single solution.
+
+* Transmit Alert and Unified Log data forwarded by the Jamf Protect cloud to the organizations Amazon S3 bucket or Microsoft Sentinel workspace
+* Transmit Alert and Unified Log data direct from the endpoint to the organizations SIEM via HTTPS
 
 The SIEM Examples contained within this repository are examples of queries, workbooks, or dashboards that can be used in a SIEM helping visualising data transmitted by Jamf Protect, the examples provided are helping getting started with mapping data points from Jamf Protect in to the SIEM solution.
 
