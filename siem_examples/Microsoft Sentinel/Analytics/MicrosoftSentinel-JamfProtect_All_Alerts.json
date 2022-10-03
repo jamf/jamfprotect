@@ -18,7 +18,7 @@
                 "description": "Uses Jamf Protect data in Microsoft Sentinel and generates Incidents and match them to Alerts. ",
                 "severity": "High",
                 "enabled": true,
-                "query": "jamfprotect_CL\n| where topicType_s == \"alert\"\n| where input_eventType_s <> \"GPUnifiedLogEvent\"\n| extend severity = case(input_match_severity_d == 0, \"Informational\", input_match_severity_d == 1, \"Low\", input_match_severity_d == 2, \"Medium\", input_match_severity_d == 3, \"High\", \"True\")\n| extend Analytic_name =  parse_json(input_match_facts_s)[0].human\n| extend AlertURL = strcat(\"https://\", org_hd_s, \".jamfcloud.com/Alerts/\", input_match_uuid_g)\n| extend Input_Match = parse_json(input_match_actions_s)[0].name\n| extend JamfPro = case(Input_Match == \"SmartGroup\", \"Workflow with Jamf Pro\", Input_Match == \"\", \"No workflow\", \"No workflow\")\n| where isnotempty(severity)\n\n",
+                "query": "jamfprotect_CL\n| where topicType_s == \"alert\"\n| where input_eventType_s <> \"GPUnifiedLogEvent\"\n| extend severity = case(input_match_severity_d == 0, \"Informational\", input_match_severity_d == 1, \"Low\", input_match_severity_d == 2, \"Medium\", input_match_severity_d == 3, \"High\", \"True\")\n| extend Analytic_description =  parse_json(input_match_facts_s)[0].human\n| extend Analytic_name =  parse_json(input_match_facts_s)[0].name\n| extend AlertURL = strcat(\"https://\", org_hd_s, \".jamfcloud.com/Alerts/\", input_match_uuid_g)\n| extend Input_Match = parse_json(input_match_actions_s)[0].name\n| extend sha256hex = tostring(parse_json(input_related_binaries_s)[0].sha256hex)\n| extend Matched_Users = tostring(parse_json(input_related_users_s)[0].name)\n| extend Host_IPs = tostring(parse_json(input_host_ips_s)[0])\n| extend Tags = tostring(parse_json(input_match_facts_s)[0].tags)\n| extend JamfPro = case(Input_Match contains \"SmartGroup\", \"Workflow with Jamf Pro\", Input_Match == \"Prevented\", \"No workflow, Prevented by Protect\", Input_Match == \"\", \"No workflow\", \"No workflow\")\n| where isnotempty(severity)",
                 "suppressionDuration": "PT5H",
                 "suppressionEnabled": false,
                 "tactics": [],
@@ -37,18 +37,19 @@
                     }
                 },
                 "alertDetailsOverride": {
-                    "alertDisplayNameFormat": "{{Analytic_name}} on {{input_host_hostname_s}}",
-                    "alertDescriptionFormat": "\n\nPlease navigate to the following link for more information {{AlertURL}}",
-                    "alertTacticsColumnName": "input_match_tags_s",
+                    "alertDisplayNameFormat": "{{Analytic_name}} - {{Analytic_description}} on {{input_host_hostname_s}}",
+                    "alertDescriptionFormat": "Please navigate to the following link for more information {{AlertURL}}\nDescription: {{Analytic_description}}",
+                    "alertTacticsColumnName": "Tags",
                     "alertSeverityColumnName": "severity"
                 },
                 "customDetails": {
                     "Protect_Event_Type": "input_eventType_s",
                     "Protect_Analytic": "input_match_event_name_s",
                     "Protect_URL": "AlertURL",
-                    "Related_File_hash": "input_related_files_s",
+                    "Related_File_hash": "sha256hex",
                     "Related_Binaries": "input_related_binaries_s",
-                    "JamfPro_Status": "JamfPro"
+                    "JamfPro_Status": "JamfPro",
+                    "Protect_Tags": "Tags"
                 },
                 "entityMappings": [
                     {
@@ -65,7 +66,7 @@
                         "fieldMappings": [
                             {
                                 "identifier": "Address",
-                                "columnName": "input_host_ips_s"
+                                "columnName": "Host_IPs"
                             }
                         ]
                     },
@@ -74,7 +75,7 @@
                         "fieldMappings": [
                             {
                                 "identifier": "Name",
-                                "columnName": "input_related_users_s"
+                                "columnName": "Matched_Users"
                             }
                         ]
                     },
@@ -88,11 +89,11 @@
                         ]
                     },
                     {
-                        "entityType": "File",
+                        "entityType": "FileHash",
                         "fieldMappings": [
                             {
-                                "identifier": "Name",
-                                "columnName": "input_related_files_s"
+                                "identifier": "Value",
+                                "columnName": "sha256hex"
                             }
                         ]
                     }

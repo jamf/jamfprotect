@@ -64,7 +64,7 @@
               "allowCustom": true
             },
             "value": {
-              "durationMs": 5184000000
+              "durationMs": 604800000
             }
           }
         ],
@@ -395,7 +395,7 @@
       "type": 3,
       "content": {
         "version": "KqlItem/1.0",
-        "query": "jamfprotect_CL\n//| where input_host_hostname_s == '{_hostname:value}'\n| extend severity_ = tostring(parse_json(input_match_facts_s)[0].severity)\n| where isnotempty(severity_)\n| summarize count() by severity_, bin(TimeGenerated,1d)\n| render areachart ",
+        "query": "jamfprotect_CL\n| extend severity_ = tostring(parse_json(input_match_facts_s)[0].severity)\n| where isnotempty(severity_)\n| summarize count() by severity_, bin(TimeGenerated,{_timetoken:grain})\n| render areachart ",
         "size": 0,
         "title": "Events Detected (Count By Severity) {_timetoken:value}",
         "timeContextFromParameter": "_timetoken",
@@ -430,7 +430,7 @@
       "type": 3,
       "content": {
         "version": "KqlItem/1.0",
-        "query": "jamfprotect_CL\n\n| where input_eventType_s == \"GPUnifiedLogEvent\"\n| extend name_ = tostring(parse_json(input_match_facts_s)[0].name)\n| where isnotempty(name_)\n| summarize count() by name_, bin(TimeGenerated,1d)\n| render areachart ",
+        "query": "jamfprotect_CL\n\n| where input_eventType_s == \"GPUnifiedLogEvent\"\n| extend name_ = tostring(parse_json(input_match_facts_s)[0].name)\n| where isnotempty(name_)\n| summarize count() by name_, bin(TimeGenerated,{_timetoken:grain})\n| render areachart ",
         "size": 0,
         "title": "Unified Logging Events {_timetoken:value}",
         "timeContextFromParameter": "_timetoken",
@@ -504,7 +504,7 @@
       "type": 3,
       "content": {
         "version": "KqlItem/1.0",
-        "query": "jamfprotect_CL\n| where header_event_name_s !contains \"AUE\"\n| where input_eventType_s <> \"\"\n| summarize Events = count() by Type, bin(TimeGenerated,1d)\n| render columnchart   ",
+        "query": "jamfprotect_CL\n| where header_event_name_s !contains \"AUE\"\n| where input_eventType_s <> \"\"\n| summarize Events = count() by Type, bin(TimeGenerated,{_timetoken:grain})\n| render columnchart   ",
         "size": 0,
         "title": "Events detected (Total by date, {_timetoken:value})",
         "timeContextFromParameter": "_timetoken",
@@ -529,7 +529,7 @@
       "type": 3,
       "content": {
         "version": "KqlItem/1.0",
-        "query": "jamfprotect_CL\n| where header_event_name_s !contains \"AUE\"\n| where input_eventType_s <> \"\"\n| summarize Events = count() by input_eventType_s, bin(TimeGenerated,1d)\n| render areachart with(kind=stacked)\n",
+        "query": "jamfprotect_CL\n| where header_event_name_s !contains \"AUE\"\n| where input_eventType_s <> \"\"\n| summarize Events = count() by input_eventType_s, bin(TimeGenerated,{_timetoken:grain})\n| render areachart with(kind=stacked)\n",
         "size": 0,
         "title": "Events Detected (Count by Type, {_timetoken:value})",
         "timeContextFromParameter": "_timetoken",
