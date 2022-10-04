@@ -23,11 +23,9 @@ Jamf Protect's GraphQL API can be used to streamline endpoint and configuration 
 
 More information on the Jamf Protect API can be found [here](https://docs.jamf.com/jamf-protect/documentation/Jamf_Protect_API.html).
 
-### SIEM Examples
+### Third party integrations
 
-Use pre-built dashboards, workbooks and other examples to start visualising the data transmitted by Jamf Protect into your SIEM. 
-
-More information on Data Forwarding can be found [here](https://docs.jamf.com/jamf-protect/documentation/Data_Forwarding_to_a_Third_Party_Storage_Solution.html).
+Jamf Protect is able to integrate with many 3rd party solutions, examples and workflows are provided in this section.
 
 ### SOAR Playbooks
 
