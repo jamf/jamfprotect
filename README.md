@@ -23,6 +23,12 @@ Jamf Protect's GraphQL API can be used to streamline endpoint and configuration 
 
 More information on the Jamf Protect API can be found [here](https://docs.jamf.com/jamf-protect/documentation/Jamf_Protect_API.html).
 
+### SIEM Examples
+
+Use pre-built dashboards, workbooks and other examples to start visualising the data transmitted by Jamf Protect into your SIEM. 
+
+More information on Data Forwarding can be found [here](https://docs.jamf.com/jamf-protect/documentation/Data_Forwarding_to_a_Third_Party_Storage_Solution.html).
+
 ### SOAR Playbooks
 
 Leverage the powerful integration between Jamf Protect and Jamf Pro to streamline remediation of security incidents on managed endpoints through automation.
