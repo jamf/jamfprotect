@@ -14,7 +14,7 @@ The files contained in this repository provides example workbooks and queries fo
 9. Hit Apply and Done Editing
 10. You can now view or link to this dashboard by clicking View My Dashboard
 
-![](https://github.com/jamf/jamfprotect/blob/e4992fcb9651aa7e92157e436197dbd2d31a28bd/siem_examples/Microsoft%20Azure%20Sentinel/.Microsoft_Azure_Sentinel_Workbook.png)
+![](https://github.com/jamf/jamfprotect/blob/task/28_09_22_siem_examples/third_party_integrations/data_management/microsoft_sentinel/Images/.Microsoft_Sentinel_Workbook_white.png)
 
 
 **Steps to use example Analytics contained within this repository:**
@@ -27,6 +27,6 @@ The files contained in this repository provides example workbooks and queries fo
 6. Click on the import button in the top menu bar
 7. Select the Analytic .JSON file you want to import and click Upload
 
-![](https://github.com/jamf/jamfprotect/blob/e4992fcb9651aa7e92157e436197dbd2d31a28bd/siem_examples/Microsoft%20Azure%20Sentinel/.Microsoft_Azure_Sentinel_Incidents.png)
+![](https://github.com/jamf/jamfprotect/blob/task/28_09_22_siem_examples/third_party_integrations/data_management/microsoft_sentinel/Images/.Microsoft_Sentinel_Incidents_white.png)
 
 **Disclaimer:** All resources contained in this repository are provided as-is and are not officially supported by Jamf Support.
