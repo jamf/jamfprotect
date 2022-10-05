@@ -16,6 +16,7 @@
 #   https://your-tenant.protect.jamfcloud.com).
 # - There are two required arguments that must be passed when running the script,
 #   -u/--uuid and -s/--status.
+# - Maximum number of uuids that can be passed is 100.
 # - This script requires the 3rd party Python library 'requests'
 
 import requests
@@ -99,30 +100,33 @@ def __main__():
 
     ALERT_UUID = args.uuid.split(",")
     ALERT_STATUS = args.status
+    if len(ALERT_UUID) <= 100:
 
-    if (
-        ALERT_STATUS == "New"
-        or ALERT_STATUS == "InProgress"
-        or ALERT_STATUS == "Resolved"
-    ):
+        if (
+            ALERT_STATUS == "New"
+            or ALERT_STATUS == "InProgress"
+            or ALERT_STATUS == "Resolved"
+        ):
 
-        # Get the access token
-        access_token = get_access_token(PROTECT_INSTANCE, CLIENT_ID, PASSWORD)
+            # Get the access token
+            access_token = get_access_token(PROTECT_INSTANCE, CLIENT_ID, PASSWORD)
 
-        # Set variables for graphql mutation
-        variables = {
-            "input": {"uuids": ALERT_UUID, "status": ALERT_STATUS},
-        }
+            # Set variables for graphql mutation
+            variables = {
+                "input": {"uuids": ALERT_UUID, "status": ALERT_STATUS},
+            }
 
-        # Make API call
-        resp = make_api_call(
-            PROTECT_INSTANCE, access_token, UPDATE_ALERT_STATUS_QUERY, variables
-        )
-        print(resp)
-        print(f"The status of alert(s) {ALERT_UUID} are set to {ALERT_STATUS}.")
+            # Make API call
+            resp = make_api_call(
+                PROTECT_INSTANCE, access_token, UPDATE_ALERT_STATUS_QUERY, variables
+            )
+            print(resp)
+            print(f"The status of alert(s) {ALERT_UUID} are set to {ALERT_STATUS}.")
+        else:
+            print("Status must be set to New, InProgress, or Resolved.")
+            return
     else:
-        print("Status must be set to New, InProgress, or Resolved.")
-        return
+        print("Maximum number of uuids is 100. Please try again.")
 
 
 if __name__ == "__main__":

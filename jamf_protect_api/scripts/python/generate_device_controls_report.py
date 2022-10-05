@@ -2,8 +2,8 @@
 
 # This example Python script below does the following:
 # - Obtains an access token.
-# - Completes a listAlerts query request that returns all logs reported to Jamf
-#   Protect, with filtering by eventType auth-mount.
+# - Completes a listAlerts query request that returns all alerts reported to Jamf
+#   Protect during a defined time range, with filtering by eventType auth-mount.
 # - Exports alert data in JSON format to Jamf_Protect_Device_Controls_alerts_{Date}.json
 # - Creates a CSV file
 
@@ -155,23 +155,23 @@ def __main__():
     with open(JSON_OUTPUT_FILE, "r") as f:
         output = json.load(f)
         for o in output:
-            json_list = json.loads(o["json"])
-            hostname = json_list["host"]["hostname"]
-            serial = json_list["host"]["serial"]
-            vendorname = json_list["match"]["event"]["device"]["vendorName"]
-            vendorid = json_list["match"]["event"]["device"]["vendorId"]
-            productname = json_list["match"]["event"]["device"]["productName"]
-            productid = json_list["match"]["event"]["device"]["productId"]
-            devicesn = json_list["match"]["event"]["device"]["serialNumber"]
-            isencrypted = json_list["match"]["event"]["device"]["isEncrypted"]
+            raw_json = json.loads(o["json"])
+            hostname = raw_json["host"]["hostname"]
+            serial = raw_json["host"]["serial"]
+            vendorname = raw_json["match"]["event"]["device"]["vendorName"]
+            vendorid = raw_json["match"]["event"]["device"]["vendorId"]
+            productname = raw_json["match"]["event"]["device"]["productName"]
+            productid = raw_json["match"]["event"]["device"]["productId"]
+            devicesn = raw_json["match"]["event"]["device"]["serialNumber"]
+            isencrypted = raw_json["match"]["event"]["device"]["isEncrypted"]
             action = (
-                json_list["match"]["actions"][0]["name"]
+                raw_json["match"]["actions"][0]["name"]
                 + ", "
-                + json_list["match"]["actions"][1]["name"]
+                + raw_json["match"]["actions"][1]["name"]
                 + " & "
-                + json_list["match"]["actions"][2]["name"]
+                + raw_json["match"]["actions"][2]["name"]
             )
-            time = json_list["match"]["event"]["timestamp"]
+            time = raw_json["match"]["event"]["timestamp"]
             timestamp = datetime.utcfromtimestamp(time).strftime("%Y-%m-%d %H:%M:%S")
 
             rows = [
