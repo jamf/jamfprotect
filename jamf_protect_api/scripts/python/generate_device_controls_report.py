@@ -22,9 +22,7 @@ PROTECT_INSTANCE = ""
 CLIENT_ID = ""
 PASSWORD = ""
 
-JSON_OUTPUT_FILE = (
-    f"Jamf_Protect_Device_Controls_Alerts_{datetime.utcnow().strftime('%Y-%m-%d')}.json"
-)
+
 CSV_OUTPUT_FILE = (
     f"Jamf_Protect_Device_Controls_Alerts_{datetime.utcnow().strftime('%Y-%m-%d')}.csv"
 )
@@ -133,9 +131,6 @@ def __main__():
             break
         page_count += 1
     print(f"Found {len(results)} alerts matching filter.\n")
-    print(f"Writing results to '{JSON_OUTPUT_FILE}'")
-    with open(JSON_OUTPUT_FILE, "w") as output:
-        json.dump(results, output, sort_keys=True, indent=4)
 
     data_file = open(CSV_OUTPUT_FILE, "w", newline="")
     csv_writer = csv.writer(data_file)
@@ -152,47 +147,44 @@ def __main__():
         "Action",
     ]
     csv_writer.writerow(headers)
-    with open(JSON_OUTPUT_FILE, "r") as f:
-        output = json.load(f)
-        for o in output:
-            raw_json = json.loads(o["json"])
-            hostname = raw_json["host"]["hostname"]
-            serial = raw_json["host"]["serial"]
-            vendorname = raw_json["match"]["event"]["device"]["vendorName"]
-            vendorid = raw_json["match"]["event"]["device"]["vendorId"]
-            productname = raw_json["match"]["event"]["device"]["productName"]
-            productid = raw_json["match"]["event"]["device"]["productId"]
-            devicesn = raw_json["match"]["event"]["device"]["serialNumber"]
-            isencrypted = raw_json["match"]["event"]["device"]["isEncrypted"]
-            action = (
-                raw_json["match"]["actions"][0]["name"]
-                + ", "
-                + raw_json["match"]["actions"][1]["name"]
-                + " & "
-                + raw_json["match"]["actions"][2]["name"]
-            )
-            time = raw_json["match"]["event"]["timestamp"]
-            timestamp = datetime.utcfromtimestamp(time).strftime("%Y-%m-%d %H:%M:%S")
+    for o in results:
+        raw_json = json.loads(o["json"])
+        hostname = raw_json["host"]["hostname"]
+        serial = raw_json["host"]["serial"]
+        vendorname = raw_json["match"]["event"]["device"]["vendorName"]
+        vendorid = raw_json["match"]["event"]["device"]["vendorId"]
+        productname = raw_json["match"]["event"]["device"]["productName"]
+        productid = raw_json["match"]["event"]["device"]["productId"]
+        devicesn = raw_json["match"]["event"]["device"]["serialNumber"]
+        isencrypted = raw_json["match"]["event"]["device"]["isEncrypted"]
+        action = (
+            raw_json["match"]["actions"][0]["name"]
+            + ", "
+            + raw_json["match"]["actions"][1]["name"]
+            + " & "
+            + raw_json["match"]["actions"][2]["name"]
+        )
+        time = raw_json["match"]["event"]["timestamp"]
+        timestamp = datetime.utcfromtimestamp(time).strftime("%Y-%m-%d %H:%M:%S")
 
-            rows = [
-                timestamp,
-                hostname,
-                serial,
-                vendorname,
-                vendorid,
-                productname,
-                productid,
-                devicesn,
-                isencrypted,
-                action,
-            ]
+        rows = [
+            timestamp,
+            hostname,
+            serial,
+            vendorname,
+            vendorid,
+            productname,
+            productid,
+            devicesn,
+            isencrypted,
+            action,
+        ]
 
-            csv_writer.writerow(rows)
+        csv_writer.writerow(rows)
     print(f"Writing results to '{CSV_OUTPUT_FILE}'")
-    f.close()
-    os.remove(JSON_OUTPUT_FILE)
     data_file.close()
     print("done")
+
 
 if __name__ == "__main__":
     __main__()
