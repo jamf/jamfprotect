@@ -15,12 +15,13 @@
 #   tenant name (eg. your-tenant), which is included in your tenant URL (eg.
 #   https://your-tenant.protect.jamfcloud.com).
 # - There are two required arguments that must be passed when running the script,
-#   -u/--uuid and -s/--status.
+#   -u/--uuids and -s/--status.
 # - Maximum number of uuids that can be passed is 100.
 # - This script requires the 3rd party Python library 'requests'
 
 import requests
 import argparse
+import sys
 
 PROTECT_INSTANCE = ""
 CLIENT_ID = ""
@@ -83,7 +84,7 @@ def create_args():
     )
     parser.add_argument(
         "-u",
-        "--uuid",
+        "--uuids",
         default=None,
         help="UUIDs of alerts, comma separated.",
         required=True,
@@ -98,10 +99,12 @@ def __main__():
 
     args = create_args()
 
-    ALERT_UUID = args.uuid.split(",")
+    ALERT_UUIDS = args.uuids.split(",")
     ALERT_STATUS = args.status
-    if len(ALERT_UUID) <= 100:
-
+    if len(ALERT_UUIDS) > 100:
+        print("Maximum number of UUIDs is 100. Please try again.")
+        sys.exit(1)
+    else:
         if (
             ALERT_STATUS == "New"
             or ALERT_STATUS == "InProgress"
@@ -113,7 +116,7 @@ def __main__():
 
             # Set variables for graphql mutation
             variables = {
-                "input": {"uuids": ALERT_UUID, "status": ALERT_STATUS},
+                "input": {"uuids": ALERT_UUIDS, "status": ALERT_STATUS},
             }
 
             # Make API call
@@ -121,13 +124,10 @@ def __main__():
                 PROTECT_INSTANCE, access_token, UPDATE_ALERT_STATUS_QUERY, variables
             )
             print(resp)
-            print(f"The status of alert(s) {ALERT_UUID} are set to {ALERT_STATUS}.")
+            print(f"The status of alert(s) {ALERT_UUIDS} are set to {ALERT_STATUS}.")
         else:
             print("Status must be set to New, InProgress, or Resolved.")
             return
-    else:
-        print("Maximum number of uuids is 100. Please try again.")
-
 
 if __name__ == "__main__":
 

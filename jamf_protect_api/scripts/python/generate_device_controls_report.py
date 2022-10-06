@@ -4,7 +4,6 @@
 # - Obtains an access token.
 # - Completes a listAlerts query request that returns all alerts reported to Jamf
 #   Protect during a defined time range, with filtering by eventType auth-mount.
-# - Exports alert data in JSON format to Jamf_Protect_Device_Controls_alerts_{Date}.json
 # - Creates a CSV file
 
 # Keep the following in mind when using this script:
@@ -131,7 +130,7 @@ def __main__():
             break
         page_count += 1
     print(f"Found {len(results)} alerts matching filter.\n")
-
+    print(f"Writing results to '{CSV_OUTPUT_FILE}'")
     data_file = open(CSV_OUTPUT_FILE, "w", newline="")
     csv_writer = csv.writer(data_file)
     headers = [
@@ -167,7 +166,7 @@ def __main__():
         time = raw_json["match"]["event"]["timestamp"]
         timestamp = datetime.utcfromtimestamp(time).strftime("%Y-%m-%d %H:%M:%S")
 
-        rows = [
+        row = [
             timestamp,
             hostname,
             serial,
@@ -180,8 +179,7 @@ def __main__():
             action,
         ]
 
-        csv_writer.writerow(rows)
-    print(f"Writing results to '{CSV_OUTPUT_FILE}'")
+        csv_writer.writerow(row)
     data_file.close()
     print("done")
 
