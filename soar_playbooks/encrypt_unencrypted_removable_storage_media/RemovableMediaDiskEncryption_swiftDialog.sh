@@ -125,6 +125,10 @@ ExternalDisks=$(diskutil list external physical | grep "/dev/disk" | awk '{print
 				exit 0
 			else
 				echo "FileVault is disabled on $DiskID, running encryption workflow"
+					
+				# Mounting disk as read-only
+				diskutil unmountDisk "$DiskID"s1
+				diskutil mount readonly "$DiskID"s1
 				
 				## Generate notification and ask for password for encryption or mount volume as read-only
 				if [[ "$notifyUser" == "yes" ]] && [[ -f "$notificationApp" ]] && [[ "$FileVaultStatus" == "No" ]]; then
@@ -149,7 +153,10 @@ ExternalDisks=$(diskutil list external physical | grep "/dev/disk" | awk '{print
 				## Start the encryption of the disk with the provided password, optionally we are configuring a hint as well.
 					if [[ "$notifyUser" == "yes" ]] && [[ -f "$notificationApp" ]] && [[ "$Password" != "" ]]; then
 							
-							/usr/bin/sudo -u "$loggedInUser" "$notificationApp" --title "$titleProgress" --message "$subTitleProgress" --icon "$iconPath"  --button1text "$mainButtonLabelProgress" --timer 12 &							
+							/usr/bin/sudo -u "$loggedInUser" "$notificationApp" --title "$titleProgress" --message "$subTitleProgress" --icon "$iconPath"  --button1text "$mainButtonLabelProgress" --timer 12 &
+
+							diskutil unmountDisk "$DiskID"s1
+							diskutil mount "$DiskID"s1						
 							diskutil apfs encryptVolume "$DiskID"s1 -user "disk" -passphrase "$Password"
 							
                             ## If the optional hint has been configured we are going to configure it here after encrypting the disk
@@ -180,6 +187,10 @@ ExternalDisks=$(diskutil list external physical | grep "/dev/disk" | awk '{print
             ## In case of HFS container, we need to convert it to APFS and have it encrypted
 			if [ $StorageType == "HFS" ]; then
 
+				# Mounting disk as read-only
+				diskutil unmountDisk "$DiskID"
+				diskutil mount readonly "$DiskID"s2
+
 				## Generate notification and ask for password for encryption or mount volume as read-only
 				if [[ "$notifyUser" == "yes" ]] && [[ -f "$notificationApp" ]]; then
 					Password=$(/usr/bin/sudo -u "$loggedInUser" "$notificationApp" --title "$titleConversion" --message "$subTitleConversion" --button1text "$mainButtonLabelConversion" --button2text "$secondaryButtonLabelConversion" --icon "$iconPath" --textfield "$secondTitleConversion",prompt="$placeholderConversion",regex="$passwordRegex",regexerror="$passwordRegexErrorMessage",secure=true,required=yes | grep "$secondTitleConversion" | awk -F " : " '{print $NF}' &)
@@ -204,6 +215,9 @@ ExternalDisks=$(diskutil list external physical | grep "/dev/disk" | awk '{print
 					if [[ "$notifyUser" == "yes" ]] && [[ -f "$notificationApp" ]] && [[ "$Password" != "" ]]; then
                                                       
 							/usr/bin/sudo -u "$loggedInUser" "$notificationApp" --title "$titleProgress" --message "$subTitleProgress" --icon "$iconPath"  --button1text $mainButtonLabelProgress --timer 12 &
+
+							diskutil unmountDisk "$DiskID"s2
+							diskutil mount "$DiskID"s2
                             diskutil apfs convert "$DiskID"s2
 
                             DiskID=$(diskutil list $ExternalDisks | grep -o '\(Container disk[0-9s]*\)' | awk '{print $2}')							
@@ -234,6 +248,10 @@ ExternalDisks=$(diskutil list external physical | grep "/dev/disk" | awk '{print
 
             ## In case of EXFAT volume, we need to erase it, reformat to APFS and encrypt it
 			if [[ $StorageType == "Microsoft Basic Data" ]]; then
+
+				# Mounting disk as read-only
+				diskutil unmountDisk "$DiskID"
+				diskutil mount readonly "$DiskID"s2
 
 				## Generate notification and ask for password for encryption or mount volume as read-only
 				if [[ "$notifyUser" == "yes" ]] && [[ -f "$notificationApp" ]]; then
