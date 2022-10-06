@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>PayloadContent</key>
+	<array>
+		<dict>
+			<key>PayloadContent</key>
+			<dict>
+				<key>.GlobalPreferences</key>
+				<dict>
+					<key>ignore-devices</key>
+					<true/>
+				</dict>
+			</dict>
+			<key>PayloadDisplayName</key>
+			<string>Disables Finder Sync</string>
+			<key>PayloadIdentifier</key>
+			<string>A1ED5AF5-2A1B-42BC-8222-2E682F3741A6</string>
+			<key>PayloadType</key>
+			<string>com.apple.ManagedClient.preferences</string>
+			<key>PayloadUUID</key>
+			<string>A1ED5AF5-2A1B-42BC-8222-2E682F3741A6</string>
+		</dict>
+	</array>
+	<key>PayloadDescription</key>
+	<string>Disables iOS/iPadOS devices from opening and syncing in Finder.</string>
+	<key>PayloadDisplayName</key>
+	<string>Disable iOS/iPadOS devices Finder Syncing</string>
+	<key>PayloadEnabled</key>
+	<true/>
+	<key>PayloadIdentifier</key>
+	<string>A7B0E2CF-77B9-4098-8C93-C421C54389BE</string>
+	<key>PayloadOrganization</key>
+	<string>Jamf Open Source GitHub</string>
+	<key>PayloadRemovalDisallowed</key>
+	<true/>
+	<key>PayloadScope</key>
+	<string>System</string>
+	<key>PayloadType</key>
+	<string>Configuration</string>
+	<key>PayloadUUID</key>
+	<string>A7B0E2CF-77B9-4098-8C93-C421C54389BE</string>
+</dict>
+</plist>
