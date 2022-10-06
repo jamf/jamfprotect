@@ -104,30 +104,30 @@ def __main__():
     if len(ALERT_UUIDS) > 100:
         print("Maximum number of UUIDs is 100. Please try again.")
         sys.exit(1)
+        
+    if (
+        ALERT_STATUS == "New"
+        or ALERT_STATUS == "InProgress"
+        or ALERT_STATUS == "Resolved"
+    ):
+
+        # Get the access token
+        access_token = get_access_token(PROTECT_INSTANCE, CLIENT_ID, PASSWORD)
+
+        # Set variables for graphql mutation
+        variables = {
+            "input": {"uuids": ALERT_UUIDS, "status": ALERT_STATUS},
+        }
+
+        # Make API call
+        resp = make_api_call(
+            PROTECT_INSTANCE, access_token, UPDATE_ALERT_STATUS_QUERY, variables
+        )
+        print(resp)
+        print(f"The status of alert(s) {ALERT_UUIDS} are set to {ALERT_STATUS}.")
     else:
-        if (
-            ALERT_STATUS == "New"
-            or ALERT_STATUS == "InProgress"
-            or ALERT_STATUS == "Resolved"
-        ):
-
-            # Get the access token
-            access_token = get_access_token(PROTECT_INSTANCE, CLIENT_ID, PASSWORD)
-
-            # Set variables for graphql mutation
-            variables = {
-                "input": {"uuids": ALERT_UUIDS, "status": ALERT_STATUS},
-            }
-
-            # Make API call
-            resp = make_api_call(
-                PROTECT_INSTANCE, access_token, UPDATE_ALERT_STATUS_QUERY, variables
-            )
-            print(resp)
-            print(f"The status of alert(s) {ALERT_UUIDS} are set to {ALERT_STATUS}.")
-        else:
-            print("Status must be set to New, InProgress, or Resolved.")
-            return
+        print("Status must be set to New, InProgress, or Resolved.")
+        return
 
 if __name__ == "__main__":
 
