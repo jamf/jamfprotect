@@ -1,4 +1,4 @@
-SOAR Playbook - Aftermath Collection
+# SOAR Playbook - Aftermath Collection
 
 This SOAR playbook is built to collect the output from an Aftermath Scan. 
 
@@ -16,5 +16,17 @@ The workflow of this playbook is as following:
 - AWS-CLI (https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 - AWS Configuration and Credential Files (https://docs.aws.amazon.com/cli/latest/userguide/ cli-configure-files.html)
 
+
+**Steps to Create AWS Configuration**
+After you've created and securely configured your AWS infrastructure do the following:
+1. Install the aws cli tool
+2. From terminal run the following:
+   a. aws configure --profile aftermath
+3. Once configuration is complete adjust the permissions:
+   a. sudo chown -R root:wheel ~/.aws
+   b. sudo chmod -R 400 ~/.aws
+4. Move to appropriate folder, ex: 
+   a. sudo mv ~/.aws /opt/.aws
+5. Use included makefile to create pkg (Coming Soon)
 #
 ## Please note that all resources contained within this repository are provided as-is and are not officially supported by Jamf Support.
