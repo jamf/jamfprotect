@@ -1,18 +1,19 @@
 # SOAR Playbook - Aftermath Collection
 
-This SOAR playbook is built to collect the output from an Aftermath Scan. 
+This SOAR playbook is provided to collect the output from an Aftermath Scan and upload it to an AWS S3 bucket.
 
-The workflow of this playbook is as following:
+The workflow of this playbook is as follows:
 
 1. Add the Smart Group Identifier to any analytic where you'd want Aftermath to run.
 2. Create a Jamf Pro policy which runs whenever an assigned analytic is triggered.
     - Kicks off an aftermath scan
-    - When complete triggers a second policy to send the files to the bucket of your choice
+    - When completed, triggers a second policy to send the files to the bucket of your choice
         - Installs the .aws folder
         - Runs script
 
 **Dependencies**
 - Aftermath (https://github.com/jamf/aftermath/releases)
+- AWS S3 Bucket with `s3:PutObject` only policy
 - AWS-CLI (https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 - AWS Configuration and Credential Files (https://docs.aws.amazon.com/cli/latest/userguide/ cli-configure-files.html)
 
