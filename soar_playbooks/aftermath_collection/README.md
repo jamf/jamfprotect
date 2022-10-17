@@ -20,13 +20,15 @@ The workflow of this playbook is as following:
 **Steps to Create AWS Configuration**
 
 After you've created and securely configured your AWS infrastructure do the following:
-1. Install the aws cli tool
-2. From terminal run the following:
+1. Install the AWS CLI 
+2. Configure AWS CLI profile. Run the following in Terminal.app:
     - `aws configure --profile aftermath`
-3. Use included makefile to create pkg, run the following from within the project folder in terminal:
+3. Verify AWS CLI configuration. Run the following in Terminal.app:
+    - `aws configure list --profile aftermath`
+3. Use included makefile to create pkg. Run the following from within the project folder in Terminal.app:
     - `sudo make pkg`
 4. Copy aws_aftermath.pkg to Jamf Pro.
-5. Clean up after upload complete, run the following from within the project folder in terminal:
+5. Clean up after upload complete. Run the following from within the project folder in Terminal.app:
     - `sudo make clean`
 #
 ## Please note that all resources contained within this repository are provided as-is and are not officially supported by Jamf Support.
