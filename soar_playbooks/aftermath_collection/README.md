@@ -6,18 +6,15 @@ The workflow of this playbook is as following:
 
 1. Add the Smart Group Identifier to any analytic where you'd want Aftermath to run.
 2. Create a Jamf Pro policy which runs whenever an assigned analytic is triggered.
-    - Kicks off a aftermath scan
-    - When finished calls a second policy to send the files to the bucket of your choice
+    - Kicks off an aftermath scan
+    - When complete triggers a second policy to send the files to the bucket of your choice
         - Installs the .aws folder
-        - Installs aws-cli tools
-    -    
+        - Runs script
 
 **Dependencies**
-- [x] Aftermath (https://github.com/jamf/aftermath/releases)
-- [x] AWS-CLI`*` (https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
-- [x] AWS Configuration and Credential Files`*` (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)
-
-`*` These will be installed during the collection process. 
+- Aftermath (https://github.com/jamf/aftermath/releases)
+- AWS-CLI (https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+- AWS Configuration and Credential Files (https://docs.aws.amazon.com/cli/latest/userguide/ cli-configure-files.html)
 
 #
 ## Please note that all resources contained within this repository are provided as-is and are not officially supported by Jamf Support.
