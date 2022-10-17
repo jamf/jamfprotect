@@ -18,6 +18,7 @@ The workflow of this playbook is as following:
 
 
 **Steps to Create AWS Configuration**
+
 After you've created and securely configured your AWS infrastructure do the following:
 1. Install the aws cli tool
 2. From terminal run the following:
