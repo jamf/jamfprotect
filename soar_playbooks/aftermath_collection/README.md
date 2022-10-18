@@ -13,7 +13,7 @@ The workflow of this playbook is as follows:
 
 **Dependencies**
 - Aftermath (https://github.com/jamf/aftermath/releases)
-- AWS S3 Bucket with `s3:PutObject` only policy
+- AWS S3 Bucket and an IAM user with `s3:PutObject` rights applied
 - AWS-CLI (https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 - AWS Configuration and Credential Files (https://docs.aws.amazon.com/cli/latest/userguide/ cli-configure-files.html)
 
