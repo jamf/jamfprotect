@@ -5,7 +5,10 @@
 #
 # Analytic Predicate:
 
-$event.isNewDirectory == 1 AND $event.path ENDSWITH[cd] ".app" AND $event.path.stringByDeletingLastPathComponent CONTAINS ".Trash"
+$event.isModified == 1 AND
+$event.process.signingInfo.appid == "com.apple.finder" AND
+$event.prevFile ENDSWITH[cd] ".app" AND
+$event.path.stringByDeletingLastPathComponent.lastPathComponent == ".Trash"
 
 # Required Analytic Configuration:
 
