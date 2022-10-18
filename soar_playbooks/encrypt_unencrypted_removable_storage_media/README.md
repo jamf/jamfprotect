@@ -14,6 +14,7 @@ or
 - [ ] IBMNotifier (https://github.com/IBM/mac-ibm-notifications/releases)
 
 **Important**
+Currently this workflow can’t be used alongside with having Device Controls set by Jamf Protect.
 Please read through and test this script intensively prior adding it to your production environment, as in some cases the end-user agree's to erase the external disk.
 
 # swiftDialog
