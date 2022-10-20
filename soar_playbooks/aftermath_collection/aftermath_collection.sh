@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 ####################################################################################################
 #
@@ -55,10 +55,6 @@ awsFolder=""
 ############ Do not edit below ############
 ###########################################
 
-export AWS_PROFILE="$awsProfile"
-export AWS_CONFIG_FILE="$awsFolder"/config
-export AWS_SHARED_CREDENTIALS_FILE="$awsFolder"/credentials
-
 # Checks for the Aftermath archive to confirm if the script should continue
 CheckForFiles () {
     if [[ -z $(/bin/ls -A "$aftermathArchiveDir"/Aftermath*) ]]; then
@@ -80,17 +76,37 @@ CollectArchive () {
             /bin/rm /tmp/AWSCLIV2.pkg
         fi
         
-        # Use the AWS CLI to copy the archive to the desginated bucket
-        echo "The AWS binary is present, initiating the upload.."
-        "$awsBinary" s3 cp "$aftermathArchiveDir"/Aftermath* s3://"$s3Bucket"
-        
-        export uploadStatus=$?
-        
-        # Report back the status of the upload
-        if [[ "$uploadStatus" -eq 0 ]]; then
-            echo "The upload to S3 was successful and finished with exit code ${uploadStatus}."
+        export awsInstallStatus=$?
+
+        if [[ "$awsInstallStatus" -eq 0 ]]; then
+            echo "Installing AWS shared credentials."
+            /usr/local/bin/jamf policy -event aws_creds
+            export awsCredsStatus=$?
         else
-            echo "The upload to S3 failed with error code ${uploadStatus}."
+            echo "AWS CLI is not installed. Please try again."
+            exit 1
+        fi
+
+        if [[ "$awsCredsStatus" -eq 0 ]]; then
+            export AWS_PROFILE="$awsProfile"
+            export AWS_CONFIG_FILE="$awsFolder"/config
+            export AWS_SHARED_CREDENTIALS_FILE="$awsFolder"/credentials
+
+            # Use the AWS CLI to copy the archive to the desginated bucket
+            echo "The AWS binary is present, initiating the upload.."
+            "$awsBinary" s3 cp "$aftermathArchiveDir"/Aftermath* s3://"$s3Bucket"
+            
+            export uploadStatus=$?
+            
+            # Report back the status of the upload
+            if [[ "$uploadStatus" -eq 0 ]]; then
+                echo "The upload to S3 was successful and finished with exit code ${uploadStatus}."
+            else
+                echo "The upload to S3 failed with error code ${uploadStatus}."
+            fi
+        else
+            echo "AWS shared credentials are not present. Please try again."
+            exit 1
         fi
     
     else
