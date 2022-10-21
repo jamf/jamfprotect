@@ -2,20 +2,63 @@
 
 This SOAR playbook is provided to collect the output from an Aftermath Scan and upload it to an AWS S3 bucket.
 
-The workflow of this playbook is as follows:
+## Workflow
 
-1. Add the Smart Group Identifier to any analytic where you'd want Aftermath to run.
-2. Create a Jamf Pro policy which runs whenever an assigned analytic is triggered.
-    - Kicks off an aftermath scan
-    - When completed, triggers a second policy to send the files to the bucket of your choice
-        - Installs the .aws folder
-        - Runs script
+For this playbook the following ***MUST*** be configured:
+
+### Jamf Protect
+
+Each Analytic must have the Add to Smart Group feature enabled. 
+
+- Add to Jamf Pro Smart Group: **Checked**
+    - Identifier: **aftermath**
+
+### Jamf Pro
+
+For this workflow, Aftermath ***must*** be already installed on the device.
+
+#### Smart Computer Group
+
+|Display Name|Criteria|Operator|Value|
+|------------|--------|--------|-----|
+|Jamf Protect: Aftermath|Jamf Protect - Smart Groups|like|aftermath
+
+#### Policies
+
+**Aftermath Scan:**
+|Name|Frequency|Trigger|Scope|Payload|
+|----|---------|-------|-----|-------|
+|Aftermath Scan|Ongoing|protect|Jamf Protect: Aftermath|`/usr/local/bin/aftermath --pretty; /usr/local/bin/jamf policy -event am_collect`
+
+**Aftermath Collect:**
+|Name|Frequency|Trigger|Scope|Payload|
+|----|---------|-------|-----|-------|
+|Aftermath Collect|Ongoing|am_collect|All Managed Clients|aws_aftermath.sh
+
+**AWS Aftermath Credentials:**
+|Name|Frequency|Trigger|Scope|Payload|
+|----|---------|-------|-----|-------|
+|AWS Aftermath Credentials|Ongoing|aws_creds|All Managed Clients|aws_aftermath.pkg
 
 **Dependencies**
 - Aftermath (https://github.com/jamf/aftermath/releases)
 - AWS S3 Bucket and an IAM user with `s3:PutObject` rights applied
+    ```{
+        "Version": "2012-10-17",
+        "Statement": [
+            {
+                "Sid": "VisualEditor0",
+                "Effect": "Allow",
+                "Action": [
+                    "s3:PutObject"
+                ],
+                "Resource": "arn:aws:s3:::s3bucketname/*"
+            }
+        ]
+    }
+    ```
 - AWS-CLI (https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
-- AWS Configuration and Credential Files (https://docs.aws.amazon.com/cli/latest/userguide/ cli-configure-files.html)
+- AWS Configuration and Credential Files (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)
 
 
 **Steps to Create AWS Configuration**
