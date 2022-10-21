@@ -94,7 +94,7 @@ CollectArchive () {
 
             # Use the AWS CLI to copy the archive to the desginated bucket
             echo "The AWS binary is present, initiating the upload.."
-            "$awsBinary" s3 cp "$aftermathArchiveDir"/Aftermath* s3://"$s3Bucket"
+            "$awsBinary" s3 cp "$aftermathArchiveDir" s3://"$s3Bucket" --recursive --exclude "*" --include "Aftermath*"
             
             export uploadStatus=$?
             
