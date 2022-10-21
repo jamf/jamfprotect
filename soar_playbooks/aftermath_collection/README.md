@@ -41,15 +41,9 @@ Each Analytic must have the Add to Smart Group feature enabled.
 
 |Name|Frequency|Trigger|Scope|Payload|
 |----|---------|-------|-----|-------|
-|Aftermath Scan|Ongoing|protect|Jamf Protect: Aftermath|`/usr/local/bin/aftermath --pretty; /usr/local/bin/jamf policy -event am_collect`
-
-|Name|Frequency|Trigger|Scope|Payload|
-|----|---------|-------|-----|-------|
-|Aftermath Collect|Ongoing|am_collect|All Managed Clients|aws_aftermath.sh
-
-|Name|Frequency|Trigger|Scope|Payload|
-|----|---------|-------|-----|-------|
-|AWS Aftermath Credentials|Ongoing|aws_creds|All Managed Clients|aws_aftermath.pkg
+|**Aftermath Scan**|Ongoing|protect|Jamf Protect: Aftermath|`/usr/local/bin/aftermath --pretty; /usr/local/bin/jamf policy -event am_collect`
+|**Aftermath Collect**|Ongoing|am_collect|All Managed Clients|aws_aftermath.sh
+|**AWS Aftermath Credentials**|Ongoing|aws_creds|All Managed Clients|aws_aftermath.pkg
 
 **AWS Configuration**
 
