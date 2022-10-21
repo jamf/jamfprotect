@@ -10,6 +10,18 @@ Aftermath can be leveraged by defenders in order to collect and subsequently ana
 
 ## Workflow
 
+Steps to create the workflow:
+
+- [ ] Jamf Pro - Upload Aftermath.pkg and deploy to endpoints
+- [ ] Create [aws_aftermath.pkg](#aws_pkg) and upload to Jamf Pro 
+- [ ] Jamf Protect - Analytics Smart Group Identifier configured
+- [ ] Jamf Pro - Create a Smart Group populated by `Jamf Protect - Smart Groups` [Extension Attribute](https://docs.jamf.com/jamf-protect/documentation/Setting_Up_Analytic_Remediation_With_Jamf_Pro.html#task-7832) 
+- [ ] Jamf Pro - Upload [aftermath_collection.sh](./aftermath_collection.sh)
+- [ ] Jamf Pro - [Create Policies](#policies)
+    - Aftermath Scan
+    - Aftermath Collect
+    - AWS Aftermath Credentials
+
 For this playbook the following ***MUST*** be configured:
 
 ### Jamf Protect
@@ -29,7 +41,7 @@ For this workflow, Aftermath ***must*** be already installed on the device.
 |------------|--------|--------|-----|
 |Jamf Protect: Aftermath|Jamf Protect - Smart Groups|like|aftermath
 
-#### Policies
+####  <a id="policies"></a>Policies
 
 **Aftermath Scan:**
 |Name|Frequency|Trigger|Scope|Payload|
@@ -67,7 +79,8 @@ For this workflow, Aftermath ***must*** be already installed on the device.
 - AWS Configuration and Credential Files (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)
 
 
-**Steps to Create an AWS CLI Configuration File**
+
+**<a id="aws_pkg"></a>Steps to Create an AWS CLI Configuration File**
 
 After you've created and securely configured your AWS infrastructure do the following:
 1. Install the AWS CLI 
