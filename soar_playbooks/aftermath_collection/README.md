@@ -2,6 +2,12 @@
 
 This SOAR playbook is provided to collect the output from an Aftermath Scan and upload it to an AWS S3 bucket.
 
+## About Aftermath
+
+Aftermath is a Swift-based, open-source incident response framework, available on Jamf's open source GitHub repository (https://github.com/jamf/aftermath).
+
+Aftermath can be leveraged by defenders in order to collect and subsequently analyze the data from the compromised host. When deploying Aftermath via Jamf Pro, this script can be used in tandem with an Aftermath first run, ensuring the data is securely stored in a designated S3 bucket once an Aftermath collection is complete.
+
 ## Workflow
 
 For this playbook the following ***MUST*** be configured:
@@ -61,7 +67,7 @@ For this workflow, Aftermath ***must*** be already installed on the device.
 - AWS Configuration and Credential Files (https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)
 
 
-**Steps to Create AWS Configuration**
+**Steps to Create an AWS CLI Configuration File**
 
 After you've created and securely configured your AWS infrastructure do the following:
 1. Install the AWS CLI 
