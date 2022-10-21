@@ -8,7 +8,7 @@ Aftermath is a Swift-based, open-source incident response framework, available o
 
 Aftermath can be leveraged by defenders in order to collect and subsequently analyze the data from the compromised host. When deploying Aftermath via Jamf Pro, this script can be used in tandem with an Aftermath first run, ensuring the data is securely stored in a designated S3 bucket once an Aftermath collection is complete.
 
-## Workflow
+## Workflow Steps
 
 Steps to create the workflow:
 
@@ -22,8 +22,7 @@ Steps to create the workflow:
     - Aftermath Collect
     - AWS Aftermath Credentials
 
-For this playbook the following ***MUST*** be configured:
-
+## Workflow Components
 ### Jamf Protect
 
 Each Analytic must have the Add to Smart Group feature enabled. 
@@ -32,9 +31,6 @@ Each Analytic must have the Add to Smart Group feature enabled.
     - Identifier: **aftermath**
 
 ### Jamf Pro
-
-For this workflow, Aftermath ***must*** be already installed on the device.
-
 #### Smart Computer Group
 
 |Display Name|Criteria|Operator|Value|
