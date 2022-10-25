@@ -48,5 +48,6 @@ Each Analytic must have the Add to Smart Group feature enabled.
 - Create [Azure File Share](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-introduction) and generate a [SAS Token](https://learn.microsoft.com/en-us/rest/api/storageservices/delegate-access-with-shared-access-signature) with `write-only` permissions as applied in the example below.
 
 <img src="./images/SASToken.png" alt="swiftDialog" width="700"/>
+
 #
 ## Please note that all resources contained within this repository are provided as-is and are not officially supported by Jamf Support.
