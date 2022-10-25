@@ -6,7 +6,7 @@ This SOAR playbook is provided to collect the output from an Aftermath Scan and 
 
 Aftermath is a Swift-based, open-source incident response framework, available on Jamf's open source GitHub repository (https://github.com/jamf/aftermath).
 
-Aftermath can be leveraged by defenders in order to collect and subsequently analyze the data from the compromised host. When deploying Aftermath via Jamf Pro, this script can be used in tandem with an Aftermath first run, ensuring the data is securely stored in a designated S3 bucket once an Aftermath collection is complete.
+Aftermath can be leveraged by defenders in order to collect and subsequently analyze the data from the compromised host. When deploying Aftermath via Jamf Pro, this script can be used in tandem with an Aftermath first run, ensuring the data is securely stored in a designated Azure File Share once an Aftermath collection is complete.
 
 ## Workflow Steps
 
