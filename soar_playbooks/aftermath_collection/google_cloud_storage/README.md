@@ -47,6 +47,9 @@ Each Analytic must have the Add to Smart Group feature enabled.
 
 **Google Cloud Configuration**
 
+> **Note** 
+> `gsutil` requires Python3
+
 - Create a Google Cloud Bucket and a service account with `Storage Object Creator` and `Storage Object Viewer` roles applied.
 - Create <a id="gcs_pkg"></a>Google Cloud Configuration file:
     1. Install [Google Cloud CLI](https://cloud.google.com/sdk/docs/downloads-interactive#silent)
@@ -57,8 +60,5 @@ Each Analytic must have the Add to Smart Group feature enabled.
     4. Copy gcs_aftermath.pkg to Jamf Pro.
     5. Clean up after upload complete. Run the following from within the project folder in Terminal.app:
         - `sudo make clean`
-
-> **Note** 
-> `gsutil` requires Python3 
 #
 ## Please note that all resources contained within this repository are provided as-is and are not officially supported by Jamf Support.

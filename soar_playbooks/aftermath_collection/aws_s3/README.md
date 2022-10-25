@@ -1,4 +1,4 @@
-# SOAR Playbook - Aftermath Collection
+# SOAR Playbook - Aftermath Collection (AWS S3)
 
 This SOAR playbook is provided to collect the output from an Aftermath Scan and upload it to an AWS S3 bucket.
 

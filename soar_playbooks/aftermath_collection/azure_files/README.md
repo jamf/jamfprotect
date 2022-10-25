@@ -1,4 +1,4 @@
-# SOAR Playbook - Aftermath Collection
+# SOAR Playbook - Aftermath Collection (Azure Files)
 
 This SOAR playbook is provided to collect the output from an Aftermath Scan and upload it to Azure Files storage.
 
@@ -13,7 +13,6 @@ Aftermath can be leveraged by defenders in order to collect and subsequently ana
 Steps to create the workflow:
 
 - [ ] Jamf Pro - Upload [Aftermath.pkg](https://github.com/jamf/aftermath/releases) and deploy to endpoints
-- [ ] Create [aws_aftermath.pkg](#aws_pkg) and upload to Jamf Pro 
 - [ ] Jamf Protect - Analytics Smart Group Identifier configured
 - [ ] Jamf Pro - Create a Smart Group populated by `Jamf Protect - Smart Groups` [Extension Attribute](https://docs.jamf.com/jamf-protect/documentation/Setting_Up_Analytic_Remediation_With_Jamf_Pro.html#task-7832) 
 - [ ] Jamf Pro - Upload [aftermath_collection.sh](./aftermath_collection.sh)
@@ -46,7 +45,7 @@ Each Analytic must have the Add to Smart Group feature enabled.
 
 **Azure Files Configuration**
 
-- Create [Azure File Share](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-introduction) and generate an [SAS Token](https://learn.microsoft.com/en-us/rest/api/storageservices/delegate-access-with-shared-access-signature) with `write-only` permissions as applied in the example below.
+- Create [Azure File Share](https://learn.microsoft.com/en-us/azure/storage/files/storage-files-introduction) and generate a [SAS Token](https://learn.microsoft.com/en-us/rest/api/storageservices/delegate-access-with-shared-access-signature) with `write-only` permissions as applied in the example below.
 
 <img src="./images/SASToken.png" alt="swiftDialog" width="700"/>
 #
