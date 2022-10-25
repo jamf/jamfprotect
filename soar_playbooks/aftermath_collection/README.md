@@ -1,6 +1,6 @@
 # SOAR Playbook - Aftermath Collection
 
-This SOAR playbook is provided to collect the output from an Aftermath Scan and upload it to an cloud storage solution
+This SOAR playbook is provided to collect the output from an Aftermath Scan and upload it to an cloud storage solution of choice.
 
 ## About Aftermath
 
