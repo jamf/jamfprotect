@@ -20,7 +20,7 @@ Steps to create the workflow:
 - [ ] Jamf Pro - [Create Policies](#policies)
     - Aftermath Scan
     - Aftermath Collect
-    - Google Cloud Aftermath Credentials
+    - Google Cloud Aftermath Configuration
 
 ## Workflow Components
 ### Jamf Protect
@@ -49,13 +49,16 @@ Each Analytic must have the Add to Smart Group feature enabled.
 
 - Create a Google Cloud Bucket and a service account with `Storage Object Creator` and `Storage Object Viewer` roles applied.
 - Create <a id="gcs_pkg"></a>Google Cloud Configuration file:
-    1. Install [Google Cloud CLI](https://cloud.google.com/storage/docs/gsutil_install)
-    2. Configure Boto Configuration. Run the following in Terminal.app:
+    1. Install [Google Cloud CLI](https://cloud.google.com/sdk/docs/downloads-interactive#silent)
+    2. Configure the Boto configuration file. Run the following in Terminal.app:
         - `/usr/local/google-cloud-sdk/bin/gsutil config -a`
     3. Use included makefile to create pkg. Run the following from within the project folder in Terminal.app:
         - `sudo make pkg`
     4. Copy gcs_aftermath.pkg to Jamf Pro.
     5. Clean up after upload complete. Run the following from within the project folder in Terminal.app:
         - `sudo make clean`
+
+> **Note:** 
+> `gsutil` requires Python3 
 #
 ## Please note that all resources contained within this repository are provided as-is and are not officially supported by Jamf Support.

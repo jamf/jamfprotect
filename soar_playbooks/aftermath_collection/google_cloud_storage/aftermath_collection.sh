@@ -37,7 +37,7 @@ analyticEA="aftermath"
 gsutilBinary="/tmp/google-cloud-sdk/bin/gsutil"
 
 # The name of the target Google Cloud bucket resource
-gsBucket=""
+gcsBucket=""
 
 # Aftermath Archive Directory
 aftermathArchiveDir=""
@@ -59,11 +59,11 @@ CheckForFiles () {
     fi
 }
 
-# Upload the Aftermath archive to Google Clound Bucket using the gsutil
+# Upload the Aftermath archive to Google Clound Bucket using gsutil
 CollectArchive () {
-    if [[ -n "$gsBucket" ]]; then
+    if [[ -n "$gcsBucket" ]]; then
     
-        # Check for the gsutil binary. If not present, install.
+        # Check for the gsutil binary. If not present, install the Google Cloud SDK.
         if [[ ! -f "$gsutilBinary" ]]; then
             /usr/bin/curl https://sdk.cloud.google.com > /tmp/install.sh
             /bin/bash /tmp/install.sh --disable-prompts --install-dir /usr/local &>/dev/null
@@ -72,20 +72,20 @@ CollectArchive () {
         export gsutilInstallStatus=$?
 
         if [[ "$gsutilInstallStatus" -eq 0 ]]; then
-            echo "GCloud CLI Installed. Installing Google Cloud credentials."
+            echo "Google Cloud SDK Installed. Installing Boto configuration file."
             /usr/local/bin/jamf policy -event gc_creds
-            export gsCredsStatus=$?
+            export gcsCredsStatus=$?
         else
             echo "gsutil is not installed. Please try again."
             exit 1
         fi
 
-        if [[ "$gsCredsStatus" -eq 0 ]]; then
+        if [[ "$gcsCredsStatus" -eq 0 ]]; then
             export BOTO_CONFIG="$botoConfig"
 
             # Use the gsutil to copy the archive to the desginated bucket
             echo "Gsutil is present, initiating the upload.."
-            "$gsutilBinary" cp "$aftermathArchiveDir"/Aftermath* gs://"$gsBucket"
+            "$gsutilBinary" cp "$aftermathArchiveDir"/Aftermath* gs://"$gcsBucket"
             
             export uploadStatus=$?
             
@@ -96,7 +96,7 @@ CollectArchive () {
                 echo "The upload to the Google Cloud bucket failed with error code ${uploadStatus}."
             fi
         else
-            echo "Google Cloud shared credentials are not present. Please try again."
+            echo "The Boto configuration file is not present. Please try again."
             exit 1
         fi
     
@@ -134,9 +134,9 @@ CleanUp () {
         /bin/rm "$aftermathArchiveDir"/Aftermath*
     fi
 
-    # Remove google sdk and .boto directory
-    echo "Removing google cloud sdk and .boto folder"
-    /bin/rm -rf /tmp/google-cloud-sdk/bin/gsutil
+    # Remove Google Cloud SDK and Boto configuration file
+    echo "Removing Google Cloud SDK and Boto configuration file."
+    /bin/rm -rf /usr/local/google-cloud-sdk
     /bin/rm -r /opt/.boto
     
     # Delete the extension attribute file created by Jamf Protect
