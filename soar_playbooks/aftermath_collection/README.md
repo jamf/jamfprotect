@@ -14,7 +14,7 @@ The workflows in this repository support but are not limited to:
 
 - [ ] [Amazon S3 Bucket](./aws_s3/)
 - [ ] [Google Cloud Storage Bucket](./google_cloud_storage/)
-- [ ] [Azure File](./azure_files/)
+- [ ] [Azure Files](./azure_files/)
 
 #
 ## Please note that all resources contained within this repository are provided as-is and are not officially supported by Jamf Support.
