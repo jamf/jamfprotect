@@ -9,18 +9,30 @@
 			<dict>
 				<key>.GlobalPreferences</key>
 				<dict>
-					<key>ignore-devices</key>
-					<true/>
+					<key>Forced</key>
+					<array>
+						<dict>
+							<key>mcx_preference_settings</key>
+							<dict>
+								<key>ignore-devices</key>
+								<true/>
+							</dict>
+						</dict>
+					</array>
 				</dict>
 			</dict>
 			<key>PayloadDisplayName</key>
-			<string>Disables Finder Sync</string>
+			<string>Custom Settings</string>
 			<key>PayloadIdentifier</key>
 			<string>A1ED5AF5-2A1B-42BC-8222-2E682F3741A6</string>
+			<key>PayloadOrganization</key>
+			<string>Jamf Open Source Github</string>
 			<key>PayloadType</key>
 			<string>com.apple.ManagedClient.preferences</string>
 			<key>PayloadUUID</key>
 			<string>A1ED5AF5-2A1B-42BC-8222-2E682F3741A6</string>
+			<key>PayloadVersion</key>
+			<integer>1</integer>
 		</dict>
 	</array>
 	<key>PayloadDescription</key>
@@ -32,7 +44,7 @@
 	<key>PayloadIdentifier</key>
 	<string>A7B0E2CF-77B9-4098-8C93-C421C54389BE</string>
 	<key>PayloadOrganization</key>
-	<string>Jamf Open Source GitHub</string>
+	<string>Jamf Open Source Github</string>
 	<key>PayloadRemovalDisallowed</key>
 	<true/>
 	<key>PayloadScope</key>
@@ -40,6 +52,8 @@
 	<key>PayloadType</key>
 	<string>Configuration</string>
 	<key>PayloadUUID</key>
-	<string>A7B0E2CF-77B9-4098-8C93-C421C54389BE</string>
+	<string>CDFAF281-FDB7-4CA4-8225-98DF8C7BC599</string>
+	<key>PayloadVersion</key>
+	<integer>1</integer>
 </dict>
 </plist>
