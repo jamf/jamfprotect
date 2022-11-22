@@ -32,7 +32,10 @@
 #    2 = Medium
 #    3 = High
 # - Example: setting SEVERITY_CHECK = "3" will only send to Slack Alerts that are categorized as High.
-# - You will also neeed to define the SecretId for AWS Secret Manager and the associated api_user, api_password, slack_token and virustotal_api.
+# - You will neeed to define the SecretId for AWS Secret Manager and the associated api_user, api_password, slack_token and virustotal_api.
+# - You must define the slack_token and add it into Secret Manager (https://api.slack.com/messaging/webhooks#posting_with_webhooks)
+# - You must create an account on VirusTotal to obtain an api key and add it into Secret Manager  https://developers.virustotal.com/reference/getting-started
+# - You need to add in Secret Manager the api username and password for Jamf Pro
 # - This script requires the 3rd party Python library 'requests'
 # - This script requires the AWS Python library 'boto3'
 ######################################################################################
