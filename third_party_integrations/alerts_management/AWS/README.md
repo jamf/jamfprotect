@@ -40,8 +40,7 @@ Edit the IAM Lambda user to privide access to `secretsmanager:GetSecretValue`
             ]
         }
     ]
-}
-    ```
+  }```
 
 #
 ## Please note that all resources contained within this repository are provided as-is and are not officially supported by Jamf Support.
