@@ -1,7 +1,7 @@
 # Alerts Management - AWS
 
-This workflow is provided to send alert data from the client running Jamf Protect to an AWS API gateway which invokes a Lambda function
-The Lambda function parses the json data and sends a webhook to any chosen and configured third party tool
+This workflow is provided to send alert data from the endpoint running Jamf Protect to an AWS API gateway which invokes a Lambda function
+The Lambda function parses the json data and sends a webhook to any chosen and configured third party tool.
 
 ## Workflow execution
 
@@ -25,7 +25,7 @@ The Lambda function parses the json data and sends a webhook to any chosen and c
 
 - From the Lambda Configuration editor, create an AWS API Gateway
  
-- The scripts are designed to use AWS Secret Manager to securely retrieve the credentials for Jamf Pro, Jamf Protect, Slack, Teams, VirusTotal etc are stored there 
+- The scripts are designed to use AWS Secret Manager to securely retrieve the credentials for Jamf Pro, Jamf Protect, Slack, Microsoft Teams, VirusTotal etc are stored there 
 Edit the IAM Lambda user to privide access to `secretsmanager:GetSecretValue`
     ```{
     "Version": "2012-10-17",
