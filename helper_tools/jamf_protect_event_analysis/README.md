@@ -13,3 +13,58 @@ The script currently supports the following monitors:
 
 - [ ] Verbose logging must be enabled in the system's plan in Jamf Protect
 - [ ] Python3 (see requirements.txt)
+
+## Getting Started
+
+1. Clone JamfProtect GitHub repo
+`git clone https://github.com/jamf/jamfprotect.git`
+2. Goto Jamf Protect Event Analysic folder
+`cd jamfprotect/helper_tools/jamf_protect_event_analysis`
+3. Create a python virtual environment
+`python3 -m venv ~/Documents/py3-jp`
+4. Activate python virtual environment
+`source ~/Documents/py3-jp/bin/activate`
+5. Install Python3 requirements
+`pip3 install -r requiremnets.txt`
+
+## How To
+
+```
+./jp_event_analysis.py -h
+usage: jp_event_analysis.py [-h] -m MONITOR [-i INPUT] [-o OUTPUT] [-s]
+
+Given a monitor, count events in Unified Logs.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -m MONITOR, --monitor MONITOR
+                        monitor Name to be used when parsing the logs
+  -i INPUT, --input INPUT
+                        path to JSON file to be parsed
+  -o OUTPUT, --output OUTPUT
+                        path to save xlsx
+  -s, --summary         print summary
+```
+
+> **Note** 
+> Only one monitor can be parsed at a time.
+
+For this script you can either read the output of log show/stream results or the script will run a log stream for 60 seconds. If you are inputting from external results you must run the following on the machine when gathering the log file:
+
+```
+log stream --info --debug --style json --timeout <desired time> --predicate 'subsystem BEGINSWITH "com.jamf.protect" AND category == "<MonitorName>"' > log_file.json
+```
+
+## Self Service
+
+Included is a [shell script](./jp_event_analysis_self_service.sh) which can be uploaded to Jamf Pro. This script does the following in a temporary folder:
+
+- Creates jp_event_analysis.py 
+- Configures python virtual environment
+- Gathers logs from the following monitors
+    - Exec_Auth
+    - Process
+    - File
+    - Unified Logging
+- Archives the logs
+- Cleans up
