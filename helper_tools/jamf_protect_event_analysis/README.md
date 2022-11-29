@@ -11,21 +11,30 @@ The script currently supports the following monitors:
 
 ## Requirements
 
-- [ ] Verbose logging must be enabled in the system's plan in Jamf Protect
-- [ ] Python3 (see requirements.txt)
+- [x] Verbose logging must be enabled in the system's plan in Jamf Protect
+- [x] Python3 (see [requirements.txt](./requirements.txt))
 
 ## Getting Started
 
 1. Clone JamfProtect GitHub repo
-`git clone https://github.com/jamf/jamfprotect.git`
-2. Goto Jamf Protect Event Analysic folder
-`cd jamfprotect/helper_tools/jamf_protect_event_analysis`
+
+    `git clone https://github.com/jamf/jamfprotect.git`
+
+2. Goto Jamf Protect Event Analysis folder
+
+    `cd jamfprotect/helper_tools/jamf_protect_event_analysis`
+
 3. Create a python virtual environment
-`python3 -m venv ~/Documents/py3-jp`
+
+    `python3 -m venv ~/Documents/py3-jp`
+
 4. Activate python virtual environment
-`source ~/Documents/py3-jp/bin/activate`
+
+    `source ~/Documents/py3-jp/bin/activate`
+
 5. Install Python3 requirements
-`pip3 install -r requiremnets.txt`
+
+    `pip3 install -r requirements.txt`
 
 ## How To
 
