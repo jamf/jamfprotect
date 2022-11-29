@@ -21,8 +21,8 @@ Top 10 Count for Process Monitor
 
 Unique Codesigning Info
                                              Binary                  Signing Info
-  /Applications/Parent Process 1.app/Contents/...                      XXXXXXXXXX
-  /Applications/Parent Process 2.app/Contents/MacO...                  XXXXXXXXXX
+  /Applications/Parent Process 1.app/Contents/MacO...                  XXXXXXXXXX
+  /Users/username/Library/Application Support/Proc...                  XXXXXXXXXX
   /Applications/Parent Process 3.app/Contents/MacO...         com.company.process
 
 See excel spreadsheet for full report.
