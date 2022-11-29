@@ -9,6 +9,25 @@ The script currently supports the following monitors:
 * File
 * Unified Logging
 
+```
+❯ source ~/Documents/py3-jp/bin/activate
+py3-jp ❯ ./jp_event_analysis.py -m Process -s
+Running Process log stream for the next 60 seconds...
+Top 10 Count for Process Monitor
+ count    pid                            parent                              args
+     3  37251                  Parent Process 1                         Arguments
+     2  37738                  Parent Process 2                         Arguments
+     1  37590                  Parent Process 3                         Arguments
+
+Unique Codesigning Info
+                                             Binary                  Signing Info
+  /Applications/Parent Process 1.app/Contents/...                      XXXXXXXXXX
+  /Applications/Parent Process 2.app/Contents/MacO...                  XXXXXXXXXX
+  /Applications/Parent Process 3.app/Contents/MacO...         com.company.process
+
+See excel spreadsheet for full report.
+```
+
 ## Requirements
 
 - [x] Verbose logging must be enabled in the system's plan in Jamf Protect
