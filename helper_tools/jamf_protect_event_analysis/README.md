@@ -66,7 +66,7 @@ log stream --info --debug --style json --timeout <desired time> --predicate 'sub
 
 ## Self Service
 
-Included is a [shell script](./jp_event_analysis_self_service.sh) which can be uploaded to Jamf Pro. This script does the following in a temporary folder:
+Included is a [shell script](./jp_event_analysis_self_service.sh) which can be uploaded to Jamf Pro and run from Self Service. This script does the following in a temporary folder:
 
 - Creates jp_event_analysis.py 
 - Configures python virtual environment
@@ -77,3 +77,5 @@ Included is a [shell script](./jp_event_analysis_self_service.sh) which can be u
     - Unified Logging
 - Archives the logs
 - Cleans up
+
+## Please note that all resources contained within this repository are provided as-is and are not officially supported by Jamf Support.
