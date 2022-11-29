@@ -2,15 +2,15 @@
 
 Resources contained within this repository can be used to help optimize the monitoring and/or prevention of system, application and user activity by Jamf Protect.
 
-**Customizing monitoring and detection**
+## Customizing monitoring and detection
 
 There are certain scenarios and use-cases where high velocity, expected activity in trusted locations on Mac endpoints can be ignored from monitoring and detection to ensure only the necessary analysis (using system resources) is completed.  
 
-The **[Exceptions]**(https://docs.jamf.com/jamf-protect/documentation/Exceptions.html) feature in Jamf Protect can be used to limit or ignore such activity, preserving the endpoint's system resources and the end-user's experience.
+The [**Exceptions**](https://docs.jamf.com/jamf-protect/documentation/Exceptions.html) feature in Jamf Protect can be used to limit or ignore such activity, preserving the endpoint's system resources and the end-user's experience.
 
 It is **strongly recommended** to only ignore activity on Mac endpoints using the Exceptions feature that is trusted and expected for the host user.
 
-**Using the _jp_event_analysis_ helper tool**
+## Using the _jp_event_analysis_ helper tool
 
 The _jp_event_analysis_ tool can be used on a Mac endpoint to surface the analysis activity of Jamf Protect, supporting the Threat Prevention, Analytics (behavioral analysis) and Unified Log filtering features.
 
