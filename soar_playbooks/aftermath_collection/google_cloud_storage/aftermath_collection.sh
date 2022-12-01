@@ -73,7 +73,7 @@ CollectArchive () {
 
         if [[ "$gsutilInstallStatus" -eq 0 ]]; then
             echo "Google Cloud SDK Installed. Installing Boto configuration file."
-            /usr/local/bin/jamf policy -event gc_creds
+            /usr/local/bin/jamf policy -event gcs_creds
             export botoConfigStatus=$?
         else
             echo "gsutil is not installed. Please try again."
