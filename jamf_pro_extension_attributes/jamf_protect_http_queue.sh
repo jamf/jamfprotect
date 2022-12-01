@@ -6,6 +6,7 @@
 #
 ##### Script starts here #####
 
+#Jamf Protect Location
 jamfProtectBinaryLocation="/usr/local/bin/protectctl"
 
 if [ -f "$jamfProtectBinaryLocation" ]; then
