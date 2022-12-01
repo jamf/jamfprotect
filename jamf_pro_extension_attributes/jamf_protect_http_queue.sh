@@ -6,14 +6,13 @@
 #
 ##### Script starts here #####
 
-#Jamf Protect Location
 jamfProtectBinaryLocation="/usr/local/bin/protectctl"
 
 if [ -f "$jamfProtectBinaryLocation" ]; then
-  jamfProtectQueue=$("$jamfProtectBinaryLocation" info -v | awk -F '[|]' '/HTTP Queue/ {print $0}' | grep -o '[0-9]\+')		
+  plist=$($jamfProtectBinaryLocation info --plist)
+  jamfProtectHTTPQueue=$(/usr/libexec/PlistBuddy -c "Print UploadQueue:https" /dev/stdin <<<"$plist")
 else
-  jamfProtectQueue="Protect binary not found"
+  jamfProtectHTTPQueue="Protect binary not found"
 fi
 
-echo "<result>${jamfProtectQueue}</result>"
-
+echo "<result>$jamfProtectHTTPQueue</result>"
