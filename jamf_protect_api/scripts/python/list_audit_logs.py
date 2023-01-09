@@ -17,10 +17,10 @@
 #   match your Jamf Protect environment. The PROTECT_INSTANCE variable is your
 #   tenant name (eg. your-tenant), which is included in your tenant URL (eg.
 #   https://your-tenant.protect.jamfcloud.com).
-# - Requires the 3rd party Python library 'requests'
-# - Will not retrieve data more often than once per minute
+# - Requires the 3rd party Python library 'requests'.
+# - Will not retrieve data more often than once per minute.
 # - Will not download already downloaded log entries unless
-#   `audit_log_data/previous_audit_log_run.txt` is deleted
+#   `audit_log_data/previous_audit_log_run.txt` is deleted.
 # - Jamf Protect only stores Audit Logs for 1 year.
 # - Audit Logs are in UTC, so your local time is converted to UTC as well.
 
