@@ -8,8 +8,8 @@
 # - Creates a file `audit_log_data/<current_date_and_time>.csv` containing all
 #   audit log records from the last time the script was run until now.
 #   The first run of the script will retrieve all audit log records available.
-# - Appends to file `audit_log_data/previous_audit_log_runs.txt` containing
-#   the dates and times to previous runs of the script.
+# - Write to file `audit_log_data/previous_audit_log_run.txt` containing
+#   the date and time of the script's previous run.
 
 # Keep the following in mind when using this script:
 #
@@ -18,10 +18,9 @@
 #   tenant name (eg. your-tenant), which is included in your tenant URL (eg.
 #   https://your-tenant.protect.jamfcloud.com).
 # - Requires the 3rd party Python library 'requests'
-# - Cannot run more often than once per minute
-# - Data for a specific time period will not regenerate unless its timestamp
-#   (and all timestamps after that) are deleted from file
-#   `audit_log_data/previous_audit_log_runs.txt`.
+# - Will not retrieve data more often than once per minute
+# - Will not download already downloaded log entries unless
+#   `audit_log_data/previous_audit_log_run.txt` is deleted
 # - Jamf Protect only stores Audit Logs for 1 year.
 # - Audit Logs are in UTC, so your local time is converted to UTC as well.
 
@@ -103,32 +102,25 @@ def __main__():
     if not os.path.exists(folder):
         os.makedirs(folder)
 
-    tracker_filename = os.path.join(folder, "previous_audit_log_runs.txt")
-    exists = os.path.exists(tracker_filename)
-
-    # Open date-tracking file (will create file if it doesn't exist)
-    tracker_append = open(tracker_filename, "a")
+    tracker_filename = os.path.join(folder, "previous_audit_log_run.txt")
 
     # Records are stored in UTC timezone
-    now = dt.datetime.now(dt.timezone.utc)
-    filename = now.strftime(FORMAT)
-    end_date = f"{filename}:00.000Z"
+    now_object = dt.datetime.now(dt.timezone.utc)
+    now_formatted = now_object.strftime(FORMAT)
+    end_date = f"{now_formatted}:00.000Z"
 
-    with open(tracker_filename, "r") as tracker_read:
+    if os.path.exists(tracker_filename):
+        with open(tracker_filename, "r") as tracker_read:
+            start_date = tracker_read.readline()
 
-        if exists:
-            start_date = f"{tracker_read.readlines()[-1]}:00.000Z"
-        else:
-            # Jamf Protect only stores data for 1 year, disregarding leap years
-            one_year_ago = (now - dt.timedelta(days=365)).strftime(FORMAT)
-            start_date = f"{one_year_ago}:00.000Z"
-            tracker_append.write(
-                "Timestamps of previous listAuditLogsByDate runs (UTC)"
-            )
+    else:
+        # Jamf Protect only stores data for 1 year, disregarding leap years
+        one_year_ago = (now_object - dt.timedelta(days=365)).strftime(FORMAT)
+        start_date = f"{one_year_ago}:00.000Z"
 
     if start_date == end_date:
         print("Script was run less than a minute ago. Please try again after a minute.")
-        sys.exit(1)
+        sys.exit(0)
 
     # Get the access token
     access_token = get_access_token(PROTECT_INSTANCE, CLIENT_ID, PASSWORD)
@@ -160,6 +152,7 @@ def __main__():
         items.extend(resp["data"]["listAuditLogsByDate"]["items"])
         next_token = resp["data"]["listAuditLogsByDate"]["pageInfo"]["next"]
 
+    filename = now_formatted
     filepath = os.path.join(folder, f"{filename}.csv")
     print(
         f"Audit Logs generated between {start_date} and {end_date}\nOutputting results to {filepath}"
@@ -172,9 +165,9 @@ def __main__():
         writer.writeheader()
         writer.writerows(items)
 
-    # Write current date and time to previous_audit_log_runs
-    tracker_append.write("\n" + filename)
-    tracker_append.close()
+    # Write current date and time to previous_audit_log_run
+    with open(tracker_filename, "w") as tracker_write:
+        tracker_write.write(end_date)
 
 
 if __name__ == "__main__":
