@@ -5,4 +5,4 @@
 #
 # Filter Predicate:
 
-process == "loginwindow" and eventMessage contains "LWScreenLockAuthentication" and eventMessage contains "screensaver_aks"
+processImagePath ENDSWITH[c] "loginwindow" and eventMessage contains[c] "LWScreenLockAuthentication" and eventMessage contains[c] "screensaver_aks"
