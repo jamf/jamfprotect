@@ -11,7 +11,10 @@
 $event.type == 1 AND $event.process.signingInfo.appid == "com.apple.xattr" AND $event.process.commandLine MATCHES "xattr\\s+(-[lrsvx]{0,5}\\s+){0,5}((.*\\s+)?-[lrsvx]{0,5}c[lrsvxc]{0,5}(\\s.*)?|-[rsvx]{0,4}d[rsvxd]{0,5}\\s+(-[lrsvxd]{0,5}\\s+){0,5}(\"|\')?com\\.apple\\.quarantine(\"|\')?\\s.+)"
 
 # Only com.apple.quarantine Extended Attribute (-d com.apple.quarantine) cleared
-$event.type == 1 AND $event.process.signingInfo.appid == "com.apple.xattr" AND $event.process.commandLine CONTAINS "com.apple.quarantine" AND $event.process.commandLine MATCHES "xattr\\s+(-[lrsvx]{0,5}\\s+){0,5}-[rsvx]{0,4}d[rsvxd]{0,5}\\s+(-[lrsvxd]{0,5}\\s+){0,5}(\"|\')?com\\.apple\\.quarantine(\"|\')?\\s.+"
+$event.type == 1 AND
+$event.process.signingInfo.appid == "com.apple.xattr" AND
+$event.process.commandLine CONTAINS "com.apple.quarantine" AND
+$event.process.commandLine MATCHES "xattr\\s+(-[lrsvx]{0,5}\\s+){0,5}-[rsvx]{0,4}d[rsvxd]{0,5}\\s+(-[lrsvxd]{0,5}\\s+){0,5}(\"|\')?com\\.apple\\.quarantine(\"|\')?\\s.+"
 
 # Required Analytic Configuration:
 

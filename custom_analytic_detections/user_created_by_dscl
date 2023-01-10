@@ -5,7 +5,9 @@
 #
 # Analytic Predicate:
 
-$event.type == 1 AND $event.process.signingInfo.appid == "com.apple.dscl" AND $event.process.commandLine CONTAINS " -create "
+$event.type == 1 AND
+$event.process.signingInfo.appid == "com.apple.dscl" AND
+$event.process.commandLine CONTAINS " -create "
 
 # Required Analytic Configuration:
 

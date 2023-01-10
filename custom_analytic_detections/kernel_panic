@@ -7,7 +7,8 @@
 
 # Analytic Predicate(s):
 
-$event.type == 1 AND $event.path ==[cd] "/private/var/db/PanicReporter/current.panic"
+$event.type == 1 AND
+$event.path ==[cd] "/private/var/db/PanicReporter/current.panic"
 
 # Required Analytic Configuration:
 

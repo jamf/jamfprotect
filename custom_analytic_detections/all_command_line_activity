@@ -5,7 +5,9 @@
 #
 # Analytic Predicate:
 
-$event.type == 1 AND $event.process.tty != nil AND $event.process.parent.isShell == 1
+$event.type == 1 AND
+$event.process.tty != nil AND
+$event.process.parent.isShell == 1
 
 # Required Analytic Configuration:
 

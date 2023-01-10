@@ -5,7 +5,10 @@
 #
 # Analytic Predicate:
 
-$event.type == 1 AND $event.process.signingInfo.appid == "com.apple.dseditgroup" AND $event.process.commandLine CONTAINS[cd] "-o edit -a" AND $event.process.parent.commandLine CONTAINS "/Library/Application Support/JAMF/"
+$event.type == 1 AND
+$event.process.signingInfo.appid == "com.apple.dseditgroup" AND
+$event.process.commandLine CONTAINS[cd] "-o edit -a" AND
+$event.process.parent.commandLine CONTAINS "/Library/Application Support/JAMF/"
 
 # Required Analytic Configuration:
 

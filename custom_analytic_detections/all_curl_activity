@@ -5,7 +5,8 @@
 #
 # Analytic Predicate:
 
-$event.type == 1 AND $event.process.signingInfo.appid == "com.apple.curl"
+$event.type == 1 AND
+$event.process.signingInfo.appid == "com.apple.curl"
 
 # Required Analytic Configuration:
 

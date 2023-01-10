@@ -5,7 +5,9 @@
 #
 # Analytic Predicate:
 
-$event.type == 0 AND $event.device.removable == 1 AND $event.device.writable != 1
+$event.type == 0 AND
+$event.device.removable == 1 AND
+$event.device.writable != 1
 
 # Required Analytic Configuration:
 

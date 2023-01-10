@@ -5,7 +5,9 @@
 #
 # Analytic Predicate:
 
-$event.type == 1 AND $event.process.tty != nil AND $event.process.signingInfo.appid == "com.apple.sudo"
+$event.type == 1 AND
+$event.process.tty != nil AND
+$event.process.signingInfo.appid == "com.apple.sudo"
 
 # Required Analytic Configuration:
 

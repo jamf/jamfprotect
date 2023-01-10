@@ -5,7 +5,10 @@
 #
 # Analytic Predicate:
 
-$event.type == 3 AND $event.prevFile BEGINSWITH "/private/var/folders/" AND NOT $event.path MATCHES "(/Users/[^/]+/Library/Sharing/|/var/folders/).*" AND $event.process.signingInfo.appid == "com.apple.sharingd"
+$event.type == 3 AND
+$event.prevFile BEGINSWITH "/private/var/folders/" AND NOT
+$event.path MATCHES "(/Users/[^/]+/Library/Sharing/|/var/folders/).*" AND
+$event.process.signingInfo.appid == "com.apple.sharingd"
 
 # Required Analytic Configuration:
 
