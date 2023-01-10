@@ -5,7 +5,8 @@
 #
 # Analytic Predicate:
 
-$event.type == 1 AND $event.path MATCHES[cd] "(:?/System|/Users/[\\w_\\.\\-]{1,83})?/Library/LaunchDaemons/.*\\.plist"
+$event.type == 1 AND
+$event.path MATCHES[cd] "(:?/System|/Users/[\\w_\\.\\-]{1,83})?/Library/LaunchDaemons/.*\\.plist"
 
 # Required Analytic Configuration:
 

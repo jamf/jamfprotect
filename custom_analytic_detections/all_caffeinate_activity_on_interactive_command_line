@@ -7,7 +7,10 @@
 
 # Analytic Predicate(s):
 
-$event.type == 1 AND $event.process.tty != nil AND $event.process.parent.isShell == 1 AND $event.process.signingInfo.appid == "com.apple.caffeinate"
+$event.type == 1 AND
+$event.process.tty != nil AND
+$event.process.parent.isShell == 1 AND
+$event.process.signingInfo.appid == "com.apple.caffeinate"
 
 # Required Analytic Configuration:
 

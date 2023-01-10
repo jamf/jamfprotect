@@ -5,7 +5,9 @@
 #
 # Analytic Predicate:
 
-$event.isNewDirectory == 1 AND $event.path ENDSWITH[cd] ".app" AND $event.path BEGINSWITH "/Library/InstallerSandboxes/.PKInstallSandboxManager"
+$event.isNewDirectory == 1 AND
+$event.path ENDSWITH[cd] ".app" AND
+$event.path BEGINSWITH "/Library/InstallerSandboxes/.PKInstallSandboxManager"
 
 # Required Analytic Configuration:
 

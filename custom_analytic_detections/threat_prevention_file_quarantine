@@ -5,7 +5,8 @@
 #
 # Analytic Predicate:
 
-$event.type IN {0, 3, 7} AND $event.path MATCHES[c] "/Library/Application Support/JamfProtect/Quarantine/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/[^/]+"
+$event.type IN {0, 3, 7} AND
+$event.path MATCHES[c] "/Library/Application Support/JamfProtect/Quarantine/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/[^/]+"
 
 # Required Analytic Configuration:
 

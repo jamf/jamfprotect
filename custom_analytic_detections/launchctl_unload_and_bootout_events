@@ -5,7 +5,8 @@
 #
 # Analytic Predicate:
 
-$event.type == 1 AND $event.process.signingInfo.appid == "com.apple.xpc.launchctl" AND ($event.process.commandLine CONTAINS "unload" OR $event.process.commandLine CONTAINS "bootout") 
+$event.type == 1 AND
+$event.process.signingInfo.appid == "com.apple.xpc.launchctl" AND ($event.process.commandLine CONTAINS "unload" OR $event.process.commandLine CONTAINS "bootout") 
 
 # Required Analytic Configuration:
 

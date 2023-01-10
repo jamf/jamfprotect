@@ -5,7 +5,8 @@
 #
 # Analytic Predicate:
 
-$event.isModified == 1 AND $event.path ==[cd] "/private/etc/hosts"
+$event.isModified == 1 AND
+$event.path ==[cd] "/private/etc/hosts"
 
 # Required Analytic Configuration:
 
