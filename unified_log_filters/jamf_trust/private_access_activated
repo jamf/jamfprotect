@@ -1,0 +1,19 @@
+# private_access_activated
+#
+# This Unified Log filter may be used to report on Jamf Trust being activated on a macOS endpoint.
+# This filter functions by monitoring logging from the Jamf Trust process, and a specific event message containing information around tunnel activation.
+
+# Filter Predicate(s):
+
+processImagePath ENDSWITH[c] "Jamf Trust" AND eventMessage contains[c] "WGLOG: Tunnel activation succeeded."
+
+# Example output:
+
+2023-XX-XX XX:XX:XX XX Jamf Trust[XXXX:XXXXX] (Foundadtion) WGLOG: Tunnel activation succeeded.
+
+# Additional Information:
+
+Can be used alongside the following  unified log filter to gain logging for deactivations:
+
+private_access_deactivated
+
