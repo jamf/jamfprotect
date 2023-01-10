@@ -5,7 +5,7 @@
 
 # Filter Predicate(s):
 
-process == "Jamf Trust" AND eventMessage contains "WGLOG: Tunnel deactivation succeeded."
+processImagePath ENDSWITH[c] "Jamf Trust" AND eventMessage contains "WGLOG: Tunnel deactivation succeeded."
 
 # Example output:
 

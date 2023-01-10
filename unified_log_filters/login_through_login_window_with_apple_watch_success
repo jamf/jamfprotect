@@ -1,0 +1,8 @@
+# login_through_login_window_with_apple_watch_success
+#
+# This Unified Log filter may be used to report on a successful login with Apple Watch at the macOS login window.
+# This filter functions by monitoring logging from loginwindow process where the event messaging contains a known string indicating a successful login with Apple Watch.
+#
+# Filter Predicate:
+
+process == "loginwindow" and eventMessage contains "LWScreenLockAuthentication" and eventMessage contains "screensaver_aks"
