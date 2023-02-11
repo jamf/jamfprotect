@@ -283,7 +283,12 @@ def __main__():
 
         elif MONITOR == "File":
             for i in json_array:
-                if "Checking:" in i["eventMessage"]:
+                if (
+                    "Checking: Created Path:" in i["eventMessage"]
+                    or "Checking: Modified Path:" in i["eventMessage"]
+                    or "Checking: Deleted Path:" in i["eventMessage"]
+                    or "Checking: Renamed Path:" in i["eventMessage"]
+                ):
                     logging.debug(i["eventMessage"])
                     file = re.search(r"\D\: (.*)\sPid", i["eventMessage"])
                     command = file.group(1)
@@ -303,13 +308,18 @@ def __main__():
                 if "Found match(s):" in i["eventMessage"]:
                     logging.debug(i["eventMessage"])
                     ul = re.search(r"\D\:\s(.*)", i["eventMessage"])
-                    command = ul.group(1)
-                    if command in d.keys():
-                        count = d[command]
-                        count += 1
-                        d[command] = count
-                    else:
-                        d[command] = 1
+                    try:
+                        if not "AUE" in ul.group(1):
+                            command = ul.group(1)
+                            if command in d.keys():
+                                count = d[command]
+                                count += 1
+                                d[command] = count
+                            else:
+                                d[command] = 1
+                    except:
+                        pass
+
             if d == {}:
                 print("No events found")
             else:
