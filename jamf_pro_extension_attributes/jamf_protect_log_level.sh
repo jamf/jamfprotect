@@ -1,4 +1,10 @@
 #!/bin/sh
+# This Extension Attribute will report on the Log Level currently in-use by Jamf Protect
+#
+# Data Type: String
+# Input Type: Script
+#
+##### Script starts here #####
 
 jamfProtectBinaryLocation="/usr/local/bin/protectctl"
 
