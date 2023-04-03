@@ -5,9 +5,9 @@
 # Organisation:         Grafisch Lyceum Rotterdam
 # E-mail:               brunschot@glr.nl
 # Date:                 24.09.2021
-# Version:              v1.0
-# Edited by:
-# Last edit:            24/9/21
+# Version:              v1.0.1
+# Edited by:            Allen Golbig, Jamf
+# Last edit:            3/4/23
 # Purpose:              Extension Attribute for checking the Jamf Protect agent's latest Insights report submission and whether it cocurred within the permitted time skew
 #                       This value can be used in various limiting access workflows. Expected values are:
 #                       - "Protect binary not found"
