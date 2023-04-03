@@ -11,7 +11,7 @@ The pkg and application are both code-signed and notarized.
     - *com.sample.app*
 - CDHash:
     - *2bae4abb6a4fc359f461737c7d89dd2c4c7f439a*
-- TeamID:
+- TeamIdentifier:
     - *CLQKFNPCCP*
 
 **Installation**
