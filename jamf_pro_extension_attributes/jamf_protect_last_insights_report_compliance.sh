@@ -48,7 +48,7 @@ current_date_sec=$(/bin/date +"%s")
 skewback_current_data_sec=$(/bin/date -j -v -"$permittedSkew" -f "%m-%d-%Y" "$current_date" +"%s")
 
 # Find the date and time of the last Insights report and reformat as necessary as MM-DD-YY-HH-MM-SS
-jamf_protect_lastinsights=$("$jamf_protect" info | /usr/bin/grep "Last Insights" | /usr/bin/awk '{ print $3, $4 }' | /usr/bin/sed -e 's/ /-/g' -e 's/:/-/g' -e 's/\./-/g')
+jamf_protect_lastinsights=$("$jamf_protect" info | /usr/bin/awk '/Last Insights/ { print $5, $6 }' | /usr/bin/sed -e 's/ /-/g' -e 's/:/-/g' -e 's/\./-/g')
 
 # Convert the last Insights report date and time into seconds
 lastinsights_date=$(/bin/date -j -f "%m-%d-%Y-%H-%M-%S" "$jamf_protect_lastinsights" +"%s")
