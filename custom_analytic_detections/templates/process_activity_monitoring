@@ -79,7 +79,7 @@ $event.type == 1 AND $event.process.signingInfo.appid == "com.app.identifier" AN
 
 
 
-#### Monitoring Process Exists
+#### Monitoring Process Exits
 
 ## Process exits by name
 # Single process name
