@@ -10,7 +10,7 @@ The pkg and application are both code-signed and notarized.
 - Identifier: 
     - *com.sample.app*
 - CDHash:
-    - *2bae4abb6a4fc359f461737c7d89dd2c4c7f439a*
+    - *c4d76d39a8f6b8eff9bc23100b8163ae25818360*
 - TeamIdentifier:
     - *CLQKFNPCCP*
 
