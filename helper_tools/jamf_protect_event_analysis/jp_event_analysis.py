@@ -121,7 +121,7 @@ def table(d, monitor, output, cs=""):
 
         df2.to_excel(writer, sheet_name="Sheet1", startcol=4)
 
-    writer.save()
+    writer.close()
 
     print(f"\nSee excel spreadsheet for full report.")
 
