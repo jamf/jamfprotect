@@ -274,8 +274,11 @@ def __main__():
             list_bin = list(set_bin)
 
             for items in list_bin:
-                cs = codesign(items)
-
+                try:
+                    cs = codesign(items)
+                except:
+                    pass
+                
             if d == {}:
                 print("No events found")
             else:
