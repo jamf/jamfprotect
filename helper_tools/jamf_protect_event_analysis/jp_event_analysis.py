@@ -121,7 +121,7 @@ def table(d, monitor, output, cs=""):
 
         df2.to_excel(writer, sheet_name="Sheet1", startcol=4)
 
-    writer.save()
+    writer.close()
 
     print(f"\nSee excel spreadsheet for full report.")
 
@@ -274,8 +274,11 @@ def __main__():
             list_bin = list(set_bin)
 
             for items in list_bin:
-                cs = codesign(items)
-
+                try:
+                    cs = codesign(items)
+                except:
+                    pass
+                
             if d == {}:
                 print("No events found")
             else:
