@@ -5,9 +5,9 @@
 # Organisation:         Grafisch Lyceum Rotterdam
 # E-mail:               brunschot@glr.nl
 # Date:                 15.04.2021
-# Version:              v0.3
-# Edited by:            Matt Taylor, Jamf
-# Last edit:            24/9/21
+# Version:              v0.4
+# Edited by:            Allen Golbig, Jamf
+# Last edit:            3/4/23
 # Purpose:              Extension Attribute for checking the Jamf Protect agent's checkin with the Jamf Protect Cloud tenant and whether it cocurred within the permitted time skew
 #                       This value can be used in various limiting access workflows. Expected values are:
 #                       - "Protect binary not found"
@@ -51,10 +51,10 @@ skewback_current_data_sec=$(/bin/date -j -v -"$permittedSkew" -f "%m-%d-%Y" "$cu
 jamf_protect_info=$("$jamf_protect" info)
 
 # Check the protection status of the Jamf Protect installation
-jamf_protect_status=$(echo "$jamf_protect_info" | /usr/bin/grep 'Status:' | /usr/bin/awk '{print $2}')
+jamf_protect_status=$(echo "$jamf_protect_info" | /usr/bin/awk '/Status/ {print $4}')
 
 # Find the date and time of the last checkin and reformat as necessary as MM-DD-YY-HH-MM-SS
-jamf_protect_lastcheckin=$(echo "$jamf_protect_info" | /usr/bin/grep "Last Check-in" | /usr/bin/awk '{ print $3, $4 }' | /usr/bin/sed -e 's/ /-/g' -e 's/:/-/g' -e 's/\./-/g')
+jamf_protect_lastcheckin=$(echo "$jamf_protect_info" | /usr/bin/awk '/Last Check-in/ { print $5, $6 }' | /usr/bin/sed -e 's/ /-/g' -e 's/:/-/g' -e 's/\./-/g')
 
 # Convert the last checkin date and time into seconds
 lastcheckin_date=$(/bin/date -j -f "%m-%d-%Y-%H-%M-%S" "$jamf_protect_lastcheckin" +"%s")
@@ -87,4 +87,3 @@ fi
 
 # Name the EA something like "Jamf Protect Protection Status"
 echo "<result>${JPS}</result>"
-

@@ -5,9 +5,9 @@
 # Organisation:         Grafisch Lyceum Rotterdam
 # E-mail:               brunschot@glr.nl
 # Date:                 24.09.2021
-# Version:              v1.0
-# Edited by:
-# Last edit:            24/9/21
+# Version:              v1.0.1
+# Edited by:            Allen Golbig, Jamf
+# Last edit:            3/4/23
 # Purpose:              Extension Attribute for checking the Jamf Protect agent's latest Insights report submission and whether it cocurred within the permitted time skew
 #                       This value can be used in various limiting access workflows. Expected values are:
 #                       - "Protect binary not found"
@@ -48,7 +48,7 @@ current_date_sec=$(/bin/date +"%s")
 skewback_current_data_sec=$(/bin/date -j -v -"$permittedSkew" -f "%m-%d-%Y" "$current_date" +"%s")
 
 # Find the date and time of the last Insights report and reformat as necessary as MM-DD-YY-HH-MM-SS
-jamf_protect_lastinsights=$("$jamf_protect" info | /usr/bin/grep "Last Insights" | /usr/bin/awk '{ print $3, $4 }' | /usr/bin/sed -e 's/ /-/g' -e 's/:/-/g' -e 's/\./-/g')
+jamf_protect_lastinsights=$("$jamf_protect" info | /usr/bin/awk '/Last Insights/ { print $5, $6 }' | /usr/bin/sed -e 's/ /-/g' -e 's/:/-/g' -e 's/\./-/g')
 
 # Convert the last Insights report date and time into seconds
 lastinsights_date=$(/bin/date -j -f "%m-%d-%Y-%H-%M-%S" "$jamf_protect_lastinsights" +"%s")
