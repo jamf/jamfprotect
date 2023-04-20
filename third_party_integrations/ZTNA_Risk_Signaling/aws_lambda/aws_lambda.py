@@ -5,7 +5,7 @@ import base64
 import requests
 
 ######################
-# 	  VARIABLES      #
+#   VARIABLES        #
 ######################
 
 # Jamf Private Access
@@ -101,8 +101,8 @@ def get_private_access_device(private_api_token, jamf_udid):
         if private_access_external_id == jamf_udid:
             private_access_device_id = device['deviceId']
             return private_access_device_id
-        else:
-            return False
+    else:
+        return False
 
 def update_private_access_risk(private_api_token, private_access_id, risk_level):
     print(f'Attempting to set device {private_access_id} to risk level {risk_level}')
