@@ -5,7 +5,7 @@ import base64
 import requests
 
 ######################
-# 	  VARIABLES    #
+# 	  VARIABLES      #
 ######################
 
 # Jamf Private Access
