@@ -232,9 +232,9 @@ def __main__():
                 try:
                     a_path = psutil.Process(int(items)).exe()
                 except psutil.NoSuchProcess as e:
+                    a_path = ""
                     pass
-                else:
-                    cs = codesign(a_path)
+                cs = codesign(a_path)
 
             if d == {}:
                 print("No events found")
