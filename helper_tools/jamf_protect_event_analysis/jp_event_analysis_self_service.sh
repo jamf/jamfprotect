@@ -122,8 +122,11 @@ def table(d, monitor, output, cs=""):
         df2 = df2.T
 
         if args.summary:
-            print(f"\nUnique Codesigning Info")
-            print(df2)
+            if len(df2) == 1:
+                print(f"\nNo Unique Codesigning Info Available")
+            else:
+                print(f"\nUnique Codesigning Info")
+                print(df2)
 
         df2.to_excel(writer, sheet_name="Sheet1", startcol=4)
 
@@ -238,9 +241,9 @@ def __main__():
                 try:
                     a_path = psutil.Process(int(items)).exe()
                 except psutil.NoSuchProcess as e:
+                    a_path = ""
                     pass
-                else:
-                    cs = codesign(a_path)
+                cs = codesign(a_path)
 
             if d == {}:
                 print("No events found")

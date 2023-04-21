@@ -116,8 +116,11 @@ def table(d, monitor, output, cs=""):
         df2 = df2.T
 
         if args.summary:
-            print(f"\nUnique Codesigning Info")
-            print(df2)
+            if len(df2) == 1:
+                print(f"\nNo Unique Codesigning Info Available")
+            else:
+                print(f"\nUnique Codesigning Info")
+                print(df2)
 
         df2.to_excel(writer, sheet_name="Sheet1", startcol=4)
 
@@ -170,7 +173,6 @@ def create_args():
 
 
 def __main__():
-
     args = create_args()
     if args.debug:
         logging.basicConfig(level=logging.DEBUG)
@@ -189,7 +191,6 @@ def __main__():
         or MONITOR == "File"
         or MONITOR == "UnifiedLogging"
     ):
-
         d = {}
         binaries = []
         ppid = []
@@ -278,7 +279,7 @@ def __main__():
                     cs = codesign(items)
                 except:
                     pass
-                
+
             if d == {}:
                 print("No events found")
             else:
@@ -333,5 +334,4 @@ def __main__():
 
 
 if __name__ == "__main__":
-
     __main__()
