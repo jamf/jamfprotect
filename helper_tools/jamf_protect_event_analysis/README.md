@@ -22,6 +22,7 @@ The script currently supports the following monitors:
 * Process
 * File
 * Unified Logging
+* Telemetry
 
 The **example output** shown below of the _jp_event_analysis_ tool shows the tool surfacing process activity (enabled with the _-m Process_ arg) and with a summary output requested (enabled with the _-s_ arg).  See the help page of this tool below or built-in the man page for more options.
 
@@ -110,6 +111,7 @@ Included is a [shell script](./jp_event_analysis_self_service.sh) which can be u
     - Process
     - File
     - UnifiedLogging
+    - Telemetry
 - Archives the logs
 - Cleans up
 

@@ -190,6 +190,7 @@ def __main__():
         or MONITOR == "Process"
         or MONITOR == "File"
         or MONITOR == "UnifiedLogging"
+        or MONITOR == "Telemetry"
     ):
         d = {}
         binaries = []
@@ -328,8 +329,31 @@ def __main__():
                 print("No events found")
             else:
                 table(d, MONITOR, OUTPUT)
+        
+        elif MONITOR == "Telemetry":
+            for i in json_array:
+                if "Found match(s): AUE" in i["eventMessage"]:
+                    logging.debug(i["eventMessage"])
+                    ul = re.search(r"\D\:\s(.*)", i["eventMessage"])
+                    try:
+                        # if not "AUE" in ul.group(1):
+                        command = ul.group(1)
+                        if command in d.keys():
+                            count = d[command]
+                            count += 1
+                            d[command] = count
+                        else:
+                            d[command] = 1
+                    except:
+                        pass
+
+            if d == {}:
+                print("No events found")
+            else:
+                MONITOR == "BSM"
+                table(d, MONITOR, OUTPUT)
     else:
-        print("Monitor must be ExecAuth, Process, File, or UnifiedLogging")
+        print("Monitor must be ExecAuth, Process, File, UnifiedLogging, or Telemetry")
         return
 
 
