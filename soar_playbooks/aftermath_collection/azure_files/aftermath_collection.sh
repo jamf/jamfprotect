@@ -59,6 +59,8 @@ loggedInUser=$(stat -f %Su /dev/console)
 ############ Do not edit below ############
 ###########################################
 
+expectedAzcopyTeamID="94KV3E626L"
+
 # Checks for the Aftermath archive to confirm if the script should continue
 CheckForFiles () {
     if [[ -z $(/bin/ls -A "$aftermathArchiveDir"/Aftermath*) ]]; then
@@ -76,9 +78,23 @@ CollectArchive () {
         # Check for the Azure Copy binary. If not present, install.
         if [[ ! -f "$azcopyBinary" ]]; then
             echo "Azure Copy CLI not Installed, downloading and installing"
-            /usr/bin/curl -Ls https://aka.ms/downloadazcopy-v10-mac --output /tmp/azcopy.zip
+        	/usr/bin/curl -Ls https://aka.ms/downloadazcopy-v10-mac --output /tmp/azcopy.zip
             /usr/bin/unzip -j -qq "/tmp/azcopy.zip" -d $azcopyBinary
-            /bin/rm "/tmp/azcopy.zip"
+		
+			# Verify the download
+			teamID=$(codesign -dv "$azcopyBinary" 2>&1 | grep TeamIdentifier | awk -F '=' '{print $2}')
+
+			# Check and clean up the binary if Team ID does not validate
+			if [ "$expectedAzcopyTeamID" = "$teamID" ] || [ "$expectedAzcopyTeamID" = "" ]; then
+				echo "azcopy Team ID verification succeeded"
+				/bin/rm "/tmp/azcopy.zip"
+			else
+				echo "azcopy Team ID verification failed."
+                /bin/rm -rf $azcopyBinary
+                /bin/rm -rf /Users/$loggedInUser/.azcopy
+				/bin/rm "/tmp/azcopy.zip"
+				exit 1
+			fi
         fi
 
         export azcopyInstallStatus=$?
