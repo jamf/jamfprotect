@@ -79,7 +79,7 @@ CollectArchive () {
         if [[ ! -f "$azcopyBinary" ]]; then
             echo "Azure Copy CLI not Installed, downloading and installing"
         	/usr/bin/curl -Ls https://aka.ms/downloadazcopy-v10-mac --output /tmp/azcopy.zip
-            /usr/bin/unzip -j -qq "/tmp/azcopy.zip" -d $azcopyBinary
+            /usr/bin/unzip -j -qq "/tmp/azcopy.zip" -d "$azcopyBinary"
 		
 			# Verify the download
 			teamID=$(codesign -dv "$azcopyBinary" 2>&1 | grep TeamIdentifier | awk -F '=' '{print $2}')
@@ -90,8 +90,8 @@ CollectArchive () {
 				/bin/rm "/tmp/azcopy.zip"
 			else
 				echo "azcopy Team ID verification failed."
-                /bin/rm -rf $azcopyBinary
-                /bin/rm -rf /Users/$loggedInUser/.azcopy
+                /bin/rm -rf "$azcopyBinary"
+                /bin/rm -rf /Users/"$loggedInUser"/.azcopy
 				/bin/rm "/tmp/azcopy.zip"
 				exit 1
 			fi
@@ -110,7 +110,7 @@ CollectArchive () {
 
             # Use the Azure Copy CLI to copy the archive to the desginated bucket
             echo "The Azure Copy binary is present, initiating the upload.."
-            "$azcopyBinary/azcopy" copy ${aftermathArchiveDir}/*Aftermath*.zip "https://${azureStorageAccount}.file.core.windows.net/${azureFileShareName}/${azureFileShareFolder}/${azureSasToken}" --recursive=true
+            "$azcopyBinary/azcopy" copy "${aftermathArchiveDir}"/*Aftermath*.zip "https://${azureStorageAccount}.file.core.windows.net/${azureFileShareName}/${azureFileShareFolder}/${azureSasToken}" --recursive=true
             
             export uploadStatus=$?
             
@@ -132,7 +132,7 @@ CollectArchive () {
 
 # Check for the required network connectivity to use the Azure File Share service
 NetworkCheckAndUpload () {
-    if /usr/bin/nc -zdw1 $azureFileShare.file.core.windows.net 443; then
+    if /usr/bin/nc -zdw1 "${azureStorageAccount}".file.core.windows.net 443; then
         networkUP="yes"
         echo "Can the device connect to the Azure File Share for upload? Result: ${networkUP}"
         echo "Network connectivity is available so the upload will proceed."
@@ -158,8 +158,8 @@ CleanUp () {
 
     # Remove Azure Copy CLI and .azcopy directory
     echo "Removing Azure Copy CLI and directories"
-    /bin/rm -rf $azcopyBinary
-    /bin/rm -rf /Users/$loggedInUser/.azcopy
+    /bin/rm -rf "$azcopyBinary"
+    /bin/rm -rf /Users/"$loggedInUser"/.azcopy
     
     # Delete the extension attribute file created by Jamf Protect
     if [[ -n "$analyticEA" ]]; then
