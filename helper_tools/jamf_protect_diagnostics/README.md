@@ -9,8 +9,8 @@ Steps to create the workflow:
 - [ ] Create [aws_jpdiagnostics.pkg](#aws_pkg) and upload to Jamf Pro 
 - [ ] Jamf Pro - Upload [jp_diagnostics_self_service.sh](./jp_diagnostics_self_service.sh)
 - [ ] Jamf Pro - [Create Policies](#policies)
-    - Aftermath Collect
-    - AWS Aftermath Credentials
+    - Jamf Protect Diagnostics Collect
+    - AWS Credentials
 
 ## Workflow Components
 
