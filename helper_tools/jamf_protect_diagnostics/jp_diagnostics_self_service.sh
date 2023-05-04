@@ -34,7 +34,7 @@
 ############# Script Configuration Area #############
 #####################################################
 
-# Set custom duration for Jamf Protect Diagnostics, default is 5 minutes, use $4 in a Jamf Pro policy or edit value in script on line 8.
+# Set custom duration for Jamf Protect Diagnostics, default is 5 minutes, use $4 in a Jamf Pro policy or edit value in script on line 38.
 customDuration="$4"
 
 # Location of the AWS CLI binary.
