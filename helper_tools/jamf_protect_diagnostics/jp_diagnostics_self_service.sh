@@ -73,10 +73,10 @@ startDiagnostics () {
 	
 	if [ "$customDuration" == "" ]; then
 		echo "Staring Jamf Protect Diagnostics for a duration of 5 minutes"
-		#/usr/local/bin/protectctl diagnostics
+		/usr/local/bin/protectctl diagnostics
 	else
 		echo "Staring Jamf Protect Diagnostics for a duration of $customDuration minutes"
-		#/usr/local/bin/protectctl diagnostics	
+		/usr/local/bin/protectctl diagnostics -d "$customDuration"
 	fi
 }
 
