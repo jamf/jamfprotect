@@ -17,7 +17,7 @@ Steps to create the workflow:
 
 |Name|Frequency|Trigger|Scope|Payload|
 |----|---------|-------|-----|-------|
-|**Jamf Protect Diagnostics Collect**|Ongoing|Self Service|All Managed Clients|jp_diagnostics_self_service.sh<br>Add `SAS Token` in script Parameter 4
+|**Jamf Protect Diagnostics Collect**|Ongoing|Self Service|All Managed Clients|jp_diagnostics_self_service.sh<br>Add `SAS Token` in script Parameter 5
 
 **Azure Files Configuration**
 
