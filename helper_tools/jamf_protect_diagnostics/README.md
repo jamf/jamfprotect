@@ -1,53 +1,18 @@
-# Helper Tools - Jamf Protect Diagnostics Collection (AWS S3)
+# Helpder Tools - Jamf Protect Diagnostics Collection
 
-This script is provided to trigger and collect the output from an `protectctl diagnostics` and upload it to an AWS S3 bucket.
+Scripts in this repository are provided to collect the output from `protectctl diagnostics` and upload it to an cloud storage solution of choice.
 
-## Workflow Steps
+## About protectctl tool
 
-Steps to create the workflow:
+The Jamf Protect agent includes the protectctl tool, which allows you to execute some Terminal commands on computers, for more information please refer to [Jamf Learning Hub](https://learn.jamf.com/bundle/jamf-protect-documentation/page/About_Jamf_Protect.html#ariaid-title3)
 
-- [ ] Create [aws_jpdiagnostics.pkg](#aws_pkg) and upload to Jamf Pro 
-- [ ] Jamf Pro - Upload [jp_diagnostics_self_service.sh](./jp_diagnostics_self_service.sh)
-- [ ] Jamf Pro - [Create Policies](#policies)
-    - Jamf Protect Diagnostics Collect
-    - AWS Credentials
+## Storage Solutions
 
-## Workflow Components
+The workflows in this repository support but are not limited to:
 
-####  <a id="policies"></a>Policies
+- [ ] [Amazon S3 Bucket](./aws_s3/)
+- [ ] [Google Cloud Storage Bucket](./google_cloud_storage/)
+- [ ] [Azure Files](./azure_files/)
 
-|Name|Frequency|Trigger|Scope|Payload|
-|----|---------|-------|-----|-------|
-|**Jamf Protect Diagnostics Collect**|Ongoing|Self Service|All Managed Clients|jp_diagnostics_self_service.sh
-|**AWS Credentials**|Ongoing|aws_creds|All Managed Clients|aws_jpdiagnostics.pkg
-
-**AWS Configuration**
-
-- Create an AWS S3 Bucket and an IAM user with `s3:PutObject` rights applied
-    ```{
-        "Version": "2012-10-17",
-        "Statement": [
-            {
-                "Sid": "VisualEditor0",
-                "Effect": "Allow",
-                "Action": [
-                    "s3:PutObject"
-                ],
-                "Resource": "arn:aws:s3:::s3bucketname/*"
-            }
-        ]
-    }
-    ```
-- Create <a id="aws_pkg"></a>AWS CLI Configuration file:
-    1. Install the [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
-    2. Configure AWS CLI profile. Run the following in Terminal.app:
-        - `aws configure --profile jpdiagnostics`
-    3. Verify AWS CLI configuration. Run the following in Terminal.app:
-        - `aws configure list --profile jpdiagnostics`
-    3. Use included makefile to create pkg. Run the following from within the project folder in Terminal.app:
-        - `sudo make pkg`
-    4. Copy aws_jpdiagnostics.pkg to Jamf Pro.
-    5. Clean up after upload complete. Run the following from within the project folder in Terminal.app:
-        - `sudo make clean`
 #
 ## Please note that all resources contained within this repository are provided as-is and are not officially supported by Jamf Support.
