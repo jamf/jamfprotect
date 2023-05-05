@@ -108,7 +108,7 @@ CollectArchive () {
     fi
 }
 
-# Check for the required network connectivity to use the AWS S3 service
+# Check for the required network connectivity to use the Google Cloud Storage service
 NetworkCheckAndUpload () {
     if /usr/bin/nc -zdw1 console.cloud.google.com 443; then
         networkUP="yes"
