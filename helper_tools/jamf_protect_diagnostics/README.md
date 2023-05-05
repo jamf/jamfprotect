@@ -1,4 +1,4 @@
-# Helpder Tools - Jamf Protect Diagnostics Collection
+# Helper Tools - Jamf Protect Diagnostics Collection
 
 Scripts in this repository are provided to collect the output from `protectctl diagnostics` and upload it to an cloud storage solution of choice.
 
