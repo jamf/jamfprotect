@@ -49,8 +49,8 @@ azureFileShareName=""
 # The name of the folder in the Azure Files Container
 azureFileShareFolder=""
 
-# The SAS Token, stored in Jamf Pro as Parameter 4 in a policy
-azureSasToken=$4
+# The SAS Token, stored in Jamf Pro as Parameter 5 in a policy
+azureSasToken="$5"
 
 
 #####################################################
