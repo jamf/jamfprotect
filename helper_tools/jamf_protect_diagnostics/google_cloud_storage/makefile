@@ -1,7 +1,7 @@
 PKGTITLE="gcs_jpdiagnostics"
 PKGVERSION=1.0
 PKGID="com.jamf.gcs.jpdiagnostics"
-PROJECT="aws_jpdiagnostics"
+PROJECT="gcs_jpdiagnostics"
 DeveloperID=""
 
 clean:
