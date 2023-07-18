@@ -125,6 +125,9 @@ def lambda_handler(event, context):
         elif jira_sev == 1:
             sev = "Low"
             priority = "Minor"
+        elif jira_sev == 0:
+            sev = "Informational"
+            priority = "Trivial"
 
     hostname = output["input"]["host"]["hostname"]
     sn = output["input"]["host"]["serial"]
