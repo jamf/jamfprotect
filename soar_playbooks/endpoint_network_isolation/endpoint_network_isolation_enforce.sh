@@ -31,7 +31,8 @@
 #
 # written by Matthieu Castel, Jamf May 2021
 # edited by Matt Taylor, Jamf October 2021
-# v2.0
+# edited by Allen Golbig, Jamf July 2023
+# v2.1
 #
 # This script is designed as a response workflow to isolate an endpoint based upon it's network connectivity, executed by Jamf Pro.  This might be automatically triggered by the Jamf Protect and Jamf Pro remediation integration or instead manually.
 #
@@ -159,6 +160,23 @@ EOF
 
 }
 
+# Create the script which calls pfctl
+CreateIsolateScript () {
+
+/usr/bin/tee /usr/local/bin/isolate.sh <<EOF
+#!/bin/sh
+
+/bin/sleep 5
+/usr/sbin/ipconfig waitall
+/sbin/pfctl -E -f /etc/pf.anchors/${fileName}.pf.conf
+EOF
+
+    # Set permissions
+    /usr/sbin/chown root:wheel /usr/local/bin/isolate.sh
+    /bin/chmod 700 /usr/local/bin/isolate.sh
+
+}
+
 # Create the LaunchDaemon to execute the Packet Filter configuration at startup
 CreatePFLaunchDaemon () {
 
@@ -167,22 +185,17 @@ CreatePFLaunchDaemon () {
 <plist version="1.0">
     <dict>
         <key>Label</key>
-            <string>${fileName}.pf.plist</string>
+        <string>${fileName}.pf.plist</string>
         <key>Program</key>
-            <string>/sbin/pfctl</string>
-        <key>ProgramArguments</key>
-        <array>
-            <string>/sbin/pfctl</string>
-            <string>-e</string>
-            <string>-f</string>
-            <string>/etc/pf.anchors/${fileName}.pf.conf</string>
-        </array>
+        <string>/usr/local/bin/isolate.sh</string>
         <key>RunAtLoad</key>
-            <true/>
+        <true/>
+        <key>LaunchOnlyOnce</key>
+        <true/>
         <key>StandardErrorPath</key>
-            <string>/var/log/pf.log</string>
+        <string>/var/log/pf.log</string>
         <key>StandardOutPath</key>
-            <string>/var/log/pf.log</string>
+        <string>/var/log/pf.log</string>
     </dict>
 </plist>
 EOF
@@ -258,6 +271,9 @@ CreatePFAnchor
 CreatePFRules
 
 # Call function
+CreateIsolateScript
+
+# Call function
 CreatePFLaunchDaemon
 
 # Call function
@@ -269,17 +285,4 @@ UserNotification
 # Call function
 AdditionalJamfProPolicy
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/usr/local/bin/jamf recon

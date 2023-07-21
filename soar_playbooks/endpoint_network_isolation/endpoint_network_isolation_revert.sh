@@ -91,6 +91,9 @@ iconPath="${IRSupportDIR}/logo.png"
 
 echo "The packet filter rules have been flushed, restored to default values and the endpoint's connectivity returned to normal."
 
+# Remove isolate script
+/bin/rm /usr/local/bin/isolate.sh
+
 #####################################################
 ###### Notification Section ######
 # Begin the process of notifying the user
