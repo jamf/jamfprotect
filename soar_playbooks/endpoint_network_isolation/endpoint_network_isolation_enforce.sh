@@ -286,6 +286,6 @@ UserNotification
 AdditionalJamfProPolicy
 
 # Sleep 5 seconds and then run recon to update EA
-/bin/sleep 5 
+/bin/sleep 5 &
 
 /usr/local/bin/jamf recon
