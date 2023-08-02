@@ -1,0 +1,20 @@
+# bluetooth_file_exchange_transfer_outbound
+#
+# This Unified Log filter may be used to report on outbound Bluetooth File Exchange file transfers from the Mac.
+# This filter functions by monitoring logging from an Bluetooth File Exchange process spawning from a valid location and a logged string known to indicate an outbound file transfer was initiated.
+
+# Filter Predicate(s):
+
+process == "Bluetooth File Exchange" AND eventMessage CONATINS[c] "[sendFile]:"
+
+# Example output:
+
+2023-XX-XX XX:XX:XX.XXXXXXX+0000 XXXXXXX Default Bluetooth File Exchange[96908:63530e] (IOBluetoothUI) [IOBluetoothConcreteObjectPush][sendFile]: /Users/username/Documents/sensitiveData.pdf
+
+# Additional Information:
+
+The file path in the log message is that of the file that was shared via the outbound Bluetooth File Exchange transfer. 
+
+# Private Data Expected
+# See https://github.com/jamf/jamfprotect/wiki/Unified-Log-Filtering
+No
