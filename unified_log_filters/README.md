@@ -6,9 +6,12 @@ With Jamf Protect, you can use the same predicate-based filter criteria that are
 > [!NOTE]  
 > Please refer to [Jamf Protect Telemetry](https://learn.jamf.com/bundle/jamf-protect-documentation/page/Telemetry.html) if you are collecting specific data from endpoints, it might be that event data you need is already collected by Telemetry.
 
-**Important Requirement:** To collect unified log filter data with Jamf Protect, you must do one of the following:
-* Integrate Jamf Protect with a security information and events management (SIEM) solution.
-* Enable data forwarding to a third party storage solution
+
+> [!IMPORTANT]  
+> To collect unified log filter data with Jamf Protect, you must do one of the following:
+> * Integrate Jamf Protect with a security information and events management (SIEM) solution.
+> * Enable data forwarding to a third party storage solution
+
 
 More information on this feature can be found [here](https://docs.jamf.com/jamf-protect/documentation/Unified_Logging.html).
 
