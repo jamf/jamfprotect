@@ -1,0 +1,7 @@
+name: "SAP Privileges User Rights Elevations and Demotions"
+description: "This Unified Log filter may be used to report on logging from SAP Privileges.app.
+  This filter functions by monitoring logging from corp.sap.privileges.helper process and event messages containing SAPCorp."
+predicate: 'process == "corp.sap.privileges.helper" AND eventMessage CONTAINS "SAPCorp"'
+tags:
+  - ThirdParty
+  - PrivilegeEscalation

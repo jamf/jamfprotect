@@ -3,6 +3,9 @@ The Unified Logging system available in macOS 10.12 or later provides a central 
 
 With Jamf Protect, you can use the same predicate-based filter criteria that are often used with the log command to collect relevant log entries from computers and send them to a security information and event management (SIEM) solution or a third party storage solution (e.g., AWS).
 
+> [!NOTE]  
+> Please refer to [Jamf Protect Telemetry](https://learn.jamf.com/bundle/jamf-protect-documentation/page/Telemetry.html) if you are collecting specific data from endpoints, it might be that event data you need is already collected by Telemetry.
+
 **Important Requirement:** To collect unified log filter data with Jamf Protect, you must do one of the following:
 * Integrate Jamf Protect with a security information and events management (SIEM) solution.
 * Enable data forwarding to a third party storage solution
