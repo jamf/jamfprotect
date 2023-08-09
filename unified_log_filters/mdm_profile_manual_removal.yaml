@@ -1,6 +1,7 @@
 name: "MDM Profile Manual Removal"
-description: "This Unified Log filter may be used to report on removal of the MDM Profile off of an endpoint where the action was completed manually, such as via System Preferences or with a 'jamf removeMdmProfile' command.
+description: "This Unified Log filter may be used to report on removal of the MDM Profile off of an endpoint where the action was completed manually, such as via System Preferences or with a jamf removeMdmProfile command.
   This filter functions by monitoring logging from the ManagedClient subsystem where the event messaging contains a known string found when the MDM Profile is removed."
-predicate: 'subsystem == "com.apple.ManagedClient" AND eventMessage CONTAINS "Removed configuration profile: MDM Profile" AND eventMessage CONTAINS "Source: Manual"'
+predicate: "subsystem == \"com.apple.ManagedClient\" AND eventMessage CONTAINS \"Removed configuration profile: MDM Profile\" AND eventMessage CONTAINS \"Source: Manual\""
 tags:
-- visibillity
+  - visibility
+enabled: true

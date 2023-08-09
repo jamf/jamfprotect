@@ -1,6 +1,7 @@
 name: "Lock Screen Unlock Failure"
 description: "This Unified Log filter may be used to report on failed unlock attempts at the macOS lock screen.
   This filter functions by monitoring logging from loginwindow process where the event messaging contains a known string indicating a failed unlock attempt."
-predicate: 'processImagePath BEGINSWITH "/System/Library/CoreServices" AND process == "loginwindow" AND eventMessage CONTAINS[c] "INCORRECT"'
+predicate: "processImagePath BEGINSWITH \"/System/Library/CoreServices\" AND process == \"loginwindow\" AND eventMessage CONTAINS[c] \"INCORRECT\""
 tags:
-  - visibillity
+  - visibility
+enabled: true

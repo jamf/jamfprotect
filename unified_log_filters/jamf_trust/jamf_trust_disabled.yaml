@@ -1,6 +1,7 @@
 name: "Jamf Trust Disabled"
 description: "This Unified Log filter may be used to report on Jamf Trust being deactivated on a macOS endpoint.
   This filter functions by monitoring logging from the Jamf Trust process, and a specific event message containing information around tunnel deactivation."
-predicate: 'processImagePath ENDSWITH[c] "Jamf Trust" AND eventMessage contains[c] "WGLOG: Tunnel deactivation succeeded."'
+predicate: "processImagePath ENDSWITH[c] \"Jamf Trust\" AND eventMessage contains[c] \"WGLOG: Tunnel deactivation succeeded.\""
 tags:
-  - visibillity
+  - visibility
+enabled: true

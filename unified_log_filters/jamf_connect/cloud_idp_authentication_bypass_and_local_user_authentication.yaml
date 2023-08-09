@@ -1,6 +1,7 @@
 name: "Cloud iDP Authentication bypass and Local User Authentication"
 description: "This Unified Log filter may be used to report on a user bypassing authentication to the Cloud Identity Provider configured for use with Jamf Connect and instead completing an authentication against a local user account on the device only.
   This filter functions by monitoring logging from the Jamf Connect subsystem where the event message contains a known string indicating the behaviour."
-predicate: 'subsystem == "com.jamf.connect.login" AND eventMessage CONTAINS[c] "Local auth success, allowing login for user"'
+predicate: "subsystem == \"com.jamf.connect.login\" AND eventMessage CONTAINS[c] \"Local auth success, allowing login for user\""
 tags:
-  - visibillity
+  - visibility
+enabled: true

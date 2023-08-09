@@ -1,6 +1,7 @@
 name: "Jamf Pro Management Framework Removal"
 description: "This Unified Log filter may be used to report on successful removal of the Jamf Pro management framework.
   This filter functions by monitoring logging from the Jamf Pro management binary subsystem and for event messages containing known strings that indicate a successful removal."
-predicate: 'subsystem == "com.jamf.management.binary" AND process == "jamf" AND processImagePath == "/usr/local/jamf/bin/jamf" AND (eventMessage CONTAINS "Removing JAMF Preferences file" OR eventMessage CONTAINS "Removing JAMF Daemon Log files" OR eventMessage CONTAINS "Removing self service" OR eventMessage CONTAINS "Removing scheduled tasks")'
+predicate: "subsystem == \"com.jamf.management.binary\" AND process == \"jamf\" AND processImagePath == \"/usr/local/jamf/bin/jamf\" AND (eventMessage CONTAINS \"Removing JAMF Preferences file\" OR eventMessage CONTAINS \"Removing JAMF Daemon Log files\" OR eventMessage CONTAINS \"Removing self service\" OR eventMessage CONTAINS \"Removing scheduled tasks\")"
 tags:
-  - visibillity
+  - visibility
+enabled: true
