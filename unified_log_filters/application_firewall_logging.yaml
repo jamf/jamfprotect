@@ -1,6 +1,6 @@
 name: "Application Firewall Logging"
 description: "This Unified Log filter may be used to report on logging from the Application Firewall in macOS. this filter functions by monitoring logging from the com.apple.alf subsystem."
-predicate: "subsystem == \"com.apple.alf\""
+predicate: "subsystem == "com.apple.alf""
 tags: 
   - visibility
 enabled: true

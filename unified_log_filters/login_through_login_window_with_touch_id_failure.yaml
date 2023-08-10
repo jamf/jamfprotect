@@ -1,7 +1,7 @@
 name: "Login through LoginWindow wiwth TouchID Failure"
 description: "This Unified Log filter may be used to report on failed login attempts with TouchID at the macOS login window.
   This filter functions by monitoring logging from loginwindow process where the event messaging contains a known string indicating a failed login attempt with TouchID."
-predicate: "process == \"loginwindow\" AND eventMessage CONTAINS[c] \"APEventTouchIDNoMatch\""
+predicate: "process == "loginwindow" AND eventMessage CONTAINS[c] "APEventTouchIDNoMatch""
 tags:
   - visibility
 enabled: true

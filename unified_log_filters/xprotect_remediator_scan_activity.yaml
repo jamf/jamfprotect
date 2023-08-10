@@ -1,7 +1,7 @@
 name: "XProtect Remediator Scan Activity"
 description: "This Unified Log filter may be used to report on XProtect Remediator scanning activity.
   This filter functions by monitoring logging from the subsystem, process and category known to be used for log entries from this activity."
-predicate: "subsystem == \"com.apple.XProtectFramework.PluginAPI\" && category == \"XPEvent.structured\""
+predicate: "subsystem == "com.apple.XProtectFramework.PluginAPI" && category == "XPEvent.structured""
 tags:
   - visibility
 enabled: true

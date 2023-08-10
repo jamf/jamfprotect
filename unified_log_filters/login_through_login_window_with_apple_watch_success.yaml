@@ -1,7 +1,7 @@
 name: "Login through LoginWindow with Apple Watch Success"
 description: "This Unified Log filter may be used to report on a successful login with Apple Watch at the macOS login window.
   This filter functions by monitoring logging from loginwindow process where the event messaging contains a known string indicating a successful login with Apple Watch."
-predicate: "processImagePath ENDSWITH[c] \"loginwindow\" and eventMessage contains[c] \"LWScreenLockAuthentication\" and eventMessage contains[c] \"screensaver_aks\""
+predicate: "processImagePath ENDSWITH[c] "loginwindow" and eventMessage contains[c] "LWScreenLockAuthentication" and eventMessage contains[c] "screensaver_aks""
 tags:
   - visibility
 enabled: true

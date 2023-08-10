@@ -1,7 +1,7 @@
 name: "Failed Authentication through Jamf Connect"
 description: "This Unified Log filter may be used to report on failed authentication attempts through the Jamf Connect application.
   This filter functions by monitoring logging from the Jamf Connect process where the event message contains a known string indicating the behaviour."
-predicate: "process == \"Jamf Connect\" AND eventMessage CONTAINS[c] \"Authentication failed\""
+predicate: "process == "Jamf Connect" AND eventMessage CONTAINS[c] "Authentication failed""
 tags:
   - visibility
 enabled: true

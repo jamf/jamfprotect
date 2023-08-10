@@ -1,7 +1,7 @@
 name: "Network Server Connection Attempts Outbound"
 description: "This Unified Log filter may be used to report on network server connection attempts from the Mac endpoint, such as mounting an SMB share or connecting to an FTP server through Finders Connect to Server service.
   This filter functions by monitoring logging from NetAuthSysAgent, the process used for these connections."
-predicate: "process == \"NetAuthSysAgent\" AND subsystem == \"com.apple.NetAuthAgent\" AND category == \"IPC\" AND eventMessage BEGINSWITH \"URL = \""
+predicate: "process == "NetAuthSysAgent" AND subsystem == "com.apple.NetAuthAgent" AND category == "IPC" AND eventMessage BEGINSWITH "URL = ""
 tags:
   - visibility
   - discovery

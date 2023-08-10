@@ -1,6 +1,6 @@
 name: "Login through LoginWindow with TouchID Success"
 description: "This Unified Log filter may be used to report on a successful login with TouchID at the macOS login window.
   This filter functions by monitoring logging from loginwindow process where the event messaging contains a known string indicating a successful login with TouchID."
-predicate: "process == \"loginwindow\" AND eventMessage CONTAINS[c] \"APEventTouchIDMatch\""
+predicate: "process == "loginwindow" AND eventMessage CONTAINS[c] "APEventTouchIDMatch""
 tags:
   - visibility
