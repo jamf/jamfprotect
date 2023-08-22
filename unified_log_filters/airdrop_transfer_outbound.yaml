@@ -1,0 +1,7 @@
+name: "Airdrop Transfer Outbound"
+description: "This Unified Log filter may be used to report on outbound AirDrop file transfers from the Mac, this filter functions by monitoring logging from an AirDrop process spawning from a valid location and a logged string known to indicate an outbound file transfer was offered."
+predicate: "subsystem == "com.apple.sharing" AND process == "AirDrop" AND processImagePath BEGINSWITH "/System/Library" AND eventMessage BEGINSWITH "Successfully issued sandbox extension for""
+tags: 
+  - visibility
+  - DataLossPrevention
+enabled: true

@@ -1,0 +1,11 @@
+name: "GateKeeper File Access Scan Activity"
+description: "This Unified Log filter may be used to report on Gatekeeper scanning activity when a file is opened.
+  This filter functions by monitoring logging from the subsystem, process and category known to be used for log entries from this activity."
+predicate: "subsystem == "com.apple.syspolicy.exec" AND process == "syspolicyd" AND category == "default""
+tags:
+  - visibility
+enabled: true
+
+# Private Data Expected
+# See https://github.com/jamf/jamfprotect/wiki/Unified-Log-Filtering
+#Yes
