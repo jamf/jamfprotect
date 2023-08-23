@@ -4,3 +4,4 @@ description: "This Unified Log filter may be used to report on a successful logi
 predicate: "process == "loginwindow" AND eventMessage CONTAINS[c] "APEventTouchIDMatch""
 tags:
   - visibility
+enabled: true
