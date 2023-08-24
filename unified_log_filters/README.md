@@ -19,11 +19,15 @@ More information on this feature can be found [here](https://docs.jamf.com/jamf-
 Within this repository are many predicate filters that can be used to stream telemetry on a variety of events across macOS.  Filters are available for macOS user, system and network activity, as well as from third-party applications including Jamf Connect and Jamf Pro.
 
 ## Implementing Unified Log Filters in Jamf Protect from this repository
-The process for implementing these filters in Jamf Protect is straight forward:
-1. Ensure you are able to meet one of the above two requirements for using this feature
-2. Copy the predicate from the Unified Log Filter object in this repository
-3. Create a new Filter object in Jamf Protect (Unified Logging > Add New Filter) and paste the predicate in the Filter field
-4. Add a name and tags as desired
+There are two methods for implementing these filters in to Jamf Protect after you ensured you meet the requirements for using this feature:
+
+1. Use the Open Source [Jamf Protect Unified Logging Filter Uploader](https://github.com/red5coder/jamf-protect-ulf-uploader) to import them into Jamf Protect
+
+Or alternatively 
+
+1. Copy the predicate from the Unified Log Filter object in this repository
+2. Create a new Filter object in Jamf Protect (Unified Logging > Add New Filter) and paste the predicate in the Filter field
+3. Add a name and tags as desired
 
 ## Enabling Private Data from the Unified Log
 By default the Unified Log will redact information deemed to be sensitive, generally that which will identify a computer or user.  In some cases, such as that in which the computer is a corporately owned and managed device, there may be a need to ascertain such information and as such, private data logging can be enabled through a configuration profile.  See [this Jamf blog](https://www.jamf.com/blog/unified-logs-how-to-enable-private-data/) for instructions on doing so.
