@@ -1,0 +1,17 @@
+# dns_service_discovery
+#
+# This Analytic predicate may be used to report when dns-sd is used for local network service discovery.
+# This detection functions by monitoring for process creation involving a binary carrying the signing information of 'com.apple.dns-sd' and a process argument matches ".*-B\\s\\_\\w.*?\\.\\_tcp".
+#
+# Analytic Predicate:
+
+$event.type == 1 AND
+$event.process.signingInfo.appid == "com.apple.dns-sd" AND
+$event.process.commandLine MATCHES ".*-B\\s\\_\\w.*?\\.\\_tcp"
+
+# Required Analytic Configuration:
+Sensor Event Type: Process Event
+Level: 0
+
+# Recommended Analytic Configuration:
+Severity: Informational

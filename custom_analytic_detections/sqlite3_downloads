@@ -1,0 +1,18 @@
+# sqlite3_downloads
+#
+# This Analytic predicate may be used to report when sqlite3 is used to view the URLs associated with downloaded files.
+# This detection functions by monitoring for process creation involving a binary carrying the signing information of 'com.apple.sqlite3' and process arguments containing "com.apple.LaunchServices.QuarantineEventsV" and "LSQuarantineEvent".
+#
+# Analytic Predicate:
+
+$event.type == 1 AND
+$event.process.signingInfo.appid == "com.apple.sqlite3" AND
+$event.process.commandLine CONTAINS[cd] "com.apple.LaunchServices.QuarantineEventsV" AND
+$event.process.commandLine CONTAINS[cd] "LSQuarantineEvent"
+
+# Required Analytic Configuration:
+Sensor Event Type: Process Event
+Level: 0
+
+# Recommended Analytic Configuration:
+Severity: Informational
