@@ -25,7 +25,7 @@ There are two methods for implementing these filters in to Jamf Protect after yo
 
 Or alternatively 
 
-1. Copy the predicate from the Unified Log Filter object in this repository
+1. Copy the predicate between the leading and trailing ```"``` from the Unified Log Filter object in this repository
 2. Create a new Filter object in Jamf Protect (Unified Logging > Add New Filter) and paste the predicate in the Filter field
 3. Add a name and tags as desired
 
