@@ -2,6 +2,8 @@
 
 set -e
 
+/usr/bin/chflags nouchg /etc/security/audit_*
+
 if [[ ! -e /etc/security/audit_control ]] && [[ -e /etc/security/audit_control.example ]];then
     /bin/cp /etc/security/audit_control.example /etc/security/audit_control
 fi
