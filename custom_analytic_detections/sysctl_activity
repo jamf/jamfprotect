@@ -1,0 +1,19 @@
+# sysctl_activity
+#
+# This analytic predicate may be used to report on any sysctl activity on the endpoint.
+# This detection functions by monitoring for process creation involving a binary carrying the signing information of 'com.apple.sysctl' that have an associated TTY.
+#
+# Analytic Predicate:
+
+$event.type == 1 AND
+$event.process.tty != nil AND
+$event.process.signingInfo.appid == "com.apple.sysctl"
+
+# Required Analytic Configuration:
+
+Sensor Event Type: Process Event
+Level: 0
+
+# Recommended Analytic Configuration:
+Severity: Informational
+Categories: Living Off the Land
