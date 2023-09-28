@@ -15,6 +15,11 @@ $event.file.isAppBundle == 1 AND
 $event.file.path BEGINSWITH "/Users/" AND
 $event.process.signingInfo.appid == "com.apple.coreservices.uiagent"
 
+# Context Items:
+Type: File
+Name: Web App URL
+Expression: (event.file.bundle.infoDictionary.Manifest.start_url)
+
 
 # Recommended Analytic Configuration:
 Severity: Informational
