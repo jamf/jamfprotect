@@ -1,0 +1,6 @@
+name: "MDM fails to create MDM Identity"
+description: "This Unified Log filter may be used to report on issues where the MDMClient is not able to create an MDM Identity, requiring an re-enrollment."
+predicate: "process CONTAINS "mdmclient" AND eventMessage CONTAINS "Unable to create MDM identity""
+tags:
+  - visibility
+enabled: true
