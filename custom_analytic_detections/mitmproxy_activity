@@ -1,0 +1,17 @@
+# mitxproxy_activity
+#
+# This Analytic predicate may be used to report when mitmproxy process is launched to potentially acts as a “middle man” between the server and the client.
+#
+# Analytic Predicate:
+
+$event.type == 1 AND
+$event.process.name == "mitmproxy"
+
+# Required Analytic Configuration:
+Sensor Event Type: Process Event
+Level: 0
+
+# Recommended Analytic Configuration:
+Severity: Informational
+Categories: Credential Access
+Tags: AdversaryInTheMiddle
