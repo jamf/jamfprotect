@@ -11,7 +11,8 @@ Level: 0
 
 $event.type  == 1 AND
 $event.process.signingInfo.appid == "com.apple.osascript" AND
-($event.process.commandLine CONTAINS "Keychain" OR $event.process.commandLine CONTAINS "password" OR $event.process.commandLine CONTAINS "credentials" OR $event.process.commandLine CONTAINS "display dialog")
+$event.process.commandLine CONTAINS "display dialog" AND
+($event.process.commandLine CONTAINS "Keychain" OR $event.process.commandLine CONTAINS "password" OR $event.process.commandLine CONTAINS "credentials")
 
 # Recommended Analytic Configuration:
 Severity: Informational
