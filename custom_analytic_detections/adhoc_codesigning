@@ -11,7 +11,7 @@ Level: 0
 
 $event.type  == 1 AND
 $event.process.signingInfo.appid == "com.apple.security.codesign" AND
-($event.process.commandLine CONTAINS "--force --deep -s -" OR $event.process.commandLine CONTAINS "--force -s -")
+($event.process.commandLine CONTAINS "--sign -" OR $event.process.commandLine CONTAINS "-s -")
 
 # Context Items:
 Type: File

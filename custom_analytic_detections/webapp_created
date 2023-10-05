@@ -13,7 +13,8 @@ $event.type == 7 AND
 $event.isNewDirectory == 1 AND
 $event.file.isAppBundle == 1 AND
 $event.file.path BEGINSWITH "/Users/" AND
-$event.process.signingInfo.appid == "com.apple.coreservices.uiagent"
+$event.process.signingInfo.appid == "com.apple.coreservices.uiagent" AND
+$event.file.path.stringByDeletingLastPathComponent ENDSWITH "/Applications"
 
 # Context Items:
 Type: File
