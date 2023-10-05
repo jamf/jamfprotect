@@ -1,0 +1,32 @@
+# adhoc_codesigning
+#
+# This Analytic predicate may be used to report when codesign is used to ad-hoc locally codesign app bundles or executables.
+#
+
+# Required Analytic Configuration:
+Sensor Event Type: Process Event
+Level: 0
+
+# Analytic Predicate:
+
+$event.type  == 1 AND
+$event.process.signingInfo.appid == "com.apple.security.codesign" AND
+($event.process.commandLine CONTAINS "--sign" OR $event.process.commandLine CONTAINS " -s") AND
+$event.process.commandLine CONTAINS " - "
+
+# Context Items:
+Type: File
+Name: Ad-hoc signed App Bundle
+Expression: (event.process.args)[LAST]
+
+Type: String
+Name: SHA1HEX
+Expression: (event.process.args)[LAST].file.sha1hex
+
+Type: String
+Name: SHA256HEX
+Expression: (event.process.args)[LAST].file.sha256hex
+
+# Recommended Analytic Configuration:
+Severity: Informational
+Categories: Visibility

@@ -1,0 +1,18 @@
+# sfltool_activity
+#
+# This Analytic predicate may be used to report when sfltool is being used to either dump the BackgroundTaskManagement to identify all current login and background items configured on the system or reset all third-party Login Items and revert to installation defaults
+#
+
+# Required Analytic Configuration:
+Sensor Event Type: Process Event
+Level: 0
+
+# Analytic Predicate:
+
+$event.type  == 1 AND
+$event.process.signingInfo.appid == "com.apple.sfltool" AND
+($event.process.commandLine CONTAINS "resetbtm" OR  $event.process.commandLine CONTAINS "dumpbtm")
+
+# Recommended Analytic Configuration:
+Severity: Informational
+Categories: Visibility
