@@ -1,0 +1,18 @@
+# electron_app_code_injection
+#
+# This analytical may be used to monitor attempts at code injection into Electron applications on macOS, particularly searching for the usage of the --inspect= argument that could lead into take over of macOS applications TCC permissions.
+#
+# Analytic Predicate:
+
+$event.type  == 1 AND 
+$event.process.commandLine CONTAINS "--inspect="
+
+
+# Required Analytic Configuration:
+
+Sensor Event Type: Process Event
+Level: 0
+
+# Recommended Analytic Configuration:
+Severity: Medium
+Categories: Process Injection
