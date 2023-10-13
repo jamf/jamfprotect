@@ -1,6 +1,6 @@
 # crash_report
 #
-# This Custom Analytic may be used to detect a crash report on the host system. Although not necessarily related to malicious activity, it can be useful for triaging issues on a end-users system.
+# This Custom Analytic may be used to detect a crash report on the host system. Although by nature not necessarily related to malicious activity but in case of an unusual amount of reports this could relate to persistent malware that keeps crashing, also it can be useful for triaging issues on a end-users system.
 # This detection functions by monitoring for the creation of the Crash Report files.
 
 # Analytic Predicate(s):
