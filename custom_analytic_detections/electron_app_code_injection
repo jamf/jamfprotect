@@ -5,7 +5,7 @@
 # Analytic Predicate:
 
 $event.type  == 1 AND 
-$event.process.commandLine CONTAINS "--inspect="
+($event.process.commandLine CONTAINS "--inspect=" OR $event.process.commandLine CONTAINS "--remote-de-bugging-port")
 
 
 # Required Analytic Configuration:
