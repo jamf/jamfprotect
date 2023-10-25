@@ -5,9 +5,9 @@
 # Organisation:         Grafisch Lyceum Rotterdam
 # E-mail:               brunschot@glr.nl
 # Date:                 15.04.2021
-# Version:              v0.4
+# Version:              v0.5
 # Edited by:            Allen Golbig, Jamf
-# Last edit:            3/4/23
+# Last edit:            25/10/23
 # Purpose:              Extension Attribute for checking the Jamf Protect agent's checkin with the Jamf Protect Cloud tenant and whether it cocurred within the permitted time skew
 #                       This value can be used in various limiting access workflows. Expected values are:
 #                       - "Protect binary not found"
@@ -40,12 +40,12 @@ if [[ ! -f "$jamf_protect" ]]; then
 fi
 
 # If the Jamf Protect binary is available the script will proceed here
-# Find the current date in format %m-%d-%Y and in seconds for later use
-current_date=$(/bin/date +"%m-%d-%Y")
+# Find the current date in format %Y-%m-%d-%H-%M-%S and in seconds for later use
+current_date=$(/bin/date +"%Y-%m-%d-%H-%M-%S")
 current_date_sec=$(/bin/date +"%s")
 
 # Take the current date and skew backwards with the permitted time the permitted time to find the permitted time range
-skewback_current_data_sec=$(/bin/date -j -v -"$permittedSkew" -f "%m-%d-%Y" "$current_date" +"%s")
+skewback_current_data_sec=$(/bin/date -j -v -"$permittedSkew" -f "%Y-%m-%d-%H-%M-%S" "$current_date" +"%s")
 
 # Gather the required information from the Jamf Protect binary
 jamf_protect_info=$("$jamf_protect" info)
@@ -53,11 +53,12 @@ jamf_protect_info=$("$jamf_protect" info)
 # Check the protection status of the Jamf Protect installation
 jamf_protect_status=$(echo "$jamf_protect_info" | /usr/bin/awk '/Status/ {print $4}')
 
-# Find the date and time of the last checkin and reformat as necessary as MM-DD-YY-HH-MM-SS
-jamf_protect_lastcheckin=$(echo "$jamf_protect_info" | /usr/bin/awk '/Last Check-in/ { print $5, $6 }' | /usr/bin/sed -e 's/ /-/g' -e 's/:/-/g' -e 's/\./-/g')
+# Find the date and time of the last checkin and reformat as necessary as YY-MM-DD-HH-MM-SS
+jamf_protect_lastcheckininfo=$(echo "$jamf_protect_info" | /usr/bin/awk '/Last Check-in/ {print $5}')
+jamf_protect_lastcheckin=$(/bin/date -j -f "%Y-%m-%dT%H:%M:%SZ" "$jamf_protect_lastcheckininfo" "+%Y-%m-%d-%H-%M-%S")
 
 # Convert the last checkin date and time into seconds
-lastcheckin_date=$(/bin/date -j -f "%m-%d-%Y-%H-%M-%S" "$jamf_protect_lastcheckin" +"%s")
+lastcheckin_date=$(/bin/date -j -f "%Y-%m-%d-%H-%M-%S" "$jamf_protect_lastcheckin" +"%s")
 
 # Calculate the maximum difference in seconds between the current date and time and the permitted time skew
 max_diff_sec=$(echo "$current_date_sec"-"$skewback_current_data_sec" | /usr/bin/bc | /usr/bin/tr -d "-")

@@ -5,9 +5,9 @@
 # Organisation:         Grafisch Lyceum Rotterdam
 # E-mail:               brunschot@glr.nl
 # Date:                 24.09.2021
-# Version:              v1.0.1
+# Version:              v1.0.2
 # Edited by:            Allen Golbig, Jamf
-# Last edit:            3/4/23
+# Last edit:            25/10/23
 # Purpose:              Extension Attribute for checking the Jamf Protect agent's latest Insights report submission and whether it cocurred within the permitted time skew
 #                       This value can be used in various limiting access workflows. Expected values are:
 #                       - "Protect binary not found"
@@ -40,18 +40,23 @@ if [[ ! -f "$jamf_protect" ]]; then
 fi
 
 # If the Jamf Protect binary is available the script will proceed here
-# Find the current date in format %m-%d-%Y and in seconds for later use
-current_date=$(/bin/date +"%m-%d-%Y")
+# Find the current date in format %Y-%m-%d-%H-%M-%S and in seconds for later use
+current_date=$(/bin/date +"%Y-%m-%d-%H-%M-%S")
 current_date_sec=$(/bin/date +"%s")
 
 # Take the current date and skew backwards with the permitted time the permitted time to find the permitted time range
-skewback_current_data_sec=$(/bin/date -j -v -"$permittedSkew" -f "%m-%d-%Y" "$current_date" +"%s")
+skewback_current_data_sec=$(/bin/date -j -v -"$permittedSkew" -f "%Y-%m-%d-%H-%M-%S" "$current_date" +"%s")
 
-# Find the date and time of the last Insights report and reformat as necessary as MM-DD-YY-HH-MM-SS
-jamf_protect_lastinsights=$("$jamf_protect" info | /usr/bin/awk '/Last Insights/ { print $5, $6 }' | /usr/bin/sed -e 's/ /-/g' -e 's/:/-/g' -e 's/\./-/g')
+# Gather the required information from the Jamf Protect binary
+jamf_protect_info=$("$jamf_protect" info)
+
+# Find the date and time of the last Insights report and reformat as necessary as YY-MM-DD-HH-MM-SS
+jamf_protect_lastinsightsinfo=$(echo "$jamf_protect_info" | /usr/bin/awk '/Last Insights/ { print $5 }')
+jamf_protect_lastinsights=$(/bin/date -j -f "%Y-%m-%dT%H:%M:%SZ" "$jamf_protect_lastinsightsinfo" "+%Y-%m-%d-%H-%M-%S")
+
 
 # Convert the last Insights report date and time into seconds
-lastinsights_date=$(/bin/date -j -f "%m-%d-%Y-%H-%M-%S" "$jamf_protect_lastinsights" +"%s")
+lastinsights_date=$(/bin/date -j -f "%Y-%m-%d-%H-%M-%S" "$jamf_protect_lastinsights" +"%s")
 
 # Calculate the maximum difference in seconds between the current date and time and the permitted time skew
 max_diff_sec=$(echo "$current_date_sec"-"$skewback_current_data_sec" | /usr/bin/bc | /usr/bin/tr -d "-")
@@ -76,4 +81,3 @@ fi
 
 # Name the EA something like "Latest Insights Report Date"
 echo "<result>${JPS}</result>"
-
