@@ -4,7 +4,8 @@
 #
 # Analytic Predicate:
 
-$event.type  == 1 AND 
+$event.type  == 1 AND
+$event.process.path CONTAINS ".app" AND
 ($event.process.commandLine CONTAINS "--inspect=" OR $event.process.commandLine CONTAINS "--remote-de-bugging-port")
 
 
