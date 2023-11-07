@@ -78,6 +78,9 @@ LIST_COMPUTERS_QUERY = """
           serial
           uuid
           insightsUpdated
+          insightsStatsFail
+          insightsStatsPass
+          insightsStatsUnknown
           scorecard {
             uuid
             label

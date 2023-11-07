@@ -77,7 +77,15 @@ LIST_COMPUTERS_QUERY = """
           uuid
           updated
           checkin
+          connectionStatus
+          lastConnection
+          lastConnectionIp
+          lastDisconnection
+          lastDisconnectionReason
           insightsUpdated
+          insightsStatsFail
+          insightsStatsPass
+          insightsStatsUnknown
           version
           signaturesVersion
           installType
@@ -97,6 +105,7 @@ LIST_COMPUTERS_QUERY = """
           } 
           arch
           certid
+          configHash
           created
           hostName
           kernelVersion
