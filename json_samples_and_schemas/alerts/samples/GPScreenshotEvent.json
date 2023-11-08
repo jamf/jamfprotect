@@ -1,0 +1,103 @@
+{
+  "host": {
+    "os": "Version 14.0 (Build 23A344)",
+    "ips": [
+      "192.168.11.226"
+    ],
+    "serial": "Z2C23RW4DY",
+    "hostname": "VMAC-2C23RW4DY",
+    "protectVersion": "5.1.0.4",
+    "provisioningUDID": "0000FE00-8406CE28ECFC4DAB"
+  },
+  "match": {
+    "tags": [],
+    "uuid": "e4397538-1042-4c66-b336-08da9e870d87",
+    "event": {
+      "path": "/Users/local-admin/Desktop/Screenshot 2023-10-23 at 14.58.58.png",
+      "uuid": "d4805afb-7158-4043-a93b-bacefb2adca0",
+      "timestamp": 1698065945.595533
+    },
+    "facts": [
+      {
+        "name": "Screenshot taken",
+        "tags": [],
+        "uuid": "28db9092-15af-4b65-9bfe-b0eba82e4fdf",
+        "human": "",
+        "actions": [
+          {
+            "name": "Report"
+          }
+        ],
+        "context": [],
+        "version": 0,
+        "severity": 0
+      }
+    ],
+    "custom": true,
+    "actions": [
+      {
+        "name": "Report"
+      }
+    ],
+    "context": [],
+    "severity": 0
+  },
+  "related": {
+    "files": [
+      {
+        "gid": 20,
+        "uid": 501,
+        "fsid": 16777231,
+        "mode": 33188,
+        "path": "/Users/local-admin/Desktop/Screenshot 2023-10-23 at 14.58.58.png",
+        "size": 0,
+        "inode": 4598335,
+        "xattrs": [
+          "com.apple.FinderInfo",
+          "com.apple.macl",
+          "com.apple.metadata:kMDItemIsScreenCapture",
+          "com.apple.metadata:kMDItemScreenCaptureGlobalRect",
+          "com.apple.metadata:kMDItemScreenCaptureType"
+        ],
+        "changed": 1698065944,
+        "created": 1698065944,
+        "sha1hex": "b7926e3c44ec93c93a3e71c5b1185865212d498f",
+        "accessed": 1698065944,
+        "modified": 1698065944,
+        "sha256hex": "f49fb0ab0fc6b26ae1c81744e4489e612e9ba6299b4de989e44c585d6de7765a",
+        "isDownload": false,
+        "objectType": "GPSystemObject",
+        "isAppBundle": false,
+        "isDirectory": false,
+        "signingInfo": {
+          "appid": "",
+          "status": -67062,
+          "teamid": "",
+          "signerType": 4,
+          "authorities": [],
+          "entitlements": [],
+          "statusMessage": "code object is not signed at all",
+          "informationStage": "extended"
+        },
+        "isScreenShot": true
+      }
+    ],
+    "users": [
+      {
+        "uid": 501,
+        "name": "local-admin",
+        "uuid": "Z2C23RW4DY1f5"
+      }
+    ],
+    "groups": [
+      {
+        "gid": 20,
+        "name": "staff",
+        "uuid": "Z2C23RW4DY14"
+      }
+    ],
+    "binaries": [],
+    "processes": []
+  },
+  "eventType": "GPScreenshotEvent"
+}

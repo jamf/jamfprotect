@@ -1,0 +1,65 @@
+{
+  "host": {
+    "os": "Version 14.0 (Build 23A344)",
+    "ips": [
+      "192.168.11.151"
+    ],
+    "serial": "C02ZW0GTLVDL",
+    "hostname": "LMAC-ZW0GTLVDL",
+    "protectVersion": "5.0.0.1",
+    "provisioningUDID": "32EC79C5-26DC-535A-85F7-986F063297E2"
+  },
+  "match": {
+    "tags": [],
+    "uuid": "902297f9-6c92-49b6-b2f8-9e14d6d1dc5e",
+    "event": {
+      "type": 0,
+      "uuid": "11a2c5da-83fc-40ac-9eef-71d6844f6664",
+      "device": {
+        "vendorId": "0x05ac",
+        "productId": "0x027b",
+        "vendorName": "Apple Inc.",
+        "deviceClass": 0,
+        "productName": "Apple Internal Keyboard / Trackpad",
+        "serialNumber": "FM79484057PJ3VXB7+TET",
+        "deviceSubClass": 0
+      },
+      "timestamp": 1667867624.955636,
+      "usbAddress": 6
+    },
+    "facts": [
+      {
+        "name": "usb_insertion_non_writable",
+        "tags": [],
+        "uuid": "e00a88c8-20ad-4ce6-83f0-24b655ba8b51",
+        "human": "",
+        "actions": [
+          {
+            "name": "Report",
+            "parameters": {}
+          }
+        ],
+        "context": [],
+        "version": 0,
+        "severity": 0
+      }
+    ],
+    "custom": true,
+    "actions": [
+      {
+        "name": "Report",
+        "parameters": {}
+      }
+    ],
+    "context": [],
+    "severity": 0
+  },
+  "related": {
+    "files": [],
+    "users": [],
+    "groups": [],
+    "binaries": [],
+    "processes": []
+  },
+  "eventType": "GPUSBEvent"
+}

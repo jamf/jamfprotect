@@ -1,0 +1,186 @@
+{
+  "host": {
+    "os": "Version 14.0 (Build 23A344)",
+    "ips": [
+      "192.168.11.151"
+    ],
+    "serial": "C02ZW0GTLVDL",
+    "hostname": "LMAC-ZW0GTLVDL",
+    "protectVersion": "5.0.0.1",
+    "provisioningUDID": "32EC79C5-26DC-535A-85F7-986F063297E2"
+  },
+  "match": {
+    "tags": [],
+    "uuid": "9a5f6efb-bf7d-4606-b36b-d57dda7eccbb",
+    "event": {
+      "uuid": "240b6f6c-4fcf-4ca4-a0bd-92feb6b1efe9",
+      "blocked": true,
+      "process": {
+        "gid": 20,
+        "pid": 40990,
+        "uid": 501,
+        "args": [
+          "/Applications/IBM Notifier.app/Contents/MacOS/IBM Notifier"
+        ],
+        "name": "IBM Notifier",
+        "path": "/Applications/IBM Notifier.app/Contents/MacOS/IBM Notifier",
+        "pgid": 40990,
+        "ppid": 1,
+        "rgid": 20,
+        "ruid": 501,
+        "uuid": "d073d34c-4282-46bd-b45b-7bb62e7d0f3d",
+        "signingInfo": {
+          "appid": "com.ibm.cio.notifier",
+          "cdhash": "XZClQWlwUsWw1uZnLhCOvyp7R0s=",
+          "status": 0,
+          "teamid": "PETKK2G752",
+          "signerType": 2,
+          "authorities": [
+            "Developer ID Application: International  Business Machines Corp (PETKK2G752)",
+            "Developer ID Certification Authority",
+            "Apple Root CA"
+          ],
+          "entitlements": [],
+          "statusMessage": "No error."
+        },
+        "startTimestamp": 1668431165,
+        "originalParentPID": 1
+      },
+      "matchType": "signingID",
+      "timestamp": 1668431168.6704922,
+      "matchValue": "com.ibm.cio.notifier"
+    },
+    "facts": [
+      {
+        "name": "PreventedExecution",
+        "tags": [
+          "PreventedExecution"
+        ],
+        "uuid": "76d06949-2f35-47b6-96be-05abe638790d",
+        "human": "A process has been denied execution.",
+        "actions": [
+          {
+            "name": "Report",
+            "parameters": {}
+          },
+          {
+            "name": "Prevented",
+            "parameters": {}
+          },
+          {
+            "name": "DisplayMessage",
+            "parameters": {
+              "title": "IBM Notifier Has Been Blocked.",
+              "message": "This software is restricted by your organization. It has been blocked, moved to quarantine, and reported to your IT Administrator or Security Team."
+            }
+          }
+        ],
+        "context": [],
+        "version": 0,
+        "severity": 1
+      }
+    ],
+    "custom": false,
+    "actions": [
+      {
+        "name": "Report",
+        "parameters": {}
+      },
+      {
+        "name": "Prevented",
+        "parameters": {}
+      },
+      {
+        "name": "DisplayMessage",
+        "parameters": {
+          "title": "IBM Notifier Has Been Blocked.",
+          "message": "This software is restricted by your organization. It has been blocked, moved to quarantine, and reported to your IT Administrator or Security Team."
+        }
+      }
+    ],
+    "context": [],
+    "severity": 1
+  },
+  "related": {
+    "files": [],
+    "users": [
+      {
+        "uid": 501,
+        "name": "thijs",
+        "uuid": "C02ZW0GTLVDL1f5"
+      }
+    ],
+    "groups": [
+      {
+        "gid": 20,
+        "name": "staff",
+        "uuid": "C02ZW0GTLVDL14"
+      }
+    ],
+    "binaries": [
+      {
+        "gid": 20,
+        "uid": 501,
+        "fsid": 16777222,
+        "mode": 33261,
+        "path": "/Applications/IBM Notifier.app/Contents/MacOS/IBM Notifier",
+        "size": 2617808,
+        "inode": 2797471,
+        "changed": 1668431168,
+        "created": 1664772282,
+        "sha1hex": "",
+        "accessed": 1668431165,
+        "modified": 1664772282,
+        "sha256hex": "",
+        "isDownload": false,
+        "isAppBundle": false,
+        "isDirectory": false,
+        "signingInfo": {
+          "appid": "com.ibm.cio.notifier",
+          "cdhash": "XZClQWlwUsWw1uZnLhCOvyp7R0s=",
+          "status": -67068,
+          "teamid": "PETKK2G752",
+          "signerType": 4,
+          "authorities": [],
+          "entitlements": [],
+          "statusMessage": "cannot find code object on disk"
+        },
+        "isScreenShot": false
+      }
+    ],
+    "processes": [
+      {
+        "gid": 20,
+        "pid": 40990,
+        "uid": 501,
+        "args": [
+          "/Applications/IBM Notifier.app/Contents/MacOS/IBM Notifier"
+        ],
+        "name": "IBM Notifier",
+        "path": "/Applications/IBM Notifier.app/Contents/MacOS/IBM Notifier",
+        "pgid": 40990,
+        "ppid": 1,
+        "rgid": 20,
+        "ruid": 501,
+        "uuid": "d073d34c-4282-46bd-b45b-7bb62e7d0f3d",
+        "signingInfo": {
+          "appid": "com.ibm.cio.notifier",
+          "cdhash": "XZClQWlwUsWw1uZnLhCOvyp7R0s=",
+          "status": 0,
+          "teamid": "PETKK2G752",
+          "signerType": 2,
+          "authorities": [
+            "Developer ID Application: International  Business Machines Corp (PETKK2G752)",
+            "Developer ID Certification Authority",
+            "Apple Root CA"
+          ],
+          "entitlements": [],
+          "statusMessage": "No error."
+        },
+        "startTimestamp": 1668431165,
+        "originalParentPID": 1
+      }
+    ]
+  },
+  "eventType": "GPPreventedExecutionEvent"
+}

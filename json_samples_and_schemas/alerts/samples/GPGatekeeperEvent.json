@@ -1,0 +1,369 @@
+{
+  "host": {
+    "os": "Version 14.0 (Build 23A344)",
+    "ips": [
+      "192.168.11.151"
+    ],
+    "serial": "C02ZW0GTLVDL",
+    "hostname": "LMAC-ZW0GTLVDL",
+    "protectVersion": "5.0.0.1",
+    "provisioningUDID": "32EC79C5-26DC-535A-85F7-986F063297E2"
+  },
+  "match": {
+    "tags": [
+      "Gatekeeper"
+    ],
+    "uuid": "7b096683-58f6-4627-b0ce-5d46757a3b57",
+    "event": {
+      "pid": 39357,
+      "name": "CrashReporter",
+      "path": "/Library/JMTTrader/CrashReporter",
+      "uuid": "6ebedbba-ef1b-4e2b-ac6e-2a3032e95c12",
+      "sender": "AppleSystemPolicy",
+      "process": "kernel",
+      "category": "",
+      "subsystem": "",
+      "timestamp": 1668430737.23877,
+      "composedMessage": "ASP: Security policy would not allow process: 39357, /Library/JMTTrader/CrashReporter",
+      "senderImagePath": "/System/Library/Extensions/AppleSystemPolicy.kext/Contents/MacOS/AppleSystemPolicy",
+      "processImagePath": "/kernel",
+      "processIdentifier": 0
+    },
+    "facts": [
+      {
+        "name": "GatekeeperBlockedSigned",
+        "tags": [
+          "Gatekeeper"
+        ],
+        "uuid": "9806766e-fe88-11e9-bf22-acde48001122",
+        "human": "Gatekeeper blocked execution of application",
+        "actions": [
+          {
+            "name": "Report",
+            "parameters": {}
+          }
+        ],
+        "context": [],
+        "version": 1,
+        "severity": 0
+      }
+    ],
+    "custom": false,
+    "actions": [
+      {
+        "name": "Report",
+        "parameters": {}
+      }
+    ],
+    "context": [],
+    "severity": 0
+  },
+  "related": {
+    "files": [],
+    "users": [
+      {
+        "uid": 0,
+        "name": "root",
+        "uuid": "C02ZW0GTLVDL0"
+      },
+      {
+        "uid": 501,
+        "name": "thijs",
+        "uuid": "C02ZW0GTLVDL1f5"
+      }
+    ],
+    "groups": [
+      {
+        "gid": 80,
+        "name": "admin",
+        "uuid": "C02ZW0GTLVDL50"
+      },
+      {
+        "gid": 0,
+        "name": "wheel",
+        "uuid": "C02ZW0GTLVDL0"
+      },
+      {
+        "gid": 20,
+        "name": "staff",
+        "uuid": "C02ZW0GTLVDL14"
+      }
+    ],
+    "binaries": [
+      {
+        "gid": 80,
+        "uid": 0,
+        "fsid": 16777222,
+        "mode": 33261,
+        "path": "/Library/JMTTrader/CrashReporter",
+        "size": 39168,
+        "inode": 2798468,
+        "xattrs": [],
+        "changed": 1668430737,
+        "created": 1564385383,
+        "sha1hex": "8644da026f9e8873dd8699bd68c77a25001be726",
+        "accessed": 1564385383,
+        "modified": 1564385383,
+        "sha256hex": "e352d6ea4da596abfdf51f617584611fc9321d5a6d1c22aff243aecdef8e7e55",
+        "isDownload": false,
+        "isAppBundle": false,
+        "isDirectory": false,
+        "signingInfo": {
+          "appid": "objc_remote_terminal-55554944d6c1e6211f423c65a8429e9a338a7989",
+          "cdhash": "W9uN/kJ8qSocOzBX6O0aZFr4gcg=",
+          "status": 0,
+          "teamid": "",
+          "signerType": 3,
+          "authorities": [],
+          "entitlements": [],
+          "statusMessage": "No error."
+        },
+        "isScreenShot": false
+      },
+      {
+        "gid": 0,
+        "uid": 0,
+        "fsid": 16777222,
+        "mode": 33261,
+        "path": "/System/Library/CoreServices/Installer.app/Contents/MacOS/Installer",
+        "size": 599728,
+        "inode": 1152921500312078300,
+        "xattrs": [],
+        "changed": 1666096581,
+        "created": 1666096581,
+        "sha1hex": "ef5741debd753ab67c61db4f2818576650d2a4c0",
+        "accessed": 1666096581,
+        "modified": 1666096581,
+        "sha256hex": "ebf50ddceab848acf171128b38f5fab67994f207844f62fc97b2fe3543fa2a2c",
+        "isDownload": false,
+        "isAppBundle": false,
+        "isDirectory": false,
+        "signingInfo": {
+          "appid": "com.apple.installer",
+          "cdhash": "wCEDJdB+D7aIBR01HloVlCnpu1E=",
+          "status": 0,
+          "teamid": "",
+          "signerType": 0,
+          "authorities": [
+            "Software Signing",
+            "Apple Code Signing Certification Authority",
+            "Apple Root CA"
+          ],
+          "entitlements": [],
+          "statusMessage": "No error."
+        },
+        "isScreenShot": false
+      },
+      {
+        "gid": 0,
+        "uid": 0,
+        "fsid": 16777222,
+        "mode": 33133,
+        "path": "/bin/bash",
+        "size": 1326688,
+        "inode": 1152921500312422300,
+        "xattrs": [],
+        "changed": 1666096581,
+        "created": 1666096581,
+        "sha1hex": "dc8c2a75dff81b524e1364e619e40c485d0f1e11",
+        "accessed": 1666096581,
+        "modified": 1666096581,
+        "sha256hex": "cda73500725acaeb1ed732a3a70877d9404054d7865e9c1b0e4c0300c9c7d2d9",
+        "isDownload": false,
+        "isAppBundle": false,
+        "isDirectory": false,
+        "signingInfo": {
+          "appid": "com.apple.bash",
+          "cdhash": "o6x2o5SaTq/xg++LPo+NPRwVwAU=",
+          "status": 0,
+          "teamid": "",
+          "signerType": 0,
+          "authorities": [
+            "Software Signing",
+            "Apple Code Signing Certification Authority",
+            "Apple Root CA"
+          ],
+          "entitlements": [],
+          "statusMessage": "No error."
+        },
+        "isScreenShot": false
+      },
+      {
+        "gid": 0,
+        "uid": 0,
+        "fsid": 16777222,
+        "mode": 33261,
+        "path": "/System/Library/PrivateFrameworks/PackageKit.framework/Versions/A/XPCServices/package_script_service.xpc/Contents/MacOS/package_script_service",
+        "size": 171040,
+        "inode": 1152921500312276000,
+        "xattrs": [],
+        "changed": 1666096581,
+        "created": 1666096581,
+        "sha1hex": "690023bf01074fcbe9bb7087114107b0841d71dc",
+        "accessed": 1666096581,
+        "modified": 1666096581,
+        "sha256hex": "eed061ac298e7c31b81a772b5855c025339543ed2d0d24f01bd7f41dd102ebf0",
+        "isDownload": false,
+        "isAppBundle": false,
+        "isDirectory": false,
+        "signingInfo": {
+          "appid": "com.apple.package-script-service",
+          "cdhash": "RU3VMctnoEpjvOfaP4Ohx+GSUzE=",
+          "status": 0,
+          "teamid": "",
+          "signerType": 0,
+          "authorities": [
+            "Software Signing",
+            "Apple Code Signing Certification Authority",
+            "Apple Root CA"
+          ],
+          "entitlements": [
+            "com.apple.private.responsibility.set-hosted-properties",
+            "com.apple.private.responsibility.set-to-other",
+            "com.apple.private.responsibility.set-to-self",
+            "com.apple.private.security.storage.InstallerSandboxes"
+          ],
+          "statusMessage": "No error."
+        },
+        "isScreenShot": false
+      }
+    ],
+    "processes": [
+      {
+        "gid": 0,
+        "pid": 39357,
+        "uid": 0,
+        "args": [
+          "/Library/JMTTrader/CrashReporter",
+          "Maintain"
+        ],
+        "name": "CrashReporter",
+        "path": "/Library/JMTTrader/CrashReporter",
+        "pgid": 39350,
+        "ppid": 1,
+        "rgid": 0,
+        "ruid": 0,
+        "uuid": "2aded81e-1991-4d47-9456-5117c8f1a2a4",
+        "signingInfo": {
+          "appid": "objc_remote_terminal-55554944d6c1e6211f423c65a8429e9a338a7989",
+          "cdhash": "W9uN/kJ8qSocOzBX6O0aZFr4gcg=",
+          "status": 0,
+          "teamid": "",
+          "signerType": 3,
+          "authorities": [],
+          "entitlements": [],
+          "statusMessage": "No error."
+        },
+        "responsiblePID": 39341,
+        "startTimestamp": 1668430737,
+        "originalParentPID": 39350
+      },
+      {
+        "gid": 20,
+        "pid": 39341,
+        "uid": 501,
+        "args": [
+          "/System/Library/CoreServices/Installer.app/Contents/MacOS/Installer"
+        ],
+        "name": "Installer",
+        "path": "/System/Library/CoreServices/Installer.app/Contents/MacOS/Installer",
+        "pgid": 39341,
+        "ppid": 1,
+        "rgid": 20,
+        "ruid": 501,
+        "uuid": "ff088710-3dc1-45f2-8488-481aa767463e",
+        "appPath": "/System/Library/CoreServices/Installer.app",
+        "signingInfo": {
+          "appid": "com.apple.installer",
+          "cdhash": "wCEDJdB+D7aIBR01HloVlCnpu1E=",
+          "status": 0,
+          "teamid": "",
+          "signerType": 0,
+          "authorities": [
+            "Software Signing",
+            "Apple Code Signing Certification Authority",
+            "Apple Root CA"
+          ],
+          "entitlements": [],
+          "statusMessage": "No error."
+        },
+        "startTimestamp": 1668430712,
+        "originalParentPID": 1
+      },
+      {
+        "gid": 0,
+        "pid": 39350,
+        "uid": 0,
+        "args": [
+          "/bin/sh",
+          "/tmp/PKInstallSandbox.71Cg7g/Scripts/org.jmttrading.jmttrader.fEoHDs/postinstall",
+          "/Volumes/JMTTrader/JMTTrader.pkg",
+          "/",
+          "/",
+          "/"
+        ],
+        "name": "bash",
+        "path": "/bin/bash",
+        "pgid": 39350,
+        "ppid": 1806,
+        "rgid": 0,
+        "ruid": 0,
+        "uuid": "93678ca3-f4dc-4558-807f-b2bcb550fd48",
+        "signingInfo": {
+          "appid": "com.apple.bash",
+          "cdhash": "o6x2o5SaTq/xg++LPo+NPRwVwAU=",
+          "status": 0,
+          "teamid": "",
+          "signerType": 0,
+          "authorities": [
+            "Software Signing",
+            "Apple Code Signing Certification Authority",
+            "Apple Root CA"
+          ],
+          "entitlements": [],
+          "statusMessage": "No error."
+        },
+        "responsiblePID": 39341,
+        "startTimestamp": 1668430736,
+        "originalParentPID": 1806
+      },
+      {
+        "gid": 0,
+        "pid": 1806,
+        "uid": 0,
+        "args": [
+          "/System/Library/PrivateFrameworks/PackageKit.framework/Versions/A/XPCServices/package_script_service.xpc/Contents/MacOS/package_script_service"
+        ],
+        "name": "package_script_service",
+        "path": "/System/Library/PrivateFrameworks/PackageKit.framework/Versions/A/XPCServices/package_script_service.xpc/Contents/MacOS/package_script_service",
+        "pgid": 1806,
+        "ppid": 1,
+        "rgid": 0,
+        "ruid": 0,
+        "uuid": "206e5a5e-9c76-4f88-bdb6-7e4ebf1e0c05",
+        "appPath": "/System/Library/PrivateFrameworks/PackageKit.framework/Versions/A/XPCServices/package_script_service.xpc",
+        "signingInfo": {
+          "appid": "com.apple.package-script-service",
+          "cdhash": "RU3VMctnoEpjvOfaP4Ohx+GSUzE=",
+          "status": 0,
+          "teamid": "",
+          "signerType": 0,
+          "authorities": [
+            "Software Signing",
+            "Apple Code Signing Certification Authority",
+            "Apple Root CA"
+          ],
+          "entitlements": [
+            "com.apple.private.responsibility.set-hosted-properties",
+            "com.apple.private.responsibility.set-to-other",
+            "com.apple.private.responsibility.set-to-self",
+            "com.apple.private.security.storage.InstallerSandboxes"
+          ],
+          "statusMessage": "No error."
+        },
+        "startTimestamp": 1667810295
+      }
+    ]
+  },
+  "eventType": "GPGatekeeperEvent"
+}

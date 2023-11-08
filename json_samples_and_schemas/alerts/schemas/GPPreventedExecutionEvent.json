@@ -1,0 +1,703 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "host": {
+      "type": "object",
+      "properties": {
+        "os": {
+          "type": "string"
+        },
+        "ips": {
+          "type": "array",
+          "items": [
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "serial": {
+          "type": "string"
+        },
+        "hostname": {
+          "type": "string"
+        },
+        "protectVersion": {
+          "type": "string"
+        },
+        "provisioningUDID": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "ips",
+        "serial",
+        "hostname",
+        "provisioningUDID"
+      ]
+    },
+    "match": {
+      "type": "object",
+      "properties": {
+        "tags": {
+          "type": "array",
+          "items": {}
+        },
+        "uuid": {
+          "type": "string"
+        },
+        "event": {
+          "type": "object",
+          "properties": {
+            "uuid": {
+              "type": "string"
+            },
+            "blocked": {
+              "type": "boolean"
+            },
+            "process": {
+              "type": "object",
+              "properties": {
+                "gid": {
+                  "type": "integer"
+                },
+                "pid": {
+                  "type": "integer"
+                },
+                "uid": {
+                  "type": "integer"
+                },
+                "args": {
+                  "type": "array",
+                  "items": [
+                    {
+                      "type": "string"
+                    }
+                  ]
+                },
+                "name": {
+                  "type": "string"
+                },
+                "path": {
+                  "type": "string"
+                },
+                "pgid": {
+                  "type": "integer"
+                },
+                "ppid": {
+                  "type": "integer"
+                },
+                "rgid": {
+                  "type": "integer"
+                },
+                "ruid": {
+                  "type": "integer"
+                },
+                "uuid": {
+                  "type": "string"
+                },
+                "signingInfo": {
+                  "type": "object",
+                  "properties": {
+                    "appid": {
+                      "type": "string"
+                    },
+                    "cdhash": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "integer"
+                    },
+                    "teamid": {
+                      "type": "string"
+                    },
+                    "signerType": {
+                      "type": "integer"
+                    },
+                    "authorities": {
+                      "type": "array",
+                      "items": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "entitlements": {
+                      "type": "array",
+                      "items": {}
+                    },
+                    "statusMessage": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "appid",
+                    "cdhash",
+                    "status",
+                    "teamid",
+                    "signerType",
+                    "authorities",
+                    "entitlements",
+                    "statusMessage"
+                  ]
+                },
+                "startTimestamp": {
+                  "type": "integer"
+                },
+                "originalParentPID": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "gid",
+                "pid",
+                "uid",
+                "args",
+                "name",
+                "path",
+                "pgid",
+                "ppid",
+                "rgid",
+                "ruid",
+                "uuid",
+                "signingInfo",
+                "startTimestamp",
+                "originalParentPID"
+              ]
+            },
+            "matchType": {
+              "type": "string"
+            },
+            "timestamp": {
+              "type": "number"
+            },
+            "matchValue": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "uuid",
+            "blocked",
+            "process",
+            "matchType",
+            "timestamp",
+            "matchValue"
+          ]
+        },
+        "facts": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "tags": {
+                  "type": "array",
+                  "items": [
+                    {
+                      "type": "string"
+                    }
+                  ]
+                },
+                "uuid": {
+                  "type": "string"
+                },
+                "human": {
+                  "type": "string"
+                },
+                "actions": {
+                  "type": "array",
+                  "items": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "parameters": {
+                          "type": "object"
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "parameters"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "parameters": {
+                          "type": "object"
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "parameters"
+                      ]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "parameters": {
+                          "type": "object",
+                          "properties": {
+                            "title": {
+                              "type": "string"
+                            },
+                            "message": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "title",
+                            "message"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "name",
+                        "parameters"
+                      ]
+                    }
+                  ]
+                },
+                "context": {
+                  "type": "array",
+                  "items": {}
+                },
+                "version": {
+                  "type": "integer"
+                },
+                "severity": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "name",
+                "tags",
+                "uuid",
+                "human",
+                "actions",
+                "context",
+                "version",
+                "severity"
+              ]
+            }
+          ]
+        },
+        "custom": {
+          "type": "boolean"
+        },
+        "actions": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "parameters": {
+                  "type": "object"
+                }
+              },
+              "required": [
+                "name",
+                "parameters"
+              ]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "parameters": {
+                  "type": "object"
+                }
+              },
+              "required": [
+                "name",
+                "parameters"
+              ]
+            },
+            {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "parameters": {
+                  "type": "object",
+                  "properties": {
+                    "title": {
+                      "type": "string"
+                    },
+                    "message": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "title",
+                    "message"
+                  ]
+                }
+              },
+              "required": [
+                "name",
+                "parameters"
+              ]
+            }
+          ]
+        },
+        "context": {
+          "type": "array",
+          "items": {}
+        },
+        "severity": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "tags",
+        "uuid",
+        "event",
+        "facts",
+        "custom",
+        "actions",
+        "context",
+        "severity"
+      ]
+    },
+    "related": {
+      "type": "object",
+      "properties": {
+        "files": {
+          "type": "array",
+          "items": {}
+        },
+        "users": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "uid": {
+                  "type": "integer"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "uuid": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "uid",
+                "name",
+                "uuid"
+              ]
+            }
+          ]
+        },
+        "groups": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "gid": {
+                  "type": "integer"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "uuid": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "gid",
+                "name",
+                "uuid"
+              ]
+            }
+          ]
+        },
+        "binaries": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "gid": {
+                  "type": "integer"
+                },
+                "uid": {
+                  "type": "integer"
+                },
+                "fsid": {
+                  "type": "integer"
+                },
+                "mode": {
+                  "type": "integer"
+                },
+                "path": {
+                  "type": "string"
+                },
+                "size": {
+                  "type": "integer"
+                },
+                "inode": {
+                  "type": "integer"
+                },
+                "changed": {
+                  "type": "integer"
+                },
+                "created": {
+                  "type": "integer"
+                },
+                "sha1hex": {
+                  "type": "string"
+                },
+                "accessed": {
+                  "type": "integer"
+                },
+                "modified": {
+                  "type": "integer"
+                },
+                "sha256hex": {
+                  "type": "string"
+                },
+                "isDownload": {
+                  "type": "boolean"
+                },
+                "isAppBundle": {
+                  "type": "boolean"
+                },
+                "isDirectory": {
+                  "type": "boolean"
+                },
+                "signingInfo": {
+                  "type": "object",
+                  "properties": {
+                    "appid": {
+                      "type": "string"
+                    },
+                    "cdhash": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "integer"
+                    },
+                    "teamid": {
+                      "type": "string"
+                    },
+                    "signerType": {
+                      "type": "integer"
+                    },
+                    "authorities": {
+                      "type": "array",
+                      "items": {}
+                    },
+                    "entitlements": {
+                      "type": "array",
+                      "items": {}
+                    },
+                    "statusMessage": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "appid",
+                    "cdhash",
+                    "status",
+                    "teamid",
+                    "signerType",
+                    "authorities",
+                    "entitlements",
+                    "statusMessage"
+                  ]
+                },
+                "isScreenShot": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "gid",
+                "uid",
+                "fsid",
+                "mode",
+                "path",
+                "size",
+                "inode",
+                "changed",
+                "created",
+                "sha1hex",
+                "accessed",
+                "modified",
+                "sha256hex",
+                "isDownload",
+                "isAppBundle",
+                "isDirectory",
+                "signingInfo",
+                "isScreenShot"
+              ]
+            }
+          ]
+        },
+        "processes": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "gid": {
+                  "type": "integer"
+                },
+                "pid": {
+                  "type": "integer"
+                },
+                "uid": {
+                  "type": "integer"
+                },
+                "args": {
+                  "type": "array",
+                  "items": [
+                    {
+                      "type": "string"
+                    }
+                  ]
+                },
+                "name": {
+                  "type": "string"
+                },
+                "path": {
+                  "type": "string"
+                },
+                "pgid": {
+                  "type": "integer"
+                },
+                "ppid": {
+                  "type": "integer"
+                },
+                "rgid": {
+                  "type": "integer"
+                },
+                "ruid": {
+                  "type": "integer"
+                },
+                "uuid": {
+                  "type": "string"
+                },
+                "signingInfo": {
+                  "type": "object",
+                  "properties": {
+                    "appid": {
+                      "type": "string"
+                    },
+                    "cdhash": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "integer"
+                    },
+                    "teamid": {
+                      "type": "string"
+                    },
+                    "signerType": {
+                      "type": "integer"
+                    },
+                    "authorities": {
+                      "type": "array",
+                      "items": [
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "string"
+                        },
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "entitlements": {
+                      "type": "array",
+                      "items": {}
+                    },
+                    "statusMessage": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "appid",
+                    "cdhash",
+                    "status",
+                    "teamid",
+                    "signerType",
+                    "authorities",
+                    "entitlements",
+                    "statusMessage"
+                  ]
+                },
+                "startTimestamp": {
+                  "type": "integer"
+                },
+                "originalParentPID": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "gid",
+                "pid",
+                "uid",
+                "args",
+                "name",
+                "path",
+                "pgid",
+                "ppid",
+                "rgid",
+                "ruid",
+                "uuid",
+                "signingInfo",
+                "startTimestamp",
+                "originalParentPID"
+              ]
+            }
+          ]
+        }
+      },
+      "required": [
+        "files",
+        "users",
+        "groups",
+        "binaries",
+        "processes"
+      ]
+    },
+    "eventType": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "host",
+    "match",
+    "related",
+    "eventType"
+  ]
+}

@@ -1,0 +1,433 @@
+{
+  "host": {
+    "os": "Version 14.0 (Build 23A344)",
+    "ips": [
+      "192.168.11.151"
+    ],
+    "serial": "C02ZW0GTLVDL",
+    "hostname": "LMAC-ZW0GTLVDL",
+    "protectVersion": "5.0.0.1",
+    "provisioningUDID": "32EC79C5-26DC-535A-85F7-986F063297E2"
+  },
+  "match": {
+    "tags": [
+      "BootOrLogonAutostartExecution",
+      "T1547",
+      "CreateOrModifySystemProcess",
+      "T1543.004",
+      "Persistence",
+      "MITREattack",
+      "LaunchDaemon"
+    ],
+    "uuid": "56ed6d98-26bb-46b8-8734-5ea7b33a82ce",
+    "event": {
+      "dev": 16777222,
+      "gid": 0,
+      "pid": 11762,
+      "uid": 0,
+      "path": "/Library/LaunchDaemons/com.jamfsoftware.task.enroll.plist",
+      "type": 0,
+      "uuid": "f9b5eace-e59a-44ce-92c8-e4dc7e27217f",
+      "iNode": 2709544,
+      "eventID": 245,
+      "prevFile": null,
+      "timestamp": 1668133895.307633
+    },
+    "facts": [
+      {
+        "name": "LaunchDaemon",
+        "tags": [
+          "MITREattack",
+          "BootOrLogonAutostartExecution",
+          "T1543.004",
+          "Persistence",
+          "CreateOrModifySystemProcess",
+          "LaunchDaemon",
+          "T1547"
+        ],
+        "uuid": "82412849-f4f5-47f5-9db9-f49ab56e15fb",
+        "human": "LaunchDaemon created for persistence",
+        "actions": [
+          {
+            "name": "Report",
+            "parameters": {}
+          },
+          {
+            "name": "CacheFile",
+            "parameters": {}
+          }
+        ],
+        "context": [
+          {
+            "name": "Name",
+            "value": "com.jamfsoftware.task.enroll.plist",
+            "valueType": "String"
+          },
+          {
+            "name": "ItemName",
+            "value": "enroll",
+            "valueType": "String"
+          },
+          {
+            "name": "ItemBinary",
+            "value": "/usr/local/jamf/bin/enroll",
+            "valueType": "Binary"
+          },
+          {
+            "name": "Label",
+            "value": "com.jamfsoftware.task.enroll",
+            "valueType": "String"
+          },
+          {
+            "name": "Args",
+            "value": "/usr/local/jamf/bin/enroll",
+            "valueType": "String"
+          }
+        ],
+        "version": 3,
+        "severity": 0
+      }
+    ],
+    "custom": false,
+    "actions": [
+      {
+        "name": "Report",
+        "parameters": {}
+      },
+      {
+        "name": "CacheFile",
+        "parameters": {}
+      }
+    ],
+    "context": [
+      {
+        "name": "ItemBinary",
+        "value": "/usr/local/jamf/bin/enroll",
+        "valueType": "Binary"
+      },
+      {
+        "name": "ItemName",
+        "value": "enroll",
+        "valueType": "String"
+      },
+      {
+        "name": "Name",
+        "value": "com.jamfsoftware.task.enroll.plist",
+        "valueType": "String"
+      },
+      {
+        "name": "Label",
+        "value": "com.jamfsoftware.task.enroll",
+        "valueType": "String"
+      },
+      {
+        "name": "Args",
+        "value": "/usr/local/jamf/bin/enroll",
+        "valueType": "String"
+      }
+    ],
+    "severity": 0
+  },
+  "related": {
+    "files": [
+      {
+        "gid": 0,
+        "uid": 0,
+        "fsid": 16777222,
+        "mode": 33188,
+        "path": "/Library/LaunchDaemons/com.jamfsoftware.task.enroll.plist",
+        "size": 0,
+        "inode": 2709544,
+        "xattrs": [],
+        "changed": 1668133895,
+        "created": 1668133895,
+        "sha1hex": "b59f7e36c6a142dccd646a4ff9597006982247da",
+        "accessed": 1668133895,
+        "modified": 1668133895,
+        "sha256hex": "797b0cd5358042f05b71088a810e21a67c933716033a2b3fbf225b0663a07b84",
+        "isDownload": false,
+        "isAppBundle": false,
+        "isDirectory": false,
+        "signingInfo": {
+          "appid": "",
+          "status": -67062,
+          "teamid": "",
+          "signerType": 4,
+          "authorities": [],
+          "entitlements": [],
+          "statusMessage": "code object is not signed at all"
+        },
+        "isScreenShot": false
+      }
+    ],
+    "users": [
+      {
+        "uid": 0,
+        "name": "root",
+        "uuid": "C02ZW0GTLVDL0"
+      },
+      {
+        "uid": 33,
+        "name": "_appstore",
+        "uuid": "C02ZW0GTLVDL21"
+      }
+    ],
+    "groups": [
+      {
+        "gid": 0,
+        "name": "wheel",
+        "uuid": "C02ZW0GTLVDL0"
+      },
+      {
+        "gid": 33,
+        "name": "_appstore",
+        "uuid": "C02ZW0GTLVDL21"
+      }
+    ],
+    "binaries": [
+      {
+        "gid": 0,
+        "uid": 0,
+        "fsid": 16777222,
+        "mode": 33133,
+        "path": "/bin/bash",
+        "size": 1326688,
+        "inode": 1152921500312422300,
+        "xattrs": [],
+        "changed": 1666096581,
+        "created": 1666096581,
+        "sha1hex": "dc8c2a75dff81b524e1364e619e40c485d0f1e11",
+        "accessed": 1666096581,
+        "modified": 1666096581,
+        "sha256hex": "cda73500725acaeb1ed732a3a70877d9404054d7865e9c1b0e4c0300c9c7d2d9",
+        "isDownload": false,
+        "isAppBundle": false,
+        "isDirectory": false,
+        "signingInfo": {
+          "appid": "com.apple.bash",
+          "cdhash": "o6x2o5SaTq/xg++LPo+NPRwVwAU=",
+          "status": 0,
+          "teamid": "",
+          "signerType": 0,
+          "authorities": [
+            "Software Signing",
+            "Apple Code Signing Certification Authority",
+            "Apple Root CA"
+          ],
+          "entitlements": [],
+          "statusMessage": "No error."
+        },
+        "isScreenShot": false
+      },
+      {
+        "gid": 0,
+        "uid": 0,
+        "fsid": 16777222,
+        "mode": 33261,
+        "path": "/System/Library/PrivateFrameworks/PackageKit.framework/Versions/A/XPCServices/package_script_service.xpc/Contents/MacOS/package_script_service",
+        "size": 171040,
+        "inode": 1152921500312276000,
+        "xattrs": [],
+        "changed": 1666096581,
+        "created": 1666096581,
+        "sha1hex": "690023bf01074fcbe9bb7087114107b0841d71dc",
+        "accessed": 1666096581,
+        "modified": 1666096581,
+        "sha256hex": "eed061ac298e7c31b81a772b5855c025339543ed2d0d24f01bd7f41dd102ebf0",
+        "isDownload": false,
+        "isAppBundle": false,
+        "isDirectory": false,
+        "signingInfo": {
+          "appid": "com.apple.package-script-service",
+          "cdhash": "RU3VMctnoEpjvOfaP4Ohx+GSUzE=",
+          "status": 0,
+          "teamid": "",
+          "signerType": 0,
+          "authorities": [
+            "Software Signing",
+            "Apple Code Signing Certification Authority",
+            "Apple Root CA"
+          ],
+          "entitlements": [
+            "com.apple.private.responsibility.set-hosted-properties",
+            "com.apple.private.security.storage.InstallerSandboxes",
+            "com.apple.private.responsibility.set-to-other",
+            "com.apple.private.responsibility.set-to-self"
+          ],
+          "statusMessage": "No error."
+        },
+        "isScreenShot": false
+      },
+      {
+        "gid": 0,
+        "uid": 0,
+        "fsid": 16777222,
+        "mode": 33261,
+        "path": "/System/Library/PrivateFrameworks/AppStoreDaemon.framework/Support/appstored",
+        "size": 4105232,
+        "inode": 1152921500312216400,
+        "xattrs": [],
+        "changed": 1666096581,
+        "created": 1666096581,
+        "sha1hex": "2e6d1c55e5b5583608e3ee50acb2d80bec992c31",
+        "accessed": 1666096581,
+        "modified": 1666096581,
+        "sha256hex": "9ff0f4d7c7aa124977dc007b37e02a415e022fcca16d5193de66c8c87317575e",
+        "isDownload": false,
+        "isAppBundle": false,
+        "isDirectory": false,
+        "signingInfo": {
+          "appid": "com.apple.appstored",
+          "cdhash": "lA0zR5FkzFF0ayBQqqjTMnpqxeI=",
+          "status": 0,
+          "teamid": "",
+          "signerType": 0,
+          "authorities": [
+            "Software Signing",
+            "Apple Code Signing Certification Authority",
+            "Apple Root CA"
+          ],
+          "entitlements": [],
+          "statusMessage": "No error."
+        },
+        "isScreenShot": false
+      },
+      {
+        "gid": 0,
+        "uid": 0,
+        "fsid": 16777222,
+        "mode": 33261,
+        "path": "/usr/local/jamf/bin/enroll",
+        "size": 850,
+        "inode": 2709545,
+        "xattrs": [],
+        "changed": 1668133895,
+        "created": 1668133895,
+        "sha1hex": "aecc81a9a111b0f33070b30be8ed95e8e171a72e",
+        "accessed": 1668133895,
+        "modified": 1668133895,
+        "sha256hex": "b2baaccec10c7ea45481815c5de28c216ae534c325be2a9d5ae3819345e5ef7c",
+        "isDownload": false,
+        "isAppBundle": false,
+        "isDirectory": false,
+        "signingInfo": {
+          "appid": "",
+          "status": -67062,
+          "teamid": "",
+          "signerType": 4,
+          "authorities": [],
+          "entitlements": [],
+          "statusMessage": "code object is not signed at all"
+        },
+        "isScreenShot": false
+      }
+    ],
+    "processes": [
+      {
+        "gid": 0,
+        "pid": 11762,
+        "uid": 0,
+        "args": [
+          "/bin/bash",
+          "/Library/InstallerSandboxes/.PKInstallSandboxManager/AFAB1B74-2A15-40DA-A648-28985B96153C.activeSandbox/Scripts/com.jamfsoftware.osxenrollment.T1gSvr/postinstall",
+          "/var/folders/zz/zyxvpxvq6csfxvn_n0000044000011/C/com.apple.appstore/E3D57A25-DF59-4696-B77D-BB027FC96565/quickadd.pkg",
+          "/",
+          "/",
+          "/"
+        ],
+        "name": "bash",
+        "path": "/bin/bash",
+        "pgid": 11762,
+        "ppid": 1806,
+        "rgid": 0,
+        "ruid": 0,
+        "uuid": "f1262463-43c0-44ad-ad12-20bd2dce5d88",
+        "signingInfo": {
+          "appid": "com.apple.bash",
+          "cdhash": "o6x2o5SaTq/xg++LPo+NPRwVwAU=",
+          "status": 0,
+          "teamid": "",
+          "signerType": 0,
+          "authorities": [
+            "Software Signing",
+            "Apple Code Signing Certification Authority",
+            "Apple Root CA"
+          ],
+          "entitlements": [],
+          "statusMessage": "No error."
+        },
+        "responsiblePID": 3392,
+        "startTimestamp": 1668133891,
+        "originalParentPID": 1806
+      },
+      {
+        "gid": 0,
+        "pid": 1806,
+        "uid": 0,
+        "args": [
+          "/System/Library/PrivateFrameworks/PackageKit.framework/Versions/A/XPCServices/package_script_service.xpc/Contents/MacOS/package_script_service"
+        ],
+        "name": "package_script_service",
+        "path": "/System/Library/PrivateFrameworks/PackageKit.framework/Versions/A/XPCServices/package_script_service.xpc/Contents/MacOS/package_script_service",
+        "pgid": 1806,
+        "ppid": 1,
+        "rgid": 0,
+        "ruid": 0,
+        "uuid": "195e1a63-59c7-4451-803c-e9814bd49916",
+        "appPath": "/System/Library/PrivateFrameworks/PackageKit.framework/Versions/A/XPCServices/package_script_service.xpc",
+        "signingInfo": {
+          "appid": "com.apple.package-script-service",
+          "cdhash": "RU3VMctnoEpjvOfaP4Ohx+GSUzE=",
+          "status": 0,
+          "teamid": "",
+          "signerType": 0,
+          "authorities": [
+            "Software Signing",
+            "Apple Code Signing Certification Authority",
+            "Apple Root CA"
+          ],
+          "entitlements": [
+            "com.apple.private.responsibility.set-hosted-properties",
+            "com.apple.private.security.storage.InstallerSandboxes",
+            "com.apple.private.responsibility.set-to-other",
+            "com.apple.private.responsibility.set-to-self"
+          ],
+          "statusMessage": "No error."
+        },
+        "responsiblePID": 3392,
+        "startTimestamp": 1667810295
+      },
+      {
+        "gid": 33,
+        "pid": 3392,
+        "uid": 33,
+        "args": [
+          "/System/Library/PrivateFrameworks/AppStoreDaemon.framework/Support/appstored"
+        ],
+        "name": "appstored",
+        "path": "/System/Library/PrivateFrameworks/AppStoreDaemon.framework/Support/appstored",
+        "pgid": 3392,
+        "ppid": 1,
+        "rgid": 33,
+        "ruid": 33,
+        "uuid": "04ba6f85-35ff-4fd1-82ad-58cfcd4c1869",
+        "signingInfo": {
+          "appid": "com.apple.appstored",
+          "cdhash": "lA0zR5FkzFF0ayBQqqjTMnpqxeI=",
+          "status": 0,
+          "teamid": "",
+          "signerType": 0,
+          "authorities": [
+            "Software Signing",
+            "Apple Code Signing Certification Authority",
+            "Apple Root CA"
+          ],
+          "entitlements": [],
+          "statusMessage": "No error."
+        },
+        "startTimestamp": 1667814259
+      }
+    ]
+  },
+  "eventType": "GPFSEvent"
+}
