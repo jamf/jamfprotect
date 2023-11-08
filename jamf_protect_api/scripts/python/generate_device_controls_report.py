@@ -88,7 +88,6 @@ LIST_ALERTS_QUERY = """
                             hostName
                         }
                         created
-                        eventTimestamp
                     }
                         pageInfo {
                                 next
