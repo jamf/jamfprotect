@@ -1,0 +1,361 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "host": {
+      "type": "object",
+      "properties": {
+        "os": {
+          "type": "string"
+        },
+        "ips": {
+          "type": "array",
+          "items": [
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "serial": {
+          "type": "string"
+        },
+        "hostname": {
+          "type": "string"
+        },
+        "protectVersion": {
+          "type": "string"
+        },
+        "provisioningUDID": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "os",
+        "ips",
+        "serial",
+        "hostname",
+        "protectVersion",
+        "provisioningUDID"
+      ]
+    },
+    "match": {
+      "type": "object",
+      "properties": {
+        "tags": {
+          "type": "array",
+          "items": [
+            {
+              "type": "string"
+            }
+          ]
+        },
+        "uuid": {
+          "type": "string"
+        },
+        "event": {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "integer"
+            },
+            "uuid": {
+              "type": "string"
+            },
+            "device": {
+              "type": "object",
+              "properties": {
+                "size": {
+                  "type": "integer"
+                },
+                "unit": {
+                  "type": "integer"
+                },
+                "isLeaf": {
+                  "type": "boolean"
+                },
+                "bsdName": {
+                  "type": "string"
+                },
+                "bsdUnit": {
+                  "type": "integer"
+                },
+                "busName": {
+                  "type": "string"
+                },
+                "busPath": {
+                  "type": "string"
+                },
+                "content": {
+                  "type": "string"
+                },
+                "isWhole": {
+                  "type": "boolean"
+                },
+                "bsdMajor": {
+                  "type": "integer"
+                },
+                "bsdMinor": {
+                  "type": "integer"
+                },
+                "protocol": {
+                  "type": "string"
+                },
+                "revision": {
+                  "type": "string"
+                },
+                "vendorId": {
+                  "type": "string"
+                },
+                "blockSize": {
+                  "type": "integer"
+                },
+                "mediaKind": {
+                  "type": "string"
+                },
+                "mediaName": {
+                  "type": "string"
+                },
+                "mediaPath": {
+                  "type": "string"
+                },
+                "productId": {
+                  "type": "string"
+                },
+                "devicePath": {
+                  "type": "string"
+                },
+                "isInternal": {
+                  "type": "boolean"
+                },
+                "isWritable": {
+                  "type": "boolean"
+                },
+                "vendorName": {
+                  "type": "string"
+                },
+                "deviceClass": {
+                  "type": "integer"
+                },
+                "deviceModel": {
+                  "type": "string"
+                },
+                "isEjectable": {
+                  "type": "boolean"
+                },
+                "isEncrypted": {
+                  "type": "boolean"
+                },
+                "isRemovable": {
+                  "type": "boolean"
+                },
+                "productName": {
+                  "type": "string"
+                },
+                "serialNumber": {
+                  "type": "string"
+                },
+                "deviceSubClass": {
+                  "type": "integer"
+                },
+                "isNetworkVolume": {
+                  "type": "boolean"
+                },
+                "encryptionDetail": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "size",
+                "unit",
+                "isLeaf",
+                "bsdName",
+                "bsdUnit",
+                "busName",
+                "busPath",
+                "content",
+                "isWhole",
+                "bsdMajor",
+                "bsdMinor",
+                "protocol",
+                "revision",
+                "vendorId",
+                "blockSize",
+                "mediaKind",
+                "mediaName",
+                "mediaPath",
+                "productId",
+                "devicePath",
+                "isInternal",
+                "isWritable",
+                "vendorName",
+                "deviceClass",
+                "deviceModel",
+                "isEjectable",
+                "isEncrypted",
+                "isRemovable",
+                "productName",
+                "serialNumber",
+                "deviceSubClass",
+                "isNetworkVolume",
+                "encryptionDetail"
+              ]
+            },
+            "timestamp": {
+              "type": "number"
+            },
+            "usbAddress": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "type",
+            "uuid",
+            "device",
+            "timestamp",
+            "usbAddress"
+          ]
+        },
+        "facts": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "tags": {
+                  "type": "array",
+                  "items": [
+                    {
+                      "type": "string"
+                    }
+                  ]
+                },
+                "uuid": {
+                  "type": "string"
+                },
+                "human": {
+                  "type": "string"
+                },
+                "actions": {
+                  "type": "array",
+                  "items": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "name"
+                      ]
+                    }
+                  ]
+                },
+                "context": {
+                  "type": "array",
+                  "items": {}
+                },
+                "version": {
+                  "type": "integer"
+                },
+                "severity": {
+                  "type": "integer"
+                }
+              },
+              "required": [
+                "name",
+                "tags",
+                "uuid",
+                "human",
+                "actions",
+                "context",
+                "version",
+                "severity"
+              ]
+            }
+          ]
+        },
+        "custom": {
+          "type": "boolean"
+        },
+        "actions": {
+          "type": "array",
+          "items": [
+            {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name"
+              ]
+            }
+          ]
+        },
+        "context": {
+          "type": "array",
+          "items": {}
+        },
+        "severity": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "tags",
+        "uuid",
+        "event",
+        "facts",
+        "custom",
+        "actions",
+        "context",
+        "severity"
+      ]
+    },
+    "related": {
+      "type": "object",
+      "properties": {
+        "files": {
+          "type": "array",
+          "items": {}
+        },
+        "users": {
+          "type": "array",
+          "items": {}
+        },
+        "groups": {
+          "type": "array",
+          "items": {}
+        },
+        "binaries": {
+          "type": "array",
+          "items": {}
+        },
+        "processes": {
+          "type": "array",
+          "items": {}
+        }
+      },
+      "required": [
+        "files",
+        "users",
+        "groups",
+        "binaries",
+        "processes"
+      ]
+    },
+    "eventType": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "host",
+    "match",
+    "related",
+    "eventType"
+  ]
+}

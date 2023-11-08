@@ -1,0 +1,111 @@
+{
+  "host": {
+    "os": "Version 14.0 (Build 23A344)",
+    "ips": [
+      "192.168.11.226"
+    ],
+    "serial": "Z2C23RW4DY",
+    "hostname": "VMAC-2C23RW4DY",
+    "protectVersion": "5.0.0.1",
+    "provisioningUDID": "0000FE00-8406CE28ECFC4DAB"
+  },
+  "match": {
+    "tags": [],
+    "uuid": "a17bc30c-a631-4b76-9223-765fb0daa9f8",
+    "event": {
+      "path": "/Users/local-admin/Downloads/JamfConnect-2.27.0.dmg",
+      "uuid": "82b5d972-23b1-46bb-ba58-0ca46db1edbb",
+      "timestamp": 1695830406.620384
+    },
+    "facts": [
+      {
+        "name": "new_downloads",
+        "tags": [],
+        "uuid": "e5faa7fe-a10b-461c-9bc3-b3080bb59f4a",
+        "human": "",
+        "actions": [
+          {
+            "name": "Report",
+            "parameters": {}
+          }
+        ],
+        "context": [],
+        "version": 0,
+        "severity": 0
+      }
+    ],
+    "custom": true,
+    "actions": [
+      {
+        "name": "Report",
+        "parameters": {}
+      }
+    ],
+    "context": [],
+    "severity": 0
+  },
+  "related": {
+    "files": [
+      {
+        "gid": 20,
+        "uid": 501,
+        "fsid": 16777234,
+        "mode": 33188,
+        "path": "/Users/local-admin/Downloads/JamfConnect-2.27.0.dmg",
+        "size": 35249769,
+        "inode": 3779418,
+        "xattrs": [
+          "com.apple.macl",
+          "com.apple.metadata:kMDItemDownloadedDate",
+          "com.apple.metadata:kMDItemWhereFroms",
+          "com.apple.quarantine"
+        ],
+        "changed": 1695830406,
+        "created": 1695830401,
+        "sha1hex": "0a5f0aa7cbe904e687341e2eee453348e3a3760d",
+        "accessed": 1695830404,
+        "modified": 1695830404,
+        "sha256hex": "f7688a83f2c508c16128bd512e1d57b122824001a0c560b12b63c26d3cb7f4a0",
+        "isDownload": true,
+        "objectType": "GPSystemObject",
+        "isAppBundle": false,
+        "isDirectory": false,
+        "signingInfo": {
+          "appid": "JamfConnect-2",
+          "cdhash": "sqTVmnuWCrCwmriUwwrilesPYME=",
+          "status": 0,
+          "teamid": "483DWKW443",
+          "signerType": 2,
+          "authorities": [
+            "Developer ID Application: JAMF Software (483DWKW443)",
+            "Developer ID Certification Authority",
+            "Apple Root CA"
+          ],
+          "entitlements": [],
+          "statusMessage": "No error."
+        },
+        "isScreenShot": false,
+        "downloadedFrom": [
+          "https://files.jamfconnect.com/JamfConnect.dmg"
+        ]
+      }
+    ],
+    "users": [
+      {
+        "uid": 501,
+        "name": "local-admin",
+        "uuid": "Z2C23RW4DY1f5"
+      }
+    ],
+    "groups": [
+      {
+        "gid": 20,
+        "name": "staff",
+        "uuid": "Z2C23RW4DY14"
+      }
+    ],
+    "binaries": [],
+    "processes": []
+  },
+  "eventType": "GPDownloadEvent"
+}

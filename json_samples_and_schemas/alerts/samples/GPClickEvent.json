@@ -1,0 +1,297 @@
+{
+  "host": {
+    "os": "Version 14.0 (Build 23A344)",
+    "ips": [
+      "192.168.11.151"
+    ],
+    "serial": "Z2C23RW4DY",
+    "hostname": "VMAC-2C23RW4DY",
+    "protectVersion": "5.0.0.1",
+    "provisioningUDID": "32EC79C5-26DC-535A-85F7-986F063297E2"
+  },
+  "match": {
+    "tags": [
+      "Visibility"
+    ],
+    "uuid": "ee7f77f3-672d-432f-a4ca-e494694f0d01",
+    "event": {
+      "gid": 20,
+      "pid": 44334,
+      "uid": 501,
+      "uuid": "51dc692f-83c9-4813-acbf-d23cd2011afc",
+      "clickType": 2,
+      "targetpid": 4456,
+      "timestamp": 1668433819.5592709
+    },
+    "facts": [
+      {
+        "name": "SyntheticClick",
+        "tags": [
+          "Visibility"
+        ],
+        "uuid": "2d5c83c0-c914-40bb-b606-3e16b04443af",
+        "human": "Process sent synthetic click to system",
+        "actions": [
+          {
+            "name": "Report",
+            "parameters": {}
+          }
+        ],
+        "context": [],
+        "version": 3,
+        "severity": 0
+      }
+    ],
+    "custom": false,
+    "actions": [
+      {
+        "name": "Report",
+        "parameters": {}
+      }
+    ],
+    "context": [],
+    "severity": 0
+  },
+  "related": {
+    "files": [],
+    "users": [
+      {
+        "uid": 0,
+        "name": "root",
+        "uuid": "Z2C23RW4DY0"
+      },
+      {
+        "uid": 501,
+        "name": "thijs",
+        "uuid": "Z2C23RW4DY1f5"
+      }
+    ],
+    "groups": [
+      {
+        "gid": 0,
+        "name": "wheel",
+        "uuid": "Z2C23RW4DY0"
+      },
+      {
+        "gid": 20,
+        "name": "staff",
+        "uuid": "Z2C23RW4DY14"
+      }
+    ],
+    "binaries": [
+      {
+        "gid": 0,
+        "uid": 0,
+        "fsid": 16777222,
+        "mode": 33261,
+        "path": "/System/Library/CoreServices/RemoteManagement/AppleVNCServer.bundle/Contents/Support/SSDragHelper.app/Contents/MacOS/SSDragHelper",
+        "size": 296560,
+        "inode": 1152921500312083300,
+        "xattrs": [],
+        "changed": 1666096581,
+        "created": 1666096581,
+        "sha1hex": "b9ab33b6b5553564b42bfed3565c4854cfa35792",
+        "accessed": 1666096581,
+        "modified": 1666096581,
+        "sha256hex": "16c5a2fd13edea20908e16f379c6d461c3caca1586a11308bb5175b6b6992d2c",
+        "isDownload": false,
+        "isAppBundle": false,
+        "isDirectory": false,
+        "signingInfo": {
+          "appid": "com.apple.VNCDragHelper",
+          "cdhash": "KZ9Zp2RMvQs6WtCLTX8qkfYcc+o=",
+          "status": 0,
+          "teamid": "",
+          "signerType": 0,
+          "authorities": [
+            "Software Signing",
+            "Apple Code Signing Certification Authority",
+            "Apple Root CA"
+          ],
+          "entitlements": [],
+          "statusMessage": "No error."
+        },
+        "isScreenShot": false
+      },
+      {
+        "gid": 0,
+        "uid": 0,
+        "fsid": 16777222,
+        "mode": 33261,
+        "path": "/System/Library/CoreServices/RemoteManagement/ScreensharingAgent.bundle/Contents/MacOS/ScreensharingAgent",
+        "size": 840032,
+        "inode": 1152921500312083600,
+        "xattrs": [],
+        "changed": 1666096581,
+        "created": 1666096581,
+        "sha1hex": "60db0006cccefd978bd4c4a60e87cfb694758441",
+        "accessed": 1666096581,
+        "modified": 1666096581,
+        "sha256hex": "cdd5d2771cdc74a4919db2c4ffcbbbe4eb4723e2191b2c443108bb7704958109",
+        "isDownload": false,
+        "isAppBundle": false,
+        "isDirectory": false,
+        "signingInfo": {
+          "appid": "com.apple.screensharing.agent",
+          "cdhash": "Khjd62BXKQNgPRKnjKJopCmQAII=",
+          "status": 0,
+          "teamid": "",
+          "signerType": 0,
+          "authorities": [
+            "Software Signing",
+            "Apple Code Signing Certification Authority",
+            "Apple Root CA"
+          ],
+          "entitlements": [
+            "com.apple.private.coreservices.useractivityd.sharedpasteboard",
+            "com.apple.private.SkyLight.displaycontrol",
+            "com.apple.private.screensharing.xpcaccepted",
+            "com.apple.private.iokit.assertonlidclose",
+            "com.apple.private.logind.spi"
+          ],
+          "statusMessage": "No error."
+        },
+        "isScreenShot": false
+      },
+      {
+        "gid": 0,
+        "uid": 0,
+        "fsid": 16777222,
+        "mode": 33261,
+        "path": "/System/Applications/Utilities/Terminal.app/Contents/MacOS/Terminal",
+        "size": 2222656,
+        "inode": 1152921500311912600,
+        "xattrs": [],
+        "changed": 1666096581,
+        "created": 1666096581,
+        "sha1hex": "5e432cc585ce2bb28331d1b98c18f1244bffa0bb",
+        "accessed": 1666096581,
+        "modified": 1666096581,
+        "sha256hex": "3dd8df1f0a4118d1a3e0283c3e6f52d40d35fbb72ae6e53bdc9ac31a16d2856a",
+        "isDownload": false,
+        "isAppBundle": false,
+        "isDirectory": false,
+        "signingInfo": {
+          "appid": "com.apple.Terminal",
+          "cdhash": "K2UidDP9/YZ2iaE4SBRI9sdcnCU=",
+          "status": 0,
+          "teamid": "",
+          "signerType": 0,
+          "authorities": [
+            "Software Signing",
+            "Apple Code Signing Certification Authority",
+            "Apple Root CA"
+          ],
+          "entitlements": [],
+          "statusMessage": "No error."
+        },
+        "isScreenShot": false
+      }
+    ],
+    "processes": [
+      {
+        "gid": 20,
+        "pid": 44334,
+        "uid": 501,
+        "args": [
+          "/System/Library/CoreServices/RemoteManagement/AppleVNCServer.bundle/Contents/Support/SSDragHelper.app/Contents/MacOS/SSDragHelper"
+        ],
+        "name": "SSDragHelper",
+        "path": "/System/Library/CoreServices/RemoteManagement/AppleVNCServer.bundle/Contents/Support/SSDragHelper.app/Contents/MacOS/SSDragHelper",
+        "pgid": 31258,
+        "ppid": 31258,
+        "rgid": 20,
+        "ruid": 501,
+        "uuid": "943677f4-3392-4abb-8057-57a9c22b430c",
+        "appPath": "/System/Library/CoreServices/RemoteManagement/AppleVNCServer.bundle/Contents/Support/SSDragHelper.app",
+        "exitCode": 0,
+        "signingInfo": {
+          "appid": "com.apple.VNCDragHelper",
+          "cdhash": "KZ9Zp2RMvQs6WtCLTX8qkfYcc+o=",
+          "status": 0,
+          "teamid": "",
+          "signerType": 0,
+          "authorities": [
+            "Software Signing",
+            "Apple Code Signing Certification Authority",
+            "Apple Root CA"
+          ],
+          "entitlements": [],
+          "statusMessage": "No error."
+        },
+        "responsiblePID": 31258,
+        "startTimestamp": 1668433819,
+        "originalParentPID": 31258
+      },
+      {
+        "gid": 20,
+        "pid": 31258,
+        "uid": 501,
+        "args": [
+          "/System/Library/CoreServices/RemoteManagement/ScreensharingAgent.bundle/Contents/MacOS/ScreensharingAgent"
+        ],
+        "name": "ScreensharingAgent",
+        "path": "/System/Library/CoreServices/RemoteManagement/ScreensharingAgent.bundle/Contents/MacOS/ScreensharingAgent",
+        "pgid": 31258,
+        "ppid": 1,
+        "rgid": 20,
+        "ruid": 501,
+        "uuid": "4f285eb5-32bb-4f26-8ede-81a0b2115aa0",
+        "appPath": "/System/Library/CoreServices/RemoteManagement/ScreensharingAgent.bundle",
+        "signingInfo": {
+          "appid": "com.apple.screensharing.agent",
+          "cdhash": "Khjd62BXKQNgPRKnjKJopCmQAII=",
+          "status": 0,
+          "teamid": "",
+          "signerType": 0,
+          "authorities": [
+            "Software Signing",
+            "Apple Code Signing Certification Authority",
+            "Apple Root CA"
+          ],
+          "entitlements": [
+            "com.apple.private.coreservices.useractivityd.sharedpasteboard",
+            "com.apple.private.SkyLight.displaycontrol",
+            "com.apple.private.screensharing.xpcaccepted",
+            "com.apple.private.iokit.assertonlidclose",
+            "com.apple.private.logind.spi"
+          ],
+          "statusMessage": "No error."
+        },
+        "startTimestamp": 1668410565
+      },
+      {
+        "gid": 20,
+        "pid": 4456,
+        "uid": 501,
+        "args": [
+          "/System/Applications/Utilities/Terminal.app/Contents/MacOS/Terminal"
+        ],
+        "name": "Terminal",
+        "path": "/System/Applications/Utilities/Terminal.app/Contents/MacOS/Terminal",
+        "pgid": 4456,
+        "ppid": 1,
+        "rgid": 20,
+        "ruid": 501,
+        "uuid": "6e0b1525-29ac-432e-8a82-b06bb8b4064d",
+        "appPath": "/System/Applications/Utilities/Terminal.app",
+        "signingInfo": {
+          "appid": "com.apple.Terminal",
+          "cdhash": "K2UidDP9/YZ2iaE4SBRI9sdcnCU=",
+          "status": 0,
+          "teamid": "",
+          "signerType": 0,
+          "authorities": [
+            "Software Signing",
+            "Apple Code Signing Certification Authority",
+            "Apple Root CA"
+          ],
+          "entitlements": [],
+          "statusMessage": "No error."
+        },
+        "startTimestamp": 1667817805
+      }
+    ]
+  },
+  "eventType": "GPClickEvent"
+}

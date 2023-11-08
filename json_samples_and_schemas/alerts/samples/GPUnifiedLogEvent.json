@@ -1,0 +1,64 @@
+{
+  "caid": "02315cab15112294890e215397052cd73743b887c8264bc468b84df905e67e91",
+  "certid": "d8154207ff785fd8c406baffe03eb345f3290434c5025e1b8268f89f6c310df9",
+  "input": {
+    "eventType": "GPUnifiedLogEvent",
+    "host": {
+      "hostname": "PCJVW6XJGM",
+      "ips": [
+        "192.168.86.32"
+      ],
+      "os": "Version 13.6.1 (Build 22G313)",
+      "protectVersion": "5.1.0.4",
+      "provisioningUDID": "00006000-000678310153401E",
+      "serial": "PCJVW6XJGM"
+    },
+    "match": {
+      "actions": [
+        {
+          "name": "Report"
+        }
+      ],
+      "context": [],
+      "custom": false,
+      "event": {
+        "category": "XPEvent.structured",
+        "composedMessage": "{\"caused_by\":[],\"status_message\":\"NoThreatDetected\",\"status_code\":20,\"execution_duration\":0.7135159969329834}",
+        "name": "XProtect Remediator Scan Activity",
+        "process": "XProtectRemediatorGreenAcre",
+        "processIdentifier": 6925,
+        "processImagePath": "/Library/Apple/System/Library/CoreServices/XProtect.app/Contents/MacOS/XProtectRemediatorGreenAcre",
+        "sender": "XProtectRemediatorGreenAcre",
+        "senderImagePath": "/Library/Apple/System/Library/CoreServices/XProtect.app/Contents/MacOS/XProtectRemediatorGreenAcre",
+        "subsystem": "com.apple.XProtectFramework.PluginAPI",
+        "tags": [
+          "XProtect Remediator"
+        ],
+        "timestamp": 1699432944.315508,
+        "uuid": "D64D34FA-D426-48A3-BFD3-286776C34618"
+      },
+      "facts": [
+        {
+          "actions": [
+            {
+              "name": "Report"
+            }
+          ],
+          "context": [],
+          "human": "XProtect Remediator Scan Activity",
+          "name": "XProtect Remediator Scan Activity",
+          "severity": 0,
+          "tags": [
+            "XProtect Remediator"
+          ],
+          "uuid": "48C46122-898D-412D-A728-F8939F0F8017"
+        }
+      ],
+      "severity": 0,
+      "tags": [
+        "XProtect Remediator"
+      ],
+      "uuid": "7E46E4CD-0999-44C7-8EEE-6AC21876126E"
+    }
+  }
+}

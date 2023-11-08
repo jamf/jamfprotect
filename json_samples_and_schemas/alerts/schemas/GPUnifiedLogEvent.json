@@ -1,0 +1,237 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "caid": {
+      "type": "string"
+    },
+    "certid": {
+      "type": "string"
+    },
+    "input": {
+      "type": "object",
+      "properties": {
+        "eventType": {
+          "type": "string"
+        },
+        "host": {
+          "type": "object",
+          "properties": {
+            "hostname": {
+              "type": "string"
+            },
+            "ips": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string"
+                }
+              ]
+            },
+            "os": {
+              "type": "string"
+            },
+            "protectVersion": {
+              "type": "string"
+            },
+            "provisioningUDID": {
+              "type": "string"
+            },
+            "serial": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "hostname",
+            "ips",
+            "os",
+            "protectVersion",
+            "provisioningUDID",
+            "serial"
+          ]
+        },
+        "match": {
+          "type": "object",
+          "properties": {
+            "actions": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "name"
+                  ]
+                }
+              ]
+            },
+            "context": {
+              "type": "array",
+              "items": {}
+            },
+            "custom": {
+              "type": "boolean"
+            },
+            "event": {
+              "type": "object",
+              "properties": {
+                "category": {
+                  "type": "string"
+                },
+                "composedMessage": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "process": {
+                  "type": "string"
+                },
+                "processIdentifier": {
+                  "type": "integer"
+                },
+                "processImagePath": {
+                  "type": "string"
+                },
+                "sender": {
+                  "type": "string"
+                },
+                "senderImagePath": {
+                  "type": "string"
+                },
+                "subsystem": {
+                  "type": "string"
+                },
+                "tags": {
+                  "type": "array",
+                  "items": [
+                    {
+                      "type": "string"
+                    }
+                  ]
+                },
+                "timestamp": {
+                  "type": "number"
+                },
+                "uuid": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "category",
+                "composedMessage",
+                "name",
+                "process",
+                "processIdentifier",
+                "processImagePath",
+                "sender",
+                "senderImagePath",
+                "subsystem",
+                "tags",
+                "timestamp",
+                "uuid"
+              ]
+            },
+            "facts": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "actions": {
+                      "type": "array",
+                      "items": [
+                        {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string"
+                            }
+                          },
+                          "required": [
+                            "name"
+                          ]
+                        }
+                      ]
+                    },
+                    "context": {
+                      "type": "array",
+                      "items": {}
+                    },
+                    "human": {
+                      "type": "string"
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "severity": {
+                      "type": "integer"
+                    },
+                    "tags": {
+                      "type": "array",
+                      "items": [
+                        {
+                          "type": "string"
+                        }
+                      ]
+                    },
+                    "uuid": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "actions",
+                    "context",
+                    "human",
+                    "name",
+                    "severity",
+                    "tags",
+                    "uuid"
+                  ]
+                }
+              ]
+            },
+            "severity": {
+              "type": "integer"
+            },
+            "tags": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string"
+                }
+              ]
+            },
+            "uuid": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "actions",
+            "context",
+            "custom",
+            "event",
+            "facts",
+            "severity",
+            "tags",
+            "uuid"
+          ]
+        }
+      },
+      "required": [
+        "eventType",
+        "host",
+        "match"
+      ]
+    }
+  },
+  "required": [
+    "caid",
+    "certid",
+    "input"
+  ]
+}
