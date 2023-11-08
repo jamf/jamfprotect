@@ -134,8 +134,7 @@ def __main__():
     data_file = open(CSV_OUTPUT_FILE, "w", newline="")
     csv_writer = csv.writer(data_file)
     headers = [
-        "Timestamp"
-        "eventTimestamp",
+        "Timestamp",
         "HostName",
         "Serial",
         "Vendor",
@@ -165,12 +164,10 @@ def __main__():
             + raw_json["match"]["actions"][2]["name"]
         )
         time = raw_json["match"]["event"]["timestamp"]
-        eventTimestamp = json.loads(o["eventTimestamp"])
         timestamp = datetime.utcfromtimestamp(time).strftime("%Y-%m-%d %H:%M:%S")
 
         row = [
             timestamp,
-            eventTimestamp,
             hostname,
             serial,
             vendorname,
@@ -189,4 +186,3 @@ def __main__():
 
 if __name__ == "__main__":
     __main__()
-    
