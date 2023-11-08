@@ -4,8 +4,8 @@
     "ips": [
       "192.168.11.151"
     ],
-    "serial": "C02ZW0GTLVDL",
-    "hostname": "LMAC-ZW0GTLVDL",
+    "serial": "Z2C23RW4DY",
+    "hostname": "VMAC-2C23RW4DY",
     "protectVersion": "5.0.0.1",
     "provisioningUDID": "32EC79C5-26DC-535A-85F7-986F063297E2"
   },
@@ -58,24 +58,24 @@
       {
         "uid": 0,
         "name": "root",
-        "uuid": "C02ZW0GTLVDL0"
+        "uuid": "Z2C23RW4DY0"
       },
       {
         "uid": 501,
         "name": "thijs",
-        "uuid": "C02ZW0GTLVDL1f5"
+        "uuid": "Z2C23RW4DY1f5"
       }
     ],
     "groups": [
       {
         "gid": 0,
         "name": "wheel",
-        "uuid": "C02ZW0GTLVDL0"
+        "uuid": "Z2C23RW4DY0"
       },
       {
         "gid": 20,
         "name": "staff",
-        "uuid": "C02ZW0GTLVDL14"
+        "uuid": "Z2C23RW4DY14"
       }
     ],
     "binaries": [

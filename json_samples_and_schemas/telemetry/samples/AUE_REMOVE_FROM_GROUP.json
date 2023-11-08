@@ -14,11 +14,11 @@
     "version": 11
   },
   "host_info": {
-    "host_name": "Dan_macbook_pro",
+    "host_name": "VMAC-2C23RW4DY",
     "host_uuid": "3F6E4B3A-9285-4E7E-9A0C-C3B62DC379DF",
     "osversion": "Version 10.15 (Build 19A582a)",
     "primary_mac_address": "38:f9:e8:15:5a:82",
-    "serial_number": "C03XY889JHG3"
+    "serial_number": "Z2C23RW4DY"
   },
   "identity": {
     "cd_hash": "85d569713637049c668874934c04a8dac3056ac1",
@@ -35,11 +35,11 @@
   },
   "subject": {
     "audit_id": 502,
-    "audit_user_name": "dan",
+    "audit_user_name": "john_appleseed",
     "effective_group_id": 20,
     "effective_group_name": "staff",
     "effective_user_id": 502,
-    "effective_user_name": "dan",
+    "effective_user_name": "john_appleseed",
     "group_id": 20,
     "group_name": "staff",
     "process_hash": "FCED4EC0FD369A22E40D781A9CBE25E215D28D82",
@@ -55,7 +55,7 @@
       "type": 0
     },
     "user_id": 502,
-    "user_name": "dan"
+    "user_name": "john_appleseed"
   },
   "texts": [
     "Removed Groups membership username from '_lpadmin' node '/Local/Default', value = 'presentation'"

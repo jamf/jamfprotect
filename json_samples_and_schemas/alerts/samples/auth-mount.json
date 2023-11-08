@@ -4,8 +4,8 @@
     "ips": [
       "192.168.11.222"
     ],
-    "serial": "C02ZW0GTLVDL",
-    "hostname": "LMAC-ZW0GTLVDL",
+    "serial": "Z2C23RW4DY",
+    "hostname": "VMAC-2C23RW4DY",
     "protectVersion": "5.1.0.4",
     "provisioningUDID": "32EC79C5-26DC-535A-85F7-986F063297E2"
   },
@@ -88,14 +88,14 @@
       {
         "uid": 0,
         "name": "",
-        "uuid": "C02ZW0GTLVDL0"
+        "uuid": "Z2C23RW4DY0"
       }
     ],
     "groups": [
       {
         "gid": 0,
         "name": "",
-        "uuid": "C02ZW0GTLVDL0"
+        "uuid": "Z2C23RW4DY0"
       }
     ],
     "binaries": [
