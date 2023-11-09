@@ -99,10 +99,6 @@ LIST_COMPUTERS_QUERY = """
           osMinor
           osPatch
           osString
-          scorecard {
-            pass
-            enabled
-          } 
           arch
           certid
           configHash
@@ -120,39 +116,6 @@ LIST_COMPUTERS_QUERY = """
       }
     }
     """
-
-
-def process_scorecard(scorecard_data):
-
-    scorecard_dict = {}
-
-    compliant = 0
-    noncompliant = 0
-    disabled = 0
-
-    if (
-        isinstance(scorecard_data, list)
-        and scorecard_data
-        and {"enabled", "pass"}.issubset(scorecard_data[0].keys())
-    ):
-
-        for item in scorecard_data:
-
-            if not item["enabled"]:
-                disabled += 1
-            elif item["pass"]:
-                compliant += 1
-            else:
-                noncompliant += 1
-
-        scorecard_dict = {
-            "insightsCompliant": compliant,
-            "insightsNoncompliant": noncompliant,
-            "insightsDisabled": disabled,
-        }
-
-    return scorecard_dict
-
 
 def __main__():
 
@@ -193,16 +156,6 @@ def __main__():
 
             fieldnames = list(computers[0].keys())
 
-            if "scorecard" in fieldnames:
-               
-                # Remove raw scorecard field from output 
-                fieldnames.pop(fieldnames.index('scorecard'))
-
-                # Add processed insights scorecard fields
-                fieldnames.extend(
-                    ["insightsCompliant", "insightsNoncompliant", "insightsDisabled"]
-                )
-
             # Make hostName the first column if included in results
             if "hostName" in fieldnames:
                 fieldnames.insert(0, fieldnames.pop(fieldnames.index("hostName")))
@@ -212,8 +165,7 @@ def __main__():
             writer.writeheader()
 
             for computer in computers:
-
-                computer.update(process_scorecard(computer.pop("scorecard")))
+                
                 writer.writerow(computer)
 
     else:

@@ -128,12 +128,6 @@ def process_scorecard(scorecard_data):
 
             technical_control_status_dict[item["label"]] = status_name
 
-        scorecard_dict = {
-            "insightsCompliant": compliant,
-            "insightsNoncompliant": noncompliant,
-            "insightsDisabled": disabled,
-        }
-
     return scorecard_dict, technical_control_status_dict
 
 
@@ -190,11 +184,6 @@ def __main__():
                 computer.update(technical_control_statuses)
 
                 computer["Raw Scorecard"] = computer.pop("scorecard")
-
-            # Add insights scorecard fields
-            fieldnames.extend(
-                ["insightsCompliant", "insightsNoncompliant", "insightsDisabled"]
-            )
 
             fieldnames.extend(sorted(technical_control_names))
 
