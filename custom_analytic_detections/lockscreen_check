@@ -6,7 +6,7 @@
 # Analytic Predicate:
 
 $event.type == 1 AND
-$event.process.signingInfo.appid IN {"com.apple.zgrep","com.apple.grep"} AND
+$event.process.path.lastPathComponent == "grep" AND
 $event.process.commandLine CONTAINS[cd] " CGSSession" AND
 $event.process.pgprocess.signingInfo.appid == "com.apple.ioreg"
 
