@@ -1,14 +1,14 @@
 # lockscreen_check
 #
 # This Analytic predicate may be used to report when ioreg is used to check if the macOS screen is locked.
-# This detection functions by monitoring for process creation involving a binary carrying the signing information of 'com.apple.zgrep', a process group leader carrying the signing information of 'com.apple.ioreg', and a process argument containing " CGSSession".
+# This detection functions by monitoring for process creation involving a binary carrying the signing information of 'com.apple.zgrep' or 'com.apple.grep', a process group leader carrying the signing information of 'com.apple.ioreg', and a process argument containing " CGSSession".
 #
 # Analytic Predicate:
 
 $event.type == 1 AND
-$event.process.signingInfo.appid == "com.apple.zgrep" AND
-$event.process.pgprocess.signingInfo.appid == "com.apple.ioreg" AND
-$event.process.commandLine CONTAINS[cd] " CGSSession"
+$event.process.path.lastPathComponent == "grep" AND
+$event.process.commandLine CONTAINS[cd] " CGSSession" AND
+$event.process.pgprocess.signingInfo.appid == "com.apple.ioreg"
 
 # Required Analytic Configuration:
 Sensor Event Type: Process Event
