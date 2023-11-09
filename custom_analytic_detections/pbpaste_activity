@@ -1,0 +1,18 @@
+# pbpaste_activity
+#
+# This Analytic predicate may be used to report when pbpaste is being used to potentially gather clipboard contents and creating new files with the clipboard content or for piping clipboard contents to other commands.  
+#
+
+# Required Analytic Configuration:
+Sensor Event Type: Process Event
+Level: 0
+
+# Analytic Predicate:
+
+$event.type == 1 AND 
+$event.process.signingInfo.appid == "com.apple.pbpaste" AND 
+$event.process.pgprocess.signingInfo.appid in {"org.python.python", "com.apple.ruby", "com.apple.perl", "com.apple.bash", "com.apple.csh", "com.apple.dash", "com.apple.ksh", "com.apple.csh", "com.apple.zsh"}
+
+# Recommended Analytic Configuration:
+Severity: Informational
+Categories: Collection, Credential Access
