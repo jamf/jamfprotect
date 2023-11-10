@@ -8,12 +8,70 @@
     "arguments": {
       "type": "object",
       "properties": {
-        "fd": {
+        "flags": {
           "type": "integer"
         }
       },
       "required": [
-        "fd"
+        "flags"
+      ]
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "device": {
+          "type": "integer"
+        },
+        "file_access_mode": {
+          "type": "integer"
+        },
+        "file_system_id": {
+          "type": "integer"
+        },
+        "node_id": {
+          "type": "integer"
+        },
+        "owner_group_id": {
+          "type": "integer"
+        },
+        "owner_group_name": {
+          "type": "string"
+        },
+        "owner_user_id": {
+          "type": "integer"
+        },
+        "owner_user_name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "device",
+        "file_access_mode",
+        "file_system_id",
+        "node_id",
+        "owner_group_id",
+        "owner_group_name",
+        "owner_user_id",
+        "owner_user_name"
+      ]
+    },
+    "exec_chain_child": {
+      "type": "object",
+      "properties": {
+        "parent_path": {
+          "type": "string"
+        },
+        "parent_pid": {
+          "type": "integer"
+        },
+        "parent_uuid": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "parent_path",
+        "parent_pid",
+        "parent_uuid"
       ]
     },
     "header": {
@@ -110,6 +168,9 @@
       "items": [
         {
           "type": "string"
+        },
+        {
+          "type": "string"
         }
       ]
     },
@@ -130,21 +191,6 @@
         "description",
         "error",
         "return_value"
-      ]
-    },
-    "socket_unix": {
-      "type": "object",
-      "properties": {
-        "family": {
-          "type": "integer"
-        },
-        "path": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "family",
-        "path"
       ]
     },
     "subject": {
@@ -238,17 +284,27 @@
         "user_id",
         "user_name"
       ]
+    },
+    "texts": {
+      "type": "array",
+      "items": [
+        {
+          "type": "string"
+        }
+      ]
     }
   },
   "required": [
     "_event_score",
     "arguments",
+    "attributes",
+    "exec_chain_child",
     "header",
     "host_info",
     "identity",
     "path",
     "return",
-    "socket_unix",
-    "subject"
+    "subject",
+    "texts"
   ]
 }

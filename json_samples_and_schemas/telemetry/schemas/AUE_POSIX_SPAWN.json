@@ -8,12 +8,73 @@
     "arguments": {
       "type": "object",
       "properties": {
-        "fd": {
+        "child_PID": {
           "type": "integer"
         }
       },
       "required": [
-        "fd"
+        "child_PID"
+      ]
+    },
+    "exec_args": {
+      "type": "object",
+      "properties": {
+        "args": {
+          "type": "object",
+          "properties": {
+            "1": {
+              "type": "string"
+            },
+            "2": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "1",
+            "2"
+          ]
+        },
+        "args_compiled": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "args",
+        "args_compiled"
+      ]
+    },
+    "exec_chain_parent": {
+      "type": "object",
+      "properties": {
+        "uuid": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "uuid"
+      ]
+    },
+    "exec_env": {
+      "type": "object",
+      "properties": {
+        "env": {
+          "type": "object",
+          "properties": {
+            "XPC_FLAGS": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "XPC_FLAGS"
+          ]
+        },
+        "env_compiled": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "env",
+        "env_compiled"
       ]
     },
     "header": {
@@ -132,21 +193,6 @@
         "return_value"
       ]
     },
-    "socket_unix": {
-      "type": "object",
-      "properties": {
-        "family": {
-          "type": "integer"
-        },
-        "path": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "family",
-        "path"
-      ]
-    },
     "subject": {
       "type": "object",
       "properties": {
@@ -243,12 +289,14 @@
   "required": [
     "_event_score",
     "arguments",
+    "exec_args",
+    "exec_chain_parent",
+    "exec_env",
     "header",
     "host_info",
     "identity",
     "path",
     "return",
-    "socket_unix",
     "subject"
   ]
 }

@@ -5,17 +5,6 @@
     "_event_score": {
       "type": "integer"
     },
-    "arguments": {
-      "type": "object",
-      "properties": {
-        "fd": {
-          "type": "integer"
-        }
-      },
-      "required": [
-        "fd"
-      ]
-    },
     "header": {
       "type": "object",
       "properties": {
@@ -105,14 +94,6 @@
         "team_id_truncated"
       ]
     },
-    "path": {
-      "type": "array",
-      "items": [
-        {
-          "type": "string"
-        }
-      ]
-    },
     "return": {
       "type": "object",
       "properties": {
@@ -130,21 +111,6 @@
         "description",
         "error",
         "return_value"
-      ]
-    },
-    "socket_unix": {
-      "type": "object",
-      "properties": {
-        "family": {
-          "type": "integer"
-        },
-        "path": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "family",
-        "path"
       ]
     },
     "subject": {
@@ -192,6 +158,15 @@
             "addr": {
               "type": "array",
               "items": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "integer"
+                },
                 {
                   "type": "integer"
                 }
@@ -242,13 +217,10 @@
   },
   "required": [
     "_event_score",
-    "arguments",
     "header",
     "host_info",
     "identity",
-    "path",
     "return",
-    "socket_unix",
     "subject"
   ]
 }

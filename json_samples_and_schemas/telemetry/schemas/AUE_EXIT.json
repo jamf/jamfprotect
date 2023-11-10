@@ -5,15 +5,38 @@
     "_event_score": {
       "type": "integer"
     },
-    "arguments": {
+    "exec_chain_child": {
       "type": "object",
       "properties": {
-        "fd": {
+        "parent_path": {
+          "type": "string"
+        },
+        "parent_pid": {
+          "type": "integer"
+        },
+        "parent_uuid": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "parent_path",
+        "parent_pid",
+        "parent_uuid"
+      ]
+    },
+    "exit": {
+      "type": "object",
+      "properties": {
+        "return_value": {
+          "type": "integer"
+        },
+        "status": {
           "type": "integer"
         }
       },
       "required": [
-        "fd"
+        "return_value",
+        "status"
       ]
     },
     "header": {
@@ -105,14 +128,6 @@
         "team_id_truncated"
       ]
     },
-    "path": {
-      "type": "array",
-      "items": [
-        {
-          "type": "string"
-        }
-      ]
-    },
     "return": {
       "type": "object",
       "properties": {
@@ -130,21 +145,6 @@
         "description",
         "error",
         "return_value"
-      ]
-    },
-    "socket_unix": {
-      "type": "object",
-      "properties": {
-        "family": {
-          "type": "integer"
-        },
-        "path": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "family",
-        "path"
       ]
     },
     "subject": {
@@ -242,13 +242,12 @@
   },
   "required": [
     "_event_score",
-    "arguments",
+    "exec_chain_child",
+    "exit",
     "header",
     "host_info",
     "identity",
-    "path",
     "return",
-    "socket_unix",
     "subject"
   ]
 }

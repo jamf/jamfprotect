@@ -8,12 +8,12 @@
     "arguments": {
       "type": "object",
       "properties": {
-        "fd": {
+        "known_UID_": {
           "type": "integer"
         }
       },
       "required": [
-        "fd"
+        "known_UID_"
       ]
     },
     "header": {
@@ -105,14 +105,6 @@
         "team_id_truncated"
       ]
     },
-    "path": {
-      "type": "array",
-      "items": [
-        {
-          "type": "string"
-        }
-      ]
-    },
     "return": {
       "type": "object",
       "properties": {
@@ -130,21 +122,6 @@
         "description",
         "error",
         "return_value"
-      ]
-    },
-    "socket_unix": {
-      "type": "object",
-      "properties": {
-        "family": {
-          "type": "integer"
-        },
-        "path": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "family",
-        "path"
       ]
     },
     "subject": {
@@ -238,6 +215,14 @@
         "user_id",
         "user_name"
       ]
+    },
+    "texts": {
+      "type": "array",
+      "items": [
+        {
+          "type": "string"
+        }
+      ]
     }
   },
   "required": [
@@ -246,9 +231,8 @@
     "header",
     "host_info",
     "identity",
-    "path",
     "return",
-    "socket_unix",
-    "subject"
+    "subject",
+    "texts"
   ]
 }
