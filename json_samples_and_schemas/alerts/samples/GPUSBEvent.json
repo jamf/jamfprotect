@@ -10,29 +10,60 @@
     "provisioningUDID": "32EC79C5-26DC-535A-85F7-986F063297E2"
   },
   "match": {
-    "tags": [],
-    "uuid": "902297f9-6c92-49b6-b2f8-9e14d6d1dc5e",
+    "tags": [
+      "Visibility"
+    ],
+    "uuid": "361cb6fb-a8be-43a9-8a06-6a7ae482e47b",
     "event": {
       "type": 0,
-      "uuid": "11a2c5da-83fc-40ac-9eef-71d6844f6664",
+      "uuid": "cdcafcd3-c8c3-4a8c-89b8-366606d1c966",
       "device": {
-        "vendorId": "0x05ac",
-        "productId": "0x027b",
-        "vendorName": "Apple Inc.",
+        "size": 15376000000,
+        "unit": 1,
+        "isLeaf": false,
+        "bsdName": "disk2",
+        "bsdUnit": 2,
+        "busName": "XHC2",
+        "busPath": "IODeviceTree:/PCI0@0/RP05@1C,4/UPSB@0/DSB2@2/XHC2@0",
+        "content": "GUID_partition_scheme",
+        "isWhole": true,
+        "bsdMajor": 1,
+        "bsdMinor": 11,
+        "protocol": "USB",
+        "revision": "1.00",
+        "vendorId": "0x0781",
+        "blockSize": 512,
+        "mediaKind": "IOMedia",
+        "mediaName": "SanDisk Ultra USB 3.0 Media",
+        "mediaPath": "IODeviceTree:/PCI0@0/RP05@1C,4/UPSB@0/DSB2@2/XHC2@0/@1:0",
+        "productId": "0x5595",
+        "devicePath": "IOService:/AppleACPIPlatformExpert/PCI0@0/AppleACPIPCI/RP05@1C,4/IOPP/UPSB@0/IOPP/DSB2@2/IOPP/XHC2@0/XHC2@00000000/SSP1@00100000/Ultra USB 3.0@00100000/IOUSBHostInterface@0/IOUSBMassStorageInterfaceNub/IOUSBMassStorageDriverNub/IOUSBMassStorageDriver/IOSCSILogicalUnitNub@0/IOSCSIPeripheralDeviceType00/IOBlockStorageServices",
+        "isInternal": false,
+        "isWritable": true,
+        "vendorName": "SanDisk",
         "deviceClass": 0,
-        "productName": "Apple Internal Keyboard / Trackpad",
-        "serialNumber": "FM79484057PJ3VXB7+TET",
-        "deviceSubClass": 0
+        "deviceModel": "Ultra USB 3.0",
+        "isEjectable": true,
+        "isEncrypted": false,
+        "isMountable": false,
+        "isRemovable": true,
+        "productName": "Ultra USB 3.0",
+        "serialNumber": "4C531001410227100573",
+        "deviceSubClass": 0,
+        "isNetworkVolume": false,
+        "encryptionDetail": 0
       },
-      "timestamp": 1667867624.955636,
-      "usbAddress": 6
+      "timestamp": 1695719606.718678,
+      "usbAddress": 1
     },
     "facts": [
       {
-        "name": "usb_insertion_non_writable",
-        "tags": [],
-        "uuid": "e00a88c8-20ad-4ce6-83f0-24b655ba8b51",
-        "human": "",
+        "name": "USBInserted",
+        "tags": [
+          "Visibility"
+        ],
+        "uuid": "b4fe77b3-f8d3-483d-ba29-ea2e1a5c44ea",
+        "human": "USB device inserted",
         "actions": [
           {
             "name": "Report",
@@ -40,11 +71,11 @@
           }
         ],
         "context": [],
-        "version": 0,
+        "version": 1,
         "severity": 0
       }
     ],
-    "custom": true,
+    "custom": false,
     "actions": [
       {
         "name": "Report",
