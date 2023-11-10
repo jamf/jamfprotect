@@ -1,0 +1,55 @@
+{
+    "event": {
+        "account": {
+          "customerId": "fb4567b6-4ee2-3c4c-abb9-4c78ec463b25",
+          "parentId": "7c302632-7ac4-4234-8ada-11d76feb3730"
+        },
+        "device": {
+          "deviceId": "09f81436-de17-441e-a631-0461252c629b",
+          "osType": "IOS 11.2.5",
+          "externalId": "54f1c122-33c0-4c22-a7fe-df7d966ceac4"
+        },
+        "source": {
+          "ip": "1.2.3.4"
+        },
+        "destination": {
+          "ips": [
+            "74.125.193.99",
+            "74.125.193.105",
+            "74.125.193.103",
+            "74.125.193.147",
+            "74.125.193.106",
+            "74.125.193.104"
+          ]
+        },
+        "domain": "google",
+        "tld": "com",
+        "dns": {
+            "responseStatus": "NOERROR",
+            "ttl": 1024,
+            "recordType": "A"
+        },
+        "timestamp": "2020-01-30T17:47:41.767Z",
+        "networkInterface": null,
+        "hostName": "www.google.com",
+        "threat": {
+            "result": "CLEAN",
+            "types": []
+        },
+        "signatureId": {
+            "id": "213",
+            "name": "DNS Lookup"
+        },
+        "blocked": false,
+        "receiptTime": 1663844902414,
+        "user": {
+            "email": "user@mail.com",
+            "name": "John Doe"
+        },
+        "metadata": {
+            "schemaVersion": "1.0",
+            "vendor": "Jamf",
+            "product": "Network Traffic Stream"
+        }
+    }
+  }

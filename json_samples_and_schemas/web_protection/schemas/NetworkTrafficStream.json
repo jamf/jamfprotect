@@ -1,0 +1,213 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "event": {
+      "type": "object",
+      "properties": {
+        "account": {
+          "type": "object",
+          "properties": {
+            "customerId": {
+              "type": "string"
+            },
+            "parentId": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "customerId",
+            "parentId"
+          ]
+        },
+        "device": {
+          "type": "object",
+          "properties": {
+            "deviceId": {
+              "type": "string"
+            },
+            "osType": {
+              "type": "string"
+            },
+            "externalId": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "deviceId",
+            "osType",
+            "externalId"
+          ]
+        },
+        "source": {
+          "type": "object",
+          "properties": {
+            "ip": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "ip"
+          ]
+        },
+        "destination": {
+          "type": "object",
+          "properties": {
+            "ips": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          "required": [
+            "ips"
+          ]
+        },
+        "domain": {
+          "type": "string"
+        },
+        "tld": {
+          "type": "string"
+        },
+        "dns": {
+          "type": "object",
+          "properties": {
+            "responseStatus": {
+              "type": "string"
+            },
+            "ttl": {
+              "type": "integer"
+            },
+            "recordType": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "responseStatus",
+            "ttl",
+            "recordType"
+          ]
+        },
+        "timestamp": {
+          "type": "string"
+        },
+        "networkInterface": {
+          "type": "null"
+        },
+        "hostName": {
+          "type": "string"
+        },
+        "threat": {
+          "type": "object",
+          "properties": {
+            "result": {
+              "type": "string"
+            },
+            "types": {
+              "type": "array",
+              "items": {}
+            }
+          },
+          "required": [
+            "result",
+            "types"
+          ]
+        },
+        "signatureId": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "name"
+          ]
+        },
+        "blocked": {
+          "type": "boolean"
+        },
+        "receiptTime": {
+          "type": "integer"
+        },
+        "user": {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "email",
+            "name"
+          ]
+        },
+        "metadata": {
+          "type": "object",
+          "properties": {
+            "schemaVersion": {
+              "type": "string"
+            },
+            "vendor": {
+              "type": "string"
+            },
+            "product": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "schemaVersion",
+            "vendor",
+            "product"
+          ]
+        }
+      },
+      "required": [
+        "account",
+        "device",
+        "source",
+        "destination",
+        "domain",
+        "tld",
+        "dns",
+        "timestamp",
+        "networkInterface",
+        "hostName",
+        "threat",
+        "signatureId",
+        "blocked",
+        "receiptTime",
+        "user",
+        "metadata"
+      ]
+    }
+  },
+  "required": [
+    "event"
+  ]
+}
