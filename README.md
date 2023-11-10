@@ -11,6 +11,18 @@ Custom Analytic predicates to extend the behavioural detection capability of Jam
 
 More information on Analytics can be found [here](https://docs.jamf.com/jamf-protect/documentation/Analytics.html).
 
+### Device Controls
+
+Jamf Protect allows control over the behavior of removable storage media. In certain situations, you might want to also impose restrictions using MDM. Examples of how to do this can be found in the provided repository.
+
+### JSON Samples and Schemas
+
+Jamf Protect can be configured to send or stream data to third-party storage solutions. This repository contains examples and schemas for events related to Jamf Protect.
+
+### Helper Tools
+
+This repository contains scripts and resources that can help delivering the best possible implementation of Jamf Protect.
+
 ### Unified Log Filters
 
 Unified Log filter predicates to streamline rich system, user, application and network activity data from endpoints to a nominated Security Information and Event Management (SIEM) or third-party data storage tool.
