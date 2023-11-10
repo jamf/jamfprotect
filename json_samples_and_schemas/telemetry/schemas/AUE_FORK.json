@@ -8,12 +8,23 @@
     "arguments": {
       "type": "object",
       "properties": {
-        "fd": {
+        "child_PID": {
           "type": "integer"
         }
       },
       "required": [
-        "fd"
+        "child_PID"
+      ]
+    },
+    "exec_chain_parent": {
+      "type": "object",
+      "properties": {
+        "uuid": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "uuid"
       ]
     },
     "header": {
@@ -105,14 +116,6 @@
         "team_id_truncated"
       ]
     },
-    "path": {
-      "type": "array",
-      "items": [
-        {
-          "type": "string"
-        }
-      ]
-    },
     "return": {
       "type": "object",
       "properties": {
@@ -130,21 +133,6 @@
         "description",
         "error",
         "return_value"
-      ]
-    },
-    "socket_unix": {
-      "type": "object",
-      "properties": {
-        "family": {
-          "type": "integer"
-        },
-        "path": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "family",
-        "path"
       ]
     },
     "subject": {
@@ -243,12 +231,11 @@
   "required": [
     "_event_score",
     "arguments",
+    "exec_chain_parent",
     "header",
     "host_info",
     "identity",
-    "path",
     "return",
-    "socket_unix",
     "subject"
   ]
 }

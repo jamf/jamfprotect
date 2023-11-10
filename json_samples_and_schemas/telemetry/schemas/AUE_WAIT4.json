@@ -8,12 +8,12 @@
     "arguments": {
       "type": "object",
       "properties": {
-        "fd": {
+        "pid": {
           "type": "integer"
         }
       },
       "required": [
-        "fd"
+        "pid"
       ]
     },
     "header": {
@@ -105,14 +105,6 @@
         "team_id_truncated"
       ]
     },
-    "path": {
-      "type": "array",
-      "items": [
-        {
-          "type": "string"
-        }
-      ]
-    },
     "return": {
       "type": "object",
       "properties": {
@@ -130,21 +122,6 @@
         "description",
         "error",
         "return_value"
-      ]
-    },
-    "socket_unix": {
-      "type": "object",
-      "properties": {
-        "family": {
-          "type": "integer"
-        },
-        "path": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "family",
-        "path"
       ]
     },
     "subject": {
@@ -246,9 +223,7 @@
     "header",
     "host_info",
     "identity",
-    "path",
     "return",
-    "socket_unix",
     "subject"
   ]
 }

@@ -8,12 +8,12 @@
     "arguments": {
       "type": "object",
       "properties": {
-        "fd": {
+        "signal": {
           "type": "integer"
         }
       },
       "required": [
-        "fd"
+        "signal"
       ]
     },
     "header": {
@@ -105,12 +105,105 @@
         "team_id_truncated"
       ]
     },
-    "path": {
-      "type": "array",
-      "items": [
-        {
+    "process": {
+      "type": "object",
+      "properties": {
+        "audit_id": {
+          "type": "integer"
+        },
+        "audit_user_name": {
+          "type": "string"
+        },
+        "effective_group_id": {
+          "type": "integer"
+        },
+        "effective_group_name": {
+          "type": "string"
+        },
+        "effective_user_id": {
+          "type": "integer"
+        },
+        "effective_user_name": {
+          "type": "string"
+        },
+        "group_id": {
+          "type": "integer"
+        },
+        "group_name": {
+          "type": "string"
+        },
+        "process_hash": {
+          "type": "string"
+        },
+        "process_id": {
+          "type": "integer"
+        },
+        "process_name": {
+          "type": "string"
+        },
+        "session_id": {
+          "type": "integer"
+        },
+        "terminal_id": {
+          "type": "object",
+          "properties": {
+            "addr": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "integer"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "ip_address": {
+              "type": "string"
+            },
+            "port": {
+              "type": "integer"
+            },
+            "type": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "addr",
+            "ip_address",
+            "port",
+            "type"
+          ]
+        },
+        "user_id": {
+          "type": "integer"
+        },
+        "user_name": {
           "type": "string"
         }
+      },
+      "required": [
+        "audit_id",
+        "audit_user_name",
+        "effective_group_id",
+        "effective_group_name",
+        "effective_user_id",
+        "effective_user_name",
+        "group_id",
+        "group_name",
+        "process_hash",
+        "process_id",
+        "process_name",
+        "session_id",
+        "terminal_id",
+        "user_id",
+        "user_name"
       ]
     },
     "return": {
@@ -130,21 +223,6 @@
         "description",
         "error",
         "return_value"
-      ]
-    },
-    "socket_unix": {
-      "type": "object",
-      "properties": {
-        "family": {
-          "type": "integer"
-        },
-        "path": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "family",
-        "path"
       ]
     },
     "subject": {
@@ -246,9 +324,8 @@
     "header",
     "host_info",
     "identity",
-    "path",
+    "process",
     "return",
-    "socket_unix",
     "subject"
   ]
 }

@@ -8,12 +8,20 @@
     "arguments": {
       "type": "object",
       "properties": {
-        "fd": {
+        "process": {
+          "type": "integer"
+        },
+        "target_port": {
+          "type": "integer"
+        },
+        "task_port": {
           "type": "integer"
         }
       },
       "required": [
-        "fd"
+        "process",
+        "target_port",
+        "task_port"
       ]
     },
     "header": {
@@ -74,45 +82,6 @@
         "serial_number"
       ]
     },
-    "identity": {
-      "type": "object",
-      "properties": {
-        "cd_hash": {
-          "type": "string"
-        },
-        "signer_id": {
-          "type": "string"
-        },
-        "signer_id_truncated": {
-          "type": "integer"
-        },
-        "signer_type": {
-          "type": "integer"
-        },
-        "team_id": {
-          "type": "string"
-        },
-        "team_id_truncated": {
-          "type": "integer"
-        }
-      },
-      "required": [
-        "cd_hash",
-        "signer_id",
-        "signer_id_truncated",
-        "signer_type",
-        "team_id",
-        "team_id_truncated"
-      ]
-    },
-    "path": {
-      "type": "array",
-      "items": [
-        {
-          "type": "string"
-        }
-      ]
-    },
     "return": {
       "type": "object",
       "properties": {
@@ -130,21 +99,6 @@
         "description",
         "error",
         "return_value"
-      ]
-    },
-    "socket_unix": {
-      "type": "object",
-      "properties": {
-        "family": {
-          "type": "integer"
-        },
-        "path": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "family",
-        "path"
       ]
     },
     "subject": {
@@ -245,10 +199,7 @@
     "arguments",
     "header",
     "host_info",
-    "identity",
-    "path",
     "return",
-    "socket_unix",
     "subject"
   ]
 }
