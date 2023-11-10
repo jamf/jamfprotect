@@ -1,0 +1,216 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "event": {
+      "type": "object",
+      "properties": {
+        "metadata": {
+          "type": "object",
+          "properties": {
+            "schemaVersion": {
+              "type": "string"
+            },
+            "vendor": {
+              "type": "string"
+            },
+            "product": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "schemaVersion",
+            "vendor",
+            "product"
+          ]
+        },
+        "timestamp": {
+          "type": "string"
+        },
+        "alertId": {
+          "type": "string"
+        },
+        "account": {
+          "type": "object",
+          "properties": {
+            "customerId": {
+              "type": "string"
+            },
+            "parentId": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "customerId",
+            "parentId",
+            "name"
+          ]
+        },
+        "device": {
+          "type": "object",
+          "properties": {
+            "deviceId": {
+              "type": "string"
+            },
+            "os": {
+              "type": "string"
+            },
+            "deviceName": {
+              "type": "string"
+            },
+            "userDeviceName": {
+              "type": "string"
+            },
+            "externalId": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "deviceId",
+            "os",
+            "deviceName",
+            "userDeviceName",
+            "externalId"
+          ]
+        },
+        "eventType": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "description": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "description",
+            "name"
+          ]
+        },
+        "app": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            },
+            "sha1": {
+              "type": "string"
+            },
+            "sha256": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "version",
+            "sha1",
+            "sha256"
+          ]
+        },
+        "destination": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "ip": {
+              "type": "string"
+            },
+            "port": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "name",
+            "ip",
+            "port"
+          ]
+        },
+        "source": {
+          "type": "object",
+          "properties": {
+            "ip": {
+              "type": "string"
+            },
+            "port": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "ip",
+            "port"
+          ]
+        },
+        "location": {
+          "type": "string"
+        },
+        "accessPoint": {
+          "type": "string"
+        },
+        "accessPointBssid": {
+          "type": "string"
+        },
+        "severity": {
+          "type": "integer"
+        },
+        "user": {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "email",
+            "name"
+          ]
+        },
+        "eventUrl": {
+          "type": "string"
+        },
+        "action": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "metadata",
+        "timestamp",
+        "alertId",
+        "account",
+        "device",
+        "eventType",
+        "app",
+        "destination",
+        "source",
+        "location",
+        "accessPoint",
+        "accessPointBssid",
+        "severity",
+        "user",
+        "eventUrl",
+        "action"
+      ]
+    }
+  },
+  "required": [
+    "event"
+  ]
+}
