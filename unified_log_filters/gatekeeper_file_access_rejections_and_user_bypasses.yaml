@@ -1,7 +1,7 @@
 name: "GateKeeper File-Open Rejections and User Bypass"
 description: "This Unified Log filter may be used to report on events where a user is prevented from accessing a file by double-click, as well as when that user then right-click and chooses to bypass Gatekeeper to open the file anyway.
   This filter functions by monitoring logging containing event messaging with a known string indicating a bypass event occurred.  Please note that the typo in sucessfully is required due to a typo in macOS logging."
-predicate: "subsystem == "com.apple.launchservices" AND process == "CoreServicesUIAgen" AND category == "uiagent" AND (eventMessage BEGINSWITH "Saving rejection record:" OR eventMessage CONTAINS "Gatekeeper rejection record")"
+predicate: "process == "syspolicyd" AND subsystem == "com.apple.syspolicy.exec" AND (eventMessage BEGINSWITH "Terminating process due to Gatekeeper rejection" OR eventMessage BEGINSWITH "Clearing Gatekeeper denial breadcrumb")"
 tags:
   - visibility
 enabled: true
