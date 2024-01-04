@@ -1,6 +1,6 @@
 # tmutil_activity
 #
-# This Analytic predicate may be used to report when tmutil is being used outside an interactive command line to either delete all local snapshots using the deletelocalsnapshots argument with / as mount point or the delete argument is used to delete a Time Machine backup from an external volume. An adversary may perform this action before launching a ransomware attack to prevent the victim from restoring their files.
+# This Analytic reports instances when tmutil is utilized outside of an interactive command line for specific purposes, either to delete all local snapshots using the deletelocalsnapshots argument with / as the mount point, or when the delete argument is used to remove a Time Machine backup from an external volume. Such actions could potentially indicate adversarial behavior, as an attacker might perform these operations to impede file restoration by the victim in the event of a ransomware attack
 
 # Required Analytic Configuration:
 Sensor Event Type: Process Event
@@ -11,7 +11,7 @@ Level: 0
 $event.process.signingInfo.appid == "com.apple.timemachine.tmutil" AND
 $event.type == 1 AND
 $event.process.tty == nil AND
-(($event.process.commandLine CONTAINS[c] "deletelocalsnapshots" AND $event.process.commandLine CONTAINS "/") OR ($event.process.commandLine CONTAINS[c] "delete"))
+(($event.process.args CONTAINS[c] "deletelocalsnapshots" AND $event.process.args CONTAINS "/") OR ($event.process.args CONTAINS[c] "delete"))
 
 # Recommended Analytic Configuration:
 Severity: Informational
