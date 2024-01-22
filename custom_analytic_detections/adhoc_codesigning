@@ -20,11 +20,15 @@ Name: Ad-hoc signed App Bundle
 Expression: (event.process.args)[LAST]
 
 Type: String
-Name: SHA1HEX
+Name: Bundle CDHash
+Expression: (event.process.args)[LAST].file.signingInfo.hexString
+
+Type: String
+Name: Executable - SHA1HEX
 Expression: (event.process.args)[LAST].file.sha1hex
 
 Type: String
-Name: SHA256HEX
+Name: Executable - SHA256HEX
 Expression: (event.process.args)[LAST].file.sha256hex
 
 # Recommended Analytic Configuration:
