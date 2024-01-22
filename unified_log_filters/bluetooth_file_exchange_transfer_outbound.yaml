@@ -1,6 +1,6 @@
 name: "Bluetooth File Exchange Transfer Outbound"
 description: "This Unified Log filter may be used to report on outbound Bluetooth File Exchange file transfers from the Mac. this filter functions by monitoring logging from an Bluetooth File Exchange process spawning from a valid location and a logged string known to indicate an outbound file transfer was initiated."
-predicate: "process == "Bluetooth File Exchange" AND eventMessage CONATINS[c] "[sendFile]:""
+predicate: "process == "Bluetooth File Exchange" AND eventMessage CONTAINS[c] "[sendFile]:""
 tags: 
   - visibility
 enabled: true
