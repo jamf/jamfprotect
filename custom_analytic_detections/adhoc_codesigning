@@ -21,7 +21,7 @@ Expression: (event.process.args)[LAST]
 
 Type: String
 Name: Bundle CDHash
-Expression: (event.process.args)[LAST].file.signingInfo.hexString
+Expression: (event.process.args)[LAST].file.signingInfo.cdhash.hexString
 
 Type: String
 Name: Executable - SHA1HEX
