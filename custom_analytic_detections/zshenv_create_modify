@@ -1,0 +1,17 @@
+# zshenv_create_modify
+#
+# This Analytic predicate may be used to report on the zshenv configuration file creation or modification.
+# This detection functions by monitoring for the creation of new new file or modification of a .zshenv in the User's profile.
+#
+# Analytic Predicate:
+
+($event.isNew == 1 OR $event.isModified == 1) AND
+$event.path MATCHES[cd] "/Users/.*/\\.zshenv"
+
+# Required Analytic Configuration:
+
+Sensor Event Type: File System Event
+Level: 0
+
+# Recommended Analytic Configuration:
+Severity: Informational
