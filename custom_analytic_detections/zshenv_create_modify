@@ -5,7 +5,7 @@
 #
 # Analytic Predicate:
 
-$event.isModified == 1 AND
+$event.isNew == 1 OR $event.isModified == 1) AND
 $event.path MATCHES[cd] "/Users/.*/\\.zshenv"
 
 # Required Analytic Configuration:
