@@ -1,0 +1,22 @@
+# jamfconnect_accpromo_activity
+#
+# This Analytic predicate may be used to report when jamfconnect is used to programatically elevate a user to administrator and the responsible process is not Jamf signed software (Self Service as example) or it's not happening in a Terminal session with an tty assigned.
+# This detection functions by monitoring for process creation involving a binary carrying the signing information of 'com.jamf.connect.tool' and process arguments containing "acc-promo --elevate".
+#
+# Analytic Predicate:
+
+$event.process.signingInfo.appid == "com.jamf.connect.tool" AND
+$event.type == 1 AND
+$event.process.args.@count > 0 AND
+((ANY $event.process.args == "acc-promo") AND (ANY $event.process.args == "--elevate")) AND
+$event.process.responsible.signingInfo.teamid != "483DWKW443" AND
+$event.process.tty == nil
+
+# Required Analytic Configuration:
+Sensor Event Type: Process Event
+Level: 0
+
+# Recommended Analytic Configuration:
+Severity: Low
+Categories: Visbillity
+Tags: PrivilegeEscalation
