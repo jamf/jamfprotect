@@ -7,8 +7,8 @@
 
 $event.process.signingInfo.appid == "com.jamf.connect.tool" AND
 $event.type == 1 AND
-$event.process.commandLine CONTAINS "acc-promo" AND
-$event.process.commandLine CONTAINS "--elevate" AND
+$event.process.args.@count > 0 AND
+((ANY $event.process.args == "acc-promo") AND (ANY $event.process.args == "--elevate")) AND
 $event.process.responsible.signingInfo.teamid != "483DWKW443" AND
 $event.process.tty == nil
 
