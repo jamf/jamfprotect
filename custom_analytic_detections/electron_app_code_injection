@@ -6,7 +6,8 @@
 
 $event.type  == 1 AND
 $event.process.path CONTAINS ".app" AND
-($event.process.commandLine CONTAINS "--inspect=" OR $event.process.commandLine CONTAINS "--remote-de-bugging-port")
+$event.process.args.@count > 0 AND
+(ANY $event.process.args IN {"--inspect=", "--remote-de-bugging-port"})
 
 
 # Required Analytic Configuration:

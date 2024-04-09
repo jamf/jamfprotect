@@ -7,7 +7,7 @@
 
 $event.type == 1 AND
 $event.process.path.lastPathComponent == "grep" AND
-$event.process.commandLine CONTAINS[cd] " CGSSession" AND
+(ANY $event.process.args == "CGSSession") AND
 $event.process.pgprocess.signingInfo.appid == "com.apple.ioreg"
 
 # Required Analytic Configuration:

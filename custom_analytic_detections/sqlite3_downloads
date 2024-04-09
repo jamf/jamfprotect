@@ -7,8 +7,8 @@
 
 $event.type == 1 AND
 $event.process.signingInfo.appid == "com.apple.sqlite3" AND
-$event.process.commandLine CONTAINS[cd] "com.apple.LaunchServices.QuarantineEventsV" AND
-$event.process.commandLine CONTAINS[cd] "LSQuarantineEvent"
+$event.process.args.@count > 0 AND
+((ANY $event.process.args == "com.apple.LaunchServices.QuarantineEventsV") AND (ANY $event.process.args == "LSQuarantineEvent"))
 
 # Required Analytic Configuration:
 Sensor Event Type: Process Event

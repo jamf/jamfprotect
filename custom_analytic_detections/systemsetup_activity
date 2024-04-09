@@ -12,7 +12,8 @@ Level: 0
 
 $event.type  == 1 AND
 $event.process.signingInfo.appid == "com.apple.systemsetup" AND
-($event.process.commandLine CONTAINS "setremoteappleevents" OR  $event.process.commandLine CONTAINS "setremotelogin")
+$event.process.args.@count > 0 AND
+(ANY $event.process.args IN {"setremoteappleevents", "setremotelogin"})
 
 # Recommended Analytic Configuration:
 Severity: Informational
