@@ -13,8 +13,10 @@
 
 # Analytic Predicate(s):
 
-$event.type == 1 AND
-$event.process.signingInfo.appid == "com.apple.socketfilterfw" AND ($event.process.commandLine CONTAINS[cd] "--setglobalstate off" OR $event.process.commandLine CONTAINS[cd] "--setloggingmode off" OR $event.process.commandLine CONTAINS[cd] "--unblockapp" OR $event.process.commandLine CONTAINS[cd] "--setblockall off" OR $event.process.commandLine CONTAINS[cd] "--remove")
+$event.type == 1 AND 
+$event.process.signingInfo.appid == "com.apple.socketfilterfw" AND 
+$event.process.args.@count > 0 AND
+(((ANY $event.process.args  IN {"--setglobalstate", "--setloggingmode", "--setblockall"}) AND (ANY $event.process.args == "off")) OR (ANY $event.process.args IN {"--unblockapp", "--remove"}))
 
 # Required Analytic Configuration:
 
