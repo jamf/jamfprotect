@@ -1,0 +1,30 @@
+# scp_file_copied_remote_destination
+#
+# This Analytic predicate may be used to report when scp is used to copy a file to a remote destination.
+#
+
+# Required Analytic Configuration:
+Sensor Event Type: Process Event
+Level: 0
+
+# Analytic Predicate:
+
+$event.process.signingInfo.appid == "com.apple.scp" AND
+$event.type == 1 AND
+$event.process.args.@count > 1 AND
+(ANY $event.process.args MATCHES ".*@.*")
+
+# Context Items:
+Type: File
+Name: Source file
+Expression: (event.process.args)[1]
+
+Type: String
+Name: Destination
+Expression: (event.process.args)[LAST]
+
+
+# Recommended Analytic Configuration:
+Severity: Informational
+Categories: Visibility
+Tags: Exfiltration
