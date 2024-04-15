@@ -1,0 +1,20 @@
+# generic_file_copied_remote_destination
+#
+# This Analytic predicate may be used to report when scp, sftp or rsync is used to copy a file to a remote destination.
+#
+
+# Required Analytic Configuration:
+Sensor Event Type: Process Event
+Level: 0
+
+# Analytic Predicate:
+
+$event.process.path.lastPathComponent IN {"scp", "rsync", "sftp"} AND
+$event.type == 1 AND
+$event.process.args.@count > 1 AND
+(ANY $event.process.args MATCHES ".*@.*")
+
+# Recommended Analytic Configuration:
+Severity: Informational
+Categories: Visibility
+Tags: Exfiltration
