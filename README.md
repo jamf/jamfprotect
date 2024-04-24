@@ -35,7 +35,7 @@ Jamf Protect's GraphQL API can be used to streamline endpoint and configuration 
 
 More information on the Jamf Protect API can be found [here](https://docs.jamf.com/jamf-protect/documentation/Jamf_Protect_API.html).
 
-### Third party integrations
+### Third Party Integrations
 
 Jamf Protect is able to integrate with many 3rd party solutions, examples and workflows are provided in this section.
 
@@ -50,6 +50,12 @@ More information on this Jamf portfolio integration can be found [here](https://
 Extend Jamf Pro's natively inventory reporting capabilities with customisable data collection regarding Jamf Protect, enabling powerful remediation and conditional access workflows through device management.  
 
 More information on using Extension Attributes with Jamf Pro can be found [here](https://docs.jamf.com/jamf-pro/administrator-guide/Computer_Extension_Attributes.html).
+
+### Telemetry Examples
+
+Enhance the use of Jamf Protect Telemetry by exploring and implementing a range of common examples that demonstrate best practices and advanced configurations.
+
+More information on using Telemetry can be found [here](https://learn.jamf.com/en-US/bundle/jamf-protect-documentation/page/Telemetry.html).
 
 ### Please see the [Wiki](https://github.com/jamf/jamfprotect/wiki) for specific information on each resource in this repository.
 
