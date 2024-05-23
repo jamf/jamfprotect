@@ -9,7 +9,7 @@ Level: 0
 
 # Analytic Predicate:
 
-$event.process.signingInfo.appid == "com.apple.scp" AND
+$event.process.path.lastPathComponent == "scp" AND
 $event.type == 1 AND
 $event.process.args.@count > 1 AND
 (ANY $event.process.args MATCHES ".*@.*")
