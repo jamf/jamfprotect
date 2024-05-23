@@ -8,14 +8,14 @@
 File Sharing Enabled
 $event.type == 1 AND
 $event.process.signingInfo.appid == "com.apple.xpc.launchctl" AND
-$event.process.commandLine CONTAINS[cd] " load " AND
-$event.process.commandLine CONTAINS[cd] "/System/Library/LaunchDaemons/com.apple.smbd.plist"
+$event.process.args.@count > 0 AND
+((ANY $event.process.args == "load") AND (ANY $event.process.args == "/System/Library/LaunchDaemons/com.apple.smbd.plist"))
 
 File Sharing Disabled
 $event.type == 1 AND
 $event.process.signingInfo.appid == "com.apple.xpc.launchctl" AND
-$event.process.commandLine CONTAINS[cd] " unload " AND
-$event.process.commandLine CONTAINS[cd] "/System/Library/LaunchDaemons/com.apple.smbd.plist"
+$event.process.args.@count > 0 AND
+((ANY $event.process.args == "unload") AND (ANY $event.process.args == "/System/Library/LaunchDaemons/com.apple.smbd.plist"))
 
 # Required Analytic Configuration:
 

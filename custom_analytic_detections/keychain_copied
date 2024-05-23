@@ -7,7 +7,8 @@
 
 $event.type == 1 AND 
 $event.process.path.lastPathComponent IN {'mv', 'ditto', 'cp'} AND 
-$event.process.commandLine CONTAINS ".keychain-db"
+$event.process.args.@count > 0 AND
+(ANY $event.process.args == ".keychain-db")
 
 # Required Analytic Configuration:
 

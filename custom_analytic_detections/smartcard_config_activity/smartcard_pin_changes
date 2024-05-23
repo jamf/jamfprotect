@@ -6,10 +6,14 @@
 # Analytic Predicate(s):
 
 Smartcard Change PIN
-$event.type == 1 AND $event.process.signingInfo.appid == "com.apple.pivpin" AND NOT $event.process.commandLine CONTAINS " -v"
+$event.type == 1 AND
+$event.process.signingInfo.appid == "com.apple.pivpin" AND NOT
+(ANY $event.process.args == "-v")
 
 Smartcard Verify PIN
-$event.type == 1 AND $event.process.signingInfo.appid == "com.apple.pivpin" AND $event.process.commandLine CONTAINS " -v"
+$event.type == 1 AND
+$event.process.signingInfo.appid == "com.apple.pivpin" AND
+(ANY $event.process.args == "-v")
 
 # Required Analytic Configuration:
 

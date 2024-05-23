@@ -11,7 +11,8 @@ Level: 0
 $event.process.signingInfo.appid == "com.apple.timemachine.tmutil" AND
 $event.type == 1 AND
 $event.process.tty == nil AND
-(($event.process.commandLine CONTAINS[c] "deletelocalsnapshots" AND $event.process.commandLine CONTAINS "/") OR ($event.process.commandLine CONTAINS[c] "delete"))
+$event.process.args.@count > 0 AND
+(((ANY $event.process.args == "deletelocalsnapshots") AND (ANY $event.process.args == "/")) OR (ANY $event.process.args == "delete"))
 
 # Recommended Analytic Configuration:
 Severity: Informational

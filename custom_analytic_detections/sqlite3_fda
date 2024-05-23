@@ -7,8 +7,8 @@
 
 $event.type == 1 AND
 $event.process.signingInfo.appid == "com.apple.sqlite3" AND
-$event.process.commandLine CONTAINS[cd] "tcc.db" AND 
-$event.process.commandLine CONTAINS[cd] "kTCCServiceSystemPolicyAllFiles"
+$event.process.args.@count > 0 AND
+((ANY $event.process.args == "tcc.db") AND (ANY $event.process.args == "kTCCServiceSystemPolicyAllFiles"))
 
 # Required Analytic Configuration:
 Sensor Event Type: Process Event

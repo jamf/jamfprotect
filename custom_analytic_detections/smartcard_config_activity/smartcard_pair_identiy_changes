@@ -6,10 +6,14 @@
 # Analytic Predicate(s):
 
 Smartcard Identity Paired
-$event.type == 1 AND $event.process.signingInfo.appid == "com.apple.ctkbind" AND $event.process.commandLine CONTAINS " -p "
+$event.type == 1 AND
+$event.process.signingInfo.appid == "com.apple.ctkbind" AND
+(ANY $event.process.args == "-p")
 
 Smartcard Identity Unpaired
-$event.type == 1 AND $event.process.signingInfo.appid == "com.apple.ctkbind" AND $event.process.commandLine CONTAINS " -r "
+$event.type == 1 AND
+$event.process.signingInfo.appid == "com.apple.ctkbind" AND
+(ANY $event.process.args == "-r")
 
 # Required Analytic Configuration:
 
