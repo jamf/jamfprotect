@@ -1,0 +1,27 @@
+# timemachine_notencrypted
+#
+# This Analytic predicate may be used to report when a Time Machine is configured and the last known encryption state is not encrypted.
+#
+
+# Required Analytic Configuration:
+Sensor Event Type: File System
+Level: 0
+
+# Analytic Predicate:
+
+$event.type IN {0, 3, 4} AND
+$event.path == "/Library/Preferences/com.apple.TimeMachine.plist" AND 
+$event.file.contentsAsDict.LastKnownEncryptionState != "Encrypted"
+
+# Context Items:
+Type: String
+Name: Last Known Encryption State
+Expression: event.file.contentsAsDict.LastKnownEncryptionState
+
+Type: String
+Name: Last Known Volume Name
+Expression: event.file.contentsAsDict.LastKnownVolumeName
+
+# Recommended Analytic Configuration:
+Severity: Low
+Categories: Visibility
