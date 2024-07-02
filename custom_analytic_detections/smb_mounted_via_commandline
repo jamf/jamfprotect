@@ -18,4 +18,4 @@ $event.type == 1 AND
 # Recommended Analytic Configuration:
 Severity: Informational
 Categories: Visibility
-Tags: Exfiltration
+Tags: LateralMovement
