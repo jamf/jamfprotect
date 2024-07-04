@@ -6,7 +6,7 @@
 # Analytic Predicate:
 
 $event.type == 1 AND
-$event.process.signingInfo.appid == "com.apple.curl"
+$event.process.path.lastPathComponent == "curl"
 
 # Required Analytic Configuration:
 

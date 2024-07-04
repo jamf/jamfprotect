@@ -1,0 +1,18 @@
+# insecure_file_download_curl
+#
+# This Analytic predicate may be used to report on attempts using curl to download a file using the -k argument, bypassing ssl validations.
+#
+
+# Required Analytic Configuration:
+Sensor Event Type: File System Event
+Level: 0
+
+# Analytic Predicate:
+
+($event.process.path.lastPathComponent == "curl" AND (ANY $event.process.args == "-k")) AND
+$event.type IN {0, 3, 4}
+
+# Recommended Analytic Configuration:
+Severity: Informational
+Categories: Visibility
+Tags: 
