@@ -9,8 +9,8 @@ Level: 0
 
 # Analytic Predicate:
 
-$event.process.path BEGINSWITH "/Volumes/"
-$event.type == 1 AND
+$event.process.path BEGINSWITH "/Volumes/" AND
+$event.type == 1
 
 # Recommended Analytic Configuration:
 Severity: Informational
