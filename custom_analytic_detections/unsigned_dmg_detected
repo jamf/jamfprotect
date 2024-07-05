@@ -1,0 +1,20 @@
+# unsigned_dmg_detected
+#
+# This Analytic predicate may be used to report on dmg files being created where the object is not signed and not created by Disk Utility.
+#
+
+# Required Analytic Configuration:
+Sensor Event Type: File System Event
+Level: 0
+
+# Analytic Predicate:
+
+$event.type == 0 AND 
+$event.file.path.pathExtension == "dmg" AND
+$event.file.signingInfo.signerType == 4 AND NOT
+($event.process.path.lastPathComponent == "Disk Utility" OR $event.process.signingInfo.teamid == "483DWKW443")
+
+# Recommended Analytic Configuration:
+Severity: Informational
+Categories: Visibility
+Tags: 
