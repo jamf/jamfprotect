@@ -1,0 +1,21 @@
+# brew_activity
+#
+# This analytic predicate can be used to report on any activity involving the use of brew with additional arguments.
+#
+
+# Required Analytic Configuration:
+Sensor Event Type: Process Event
+Level: 0
+
+# Analytic Predicate:
+
+$event.type == 1 AND
+$event.process.path.lastPathComponent IN {"bash", "sh", "zsh", "csh", "dash", "ksh", "python"} AND 
+$event.process.args.@min > 3 AND 
+(ANY $event.process.args == "/opt/homebrew/bin/brew")
+
+
+# Recommended Analytic Configuration:
+Severity: Informational
+Categories: Visibility
+Tags: 
