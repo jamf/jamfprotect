@@ -1,6 +1,6 @@
 # brew_activity
 #
-# This analytic predicate can be used to report on any activity involving the use of brew with additional arguments.
+# This analytic predicate can be used to report on any activity involving the use of brew with additional arguments, although this one is looking for brew being intstalled on the default location.
 #
 
 # Required Analytic Configuration:
