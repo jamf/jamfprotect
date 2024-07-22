@@ -11,9 +11,8 @@ Level: 0
 
 $event.type == 1 AND
 $event.process.path.lastPathComponent IN {"bash", "sh", "zsh", "csh", "dash", "ksh", "python"} AND 
-$event.process.args.@min > 3 AND 
+$event.process.args.@count > 3 AND 
 (ANY $event.process.args == "/opt/homebrew/bin/brew")
-
 
 # Recommended Analytic Configuration:
 Severity: Informational
