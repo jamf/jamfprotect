@@ -80,7 +80,7 @@ startDiagnostics () {
 # Checks for the Jamf Protect Diagnostics archive to confirm if the script should continue
 CheckForFiles () {
 	# Find files that match the pattern on the users desktop
-	diagnostics_files=$(find /Users/"$loggedInUser"/Desktop -name 'JamfProtectDiagnostics*.*.zip' -a -mmin +10)
+	diagnostics_files=$(find /Users/"$loggedInUser"/Desktop -name 'JamfProtectDiagnostics*.*.zip' -a -mmin -10)
 
 	if [ -n "$diagnostics_files" ]; then
 		echo "Jamf Protect Diagnostic Files found"
