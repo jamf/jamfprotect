@@ -98,7 +98,6 @@ CollectArchive () {
 		# Check for the AWS binary. If not present, install.
 		if [[ ! -f "$awsBinary" ]]; then    
 			/usr/bin/curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o /tmp/AWSCLIV2.pkg
-			/usr/sbin/installer -pkg /tmp/AWSCLIV2.pkg -target /
 		
 			# Verify the download
 			teamID=$(/usr/sbin/spctl -a -vv -t install "/tmp/AWSCLIV2.pkg" 2>&1 | awk '/origin=/ {print $NF }' | tr -d '()')
@@ -194,4 +193,3 @@ startDiagnostics
 CheckForFiles
 NetworkCheckAndUpload 
 CleanUp
-
