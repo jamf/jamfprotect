@@ -4,11 +4,10 @@ import requests
 import csv
 import json
 
-PROTECT_INSTANCE = "" # x.protect.jamfcloud.com - The variable should be x and not the whole URL.
+PROTECT_INSTANCE = ""  # x.protect.jamfcloud.com - The variable should be x and not the whole URL.
 CLIENT_ID = ""
 PASSWORD = ""
-
-# Fill in path to .csv on line 71
+CSV_FILE_PATH = ""
 
 def get_access_token(protect_instance, client_id, password):
     """Gets a reusable access token to authenticate requests to the Jamf Protect API"""
@@ -68,7 +67,7 @@ def __main__():
     access_token = get_access_token(PROTECT_INSTANCE, CLIENT_ID, PASSWORD)
 
     # Load serial numbers from the CSV file
-    serial_numbers_file = ""  # Update with the path to your file
+    serial_numbers_file = CSV_FILE_PATH  # Use the path to your file defined above
     serial_numbers = load_serial_numbers(serial_numbers_file)
 
     next_token = None
@@ -97,6 +96,12 @@ def __main__():
     computers_to_delete = [comp for comp in computers if comp['serial'] in serial_numbers]
 
     print(f"Found {len(computers_to_delete)} computers matching the provided serial numbers.\n")
+
+    # Confirm deletion
+    confirm = input(f"Warning: You are about to delete {len(computers_to_delete)} computers from Jamf Protect. Do you want to proceed? Type 'Y' to confirm or 'N' to cancel: ")
+    if confirm.upper() != 'Y':
+        print("Operation cancelled.")
+        return
 
     # Iterate through filtered Computers, deleting each by UUID
     for computer in computers_to_delete:
