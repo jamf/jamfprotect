@@ -192,7 +192,6 @@ CleanUp () {
 
 startDiagnostics
 CheckForFiles
-CollectArchive
 NetworkCheckAndUpload 
 CleanUp
 
