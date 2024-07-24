@@ -194,5 +194,5 @@ startDiagnostics
 CheckForFiles
 CollectArchive
 NetworkCheckAndUpload 
-cleanUp
+CleanUp
 
