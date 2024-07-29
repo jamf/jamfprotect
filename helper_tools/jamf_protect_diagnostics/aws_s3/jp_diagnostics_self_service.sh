@@ -66,7 +66,7 @@ expectedAwscliTeamID="94KV3E626L"
 
 ################# Script Functions ##################
 
-startDiagnostics () {
+StartDiagnostics () {
 	
 	if [ "$customDuration" == "" ]; then
 		echo "Staring Jamf Protect Diagnostics for a duration of 5 minutes"
@@ -189,7 +189,7 @@ CleanUp () {
 	/bin/rm -rf /opt/.aws
 }
 
-startDiagnostics
+StartDiagnostics
 CheckForFiles
 NetworkCheckAndUpload 
 CleanUp
