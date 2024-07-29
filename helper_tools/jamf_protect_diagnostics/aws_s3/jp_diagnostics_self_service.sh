@@ -61,9 +61,6 @@ awsFolder=""
 # Getting logged in user
 loggedInUser=$(scutil <<< "show State:/Users/ConsoleUser" | awk '/Name :/ && ! /loginwindow/ { print $3 }')
 
-# Find files that match the pattern on the users desktop
-diagnostics_files=$(find /Users/"$loggedInUser"/Desktop -name 'JamfProtectDiagnostics*.*.zip' -a -mmin +10)
-
 # Expected AWS CLI Binary TeamID
 expectedAwscliTeamID="94KV3E626L"
 
@@ -82,6 +79,9 @@ startDiagnostics () {
 
 # Checks for the Jamf Protect Diagnostics archive to confirm if the script should continue
 CheckForFiles () {
+	# Find files that match the pattern on the users desktop
+	diagnostics_files=$(find /Users/"$loggedInUser"/Desktop -name 'JamfProtectDiagnostics*.*.zip' -a -mmin -10)
+
 	if [ -n "$diagnostics_files" ]; then
 		echo "Jamf Protect Diagnostic Files found"
 		echo "$diagnostics_files"
@@ -98,7 +98,6 @@ CollectArchive () {
 		# Check for the AWS binary. If not present, install.
 		if [[ ! -f "$awsBinary" ]]; then    
 			/usr/bin/curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o /tmp/AWSCLIV2.pkg
-			/usr/sbin/installer -pkg /tmp/AWSCLIV2.pkg -target /
 		
 			# Verify the download
 			teamID=$(/usr/sbin/spctl -a -vv -t install "/tmp/AWSCLIV2.pkg" 2>&1 | awk '/origin=/ {print $NF }' | tr -d '()')
@@ -192,7 +191,5 @@ CleanUp () {
 
 startDiagnostics
 CheckForFiles
-CollectArchive
 NetworkCheckAndUpload 
-cleanUp
-
+CleanUp
