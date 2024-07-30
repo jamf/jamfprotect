@@ -1,0 +1,21 @@
+# sysctl_activity
+#
+# This analytic predicate may be used to report on any system_profiler activity on the endpoint that involves an interactive shell and prints hardware related information.
+# This detection functions by monitoring for process creation involving a process path where the last path component is system_profiler, a TTY is assigned and at least one argument is provided that matches "SPHardwareDataType"
+#
+# Analytic Predicate:
+
+$event.type == 1 AND
+$event.process.tty != nil AND
+$event.process.path.lastPathComponent == "system_profiler"
+$event.process.args.@count > 0 AND
+(ANY $event.process.args == "SPHardwareDataType")
+
+# Required Analytic Configuration:
+
+Sensor Event Type: Process Event
+Level: 0
+
+# Recommended Analytic Configuration:
+Severity: Informational
+Categories: Living Off the Land, Discovery
