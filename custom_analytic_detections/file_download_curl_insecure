@@ -9,7 +9,7 @@ Level: 0
 
 # Analytic Predicate:
 
-($event.process.path.lastPathComponent == "curl" AND (ANY $event.process.args == "-k")) AND
+($event.process.path.lastPathComponent IN {"curl", "nscurl"} AND (ANY $event.process.args == "-k")) AND
 $event.type IN {0, 3, 4}
 
 # Recommended Analytic Configuration:

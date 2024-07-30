@@ -11,7 +11,7 @@ Level: 0
 
 $event.type == 1 AND
 $event.process.path.lastPathComponent == "bash" AND
-$event.process.parent.path.lastPathComponent IN {"bash", "sh", "zsh", "csh", "dash", "ksh", "python"} AND
+($event.process.parent.path.lastPathComponent IN {"bash", "sh", "zsh", "csh", "dash", "ksh"} OR $event.process.parent.path.lastPathComponent MATCHES[c] "python([2,3](\\.\\d)?)?") AND
 $event.process.args.@count > 4 AND 
 (ANY $event.process.args == "/opt/homebrew/bin/brew")
 

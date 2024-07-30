@@ -1,12 +1,12 @@
 # all_curl_activity
 #
-# This Analytic predicate may be used to report on all activity of the 'curl' binary on endpoints.
-# This detection functions by monitoring for process creation involving binaries carrying the signing information of 'com.apple.curl'.
+# This Analytic predicate may be used to report on all activity of the 'curl' or 'nscurl' binary on endpoints.
+# This detection functions by monitoring for process creation involving binaries carrying the process path component "curl" or "nscurl"
 #
 # Analytic Predicate:
 
 $event.type == 1 AND
-$event.process.path.lastPathComponent == "curl"
+$event.process.path.lastPathComponent IN {"curl", "nscurl"}
 
 # Required Analytic Configuration:
 
