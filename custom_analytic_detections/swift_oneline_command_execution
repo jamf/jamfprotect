@@ -1,0 +1,19 @@
+# swift_oneline_command_execution
+#
+# This Analytic predicate may be used to report when the swift CLI is used to execute a arbitrary command using the -e argument that has been implemented in Swift 5.8
+#
+
+# Required Analytic Configuration:
+Sensor Event Type: Process Event
+Level: 0
+
+# Analytic Predicate:
+
+$event.type == 1 AND
+$event.process.path.lastPathComponent == "swift" AND
+$event.process.args.@count > 0 AND
+(ANY $event.process.args == "-e")
+
+# Recommended Analytic Configuration:
+Severity: Informational
+Categories: Execution, Defense Evasion

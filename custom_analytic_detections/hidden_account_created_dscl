@@ -1,0 +1,18 @@
+# hidden_account_created_dscl
+#
+# This Analytic predicate may be used to report on attempts using dcsl to create accounts that are hidden from the login window.
+#
+
+# Required Analytic Configuration:
+Sensor Event Type: Process Event
+Level: 0
+
+# Analytic Predicate:
+
+$event.type == 1 AND
+($event.process.path.lastPathComponent == "dscl" AND ((ANY $event.process.args == "IsHidden") AND (ANY $event.process.args == "-create") AND (ANY $event.process.args IN {"true", "1", "yes"})))
+
+# Recommended Analytic Configuration:
+Severity: Informational
+Categories: Persistence
+Tags: 

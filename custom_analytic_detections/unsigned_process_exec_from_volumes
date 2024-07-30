@@ -1,0 +1,19 @@
+# process_exec_from_volumes
+#
+# This Analytic predicate may be used to get insights into unsigned processes executions from within the /Volumes/ directory.
+#
+
+# Required Analytic Configuration:
+Sensor Event Type: Process Event
+Level: 0
+
+# Analytic Predicate:
+
+$event.process.path BEGINSWITH "/Volumes/" AND
+$event.type == 1 AND
+$event.process.signingInfo.signerType  == 4
+
+# Recommended Analytic Configuration:
+Severity: Informational
+Categories: Visibility
+Tags: 
