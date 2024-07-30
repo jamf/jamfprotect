@@ -1,4 +1,4 @@
-# all_curl_nscurl_activity
+# all_curl_activity
 #
 # This Analytic predicate may be used to report on all activity of the 'curl' or 'nscurl' binary on endpoints.
 # This detection functions by monitoring for process creation involving binaries carrying the process path component "curl" or "nscurl"

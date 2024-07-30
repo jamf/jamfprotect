@@ -12,7 +12,7 @@ Level: 0
 $event.type == 0 AND 
 $event.file.path.pathExtension == "dmg" AND
 $event.file.signingInfo.signerType == 4 AND NOT
-($event.process.path.lastPathComponent == "Disk Utility" OR $event.process.signingInfo.teamid == "483DWKW443")
+($event.process.path.lastPathComponent == "Disk Utility" OR $event.process.path.lastPathComponent == "hdiutil" OR $event.process.signingInfo.teamid == "483DWKW443")
 
 # Recommended Analytic Configuration:
 Severity: Informational

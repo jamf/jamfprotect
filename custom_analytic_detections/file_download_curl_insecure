@@ -1,4 +1,4 @@
-# file_download_curl_nscurl_insecure
+# file_download_curl_insecure
 #
 # This Analytic predicate may be used to report on attempts using curl to download a file using the -k argument, bypassing ssl validations.
 #

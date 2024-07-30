@@ -9,7 +9,7 @@ $event.type == 1 AND
 $event.process.tty != nil AND
 $event.process.path.lastPathComponent == "system_profiler"
 $event.process.args.@count > 0 AND
-(ANY $event.process.args == "SPHardwareDataType")
+(ANY $event.process.args IN {"SPHardwareDataType", "SPSoftwareDataType", "SPDisplayDataType"})
 
 # Required Analytic Configuration:
 
