@@ -61,15 +61,12 @@ azureSasToken="$5"
 # Getting logged in user
 loggedInUser=$(scutil <<< "show State:/Users/ConsoleUser" | awk '/Name :/ && ! /loginwindow/ { print $3 }')
 
-# Find files that match the pattern on the users desktop
-diagnostics_files=$(find /Users/"$loggedInUser"/Desktop -name 'JamfProtectDiagnostics*.*.zip' -a -mmin +10)
-
 # Expected AWS CLI Binary TeamID
 expectedAzcopyTeamID="94KV3E626L"
 
 ################# Script Functions ##################
 
-startDiagnostics () {
+StartDiagnostics () {
 	
 	if [ "$customDuration" == "" ]; then
 		echo "Staring Jamf Protect Diagnostics for a duration of 5 minutes"
@@ -82,6 +79,9 @@ startDiagnostics () {
 
 # Checks for the Jamf Protect Diagnostics archive to confirm if the script should continue
 CheckForFiles () {
+    # Find files that match the pattern on the users desktop
+	diagnostics_files=$(find /Users/"$loggedInUser"/Desktop -name 'JamfProtectDiagnostics*.*.zip' -a -mmin -10)
+
 	if [ -n "$diagnostics_files" ]; then
 		echo "Jamf Protect Diagnostic Files found"
 		echo "$diagnostics_files"
@@ -183,9 +183,8 @@ CleanUp () {
     /bin/rm -rf /Users/$loggedInUser/.azcopy
 }
 
-startDiagnostics
+StartDiagnostics
 CheckForFiles
-CollectArchive
 NetworkCheckAndUpload 
-cleanUp
+CleanUp
 
