@@ -1,15 +1,16 @@
 # sysctl_activity
 #
-# This analytic predicate may be used to report on any system_profiler activity on the endpoint that involves an interactive shell and prints hardware related information.
-# This detection functions by monitoring for process creation involving a process path where the last path component is system_profiler, a TTY is assigned and at least one argument is provided that matches "SPHardwareDataType"
+# This analytic predicate may be used to report on any system_profiler activity on the endpoint that involves an non-interactive shell and prints hardware related information and the responsible process is not signed.
+# This detection functions by monitoring for process creation involving a process path where the last path component is system_profiler, No TTY is assigned and at least one argument is provided that matches "SPHardwareDataType"
 #
 # Analytic Predicate:
 
 $event.type == 1 AND
-$event.process.tty != nil AND
+$event.process.tty == nil AND
 $event.process.path.lastPathComponent == "system_profiler"
 $event.process.args.@count > 0 AND
-(ANY $event.process.args IN {"SPHardwareDataType", "SPSoftwareDataType", "SPDisplayDataType"})
+(ANY $event.process.args IN {"SPHardwareDataType", "SPSoftwareDataType", "SPDisplayDataType"}) AND
+$event.process.responsible.signingInfo.signerType IN {3, 4}
 
 # Required Analytic Configuration:
 

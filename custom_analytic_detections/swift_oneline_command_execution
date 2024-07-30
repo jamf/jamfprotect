@@ -11,8 +11,8 @@ Level: 0
 
 $event.type == 1 AND
 $event.process.path.lastPathComponent == "swift" AND
-$event.process.args.@count > 1 AND
-((ANY $event.process.args == "swift") AND (ANY $event.process.args == "-e"))
+$event.process.args.@count > 0 AND
+(ANY $event.process.args == "-e")
 
 # Recommended Analytic Configuration:
 Severity: Informational
