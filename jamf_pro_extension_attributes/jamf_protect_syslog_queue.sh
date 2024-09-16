@@ -11,9 +11,9 @@ jamfProtectBinaryLocation="/usr/local/bin/protectctl"
 
 if [ -f "$jamfProtectBinaryLocation" ]; then
   plist=$($jamfProtectBinaryLocation info --plist)
-  jamfProtectHTTPQueue=$(/usr/libexec/PlistBuddy -c "Print UploadQueue:Kafka" /dev/stdin <<<"$plist")
+  jamfProtectSyslogQueue=$(/usr/libexec/PlistBuddy -c "Print UploadQueue:Kafka" /dev/stdin <<<"$plist")
 else
-  jamfProtectHTTPQueue="Protect binary not found"
+  jamfProtectSyslogQueue="Protect binary not found"
 fi
 
-echo "<result>$jamfProtectHTTPQueue</result>"
+echo "<result>$jamfProtectSyslogQueue</result>"

@@ -11,10 +11,10 @@ jamfProtectBinaryLocation="/usr/local/bin/protectctl"
 
 if [ -f "$jamfProtectBinaryLocation" ]; then
   plist=$($jamfProtectBinaryLocation info --plist)
-  jamfProtectMQTTQueue=$(/usr/libexec/PlistBuddy -c "Print UploadQueue:LogFile" /dev/stdin <<<"$plist")
+  jamfProtectLogfileQueue=$(/usr/libexec/PlistBuddy -c "Print UploadQueue:LogFile" /dev/stdin <<<"$plist")
 else
-  jamfProtectMQTTQueue="Protect binary not found"
+  jamfProtectLogfileQueue="Protect binary not found"
 fi
 
-echo "<result>$jamfProtectMQTTQueue</result>"
+echo "<result>$jamfProtectLogfileQueue</result>"
 
