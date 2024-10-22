@@ -1,0 +1,29 @@
+---
+name: AppBundleFirstOpen
+uuid: 93675a41-5e57-4d87-b941-2d3f8d220bcf
+longDescription: This detection functions by monitoring for the creation of new directories on the OS containing .app in the name and within the directory used for App Translocation.
+level: 0
+inputType: GPFSEvent
+tags: null
+snapshotFiles: []
+filter: $event.isNewDirectory == 1 AND
+  $event.path ENDSWITH[cd] ".app" AND
+  $event.path BEGINSWITH "/Library/InstallerSandboxes/.PKInstallSandboxManager"
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+version: 1
+severity: Informational
+shortDescription: App bundle first open
+label: App Bundle First Open
+remediation: null
+MitreCategories:
+  - Visibility
+osVersion:
+  min: null
+  max: null
+extVersion:
+  min: null
+  max: null
