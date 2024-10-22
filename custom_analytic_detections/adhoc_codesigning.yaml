@@ -1,0 +1,49 @@
+name: AdhocCodesigning
+uuid: 51cb46e3-8ee4-4a2f-a019-83ba46f5f42a
+longDescription: The codesign utility has been executed to locally ad-hoc codesign a binary.
+level: 0
+inputType: GPProcessEvent
+tags:
+snapshotFiles: []
+filter: $event.type  == 1 AND
+  $event.process.signingInfo.appid == "com.apple.security.codesign" AND
+  $event.process.args.@count > 0 AND
+  ((ANY $event.process.args IN {"--sign", "-s"}) AND (ANY $event.process.args == "-"))
+actions:
+- name: Log
+context:
+- exprs:
+  - (event.process.args)[LAST]
+  name: Ad-hoc signed App Bundle
+  type: File
+- exprs:
+  - (event.process.args)[LAST].file.signingInfo.cdhash.hexString
+  name: Bundle CDHash
+  type: String
+- exprs:
+  - (event.process.args)[LAST].file.sha1hex
+  name: Executable - SHA1HEX
+  type: String
+- exprs:
+  - event.file.contentsAsDict.Label
+  name: Label
+  type: String
+- exprs:
+  - (event.process.args)[LAST].file.sha256hex
+  name: Executable - SHA256HEX
+  type: String
+categories:
+- Visibility
+version: 1
+severity: Informational
+shortDescription: Adhoc Codesigning
+label: Adhoc Codesigning
+remediation: REMEDIATION HERE
+MitreCategories:
+- Visibility
+osVersion:
+  min: null
+  max: null
+extVersion:
+  min: null
+  max: null
