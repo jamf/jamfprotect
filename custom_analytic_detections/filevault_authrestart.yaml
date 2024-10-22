@@ -15,7 +15,7 @@ context: []
 categories:
 - Visibility
 version: 1
-severity: Informational
+severity: test
 shortDescription: A Filevault Authenticated restart has been issued. 
 label: Filevault Authenticated Restart
 remediation: null
