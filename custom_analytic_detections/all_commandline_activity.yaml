@@ -1,0 +1,28 @@
+---
+name: AllCommandlineActivity
+uuid: b5f40429-21c4-44e7-917f-e90f4be388c4
+longDescription: Activity on the commandline has been detected.
+level: 0
+inputType: GPProcessEvent
+tags: null
+snapshotFiles: []
+filter: $event.type == 1 AND $event.process.tty != nil AND
+  $event.process.parent.isShell == 1
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+version: 1
+severity: Informational
+shortDescription: All commandline activity
+label: All commandline activity
+remediation: REMEDIATION HERE
+MitreCategories:
+  - Visibility
+osVersion:
+  min: null
+  max: null
+extVersion:
+  min: null
+  max: null
