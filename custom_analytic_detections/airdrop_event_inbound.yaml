@@ -1,23 +1,23 @@
+---
 name: AirdropInbound
 uuid: f0d7d630-c9a0-4ecf-ad8f-d91a83ce07b2
 longDescription: A file has been created by the sharingd service.
 level: 0
 inputType: GPFSEvent
-tags:
+tags: null
 snapshotFiles: []
-filter: $event.type == 3 AND
-  $event.prevFile BEGINSWITH "/private/var/folders/" AND NOT
-  $event.path MATCHES "(/Users/[^/]+/Library/Sharing/|/var/folders/).*" AND
-  $event.process.signingInfo.appid == "com.apple.sharingd"
+filter: $event.type == 3 AND $event.prevFile BEGINSWITH "/private/var/folders/"
+  AND NOT $event.path MATCHES "(/Users/[^/]+/Library/Sharing/|/var/folders/).*"
+  AND $event.process.signingInfo.appid == "com.apple.sharingd"
 actions:
-- name: Log
+  - name: Log
 context: []
 categories:
-- Visibility
+  - Visibility
 version: 1
 severity: Informational
 shortDescription: Airdrop Event Inbound
 label: Airdrop Inbound
 remediation: REMEDIATION HERE
 MitreCategories:
-- Visibility
+  - Visibility
