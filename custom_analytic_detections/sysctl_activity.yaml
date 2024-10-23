@@ -1,0 +1,30 @@
+---
+name: SysctlActivity
+uuid: 5e9650bc-6071-40c5-8ff0-25fc5b665a53
+longDescription: This detection functions by monitoring process creation involving a binary carrying the signing information of 'com.apple.sysctl' that have an associated TTY.
+level: 0
+inputType: GPProcessEvent
+tags:
+snapshotFiles: []
+filter: $event.type == 1 AND
+  $event.process.tty != nil AND
+  $event.process.signingInfo.appid == "com.apple.sysctl"
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+version: 1
+severity: Informational
+shortDescription: The sysctl binary is used in a interactive shell to retrieve macOS hardware information.
+label: Sysctl Activity
+remediation: null
+MitreCategories:
+  - LivingOffTheLand
+  - Discovery
+osVersion:
+  min: null
+  max: null
+extVersion:
+  min: null
+  max: null

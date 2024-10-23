@@ -1,5 +1,5 @@
 name: ElectronAppCodeInjection
-uuid: 207c6d15-e72d-467d-a87f-652a6060d864
+uuid: 815a4d03-64fe-4b32-8ac4-21598f9d0bd7
 longDescription: This detection monitors attempts at code injection into Electron applications on macOS, particularly searching for the usage of the --inspect= argument that could lead into take over of macOS applications TCC permissions.
 level: 0
 inputType: GPProcessEvent

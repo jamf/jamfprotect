@@ -1,0 +1,32 @@
+---
+name: SwiftOnelineCommandExecution
+uuid: ac2f1d7a-56b8-4956-ab4f-7562d320e816
+longDescription: This detection functions by monitoring and report when the swift CLI is used to execute a arbitrary command using the -e argument that has been implemented in Swift 5.8.
+level: 0
+inputType: GPProcessEvent
+tags:
+snapshotFiles: []
+filter: $event.type == 1 AND
+  $event.process.path.lastPathComponent == "swift" AND
+  $event.process.args.@count > 0 AND
+  (ANY $event.process.args == "-e")
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+version: 1
+severity: Informational
+shortDescription: The swift binary is used to execute a arbitrary command.
+label: Swift Oneline Command Execution
+remediation: null
+MitreCategories:
+  - LivingOffTheLand
+  - Execution
+  - DefenseEvasion
+osVersion:
+  min: null
+  max: null
+extVersion:
+  min: null
+  max: null

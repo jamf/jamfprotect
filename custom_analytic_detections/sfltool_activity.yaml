@@ -1,0 +1,29 @@
+---
+name: SfltoolActivity
+uuid: 98aeced6-0922-4bc9-82ab-981d46035367
+longDescription: This detection functions by monitoring and report when sfltool is being used to either dump the BackgroundTaskManagement to identify all current login and background items configured on the system or reset all third-party Login Items and revert to installation defaults.
+level: 0
+inputType: GPProcessEvent
+tags:
+snapshotFiles: []
+filter: $event.type  == 1 AND
+  $event.process.signingInfo.appid == "com.apple.sfltool" AND
+  $event.process.args.@count > 0 AND
+  (ANY $event.process.args IN {"resetbtm", "dumpbtm"})
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+version: 1
+severity: Informational
+shortDescription: The sfltool binary has been used to dump or reset BackgroundTaskManagement.
+label: SFLTool Activity
+remediation: null
+MitreCategories: null
+osVersion:
+  min: null
+  max: null
+extVersion:
+  min: null
+  max: null

@@ -18,6 +18,6 @@ version: 1
 severity: Informational
 shortDescription: Airdrop Event Inbound
 label: Airdrop Inbound
-remediation: REMEDIATION HERE
+remediation: null
 MitreCategories:
   - Visibility

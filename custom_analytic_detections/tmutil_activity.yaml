@@ -1,0 +1,31 @@
+---
+name: TmutilActivity
+uuid: 1582c158-aacc-4ffb-8ded-62e10fd8b58d
+longDescription: This detection functions by monitoring and report when tmutil is utilized outside of an interactive command line for specific purposes, either to delete all local snapshots using the deletelocalsnapshots argument with / as the mount point, or when the delete argument is used to remove a Time Machine backup from an external volume. Such actions could potentially indicate adversarial behavior, as an attacker might perform these operations to impede file restoration by the victim in the event of a ransomware attack.
+level: 0
+inputType: GPProcessEvent
+tags:
+snapshotFiles: []
+filter: $event.type == 1 AND
+  $event.process.signingInfo.appid == "com.apple.timemachine.tmutil" AND
+  $event.process.tty == nil AND
+  $event.process.args.@count > 0 AND
+  (((ANY $event.process.args == "deletelocalsnapshots") AND (ANY $event.process.args == "/")) OR (ANY $event.process.args == "delete"))
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+version: 1
+severity: Low
+shortDescription: The tmutil binary has been used to delete localsnapshots from a endpoint or deletes a backup from a external volume.
+label: TMUtil Activity
+remediation: Review if this activity was initiated by the user, if not review the processes that were responsible.
+MitreCategories:
+  - LivingOffTheLand
+osVersion:
+  min: null
+  max: null
+extVersion:
+  min: null
+  max: null

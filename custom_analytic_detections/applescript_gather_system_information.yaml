@@ -1,0 +1,32 @@
+---
+name: AppleScriptSystemInfoActivity
+uuid: 9ece2bff-1bc8-4a08-aaa1-df33c64bec0d
+longDescription: This detection functions by monitoring for process creation involving a binary carrying the signing information of 'com.apple.osascript' and process arguments containing "system info".
+level: 0
+inputType: GPProcessEvent
+tags:
+snapshotFiles: []
+filter: $event.type == 1 AND
+  $event.process.signingInfo.appid == "com.apple.osascript" AND
+  $event.process.commandLine CONTAINS[c] "system info"
+actions:
+  - name: Log
+context: []
+categories:
+  - Exploitation
+  - Living Off The Land
+version: 1
+severity: Informational
+shortDescription: The osascript is used to gather the operating system version, current username, user ID, computer name, IP address, alongside other information.
+label: AppleScript System Info Activity
+remediation: null
+MitreCategories:
+  - Collection
+  - Discovery
+  - CredentialAccess
+osVersion:
+  min: null
+  max: null
+extVersion:
+  min: null
+  max: null

@@ -1,0 +1,26 @@
+---
+name: UnsignedKeyloggerRegistered
+uuid: 8fcd60e1-8d6f-439f-82d5-100aa783f318
+longDescription: This detection functions by monitoring for keylogger registration events where the signing information of the keylogger is unable to be obtained or verified.
+level: 0
+inputType: GPKeylogRegisterEvent
+tags:
+snapshotFiles: []
+filter: $event.source.signingInfo.signerType == 4
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+version: 1
+severity: Medium
+shortDescription: A unsigned keylogger has registered on the endpoint.
+label: Unsigned Keylogger Registered
+remediation: null
+MitreCategories: null
+osVersion:
+  min: null
+  max: null
+extVersion:
+  min: null
+  max: null

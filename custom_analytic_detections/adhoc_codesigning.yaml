@@ -38,7 +38,7 @@ version: 1
 severity: Informational
 shortDescription: Adhoc Codesigning
 label: Adhoc Codesigning
-remediation: REMEDIATION HERE
+remediation: Review the binary that has been ad-hoc signed and determine if it's unsafe.
 MitreCategories:
   - Visibility
 osVersion:

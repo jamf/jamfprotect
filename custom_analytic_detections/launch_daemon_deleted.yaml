@@ -1,0 +1,27 @@
+---
+name: LaunchDaemonDeleted
+uuid: 5df4c897-743b-4555-9217-c062ecbe0b10
+longDescription: This detection functions by monitoring for deletion events on any files within known file paths for LaunchDaemons.
+level: 0
+inputType: GPFSEvent
+tags:
+snapshotFiles: []
+filter: $event.type == 1 AND
+  $event.path MATCHES[cd] "(:?/System|/Users/[\\w_\\.\\-]{1,83})?/Library/LaunchDaemons/.*\\.plist"
+actions:
+  - name: Log
+context: []
+categories:
+  - System Visibility
+version: 1
+severity: Informational
+shortDescription: A LaunchDaemon has been deleted.
+label: LaunchDaemon Deleted
+remediation: null
+MitreCategories: null
+osVersion:
+  min: null
+  max: null
+extVersion:
+  min: null
+  max: null

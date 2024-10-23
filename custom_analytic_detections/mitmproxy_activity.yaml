@@ -1,0 +1,28 @@
+---
+name: MitmproxyActivity
+uuid: d11e55a2-c2de-4e1c-9d14-fba4ac7ebb0d
+longDescription: This detection functions by monitoring for when mitmproxy process is launched to potentially acts as a “middle man” between the server and the client.
+level: 0
+inputType: GPProcessEvent
+tags:
+snapshotFiles: []
+filter: $event.type == 1 AND
+  $event.process.name == "mitmproxy"
+actions:
+  - name: Log
+context: []
+categories:
+  - System Visibility
+version: 1
+severity: Informational
+shortDescription: The mitmproxy utility has been launched.
+label: Mitmproxy Activity
+remediation:
+  - AdversaryInTheMiddle
+MitreCategories: null
+osVersion:
+  min: null
+  max: null
+extVersion:
+  min: null
+  max: null

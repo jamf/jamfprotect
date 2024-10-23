@@ -1,0 +1,34 @@
+---
+name: TerminalPersistency
+uuid: 64e86201-a39d-4cfb-ad63-aeb778f5604d
+longDescription: This detection functions by monitoring and report when a shell command has been configured in the Terminal preferences, a tactic an adversary might employ for persistence. Specifically, this command then executes every time a Terminal session starts.
+level: 0
+inputType: GPFSEvent
+tags:
+snapshotFiles: []
+filter: $event.path CONTAINS "/Library/Preferences/com.apple.Terminal.plist" AND
+  $event.type == 4 AND
+  $event.file.contentsAsDict."Window Settings".Basic.CommandString != nil
+actions:
+  - name: Log
+context:
+  - exprs:
+      - (event.file.contentsAsDict."Window Settings".Basic.CommandString)
+    name: Terminal Shell Command
+    type: String
+categories:
+  - Visibility
+version: 1
+severity: Low
+shortDescription: The preferences of the Terminal application has been modified and a start-up Command String has been added. 
+label: Terminal Persistency
+remediation: Review the Terminal Shell Command to define if this is inteded by the user or if an adversary attempts to gain persistence.
+MitreCategories:
+  - Persistence
+  - LivingOffTheLand
+osVersion:
+  min: null
+  max: null
+extVersion:
+  min: null
+  max: null

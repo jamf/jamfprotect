@@ -1,0 +1,28 @@
+name: FileDownloadCurlInsecure
+uuid: bdc5b2ad-055c-416e-a808-26b6d00b347f
+longDescription: This detection functions by monitoring and report on attempts using curl to download a file using the -k argument, bypassing ssl validations.
+level: 0
+inputType: GPFSEvent
+tags:
+snapshotFiles: []
+filter: ($event.process.path.lastPathComponent IN {"curl", "nscurl"} AND
+  (ANY $event.process.args == "-k")) AND
+  $event.type IN {0, 3, 4}
+actions:
+- name: Log
+context: []
+categories:
+- Visibility
+version: 1
+severity: Informational
+shortDescription: Curl has been used with the -k argument to download a file programatically.
+label: File Download Curl Insecure
+remediation:  Review where the file has been downloaded from.
+MitreCategories:
+- Visibility
+osVersion:
+  min: null
+  max: null
+extVersion:
+  min: null
+  max: null

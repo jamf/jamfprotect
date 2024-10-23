@@ -1,0 +1,31 @@
+---
+name: KeychainDumped
+uuid: 25b14366-08bd-473f-a7dd-6ff5818ffb84
+longDescription: This detection functions by monitoring for process creation involving binaries carrying the signing information of 'com.apple.security' and using the parameters "dump-keychain".
+level: 0
+inputType: GPProcessEvent
+tags:
+snapshotFiles: []
+filter: $event.type == 1 AND 
+  $event.process.signingInfo.appid == "com.apple.security" AND 
+  $event.process.args.@count > 0 AND
+  (ANY $event.process.args == "dump-keychain")
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+  - Credential Harvesting
+version: 1
+severity: Informational
+shortDescription: A users keychain database has been dumped.
+label: Keychain Dumped
+remediation: null
+MitreCategories:
+  - CredentialAccess
+osVersion:
+  min: null
+  max: null
+extVersion:
+  min: null
+  max: null

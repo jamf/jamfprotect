@@ -1,0 +1,30 @@
+---
+name: Sqlite3Fda
+uuid: 2cd33ab1-a437-4653-9b90-bcaf67a4642e
+longDescription: This detection functions by monitoring for process creation involving a binary carrying the signing information of 'com.apple.sqlite3' and process arguments containing "tcc.db" and "kTCCServiceSystemPolicyAllFiles".
+level: 0
+inputType: GPProcessEvent
+tags:
+snapshotFiles: []
+filter: $event.type == 1 AND
+  $event.process.signingInfo.appid == "com.apple.sqlite3" AND
+  $event.process.args.@count > 0 AND
+  ((ANY $event.process.args == "tcc.db") AND (ANY $event.process.args == "kTCCServiceSystemPolicyAllFiles"))
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+version: 1
+severity: Informational
+shortDescription: The sqlite3 binary is used to interact with the TCC database to show apps with full disk access.
+label: SQLite3 Full Disk Access
+remediation: null
+MitreCategories:
+  - LivingOffTheLand
+osVersion:
+  min: null
+  max: null
+extVersion:
+  min: null
+  max: null

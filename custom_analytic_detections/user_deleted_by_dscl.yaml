@@ -1,0 +1,28 @@
+---
+name: UserDeletedbyDscl
+uuid: eae3e8c1-6d70-471f-abd6-16d9b113b446
+longDescription: This detection functions by monitoring for processes deleted with a binary carrying the com.apple.dscl identifier and have a process argument containing the '-delete' argument used to delete a user.
+level: 0
+inputType: GPProcessEvent
+tags:
+snapshotFiles: []
+filter: $event.type == 1 AND
+  $event.process.signingInfo.appid == "com.apple.dscl" AND
+  (ANY $event.process.args == "-delete")
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+version: 1
+severity: Informational
+shortDescription: The dscl binary has been used to delete a user.
+label: User Deleted by DSCL
+remediation: null
+MitreCategories: null
+osVersion:
+  min: null
+  max: null
+extVersion:
+  min: null
+  max: null

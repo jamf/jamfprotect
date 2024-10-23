@@ -1,0 +1,28 @@
+---
+name: UserCreatedbyDscl
+uuid: 3e92e7d8-c3f4-4fcd-87f2-eab10ecc8ef9
+longDescription: This detection functions by monitoring for processes created with a binary carrying the com.apple.dscl identifier and have a process argument containing the '-create' argument used to create a user.
+level: 0
+inputType: GPProcessEvent
+tags:
+snapshotFiles: []
+filter: $event.type == 1 AND
+  $event.process.signingInfo.appid == "com.apple.dscl" AND
+  (ANY $event.process.args == "-create")
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+version: 1
+severity: Informational
+shortDescription: The dscl binary has been used to create a user.
+label: User Created by DSCL
+remediation: null
+MitreCategories: null
+osVersion:
+  min: null
+  max: null
+extVersion:
+  min: null
+  max: null

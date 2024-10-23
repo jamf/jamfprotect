@@ -1,0 +1,33 @@
+---
+name: AppleScriptDialogActivity
+uuid: 93c977ae-877d-4e62-94f3-f112f2686a14
+longDescription: This detection functions by monitoring for when AppleScript is being used to display a dialog and capturing user input with specific arguments that link to the keychain or the users password. 
+level: 0
+inputType: GPProcessEvent
+tags:
+snapshotFiles: []
+filter: $event.type  == 1 AND
+  $event.process.signingInfo.appid == "com.apple.osascript" AND
+  $event.process.args.@count > 0 AND
+  ((ANY $event.process.args == "display dialog") AND (ANY $event.process.args IN {"Keychain", "password", "credentials"}))
+actions:
+  - name: Log
+context: []
+categories:
+  - Credential Access
+version: 1
+severity: Informational
+shortDescription: The osascript binary has been launched to display a dialog and ask for user input. 
+label: AppleScript Dialog Activity
+remediation: null
+MitreCategories:
+  - Collection
+  - Reconnaissance
+  - Execution
+  - LivingOffTheLand
+osVersion:
+  min: null
+  max: null
+extVersion:
+  min: null
+  max: null

@@ -1,0 +1,28 @@
+---
+name: UserSwitchedOnCommandline
+uuid: 90de5c96-125f-40de-b1a5-2cada0896c43
+longDescription: This detection functions by monitoring for su processes created that have an associated TTY and are determined to be created through a fully interactive shell, such as those from a Terminal session.
+level: 0
+inputType: GPProcessEvent
+tags:
+snapshotFiles: []
+filter: $event.type == 1 AND
+  $event.process.tty != nil AND
+  $event.process.signingInfo.appid == "com.apple.su"
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+version: 1
+severity: Informational
+shortDescription: A user switched on the commandline using the su binary.
+label: User Switched on Commandline
+remediation: null
+MitreCategories: null
+osVersion:
+  min: null
+  max: null
+extVersion:
+  min: null
+  max: null

@@ -1,0 +1,31 @@
+---
+name: InstallerInitiatedNetworkConnection
+uuid: 834a7c7e-3fa1-46b3-b1f6-e907d6821a0b
+longDescription: This detection functions by monitoring for the process creation involving curl or nscurl where the responsible process is Installer and the parent process is a shell.
+level: 0
+inputType: GPProcessEvent
+tags:
+snapshotFiles: []
+filter: $event.type == 1 AND
+  $event.process.path.lastPathComponent IN {"curl", "nscurl"} AND
+  $event.process.parent.isShell == true AND
+  $event.process.responsible.path.lastPathComponent == "Installer"
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+  - Privilege Escalation
+version: 1
+severity: Informational
+shortDescription: Installer has invoked curl or nscurl to connect to a remote destination.
+label: Installer Initiated Network Connection
+remediation: Review the context of the command to determine if it's legitimate or unsafe behavior.
+MitreCategories:
+  - Execution
+osVersion:
+  min: null
+  max: null
+extVersion:
+  min: null
+  max: null
