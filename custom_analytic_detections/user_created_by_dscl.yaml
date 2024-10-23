@@ -20,9 +20,4 @@ shortDescription: The dscl binary has been used to create a user.
 label: User Created by DSCL
 remediation: null
 MitreCategories: null
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

@@ -21,9 +21,4 @@ shortDescription: The xattr binary has been used to clear the quarantine attribu
 label: User Switched on Commandline
 remediation: null
 MitreCategories: null
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

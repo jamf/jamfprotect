@@ -22,9 +22,4 @@ label: SQLite3 Downloads
 remediation: null
 MitreCategories:
   - LivingOffTheLand
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

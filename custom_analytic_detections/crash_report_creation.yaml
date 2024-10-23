@@ -20,9 +20,4 @@ label: Crash Report Creation
 remediation: Review the crash report on the host system. Although by nature not necessarily related to malicious activity but in case of an unusual amount of reports this could relate to persistent malware that keeps crashing, also it can be useful for triaging issues on a end-users system.
 MitreCategories:
   - Visibility
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

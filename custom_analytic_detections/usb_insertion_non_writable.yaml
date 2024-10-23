@@ -20,9 +20,4 @@ shortDescription: A non-writable USB drive has been inserted.
 label: USB Insertion Non Writable
 remediation: null
 MitreCategories: null
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

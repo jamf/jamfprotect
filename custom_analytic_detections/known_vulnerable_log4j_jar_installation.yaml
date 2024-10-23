@@ -20,9 +20,4 @@ shortDescription: A .jar file has been created on the system.
 label: Known Vulnerable Log4j Jar Installation
 remediation: Review and cleanup the created .jar file.
 MitreCategories: null
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

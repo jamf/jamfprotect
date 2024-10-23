@@ -20,9 +20,4 @@ shortDescription: A user switched on the commandline using the su binary.
 label: User Switched on Commandline
 remediation: null
 MitreCategories: null
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

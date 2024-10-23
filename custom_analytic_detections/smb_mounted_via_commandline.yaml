@@ -22,9 +22,4 @@ label: SMB Mounted via Commandline
 remediation: null
 MitreCategories:
   - LateralMovement
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

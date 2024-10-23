@@ -23,9 +23,4 @@ label: Keychain Copied
 remediation: Review the path the keychain has been copied to and if it's initiated by the user on-purpose.
 MitreCategories:
   - CredentialAccess
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

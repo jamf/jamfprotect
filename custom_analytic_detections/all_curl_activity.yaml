@@ -19,9 +19,4 @@ label: All curl activity
 remediation: null
 MitreCategories:
   - Visibility
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

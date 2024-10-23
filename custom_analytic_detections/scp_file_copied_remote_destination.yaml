@@ -30,9 +30,4 @@ label: SCP File Copied to Remote Destination
 remediation: null
 MitreCategories:
   - Exfiltration
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

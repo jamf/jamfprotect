@@ -10,20 +10,15 @@ filter: $event.type == 1 AND
   $event.process.signingInfo.appid == "com.apple.dns-sd" AND
   $event.process.commandLine MATCHES ".*-B\\s\\_\\w.*?\\.\\_tcp"
 actions:
-- name: Log
+  - name: Log
 context: []
 categories:
-- Visibility
+  - Visibility
 version: 1
 severity: Informational
 shortDescription: DNS Service Discovery detected
 label: DNS Service Discovery
 remediation: null
 MitreCategories:
-- Visibility
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+  - Visibility
+

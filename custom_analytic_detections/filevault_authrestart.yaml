@@ -22,9 +22,4 @@ label: Filevault Authenticated Restart
 remediation: null
 MitreCategories:
   - Visibility
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

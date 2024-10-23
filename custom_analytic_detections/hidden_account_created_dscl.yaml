@@ -22,9 +22,4 @@ label: Hidden Account Created DSCL
 remediation: null
 MitreCategories:
   - Persistence
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

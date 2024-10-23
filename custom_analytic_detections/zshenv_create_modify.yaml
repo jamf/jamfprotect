@@ -19,9 +19,4 @@ shortDescription: The .zshenv has been created or modified in a users profile.
 label: Zshenv Created or Modified
 remediation: null
 MitreCategories: null
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

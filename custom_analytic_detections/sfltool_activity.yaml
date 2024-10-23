@@ -21,9 +21,4 @@ shortDescription: The sfltool binary has been used to dump or reset BackgroundTa
 label: SFLTool Activity
 remediation: null
 MitreCategories: null
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

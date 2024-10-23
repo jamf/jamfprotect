@@ -20,9 +20,4 @@ shortDescription: A current.panic file has been deleted.
 label: Kernel Panic Occured
 remediation: null
 MitreCategories: null
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

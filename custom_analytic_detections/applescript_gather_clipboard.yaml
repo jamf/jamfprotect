@@ -22,9 +22,4 @@ remediation: null
 MitreCategories:
   - LivingOffTheLand
   - CredentialAccess
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

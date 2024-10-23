@@ -21,9 +21,4 @@ label: Host File modification
 remediation: Review which process was responsible for modifying the host file to determine if it's legitimate or unsafe behavior.
 MitreCategories:
   - Visibility
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

@@ -23,9 +23,4 @@ label: Installer Initiated Network Connection
 remediation: Review the context of the command to determine if it's legitimate or unsafe behavior.
 MitreCategories:
   - Execution
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

@@ -21,9 +21,4 @@ label: Mdfind Search AWS Keys
 remediation: null
 MitreCategories:
   - LivingOffTheLand
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

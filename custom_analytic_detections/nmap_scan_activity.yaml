@@ -21,9 +21,4 @@ label: Nmap Scan Activity
 remediation: null
 MitreCategories:
   - Discovery
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

@@ -20,9 +20,4 @@ shortDescription: The dscl binary has been used to delete a user.
 label: User Deleted by DSCL
 remediation: null
 MitreCategories: null
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

@@ -21,9 +21,4 @@ label: Bluetooth File Exchange Inbound
 remediation: null
 MitreCategories:
   - Visibility
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

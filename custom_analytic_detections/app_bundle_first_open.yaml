@@ -21,9 +21,4 @@ label: App Bundle First Open
 remediation: null
 MitreCategories:
   - Visibility
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

@@ -25,9 +25,4 @@ shortDescription: The pfctl binary has been lauched to make modifications to the
 label: Packet Filter Modification
 remediation: null
 MitreCategories: null
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

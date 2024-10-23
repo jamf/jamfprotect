@@ -22,9 +22,4 @@ label: Systemsetup Activity
 remediation: null
 MitreCategories:
   - LateralMovement
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

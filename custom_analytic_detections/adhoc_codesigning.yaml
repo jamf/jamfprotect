@@ -41,9 +41,4 @@ label: Adhoc Codesigning
 remediation: Review the binary that has been ad-hoc signed and determine if it's unsafe.
 MitreCategories:
   - Visibility
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

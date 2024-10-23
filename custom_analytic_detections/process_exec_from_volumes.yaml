@@ -19,9 +19,4 @@ shortDescription: A process has been executed from within the /Volumes/ director
 label: Process Executions from Volumes
 remediation: null
 MitreCategories: null
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

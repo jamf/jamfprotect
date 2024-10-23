@@ -23,9 +23,4 @@ label: Keychain Dumped
 remediation: null
 MitreCategories:
   - CredentialAccess
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

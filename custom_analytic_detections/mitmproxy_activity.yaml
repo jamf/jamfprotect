@@ -20,9 +20,4 @@ label: Mitmproxy Activity
 remediation:
   - AdversaryInTheMiddle
 MitreCategories: null
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

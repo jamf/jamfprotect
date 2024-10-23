@@ -20,9 +20,4 @@ shortDescription: A unsigned process has been executed from the /Volumes/ direct
 label: Unsigned Process Execution from Volumes
 remediation: Review the unsigned process and verify if the user on purpose launched it from within this directory.
 MitreCategories: null
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

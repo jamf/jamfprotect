@@ -18,9 +18,4 @@ shortDescription: A unsigned keylogger has registered on the endpoint.
 label: Unsigned Keylogger Registered
 remediation: null
 MitreCategories: null
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

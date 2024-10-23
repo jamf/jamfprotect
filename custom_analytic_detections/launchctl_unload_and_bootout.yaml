@@ -21,9 +21,4 @@ shortDescription: A service has been unloaded by launchctl.
 label: Launchctl Unload and Bootout
 remediation: null
 MitreCategories: null
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

@@ -20,9 +20,4 @@ shortDescription: Threat Prevention detected known malware via a signature match
 label: Threat Prevention File Quarantine
 remediation: null
 MitreCategories: null
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

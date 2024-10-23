@@ -27,9 +27,4 @@ shortDescription: A Web App has been created.
 label: Web App Created
 remediation: null
 MitreCategories: null
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

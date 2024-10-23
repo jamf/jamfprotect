@@ -28,9 +28,4 @@ shortDescription: A Time Machine has been setup and is marked as being not encry
 label: Time Machine Not Encrypted
 remediation: null
 MitreCategories: null
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

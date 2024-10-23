@@ -23,9 +23,4 @@ label: TMUtil Activity
 remediation: Review if this activity was initiated by the user, if not review the processes that were responsible.
 MitreCategories:
   - LivingOffTheLand
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

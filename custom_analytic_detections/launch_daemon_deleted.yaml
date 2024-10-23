@@ -19,9 +19,4 @@ shortDescription: A LaunchDaemon has been deleted.
 label: LaunchDaemon Deleted
 remediation: null
 MitreCategories: null
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

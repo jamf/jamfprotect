@@ -25,9 +25,4 @@ remediation: null
 MitreCategories:
   - LivingOffTheLand
   - Discovery
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

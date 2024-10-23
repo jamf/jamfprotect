@@ -21,9 +21,4 @@ shortDescription: A unsigned Disk Image has been created or downloaded.
 label: Unsigned Dmg Detected
 remediation: Carefully review the contents of the Disk Image.
 MitreCategories: null
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

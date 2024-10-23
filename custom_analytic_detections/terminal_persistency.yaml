@@ -26,9 +26,4 @@ remediation: Review the Terminal Shell Command to define if this is inteded by t
 MitreCategories:
   - Persistence
   - LivingOffTheLand
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+

@@ -24,9 +24,4 @@ shortDescription: Print activity has been detected on the endpoint.
 label: Printer Activity
 remediation: null
 MitreCategories: null
-osVersion:
-  min: null
-  max: null
-extVersion:
-  min: null
-  max: null
+
