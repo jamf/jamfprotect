@@ -1,6 +1,6 @@
 ---
 name: AppBundleTrashed
-uuid: a106e8d5-ede7-42d2-a612-d0c304eac796
+uuid: 08fe8b4b-7f28-44ae-8b94-f969da542f44
 longDescription: This detection functions by monitoring for the creation of new directories on the OS in a path containing .Trash, indicating it was moved to trash.
 level: 0
 inputType: GPFSEvent

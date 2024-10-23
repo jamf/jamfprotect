@@ -1,6 +1,6 @@
 ---
 name: AllSudoCommandlineActivity
-uuid: b5f40429-21c4-44e7-917f-e90f4be388c4
+uuid: 2ad6247d-5c06-4e60-b088-d00b4b2a1c6c
 longDescription: Sudo activity on the commandline has been detected.
 level: 0
 inputType: GPProcessEvent

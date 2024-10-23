@@ -1,6 +1,6 @@
 ---
 name: KeychainDumped
-uuid: 25b14366-08bd-473f-a7dd-6ff5818ffb84
+uuid: 6fe79b15-aa2f-4bd5-a6c9-9192878f17b4
 longDescription: This detection functions by monitoring for process creation involving binaries carrying the signing information of 'com.apple.security' and using the parameters "dump-keychain".
 level: 0
 inputType: GPProcessEvent
