@@ -1,0 +1,30 @@
+# systemwide_cronjob
+#
+# This Analytic predicate can be used to report on the creation or modification of the system-wide crontab file located at /etc/crontab. 
+# The detection functions by monitoring for new entries added to the crontab file, excluding comments, indicating that a new system-wide scheduled task has been created or an existing one has been modified.
+
+# Required Analytic Configuration:
+Sensor Event Type: File System Event
+Level: 0
+Snapshot File Path: /etc/crontab
+
+# Analytic Predicate:
+
+($event.path == "/etc/crontab") AND 
+(($event.isNewFile == 1 OR $event.isModified == 1) AND 
+FUNCTION($event.file, "newDelimitedEntries:comments:", ".newlines", "#").@count > 0)
+
+# Context items
+Type: String
+Name: ItemName
+Expression: "cron job"
+
+Type: Binary
+Name: ItemBinary
+Expression: FUNCTION(event.file, 'newDelimitedEntries:comments:', '.newlines', '#')[0]
+
+
+# Recommended Analytic Configuration:
+Severity: Informational
+Categories: Visibility
+Tags: MITREattack,Execution,ScheduledTaskJob,T1053.003,Persistence
