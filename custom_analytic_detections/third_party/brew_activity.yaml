@@ -1,0 +1,26 @@
+---
+name: BrewActivity
+uuid: b81eaa0f-9daf-49e6-894f-3cc0fbedb5d0
+longDescription: This detection functions by monitoring and report on any activity involving the use of brew with additional arguments, although this one is looking for brew being intstalled on the default location.
+level: 0
+inputType: GPProcessEvent
+tags: null
+snapshotFiles: []
+filter: $event.type == 1 AND
+  $event.process.path.lastPathComponent == "bash" AND
+  $event.process.parent.isShell == 1 AND
+  $event.process.args.@count > 4 AND 
+  (ANY $event.process.args == "/opt/homebrew/bin/brew")
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+  - Third Party
+version: 1
+severity: Informational
+shortDescription: The package manager brew has been invoked.
+label: Brew Activity
+remediation: null
+MitreCategories: null
+

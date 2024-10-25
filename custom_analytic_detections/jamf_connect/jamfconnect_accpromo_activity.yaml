@@ -17,6 +17,7 @@ actions:
 context: []
 categories:
   - Visibility
+  - Jamf Connect
 version: 1
 severity: Informational
 shortDescription: A user privileges has escalated through the Jamf Connect commandline utility.

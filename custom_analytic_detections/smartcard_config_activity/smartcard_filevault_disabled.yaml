@@ -1,0 +1,26 @@
+---
+name: SmartcardFilevaultEnabled
+uuid: 7dc32c42-294b-4628-8522-550ff10a747b
+longDescription: This detection functions by monitoring the ctkbind process in macOS when a user runs /usr/sbin/sc_auth filevault -o fvdisable -u <user> -h <hash>.
+level: 0
+inputType: GPProcessEvent
+tags: null
+snapshotFiles: []
+filter: $event.type == 1 AND
+  $event.process.signingInfo.appid == "com.apple.ctkbind" AND$event.process.commandLine CONTAINS " -o fvenable "
+  $event.type == 1 AND
+  $event.process.signingInfo.appid == "com.apple.ctkbind" AND 
+  $event.process.commandLine CONTAINS " -o fvdisable "
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+  - Smartcard
+version: 1
+severity: Informational
+shortDescription: A smartcard has been disabled for Filevault authentication.
+label: Smartcard Filevault Disabled
+remediation: null
+MitreCategories: null
+

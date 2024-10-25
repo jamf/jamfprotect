@@ -1,0 +1,24 @@
+---
+name: SmartcardPinChanged
+uuid: 89094318-f588-4b1a-9fb3-80e77855847f
+longDescription: This detection functions by monitoring the pivpin process in macOS when a user runs /usr/sbin/sc_auth changepin.
+level: 0
+inputType: GPProcessEvent
+tags: null
+snapshotFiles: []
+filter: $event.type == 1 AND
+  $event.process.signingInfo.appid == "com.apple.pivpin" AND NOT
+  (ANY $event.process.args == "-v")
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+  - Smartcard
+version: 1
+severity: Informational
+shortDescription: The pin on a smartcard has been changed.
+label: Smartcard Pin Changed
+remediation: null
+MitreCategories: null
+

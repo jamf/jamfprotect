@@ -1,0 +1,25 @@
+---
+name: BuiltinApacheDisabled
+uuid: 161b7713-732c-4ef5-800e-501865e31f74
+longDescription: This detection functions by monitoring for a launchctl command executed by macOS when a user disabled httpd via /usr/sbin/apachectl
+level: 0
+inputType: GPProcessEvent
+tags: null
+snapshotFiles: []
+filter: $event.type == 1 AND
+  $event.process.signingInfo.appid == "com.apple.xpc.launchctl" AND
+  $event.process.args.@count > 0 AND
+  ((ANY $event.process.args == "unload") AND (ANY $event.process.args == "/System/Library/LaunchDaemons/org.apache.httpd.plist"))
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+  - System Changes
+version: 1
+severity: Informational
+shortDescription: The launchctl has been used to unload and disable the httpd for Apache.
+label: Builtin Apache Disabled
+remediation: null
+MitreCategories: null
+

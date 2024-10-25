@@ -1,0 +1,24 @@
+---
+name: SmartcardIdentityPaired
+uuid: 015e7d9e-0d51-4644-ba8a-d8e7ac86d37a
+longDescription: This detection functions by monitoring the ctkbind process in macOS when a user runs /usr/sbin/sc_auth pair -u <user> -h <hash>.
+level: 0
+inputType: GPProcessEvent
+tags: null
+snapshotFiles: []
+filter: $event.type == 1 AND
+  $event.process.signingInfo.appid == "com.apple.ctkbind" AND
+  (ANY $event.process.args == "-p")
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+  - Smartcard
+version: 1
+severity: Informational
+shortDescription: A smartcard identity has paired to a user.
+label: Smartcard Identity Paired
+remediation: null
+MitreCategories: null
+

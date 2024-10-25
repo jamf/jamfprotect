@@ -1,0 +1,24 @@
+---
+name: SmartcardPinVerified
+uuid: a8a0ef17-305e-47f9-a93f-76f6619130bc
+longDescription: This detection functions by monitoring the pivpin process in macOS when a user runs /usr/sbin/sc_auth verifypin.
+level: 0
+inputType: GPProcessEvent
+tags: null
+snapshotFiles: []
+filter: $event.type == 1 AND
+  $event.process.signingInfo.appid == "com.apple.pivpin" AND
+  (ANY $event.process.args == "-v")
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+  - Smartcard
+version: 1
+severity: Informational
+shortDescription: The pin on a smartcard has been verified.
+label: Smartcard Pin Verified
+remediation: null
+MitreCategories: null
+
