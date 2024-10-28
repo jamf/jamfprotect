@@ -1,0 +1,24 @@
+---
+name: LaunchctlUnloadAndBootout
+uuid: cd5bb321-6c70-49f9-952b-a1da4f9c6b81
+longDescription: This detection functions by monitoring for processes created by the launchctl binary where a process argument contains the 'unload' or 'bootout' arguments.
+level: 0
+inputType: GPProcessEvent
+tags:
+snapshotFiles: []
+filter: $event.type == 1 AND
+  $event.process.signingInfo.appid == "com.apple.xpc.launchctl" AND
+  $event.process.args.@count > 0 AND
+  (ANY $event.process.args IN {"unload", "bootout"})
+actions:
+  - name: Log
+context: []
+categories:
+  - System Visibility
+version: 1
+severity: Informational
+shortDescription: A service has been unloaded by launchctl.
+label: Launchctl Unload and Bootout
+remediation: null
+MitreCategories: null
+

@@ -1,0 +1,23 @@
+---
+name: UsbInsertionNonWritable
+uuid: 28043b0a-7cd1-45b1-a128-148b96b7b6c7
+longDescription: This detection functions by monitoring for removable device insertion events where the device hardware is determined to be removable and non-writable.
+level: 0
+inputType: GPUSBEvent
+tags:
+snapshotFiles: []
+filter: $event.type == 0 AND
+  $event.device.removable == 1 AND
+  $event.device.writable != 1
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+version: 1
+severity: Informational
+shortDescription: A non-writable USB drive has been inserted.
+label: USB Insertion Non Writable
+remediation: null
+MitreCategories: null
+

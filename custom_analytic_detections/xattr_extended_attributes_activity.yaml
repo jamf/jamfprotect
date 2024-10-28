@@ -1,0 +1,24 @@
+---
+name: XattrExtendedAttributesActivity
+uuid: 87d1bea2-fbbe-4b53-9044-aa6dfd77d77c
+longDescription: This detection functions by monitoring for usage of the xattr binary with the -c and -d args (with com.apple.quarantine) used to clear all or a target extended attribute from a file.
+level: 0
+inputType: GPProcessEvent
+tags:
+snapshotFiles: []
+filter: $event.type == 1 AND
+  $event.process.signingInfo.appid == "com.apple.xattr" AND
+  $event.process.commandLine CONTAINS "com.apple.quarantine" AND
+  $event.process.commandLine MATCHES "xattr\\s+(-[lrsvx]{0,5}\\s+){0,5}-[rsvx]{0,4}d[rsvxd]{0,5}\\s+(-[lrsvxd]{0,5}\\s+){0,5}(\"|\')?com\\.apple\\.quarantine(\"|\')?\\s.+"
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+version: 1
+severity: Informational
+shortDescription: The xattr binary has been used to clear the quarantine attributes on a file.
+label: User Switched on Commandline
+remediation: null
+MitreCategories: null
+

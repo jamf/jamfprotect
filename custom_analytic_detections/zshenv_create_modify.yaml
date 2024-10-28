@@ -1,0 +1,22 @@
+---
+name: ZshenvCreateModify
+uuid: e0198480-4008-4dee-830b-625e4eb569f7
+longDescription: This detection functions by monitoring for the creation of new new file or modification of a .zshenv in the User's profile.
+level: 0
+inputType: GPFSEvent
+tags:
+snapshotFiles: []
+filter: ($event.isNew == 1 OR $event.isModified == 1) AND
+  $event.path MATCHES[cd] "/Users/.*/\\.zshenv"
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+version: 1
+severity: Informational
+shortDescription: The .zshenv has been created or modified in a users profile.
+label: Zshenv Created or Modified
+remediation: null
+MitreCategories: null
+

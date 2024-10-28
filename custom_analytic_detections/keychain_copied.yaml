@@ -1,0 +1,26 @@
+---
+name: KeychainCopied
+uuid: 25b14366-08bd-473f-a7dd-6ff5818ffb84
+longDescription: This detection functions by monitoring for process activity using the mv, ditto or cp binaries to copy .keychain-db files over to other locations, in case of a healthy keychain this should not happen.
+level: 0
+inputType: GPProcessEvent
+tags:
+snapshotFiles: []
+filter: $event.type == 1 AND 
+  $event.process.path.lastPathComponent IN {'mv', 'ditto', 'cp'} AND 
+  $event.process.args.@count > 0 AND
+  (ANY $event.process.args == ".keychain-db")
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+  - Credential Harvesting
+version: 1
+severity: Informational
+shortDescription: A users keychain database has been copied.
+label: Keychain Copied
+remediation: Review the path the keychain has been copied to and if it's initiated by the user on-purpose.
+MitreCategories:
+  - CredentialAccess
+

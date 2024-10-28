@@ -1,0 +1,25 @@
+---
+name: Sqlite3Downloads
+uuid: 1ab0e8aa-0625-49c8-96d1-8ba9868e2813
+longDescription: This detection functions by monitoring for process creation involving a binary carrying the signing information of 'com.apple.sqlite3' and process arguments containing "com.apple.LaunchServices.QuarantineEventsV" and "LSQuarantineEvent".
+level: 0
+inputType: GPProcessEvent
+tags:
+snapshotFiles: []
+filter: $event.type == 1 AND
+  $event.process.signingInfo.appid == "com.apple.sqlite3" AND
+  $event.process.args.@count > 0 AND
+  ((ANY $event.process.args == "com.apple.LaunchServices.QuarantineEventsV") AND (ANY $event.process.args == "LSQuarantineEvent"))
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+version: 1
+severity: Informational
+shortDescription: The sqlite3 binary is used to view the URLs associated with downloaded files.
+label: SQLite3 Downloads
+remediation: null
+MitreCategories:
+  - LivingOffTheLand
+

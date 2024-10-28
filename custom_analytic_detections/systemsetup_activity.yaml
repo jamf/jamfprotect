@@ -1,0 +1,25 @@
+---
+name: SystemsetupActivity
+uuid: 1c43d0f9-4073-4fa1-8f06-be8e9e0c6661
+longDescription: This detection functions by monitoring and report when systemsetup is being used to either either enable or disable remotelogin or appleremoteevents, systemsetup can be used to enable SSH for remote login but also can be used to enable Remote Apple Events.
+level: 0
+inputType: GPProcessEvent
+tags:
+snapshotFiles: []
+filter: $event.type  == 1 AND
+  $event.process.signingInfo.appid == "com.apple.systemsetup" AND
+  $event.process.args.@count > 0 AND
+  (ANY $event.process.args IN {"setremoteappleevents", "setremotelogin"})
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+version: 1
+severity: Informational
+shortDescription: The systemsetup binary is used to enable or disable remote events. 
+label: Systemsetup Activity
+remediation: null
+MitreCategories:
+  - LateralMovement
+

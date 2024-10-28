@@ -1,0 +1,23 @@
+---
+name: KernelPanicOccured
+uuid: 086473c0-28a6-4d5c-9dca-edc6c8f058e2
+longDescription: "This detection functions by monitoring for the deletion of the current.panic files.
+  NOTE: The current.panic file is initially written to disk when Jamf Protect is not actively running after the device kernel panics, when the machine is rebooting and before the Protect system extension is enabled. This file is subsequently deleted after the user gets to the  login window. This is when Protect will trigger on this event. If the machine does not restart or the kernel panic causes memory corruption that prevents the machine from rebooting or powering on, this detection will not trigger."
+level: 0
+inputType: GPFSEvent
+tags:
+snapshotFiles: []
+filter: $event.type == 1 AND
+  $event.path ==[cd] "/private/var/db/PanicReporter/current.panic"
+actions:
+  - name: Log
+context: []
+categories:
+  - System Visibility
+version: 1
+severity: Informational
+shortDescription: A current.panic file has been deleted.
+label: Kernel Panic Occured
+remediation: null
+MitreCategories: null
+

@@ -1,0 +1,25 @@
+---
+name: FilevaultAuthRestart
+uuid: 40c2f55d-005b-476c-81ef-655d6a47d851
+longDescription: This detection functions by monitoring for processes created with a binary carrying the com.apple.fdesetup identifier and have a process argument containing the 'authrestart' argument to perform an authenticated restart.
+level: 0
+inputType: GPProcessEvent
+tags:
+snapshotFiles: []
+filter: $event.type == 1 AND
+  $event.process.signingInfo.appid == "com.apple.fdesetup" AND
+  $event.process.args.@count > 0 AND
+  (ANY $event.process.args == "authrestart")
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+version: 1
+severity: Informational
+shortDescription: A Filevault Authenticated restart has been issued.
+label: Filevault Authenticated Restart
+remediation: null
+MitreCategories:
+  - Visibility
+

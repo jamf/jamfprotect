@@ -1,0 +1,23 @@
+---
+name: ThreatPreventionFileQuarantine
+uuid: 9c143b3c-7dfc-48a0-9ad2-3de72212c978
+longDescription: This detection functions by monitoring for new file creations in the Jamf Protect file quarantine directory /Library/Application Support/JamfProtect/Quarantine.
+level: 0
+inputType: GPFSEvent
+tags:
+snapshotFiles: []
+filter: $event.type IN {0, 3, 7} AND
+  $event.path MATCHES[c] "/Library/Application Support/JamfProtect/Quarantine/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/[^/]+"
+actions:
+  - name: Log
+context: []
+categories:
+  - KnownMalware
+  - Known Malicious File
+version: 1
+severity: Informational
+shortDescription: Threat Prevention detected known malware via a signature match and the offending file is contained and moved to the quarantine directory.
+label: Threat Prevention File Quarantine
+remediation: null
+MitreCategories: null
+

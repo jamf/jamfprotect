@@ -1,0 +1,33 @@
+---
+name: ScpFileCopiedRemoteDestination
+uuid: cbf317a8-7d93-4464-bba6-667aa8c2813f
+longDescription: This detection functions by monitoring and reporting when scp is used to copy a file to a remote destination.
+level: 0
+inputType: GPProcessEvent
+tags:
+snapshotFiles: []
+filter: $event.process.path.lastPathComponent == "scp" AND
+  $event.type == 1 AND
+  $event.process.args.@count > 1 AND
+  (ANY $event.process.args MATCHES ".*@.*")
+actions:
+  - name: Log
+context:
+  - exprs:
+      - (event.process.args)[1]
+    name: Source File
+    type: File
+  - exprs:
+      - (event.process.args)[LAST]
+    name: Destination
+    type: String
+categories:
+  - Visibility
+version: 1
+severity: Informational
+shortDescription: The scp binary has been used to transfer a file to a remote destination.
+label: SCP File Copied to Remote Destination
+remediation: null
+MitreCategories:
+  - Exfiltration
+

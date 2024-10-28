@@ -1,0 +1,23 @@
+---
+name: UnsignedProcessExecFromVolumes
+uuid: e26b8ec7-04cb-464e-9875-a65797560602
+longDescription: This detection functions by monitoring and report into unsigned processes executions from within the /Volumes/ directory.
+level: 0
+inputType: GPProcessEvent
+tags:
+snapshotFiles: []
+filter: $event.process.path BEGINSWITH "/Volumes/" AND
+  $event.type == 1 AND
+  $event.process.signingInfo.signerType  == 4
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+version: 1
+severity: Informational
+shortDescription: A unsigned process has been executed from the /Volumes/ directory. 
+label: Unsigned Process Execution from Volumes
+remediation: Review the unsigned process and verify if the user on purpose launched it from within this directory.
+MitreCategories: null
+

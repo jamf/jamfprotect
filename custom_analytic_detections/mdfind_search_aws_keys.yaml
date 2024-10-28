@@ -1,0 +1,24 @@
+---
+name: MdfindSearchAwsKeys
+uuid: 97973a89-4d19-4281-8b57-fd3968bc4ba9
+longDescription: This detection functions by monitoring for process creation involving a binary carrying the signing information of 'com.apple.mdfind' and process arguments containing "*AKIA*".
+level: 0
+inputType: GPProcessEvent
+tags:
+snapshotFiles: []
+filter: $event.type == 1 AND
+  $event.process.signingInfo.appid == "com.apple.mdfind" AND
+  (ANY $event.process.args CONTAINS[c] "*AKIA*")
+actions:
+  - name: Log
+context: []
+categories:
+  - CredentialAccess
+version: 1
+severity: Informational
+shortDescription: The binary mdfind has been used to search for files containing aws keys on the host system.
+label: Mdfind Search AWS Keys
+remediation: null
+MitreCategories:
+  - LivingOffTheLand
+

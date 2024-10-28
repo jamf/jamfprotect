@@ -1,0 +1,24 @@
+---
+name: SapPrivilegesElevation
+uuid: e62605ea-4072-4e47-a755-280a325bf04b
+longDescription: This detection functions by monitoring and report when an end-user has used Privileges.app to elevate administrator or demote to standard user, this alternative can be used if Unified Logging is not an option.
+level: 0
+inputType: GPProcessEvent
+tags: null
+snapshotFiles: []
+filter: $event.type  == 1 AND
+  $event.process.signingInfo.appid == "corp.sap.privileges" AND
+  $event.process.signingInfo.teamid == "7R5ZEU67FQ"
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+  - Third Party
+version: 1
+severity: Informational
+shortDescription: The utility Privileges has been used to elevate or demote privileges.
+label: SAP Privileges Elevation
+remediation: null
+MitreCategories: null
+

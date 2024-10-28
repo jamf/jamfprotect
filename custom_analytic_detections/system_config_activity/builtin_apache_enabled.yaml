@@ -1,0 +1,25 @@
+---
+name: BuiltinApacheEnabled
+uuid: e0fd4469-1b85-4f39-877c-1f618baa20d8
+longDescription: This detection functions by monitoring for a launchctl command executed by macOS when a user enables httpd via /usr/sbin/apachectl
+level: 0
+inputType: GPProcessEvent
+tags: null
+snapshotFiles: []
+filter: $event.type == 1 AND
+  $event.process.signingInfo.appid == "com.apple.xpc.launchctl" AND
+  $event.process.args.@count > 0 AND
+  ((ANY $event.process.args == "load") AND (ANY $event.process.args == "/System/Library/LaunchDaemons/org.apache.httpd.plist"))
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+  - System Changes
+version: 1
+severity: Informational
+shortDescription: The launchctl has been used to load and enable the httpd for Apache.
+label: Builtin Apache Enabled
+remediation: null
+MitreCategories: null
+

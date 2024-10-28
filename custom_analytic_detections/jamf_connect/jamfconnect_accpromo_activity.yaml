@@ -1,0 +1,28 @@
+---
+name: JamfConnectAccPromoActivity
+uuid: caa020a3-03b1-4667-8401-0b0a426e523f
+longDescription: This detection functions by monitoring for process creation involving a binary carrying the signing information of 'com.jamf.connect.tool' and process arguments containing "acc-promo --elevate".
+level: 0
+inputType: GPProcessEvent
+tags: null
+snapshotFiles: []
+filter: event.process.signingInfo.appid == "com.jamf.connect.tool" AND
+  $event.type == 1 AND
+  $event.process.args.@count > 0 AND
+  ((ANY $event.process.args == "acc-promo") AND (ANY $event.process.args == "--elevate")) AND
+  $event.process.responsible.signingInfo.teamid != "483DWKW443" AND
+  $event.process.tty == nil
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+  - Jamf Connect
+version: 1
+severity: Informational
+shortDescription: A user privileges has escalated through the Jamf Connect commandline utility.
+label: Jamf Connect Acc Promo Activity
+remediation: null
+MitreCategories:
+  - PrivilegeEscalation
+

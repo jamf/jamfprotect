@@ -1,0 +1,24 @@
+---
+name: UnsignedDmgDetected
+uuid: fd394560-6603-4dca-a20f-79d3a84b9dbd
+longDescription: This detection functions by monitoring and report on dmg files being created where the object is not signed and not created by Disk Utility.
+level: 0
+inputType: GPFSEvent
+tags:
+snapshotFiles: []
+filter: $event.type == 0 AND 
+  $event.file.path.pathExtension == "dmg" AND
+  $event.file.signingInfo.signerType == 4 AND NOT
+  (("com.apple.quarantine" IN $event.file.xattrs) AND $event.file.isQuarantined == 1)
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+version: 1
+severity: Low
+shortDescription: A unsigned Disk Image has been created or downloaded.
+label: Unsigned Dmg Detected
+remediation: Carefully review the contents of the Disk Image.
+MitreCategories: null
+

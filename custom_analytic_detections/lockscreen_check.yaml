@@ -1,0 +1,25 @@
+---
+name: LockscreenCheck
+uuid: 6543d169-39a2-401d-bec8-684b7b50bc77
+longDescription: This detection functions by monitoring for process creation involving a binary carrying the signing information of 'com.apple.zgrep' or 'com.apple.grep', a process group leader carrying the signing information of 'com.apple.ioreg', and a process argument containing "CGSSession".
+level: 0
+inputType: GPProcessEvent
+tags:
+snapshotFiles: []
+filter: $event.type == 1 AND
+  $event.process.path.lastPathComponent == "grep" AND
+  (ANY $event.process.args == "CGSSession") AND
+  $event.process.pgprocess.signingInfo.appid == "com.apple.ioreg"
+actions:
+  - name: Log
+context: []
+categories:
+  - System Visibility
+version: 1
+severity: Informational
+shortDescription: The ioreg binary has been used to check if the macOS Lockscreen is locked.
+label: Lockscreen Check
+remediation: null
+MitreCategories:
+  - LivingOffTheLand
+

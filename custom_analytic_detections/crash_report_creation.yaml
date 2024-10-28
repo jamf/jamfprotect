@@ -1,0 +1,23 @@
+---
+name: CrashReportCreation
+uuid: 4a4d7215-f470-452d-b2ee-0a36b829598e
+longDescription: This detection functions by monitoring for the creation of the Crash Report files.
+level: 0
+inputType: GPFSEvent
+tags:
+snapshotFiles: []
+filter: $event.isNewFile == 1 AND
+  $event.path MATCHES[cd] "(:?/System|/Users/[\\w_\\.\\-]{1,83})?/Library/Logs/DiagnosticReports/.*\\.ips"
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+version: 1
+severity: Informational
+shortDescription: The creation of a crash report has been detected.
+label: Crash Report Creation
+remediation: Review the crash report on the host system. Although by nature not necessarily related to malicious activity but in case of an unusual amount of reports this could relate to persistent malware that keeps crashing, also it can be useful for triaging issues on a end-users system.
+MitreCategories:
+  - Visibility
+

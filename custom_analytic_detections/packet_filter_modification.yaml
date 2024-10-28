@@ -1,0 +1,28 @@
+---
+name: PacketFilterModification
+uuid: 5f1d941b-0eaa-4fb0-8754-e7074f3b4366
+longDescription: This detection functions by monitoring for processes created with a binary carrying the com.apple.pfctl identifier and have a process argument containing one of the following arguments "-F all" "-d" "-e -f" "-e".
+level: 0
+inputType: GPProcessEvent
+tags:
+snapshotFiles: []
+filter: $event.type == 1 AND 
+  $event.process.signingInfo.appid == "com.apple.pfctl" AND 
+  ($event.process.commandLine CONTAINS "-F all" OR 
+  $event.process.commandLine CONTAINS "-d" OR 
+  $event.process.commandLine CONTAINS "-e -f" OR 
+  $event.process.commandLine CONTAINS "-e") OR 
+  $file.path == "/etc/pf.conf" AND 
+  $file.isModified == 1
+actions:
+  - name: Log
+context: []
+categories:
+  - System Visibility
+version: 1
+severity: Informational
+shortDescription: The pfctl binary has been lauched to make modifications to the packet filter on macOS.
+label: Packet Filter Modification
+remediation: null
+MitreCategories: null
+

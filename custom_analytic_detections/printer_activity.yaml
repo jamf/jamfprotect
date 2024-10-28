@@ -1,0 +1,27 @@
+---
+name: PrinterActivity
+uuid: 2f1e2ef0-05b3-48d7-a6fe-3b908c5ee010
+longDescription: This detection functions by monitoring for process creation involving binaries carrying the signing information of 'com.apple.socket', 'com.apple.ipp', 'com.apple.lpd', or 'com.apple.usb' with a responsible process creation involving a binary carrying the signing info of 'com.apple.cupsd'.
+level: 0
+inputType: GPProcessEvent
+tags:
+snapshotFiles: []
+filter: $event.type == 1 AND
+  $event.process.signingInfo.appid IN {'com.apple.socket', 'com.apple.ipp', 'com.apple.lpd', 'com.apple.usb'} AND
+  $event.process.responsible.signingInfo.appid == "com.apple.cupsd"
+actions:
+  - name: Log
+context:
+  - exprs:
+      - event.process.commandLine
+    name: print job command
+    type: String
+categories:
+  - System Visibility
+version: 1
+severity: Informational
+shortDescription: Print activity has been detected on the endpoint.
+label: Printer Activity
+remediation: null
+MitreCategories: null
+

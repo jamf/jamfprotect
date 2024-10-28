@@ -1,0 +1,30 @@
+---
+name: WebappCreated
+uuid: 1ce4d15c-f2be-4061-b2f8-3fc1bc720e1e
+longDescription: This detection functions by monitoring and report when Web Apps are being created by Safari in the Applications directory in a users home folder.
+level: 0
+inputType: GPFSEvent
+tags:
+snapshotFiles: []
+filter: $event.type == 7 AND
+  $event.isNewDirectory == 1 AND
+  $event.file.isAppBundle == 1 AND
+  $event.file.path BEGINSWITH "/Users/" AND
+  $event.process.signingInfo.appid == "com.apple.coreservices.uiagent" AND
+  $event.file.path.stringByDeletingLastPathComponent ENDSWITH "/Applications"
+actions:
+  - name: Log
+context:
+  - exprs:
+      - (event.file.bundle.infoDictionary.Manifest.start_url)
+    name: Web App URL
+    type: File
+categories:
+  - Visibility
+version: 1
+severity: Informational
+shortDescription: A Web App has been created.
+label: Web App Created
+remediation: null
+MitreCategories: null
+

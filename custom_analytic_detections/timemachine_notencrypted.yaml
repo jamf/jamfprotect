@@ -1,0 +1,31 @@
+---
+name: TimeMachineNotEncrypted
+uuid: 42a8b84e-f8c3-4397-b929-4010dea8a483
+longDescription: This detection functions by monitoring and report when a Time Machine is configured and the last known encryption state is not encrypted.
+level: 0
+inputType: GPFSEvent
+tags:
+snapshotFiles: []
+filter: $event.path == "/Library/Preferences/com.apple.TimeMachine.plist" AND 
+  $event.type IN {0, 3, 4} AND
+  $event.file.contentsAsDict.LastKnownEncryptionState != "Encrypted"
+actions:
+  - name: Log
+context:
+  - exprs:
+      - event.file.contentsAsDict.LastKnownEncryptionState
+    name: Last Known Encryption State
+    type: String
+  - exprs:
+      - event.file.contentsAsDict.LastKnownVolumeName
+    name: Last Known Volume Name
+    type: String
+categories:
+  - Visibility
+version: 1
+severity: Informational
+shortDescription: A Time Machine has been setup and is marked as being not encrypted.
+label: Time Machine Not Encrypted
+remediation: null
+MitreCategories: null
+

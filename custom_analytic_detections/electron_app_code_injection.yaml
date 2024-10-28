@@ -1,0 +1,27 @@
+---
+name: ElectronAppCodeInjection
+uuid: 815a4d03-64fe-4b32-8ac4-21598f9d0bd7
+longDescription: This detection monitors attempts at code injection into Electron applications on macOS, particularly searching for the usage of the --inspect= argument that could lead into take over of macOS applications TCC permissions.
+level: 0
+inputType: GPProcessEvent
+tags:
+snapshotFiles: []
+filter: $event.type  == 1 AND
+  $event.process.path CONTAINS ".app" AND
+  $event.process.args.@count > 0 AND
+  (ANY $event.process.args IN {"--inspect=", "--remote-de-bugging-port"})
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+  - Privilege Escalation
+version: 1
+severity: Medium
+shortDescription: Code Injection into a Electron App has been detected
+label: Electron App Code Injection
+remediation: Review the responsible process for the execution of the Electron app and verify if this is legitimate or inteded behavior.
+MitreCategories:
+  - DefenseEvasion
+  - T1055
+

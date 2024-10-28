@@ -1,0 +1,25 @@
+---
+name: FileSharingEnabled
+uuid: 3fef5ea1-2737-497a-b1c4-e3532d5826e0
+longDescription: This detection functions by monitoring for a launchctl command executed by macOS when a user toggles the File Sharing feature on inside System Preferences > Sharing.
+level: 0
+inputType: GPProcessEvent
+tags: null
+snapshotFiles: []
+filter: $event.type == 1 AND
+  $event.process.signingInfo.appid == "com.apple.xpc.launchctl" AND
+  $event.process.args.@count > 0 AND
+  ((ANY $event.process.args == "load") AND (ANY $event.process.args == "/System/Library/LaunchDaemons/com.apple.smbd.plist"))
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+  - System Changes
+version: 1
+severity: Informational
+shortDescription: File Sharing has been enabled.
+label: File Sharing Enabled
+remediation: null
+MitreCategories: null
+

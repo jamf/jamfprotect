@@ -1,0 +1,22 @@
+---
+name: ProcessExecFromVolumes
+uuid: ae87231b-58ff-48b6-8fca-87bdb34f8ab3
+longDescription: This detection functions by monitoring for process executions from within the /Volumes/ directory.
+level: 0
+inputType: GPProcessEvent
+tags:
+snapshotFiles: []
+filter: $event.process.path BEGINSWITH "/Volumes/" AND
+  $event.type == 1
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+version: 1
+severity: Informational
+shortDescription: A process has been executed from within the /Volumes/ directory.
+label: Process Executions from Volumes
+remediation: null
+MitreCategories: null
+

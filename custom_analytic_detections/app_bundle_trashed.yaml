@@ -1,0 +1,25 @@
+---
+name: AppBundleTrashed
+uuid: 08fe8b4b-7f28-44ae-8b94-f969da542f44
+longDescription: This detection functions by monitoring for the creation of new directories on the OS in a path containing .Trash, indicating it was moved to trash.
+level: 0
+inputType: GPFSEvent
+tags: null
+snapshotFiles: []
+filter: $event.isModified == 1 AND
+  $event.process.signingInfo.appid == "com.apple.finder" AND
+  $event.prevFile ENDSWITH[cd] ".app" AND
+  $event.path.stringByDeletingLastPathComponent.lastPathComponent == ".Trash"
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+version: 1
+severity: Informational
+shortDescription: Application bundle trashed
+label: Application Bundle Trashed
+remediation: null
+MitreCategories:
+  - Visibility
+

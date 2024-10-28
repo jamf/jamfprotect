@@ -1,0 +1,26 @@
+---
+name: GenericFileCopiedRemoteDestination
+uuid: 6faa776e-f2fc-40cc-b7b8-e96ee56387c4
+longDescription: This detection functions by monitoring when scp, sftp or rsync is used to copy a file to a remote destination.
+level: 0
+inputType: GPProcessEvent
+tags:
+snapshotFiles: []
+filter: $event.process.path.lastPathComponent IN {"scp", "rsync", "sftp"} AND
+  $event.type == 2 AND
+  $event.process.args.@count > 1 AND
+  (ANY $event.process.args MATCHES ".*@.*") AND
+  $event.process.exitCode == 0
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+version: 1
+severity: Informational
+shortDescription: A file has been copied to a remote destination.
+label: Generic File Copied to Remote Destination
+remediation: null
+MitreCategories:
+  - Visibility
+

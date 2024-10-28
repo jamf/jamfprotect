@@ -1,0 +1,24 @@
+---
+name: HostFileModification
+uuid: 7eea8332-eeb4-416f-92d8-cccef960f678
+longDescription: This detection functions by monitoring for modifications made to the /etc/hosts file path.
+level: 0
+inputType: GPFSEvent
+tags:
+snapshotFiles: []
+filter: $event.isModified == 1 AND
+  $event.path ==[cd] "/private/etc/hosts"
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+  - System Tampering
+version: 1
+severity: Informational
+shortDescription: The /etc/hosts file has been modified.
+label: Host File modification
+remediation: Review which process was responsible for modifying the host file to determine if it's legitimate or unsafe behavior.
+MitreCategories:
+  - Visibility
+

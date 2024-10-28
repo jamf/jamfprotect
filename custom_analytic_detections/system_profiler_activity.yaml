@@ -1,0 +1,28 @@
+---
+name: SystemProfilerActivity
+uuid: ef541e88-ef49-4089-a009-f943cd4df90b
+longDescription: This detection functions by monitoring process creation involving a process path where the last path component is system_profiler, No TTY is assigned and at least one argument is provided that matches "SPHardwareDataType"
+level: 0
+inputType: GPProcessEvent
+tags:
+snapshotFiles: []
+filter: $event.type == 1 AND
+  $event.process.tty == nil AND
+  $event.process.path.lastPathComponent == "system_profiler"
+  $event.process.args.@count > 0 AND
+  (ANY $event.process.args IN {"SPHardwareDataType", "SPSoftwareDataType", "SPDisplayDataType"}) AND
+  $event.process.responsible.signingInfo.signerType IN {3, 4}
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+version: 1
+severity: Informational
+shortDescription: The system_profiler binary is used in a non-interactive shell and prints hardware related information and the responsible process is not signed.
+label: System Profiler Activity
+remediation: null
+MitreCategories:
+  - LivingOffTheLand
+  - Discovery
+

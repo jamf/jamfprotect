@@ -1,0 +1,25 @@
+---
+name: ApplicationFirewallConfigChanges
+uuid: f501f7d7-b89d-4eca-a972-a17539d71a11
+longDescription: This detection functions by monitoring for usage of the socketfilterfw binary used with specific binary verbs that reduce or entirely disable the security provided by the Application Firewall.
+level: 0
+inputType: GPProcessEvent
+tags: null
+snapshotFiles: []
+filter: $event.type == 1 AND 
+  $event.process.signingInfo.appid == "com.apple.socketfilterfw" AND 
+  $event.process.args.@count > 0 AND
+  (((ANY $event.process.args  IN {"--setglobalstate", "--setloggingmode", "--setblockall"}) AND (ANY $event.process.args == "off")) OR (ANY $event.process.args IN {"--unblockapp", "--remove"}))
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+  - System Changes
+version: 1
+severity: Low
+shortDescription: The socketfilterfw binary has been used to make changes to the application firewall.
+label: Application Firewall Configuration Changes
+remediation: null
+MitreCategories: null
+

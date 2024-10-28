@@ -1,0 +1,25 @@
+---
+name: CaffeinateOnInteractiveCommandline
+uuid: 207c6d15-e72d-467d-a87f-652a6060d864
+longDescription: Caffeinate activity has been detected on a interactive command line.
+level: 0
+inputType: GPProcessEvent
+tags:
+snapshotFiles: []
+filter: $event.type == 1 AND
+  $event.process.tty != nil AND
+  $event.process.parent.isShell == 1 AND
+  $event.process.signingInfo.appid == "com.apple.caffeinate"
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+version: 1
+severity: Informational
+shortDescription: Caffeinate on interactive commandline
+label: Caffeinate on interactive commandline
+remediation: null
+MitreCategories:
+  - Visibility
+

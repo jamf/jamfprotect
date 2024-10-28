@@ -1,0 +1,24 @@
+---
+name: AppBundleInstalled
+uuid: a106e8d5-ede7-42d2-a612-d0c304eac796
+longDescription: This detection functions by monitoring for the creation of new directories on the OS that contain a .app extension and are not created in either a Trash or the application sandbox directory.
+level: 0
+inputType: GPFSEvent
+tags: null
+snapshotFiles: []
+filter: $event.type == 7 AND
+  $event.isNewDirectory == 1 AND
+  $event.path ENDSWITH[cd] ".app" AND NOT ($event.path CONTAINS ".Trash" OR $event.path BEGINSWITH "/Library/InstallerSandboxes/.PKInstallSandboxManager")
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+version: 1
+severity: Informational
+shortDescription: Application bundle installed
+label: Application Bundle Installed
+remediation: null
+MitreCategories:
+  - Visibility
+

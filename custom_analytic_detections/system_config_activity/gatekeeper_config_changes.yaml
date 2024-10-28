@@ -1,0 +1,24 @@
+---
+name: GatekeeperConfigChanges
+uuid: 027a48ee-bcc8-4e1d-bc08-c5ecf705ca44
+longDescription: This detection functions by monitoring for usage of the spctl binary used with specific binary verbs that reduce or entirely disable the security provided by Gatekeeper.
+level: 0
+inputType: GPProcessEvent
+tags: null
+snapshotFiles: []
+filter: $event.type == 1 AND 
+  $event.process.signingInfo.appid == "com.apple.spctl" AND 
+  (ANY $event.process.args IN {"--global-disable", "--master-disable", "--disable", "--remove"})
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+  - System Changes
+version: 1
+severity: Low
+shortDescription: The spctl binary has been used to disable Gatekeeper.
+label: Gatekeeper Configuration Changes
+remediation: null
+MitreCategories: null
+

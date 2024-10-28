@@ -1,0 +1,22 @@
+---
+name: AllCurlActivity
+uuid: ae84e018-e9fd-467e-9c24-f31ac949a63d
+longDescription: Curl activity has been detected.
+level: 0
+inputType: GPProcessEvent
+tags: null
+snapshotFiles: []
+filter: $event.type == 1 AND $event.process.path.lastPathComponent IN {"curl", "nscurl"}
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+version: 1
+severity: Informational
+shortDescription: All curl activity
+label: All curl activity
+remediation: null
+MitreCategories:
+  - Visibility
+
