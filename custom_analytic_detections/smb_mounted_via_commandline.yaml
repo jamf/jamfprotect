@@ -17,7 +17,7 @@ categories:
   - Visibility
 version: 1
 severity: Informational
-shortDescription: A SMB Mount operation occured.
+shortDescription: A SMB Mount operation occurred.
 label: SMB Mounted via Commandline
 remediation: null
 MitreCategories:
