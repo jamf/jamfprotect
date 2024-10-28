@@ -22,7 +22,7 @@ version: 1
 severity: Low
 shortDescription: The preferences of the Terminal application has been modified and a start-up Command String has been added. 
 label: Terminal Persistency
-remediation: Review the Terminal Shell Command to define if this is inteded by the user or if an adversary attempts to gain persistence.
+remediation: Review the Terminal Shell Command to define if this is intended by the user or if an adversary attempts to gain persistence.
 MitreCategories:
   - Persistence
   - LivingOffTheLand

@@ -18,7 +18,7 @@ categories:
   - Visibility
 version: 1
 severity: Low
-shortDescription: The tmutil binary has been used to delete localsnapshots from a endpoint or deletes a backup from a external volume.
+shortDescription: The tmutil binary has been used to delete local snapshots from a endpoint or deletes a backup from a external volume.
 label: TMUtil Activity
 remediation: Review if this activity was initiated by the user, if not review the processes that were responsible.
 MitreCategories:
