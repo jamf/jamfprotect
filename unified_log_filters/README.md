@@ -3,9 +3,33 @@ The Unified Logging system available in macOS 10.12 or later provides a central 
 
 With Jamf Protect, you can use the same predicate-based filter criteria that are often used with the log command to collect relevant log entries from computers and send them to a security information and event management (SIEM) solution or a third party storage solution (e.g., AWS).
 
-> [!NOTE]  
-> Please refer to [Jamf Protect Telemetry](https://learn.jamf.com/bundle/jamf-protect-documentation/page/Telemetry.html) if you are collecting specific data from endpoints, it might be that event data you need is already collected by Telemetry.
 
+## 🚨 Unified Logs Removal 🚨
+
+The following Unified Log filters have been removed as these events have been superseded by visibility available from the built-in Telemetry feature.
+
+|Filter|Telemetry Category|
+|-|-|
+|configuration_profile_manual_install|System|
+|configuration_profile_manual_removal|System|
+|gatekeeper_file_access_rejections_and_user_bypasses|Apple Security|
+|gatekeeper_file_access_scan_activity|Apple Security|
+|local_user_password_change_failure|Users and Groups|
+|local_user_password_change_success|Users and Groups|
+|login_through_login_window_with_apple_watch_success|Access and Authentication|
+|login_through_login_window_with_password_failure|Access and Authentication|
+|login_through_login_window_with_password_success|Access and Authentication|
+|login_through_login_window_with_touch_id_failure|Access and Authentication|
+|login_through_login_window_with_touch_id_success|Access and Authentication|
+|network_server_connection_attempts_outbound|Hardware and Volumes|
+|screen_sharing_connections_inbound|Access and Authentication|
+|sudo_access_failed_incorrect_password|Access and Authentication
+|xprotect_remediator_scan_activity|Apple Security|
+
+> [!NOTE]
+> See [documentation](https://learn.jamf.com/bundle/jamf-protect-documentation/page/Telemetry.html) for more information on the Telemetry feature and specific information reported in events.
+
+<br>
 
 > [!IMPORTANT]  
 > To collect unified log filter data with Jamf Protect, you must do one of the following:
