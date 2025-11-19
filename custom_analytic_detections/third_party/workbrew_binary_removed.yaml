@@ -1,0 +1,29 @@
+---
+name: Workbrew Binary Removed
+uuid: 59BE87C5-8816-4BD7-8043-5A69124F75CD
+longDescription: 
+level: 0
+inputType: GPFSEvent
+tags: null
+snapshotFiles: []
+filter: (
+    $event.isModified == 1 AND 
+    $event.process.signingInfo.appid == "com.apple.finder" AND
+    $event.prevFile.lastPathComponent ==  "brew" AND
+    $event.path.stringByDeletingLastPathComponent.lastPathComponent == ".Trash"
+)
+OR
+(
+    $event.type == 1 AND 
+    $event.process.signingInfo.appid == "com.apple.rm" AND
+    $event.path.lastPathComponent == "brew"
+)
+actions: null
+context: []
+categories: []
+version: 0
+severity: Informational
+shortDescription: This detection functions by monitoring and report on the removal/deletion of the Workbrew binary.
+label: null
+remediation: null
+MitreCategories: null
