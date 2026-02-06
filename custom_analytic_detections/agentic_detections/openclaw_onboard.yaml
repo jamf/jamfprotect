@@ -1,0 +1,27 @@
+---
+name: OpenClawOnboard
+uuid: 02299a26-db9b-4592-8622-1828bcd513da
+longDescription: Detection of OpenClaw onboard command to initiate setup.
+level: 0
+inputType: GPFSEvent
+tags:
+snapshotFiles: []
+filter: $event.type == 1 AND
+  $event.process.args.@count > 1 AND
+  (
+      (ANY $event.process.args CONTAINS[c] "openclaw") AND
+      (ANY $event.process.args == "onboard")
+  ) AND
+  $event.process.parent.path.lastPathComponent == "node"
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+version: 1
+severity: Informational
+shortDescription: OpenClaw Onboard Command Activity
+label: OpenClaw Onboard Command Activity
+remediation: null
+MitreCategories:
+  - Visibility

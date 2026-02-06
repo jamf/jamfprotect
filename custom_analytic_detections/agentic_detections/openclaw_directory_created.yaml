@@ -1,0 +1,21 @@
+---
+name: OpenClawDirectoryCreated
+uuid: 02299a26-db9b-4592-8622-1828bcd513da
+longDescription: Detection of OpenClaw's hidden directory, created during setup.
+level: 0
+inputType: GPFSEvent
+tags:
+snapshotFiles: []
+filter:   $event.path MATCHES "\\/Users\\/[^\\/]+\\/\\.openclaw" AND
+  $event.isNewDirectory == 1
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+version: 1
+severity: Informational
+shortDescription: OpenClaw directory created in user's home folder.
+label: OpenClaw directory created
+remediation: Remove the .openclaw directory from the user's home folder.
+MitreCategories: null

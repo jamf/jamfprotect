@@ -1,0 +1,47 @@
+---
+name: OpenClawInstallation
+uuid: a44f14c5-75a0-4433-baf9-e6113cdb5655
+longDescription: Detection of OpenClaw installation commands from openclaw.ai.
+level: 0
+inputType: GPProcessEvent
+tags:
+snapshotFiles: []
+filter: $event.type == 1 AND
+  $event.process.args.@count > 1 AND
+  (
+    (
+      (ANY $event.process.args CONTAINS[c] "npm") AND
+      (ANY $event.process.args BEGINSWITH "openclaw") AND
+      (
+        (ANY $event.process.args == "i") OR
+        (ANY $event.process.args == "install") OR
+        (ANY $event.process.args == "add") OR
+        (ANY $event.process.args == "in") OR
+        (ANY $event.process.args == "ins") OR
+        (ANY $event.process.args == "inst") OR
+        (ANY $event.process.args == "insta") OR
+        (ANY $event.process.args == "instal") OR
+        (ANY $event.process.args == "isnt") OR
+        (ANY $event.process.args == "isnta") OR
+        (ANY $event.process.args == "isntal") OR
+        (ANY $event.process.args == "isntall")
+      ) AND
+      $event.process.path.lastPathComponent == "node"
+    ) OR
+    (
+      (ANY $event.process.args BEGINSWITH "openclaw") AND
+      (ANY $event.process.args == "add") AND
+      $event.process.path.lastPathComponent == "pnpm"
+    )
+  )
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+version: 1
+severity: Informational
+shortDescription: OpenClaw installation via commands found on openclaw.ai.
+label: OpenClaw installation
+remediation: Uninstall OpenClaw and remove any related files, including the .openclaw directory in the user's home folder and installed LaunchAgent.
+MitreCategories: null
