@@ -1,0 +1,22 @@
+---
+name: OpenClawGatewayPersistence
+uuid: 1b4860cb-525e-4b6c-b28a-5d45b1dc1275
+longDescription: Detection of OpenClaw's gateway persistence (~/Library/LaunchAgents/ai.openclaw.gateway.plist).
+level: 0
+inputType: GPFSEvent
+tags:
+snapshotFiles: []
+filter: ("LaunchDaemon" IN $tags OR "LaunchAgent" IN $tags) AND
+  $event.path.lastPathComponent BEGINSWITH "ai.openclaw."
+actions:
+  - name: Log
+context: []
+categories:
+  - Persistence
+version: 1
+severity: Informational
+shortDescription: LaunchAgent created for OpenClaw's gateway mechanism.
+label: OpenClaw gateway persistence
+remediation: Unload and remove the LaunchAgent file at ~/Library/LaunchAgents/ai.openclaw.gateway.plist.
+MitreCategories:
+  - Persistence
