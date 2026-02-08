@@ -6,8 +6,9 @@ level: 0
 inputType: GPFSEvent
 tags:
 snapshotFiles: []
-filter: $event.isModified == 1 AND
-  $event.path ==[cd] "/private/etc/hosts"
+filter: $event.type IN {0, 1, 3, 4} AND
+  ($event.path MATCHES[cd] "/private/etc/hosts" OR
+  $event.path MATCHES[cd] "/etc/hosts")
 actions:
   - name: Log
 context: []
