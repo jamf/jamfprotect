@@ -1,0 +1,27 @@
+title: OpenClaw Onboard Command Execution
+id: 02299a26-db9b-4592-8622-1828bcd513da
+status: test
+description: |
+  Detects execution of the OpenClaw onboard command, which initiates the initial setup
+  of the OpenClaw agentic framework. This is typically one of the first steps after
+  installation and indicates active deployment of the tool.
+references:
+  - https://github.com/jamf/jamfprotect/tree/main/custom_analytic_detections/agentic_detections
+author: Jamf Threat Labs
+date: 2026/02/09
+tags:
+  - attack.execution
+  - attack.t1059.007
+logsource:
+  category: process_creation
+  product: macos
+detection:
+  openclaw_onboard:
+    ParentImage|endswith: '/node'
+    CommandLine|contains|all:
+      - 'openclaw'
+      - 'onboard'
+  condition: openclaw_onboard
+falsepositives:
+  - Authorized setup of OpenClaw in approved environments
+level: informational

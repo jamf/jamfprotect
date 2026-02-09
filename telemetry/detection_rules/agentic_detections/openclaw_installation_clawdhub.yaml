@@ -1,0 +1,28 @@
+title: OpenClaw Skills Installation via Clawhub
+id: c4cc1d02-cd0e-4e2c-826c-f2fbe5d7a935
+status: test
+description: |
+  Detects skills being installed into OpenClaw from Clawhub using npx.
+  Clawhub is the skill marketplace for OpenClaw. Skill installations may introduce
+  new agentic capabilities and should be monitored for unauthorized additions.
+references:
+  - https://github.com/jamf/jamfprotect/tree/main/custom_analytic_detections/agentic_detections
+author: Jamf Threat Labs
+date: 2026/02/09
+tags:
+  - attack.execution
+  - attack.t1059.007
+logsource:
+  category: process_creation
+  product: macos
+detection:
+  clawdhub_install:
+    Image|endswith: '/node'
+    CommandLine|contains|all:
+      - '/npx'
+      - 'clawhub'
+      - 'install'
+  condition: clawdhub_install
+falsepositives:
+  - Authorized developer installing approved Clawhub skills
+level: informational
