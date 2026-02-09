@@ -1,0 +1,52 @@
+title: OpenClaw Installation via Package Manager
+id: a44f14c5-75a0-4433-baf9-e6113cdb5655
+status: test
+description: |
+  Detects installation of OpenClaw (openclaw.ai) via npm or pnpm package managers.
+  OpenClaw is an agentic AI framework. Installation may indicate unauthorized AI tooling
+  being deployed on an endpoint. Covers common npm install aliases and typos.
+references:
+  - https://github.com/jamf/jamfprotect/tree/main/custom_analytic_detections/agentic_detections
+  - https://openclaw.ai
+author: Jamf Threat Labs
+date: 2025/02/09
+tags:
+  - attack.execution
+  - attack.t1059.007
+logsource:
+  category: process_creation
+  product: macos
+detection:
+  selection_npm_base:
+    Image|endswith: '/node'
+    CommandLine|contains|all:
+      - 'npm'
+      - 'openclaw'
+  selection_npm_verb:
+    CommandLine|contains:
+      - ' i '
+      - ' install '
+      - ' add '
+      - ' in '
+      - ' ins '
+      - ' inst '
+      - ' insta '
+      - ' instal '
+      - ' isnt '
+      - ' isnta '
+      - ' isntal '
+      - ' isntall '
+  selection_pnpm:
+    Image|endswith: '/pnpm'
+    CommandLine|contains|all:
+      - 'openclaw'
+      - ' add '
+  condition: (selection_npm_base and selection_npm_verb) or selection_pnpm
+fields:
+  - User
+  - Image
+  - CommandLine
+  - ParentImage
+falsepositives:
+  - Authorized developer use of OpenClaw in approved environments
+level: informational
