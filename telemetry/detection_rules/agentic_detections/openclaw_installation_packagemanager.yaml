@@ -42,11 +42,6 @@ detection:
       - 'openclaw'
       - ' add '
   condition: (selection_npm_base and selection_npm_verb) or selection_pnpm
-fields:
-  - User
-  - Image
-  - CommandLine
-  - ParentImage
 falsepositives:
   - Authorized developer use of OpenClaw in approved environments
 level: informational
