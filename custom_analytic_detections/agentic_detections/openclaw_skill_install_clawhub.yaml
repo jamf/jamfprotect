@@ -1,0 +1,38 @@
+---
+name: OpenClawSkillsInstallClawhub
+uuid: c4cc1d02-cd0e-4e2c-826c-f2fbe5d7a935
+longDescription: Detection of skills installed from Clawhub via npx command.
+level: 0
+inputType: GPProcessEvent
+tags:
+snapshotFiles: []
+filter: $event.type == 1 AND
+  $event.process.args.@count > 1 AND
+  (
+    (
+      (
+        (
+          (ANY $event.process.args CONTAINS[c] "/npx") OR
+          (ANY $event.process.args CONTAINS[c] "/pnpm")
+        ) AND
+        (ANY $event.process.args BEGINSWITH[c] "clawhub")
+      ) OR
+      (
+        (ANY $event.process.args CONTAINS[c] "/bunx-") AND
+        (ANY $event.process.args CONTAINS[c] "/clawhub")
+      )
+    ) AND
+    (ANY $event.process.args == "install") AND
+    $event.process.path.lastPathComponent == "node"
+  )
+actions:
+  - name: Log
+context: []
+categories:
+  - Visibility
+version: 1
+severity: Informational
+shortDescription: Skills added to OpenClaw via Clawhub.
+label: OpenClaw skills installation
+remediation: null
+MitreCategories: null

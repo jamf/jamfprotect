@@ -16,13 +16,25 @@ logsource:
   category: process_creation
   product: macos
 detection:
-  clawdhub_install:
+  clawhub_install_npx:
     Image|endswith: '/node'
     CommandLine|contains|all:
       - '/npx'
       - 'clawhub'
       - 'install'
-  condition: clawdhub_install
+  clawhub_install_pnpm:
+    Image|endswith: '/node'
+    CommandLine|contains|all:
+      - '/pnpm'
+      - 'clawhub'
+      - 'install'
+  clawhub_install_bunx:
+    Image|endswith: '/node'
+    CommandLine|contains|all:
+      - '/bunx-'
+      - '/clawhub'
+      - 'install'
+  condition: clawhub_install_npx OR clawhub_install_pnpm OR clawhub_install_bunx
 falsepositives:
   - Authorized developer installing approved Clawhub skills
 level: informational
