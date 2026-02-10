@@ -53,23 +53,42 @@ if ! command -v jq &> /dev/null; then
     exit 0
 fi
 
-# Extract enabled skills
-ENABLED_SKILLS=$(cat "$OPENCLAW_JSON" | jq -r '.skills.entries | to_entries | .[] | select(.value.enabled).key' 2>/dev/null)
-
-# Check if extraction was successful
-if [ $? -ne 0 ]; then
-    echo "<result>Error Parsing JSON</result>"
-    exit 0
+# Extract global enabled skills from openclaw.json
+GLOBAL_SKILLS=""
+if [ -f "$OPENCLAW_JSON" ]; then
+    GLOBAL_SKILLS=$(cat "$OPENCLAW_JSON" | jq -r '.skills.entries | to_entries | .[] | select(.value.enabled).key' 2>/dev/null || echo "")
 fi
 
-# Check if any skills were found
-if [ -z "$ENABLED_SKILLS" ]; then
-    echo "<result>No Enabled Skills</result>"
-    exit 0
+# Extract skills from sessions.json (current format)
+SESSIONS_JSON="${OPENCLAW_DIR}/agents/main/sessions/sessions.json"
+SESSION_SKILLS=""
+if [ -f "$SESSIONS_JSON" ]; then
+    SESSION_SKILLS=$(cat "$SESSIONS_JSON" | jq -r '.[] | select(.skillsSnapshot) | .skillsSnapshot.resolvedSkills[].name' 2>/dev/null || echo "")
 fi
 
-# Format output: Convert newline-separated skills to comma-separated
-SKILLS_LIST=$(echo "$ENABLED_SKILLS" | tr '\n' ',' | sed 's/,$//')
+# Initialize output variables
+GLOBAL_OUTPUT=""
+SESSION_OUTPUT=""
 
-echo "<result>$SKILLS_LIST</result>"
+# Format global skills output
+if [ -n "$GLOBAL_SKILLS" ]; then
+    GLOBAL_LIST=$(echo "$GLOBAL_SKILLS" | tr '\n' ',' | sed 's/,$//')
+    GLOBAL_OUTPUT="GlobalEnabled:$GLOBAL_LIST"
+else
+    GLOBAL_OUTPUT="GlobalEnabled:none"
+fi
+
+# Format session skills output
+if [ -n "$SESSION_SKILLS" ]; then
+    SESSION_LIST=$(echo "$SESSION_SKILLS" | tr '\n' ',' | sed 's/,$//')
+    SESSION_OUTPUT="SessionSkills:$SESSION_LIST"
+fi
+
+# Combine output
+if [ -n "$SESSION_OUTPUT" ]; then
+    echo "<result>$GLOBAL_OUTPUT;$SESSION_OUTPUT</result>"
+else
+    echo "<result>$GLOBAL_OUTPUT</result>"
+fi
+
 exit 0
