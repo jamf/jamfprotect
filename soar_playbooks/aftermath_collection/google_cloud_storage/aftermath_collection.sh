@@ -59,7 +59,7 @@ CheckForFiles () {
     fi
 }
 
-# Upload the Aftermath archive to Google Clound Bucket using gsutil
+# Upload the Aftermath archive to Google Cloud Bucket using gsutil
 CollectArchive () {
     if [[ -n "$gcsBucket" ]]; then
     
@@ -83,7 +83,7 @@ CollectArchive () {
         if [[ "$botoConfigStatus" -eq 0 ]]; then
             export BOTO_CONFIG="$botoConfig"
 
-            # Use the gsutil to copy the archive to the desginated bucket
+            # Use the gsutil to copy the archive to the designated bucket
             echo "Gsutil is present, initiating the upload.."
             "$gsutilBinary" cp "$aftermathArchiveDir"/Aftermath* gs://"$gcsBucket"
             
@@ -128,7 +128,7 @@ NetworkCheckAndUpload () {
 # Clean up and end this workflow
 CleanUp () {
 
-    # Clean up the Aftermath archive if upload was sucecessful
+    # Clean up the Aftermath archive if upload was successful
     echo "Removing Aftermath archive."
     if [[ "$uploadStatus" -eq 0 ]]; then
         /bin/rm "$aftermathArchiveDir"/Aftermath*

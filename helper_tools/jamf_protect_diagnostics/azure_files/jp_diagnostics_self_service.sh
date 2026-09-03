@@ -69,10 +69,10 @@ expectedAzcopyTeamID="94KV3E626L"
 StartDiagnostics () {
 	
 	if [ "$customDuration" == "" ]; then
-		echo "Staring Jamf Protect Diagnostics for a duration of 5 minutes"
+		echo "Starting Jamf Protect Diagnostics for a duration of 5 minutes"
 		/usr/local/bin/protectctl diagnostics
 	else
-		echo "Staring Jamf Protect Diagnostics for a duration of $customDuration minutes"
+		echo "Starting Jamf Protect Diagnostics for a duration of $customDuration minutes"
 		/usr/local/bin/protectctl diagnostics -d "$customDuration"
 	fi
 }
@@ -128,7 +128,7 @@ CollectArchive () {
 
         if [[ "$azcopyInstallStatus" -eq 0 ]]; then
 
-            # Use the Azure Copy CLI to copy the archive to the desginated bucket
+            # Use the Azure Copy CLI to copy the archive to the designated bucket
             echo "The Azure Copy binary is present, initiating the upload.."
             "$azcopyBinary/azcopy" copy "/Users/$loggedInUser/Desktop"/*JamfProtectDiagnostics*.zip "https://${azureStorageAccount}.file.core.windows.net/${azureFileShareName}/${azureFileShareFolder}/${azureSasToken}" --recursive=true
             
@@ -171,7 +171,7 @@ NetworkCheckAndUpload () {
 # Clean up and end this workflow
 CleanUp () {
 	
-	# Clean up the Jamf Protect Diagnostics archive if upload was sucecessful
+	# Clean up the Jamf Protect Diagnostics archive if upload was successful
 	echo "Removing Jamf Protect Diagnostics archive."
 	if [[ "$uploadStatus" -eq 0 ]]; then
 		/bin/rm "/Users/$loggedInUser"/JamfProtectDiagnostics*
