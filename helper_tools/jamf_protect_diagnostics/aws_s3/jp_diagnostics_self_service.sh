@@ -69,10 +69,10 @@ expectedAwscliTeamID="94KV3E626L"
 StartDiagnostics () {
 	
 	if [ "$customDuration" == "" ]; then
-		echo "Staring Jamf Protect Diagnostics for a duration of 5 minutes"
+		echo "Starting Jamf Protect Diagnostics for a duration of 5 minutes"
 		/usr/local/bin/protectctl diagnostics
 	else
-		echo "Staring Jamf Protect Diagnostics for a duration of $customDuration minutes"
+		echo "Starting Jamf Protect Diagnostics for a duration of $customDuration minutes"
 		/usr/local/bin/protectctl diagnostics -d "$customDuration"
 	fi
 }
@@ -130,7 +130,7 @@ CollectArchive () {
 			export AWS_CONFIG_FILE="$awsFolder"/config
 			export AWS_SHARED_CREDENTIALS_FILE="$awsFolder"/credentials
 			
-			# Use the AWS CLI to copy the archive to the desginated bucket
+			# Use the AWS CLI to copy the archive to the designated bucket
 			echo "The AWS binary is present, initiating the upload.."
 			"$awsBinary" s3 cp "/Users/$loggedInUser/Desktop/" s3://"$s3Bucket" --recursive --exclude "*" --include "JamfProtectDiagnostics*"
 			
@@ -175,7 +175,7 @@ NetworkCheckAndUpload () {
 # Clean up and end this workflow
 CleanUp () {
 	
-	# Clean up the Jamf Protect Diagnostics archive if upload was sucecessful
+	# Clean up the Jamf Protect Diagnostics archive if upload was successful
 	echo "Removing Jamf Protect Diagnostics archive."
 	if [[ "$uploadStatus" -eq 0 ]]; then
 		/bin/rm "/Users/$loggedInUser"/JamfProtectDiagnostics*

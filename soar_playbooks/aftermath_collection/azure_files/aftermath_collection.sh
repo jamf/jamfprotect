@@ -108,7 +108,7 @@ CollectArchive () {
 
         if [[ "$azcopyInstallStatus" -eq 0 ]]; then
 
-            # Use the Azure Copy CLI to copy the archive to the desginated bucket
+            # Use the Azure Copy CLI to copy the archive to the designated bucket
             echo "The Azure Copy binary is present, initiating the upload.."
             "$azcopyBinary/azcopy" copy "${aftermathArchiveDir}"/*Aftermath*.zip "https://${azureStorageAccount}.file.core.windows.net/${azureFileShareName}/${azureFileShareFolder}/${azureSasToken}" --recursive=true
             
@@ -150,7 +150,7 @@ NetworkCheckAndUpload () {
 # Clean up and end this workflow
 CleanUp () {
 
-    # Clean up the Aftermath archive if upload was sucecessful
+    # Clean up the Aftermath archive if upload was successful
     echo "Removing Aftermath archive."
     if [[ "$uploadStatus" -eq 0 ]]; then
         /bin/rm "$aftermathArchiveDir"/Aftermath*

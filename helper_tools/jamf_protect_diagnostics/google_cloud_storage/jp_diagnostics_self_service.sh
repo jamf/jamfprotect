@@ -60,10 +60,10 @@ loggedInUser=$(scutil <<< "show State:/Users/ConsoleUser" | awk '/Name :/ && ! /
 StartDiagnostics () {
 	
 	if [ "$customDuration" == "" ]; then
-		echo "Staring Jamf Protect Diagnostics for a duration of 5 minutes"
+		echo "Starting Jamf Protect Diagnostics for a duration of 5 minutes"
 		/usr/local/bin/protectctl diagnostics
 	else
-		echo "Staring Jamf Protect Diagnostics for a duration of $customDuration minutes"
+		echo "Starting Jamf Protect Diagnostics for a duration of $customDuration minutes"
 		/usr/local/bin/protectctl diagnostics -d "$customDuration"
 	fi
 }
@@ -106,7 +106,7 @@ CollectArchive () {
         if [[ "$botoConfigStatus" -eq 0 ]]; then
             export BOTO_CONFIG="$botoConfig"
 
-            # Use the gsutil to copy the archive to the desginated bucket
+            # Use the gsutil to copy the archive to the designated bucket
             echo "Gsutil is present, initiating the upload.."
             "$gsutilBinary" cp "/Users/$loggedInUser/Desktop"/JamfProtectDiagnostics* gs://"$gcsBucket"
             
@@ -151,7 +151,7 @@ NetworkCheckAndUpload () {
 # Clean up and end this workflow
 CleanUp () {
 	
-	# Clean up the Jamf Protect Diagnostics archive if upload was sucecessful
+	# Clean up the Jamf Protect Diagnostics archive if upload was successful
 	echo "Removing Jamf Protect Diagnostics archive."
 	if [[ "$uploadStatus" -eq 0 ]]; then
 		/bin/rm "/Users/$loggedInUser"/JamfProtectDiagnostics*
