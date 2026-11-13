@@ -14,7 +14,7 @@ Steps to create the workflow:
 
 - [ ] Jamf Pro - Upload [Aftermath.pkg](https://github.com/jamf/aftermath/releases) and deploy to endpoints
 - [ ] Jamf Protect - Analytics Smart Group Identifier configured
-- [ ] Jamf Pro - Create a Smart Group populated by `Jamf Protect - Smart Groups` [Extension Attribute](https://docs.jamf.com/jamf-protect/documentation/Setting_Up_Analytic_Remediation_With_Jamf_Pro.html#task-7832) 
+- [ ] Jamf Pro - Create a Smart Group populated by `Jamf Protect - Smart Groups` [Extension Attribute](https://learn.jamf.com/r/share/jamf-protect-documentation/Setting_Up_Analytic_Remediation_With_Jamf_Pro) 
 - [ ] Jamf Pro - Upload [aftermath_collection.sh](./aftermath_collection.sh)
     - Set the variables in the script
 - [ ] Jamf Pro - [Create Policies](#policies)

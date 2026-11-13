@@ -3,7 +3,7 @@ The Jamf Protect API is the primary resource for programmatically interacting wi
 
 To learn more about GraphQL, see the [Introduction to GraphQL](https://graphql.org/learn) page on the GraphQL Foundation website.
 
-Documentation on the Jamf Protect API can be found [here](https://docs.jamf.com/jamf-protect/documentation/Jamf_Protect_API.html).
+Documentation on the Jamf Protect API can be found [here](https://learn.jamf.com/r/share/jamf-protect-documentation/Jamf_Protect_API).
 
 ## API Scripts
 The scripts contained within this repository are written in either Bash or Python, with specific guidance for each provided within their respective sections.

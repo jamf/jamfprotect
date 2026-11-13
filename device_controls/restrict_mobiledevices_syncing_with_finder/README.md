@@ -6,7 +6,7 @@ Since the release of macOS Catalina (10.15) the Finder has replaced iTunes as on
 
 In some scenarios you want to prevent data being transmitted from the Mac to the mobile device using the Finder Sync to prevent the loss of organisational data.
 
-If you want to learn more about syncing devices with Finder you can do so [here](https://support.apple.com/en-gb/HT210611) or read more on this [Jamf technical article](https://docs.jamf.com/technical-articles/Disabling_Data_Syncing_between_Computers_and_Apple_Devices.html)
+If you want to learn more about syncing devices with Finder you can do so [here](https://support.apple.com/en-gb/HT210611) or read more on this [Jamf technical article](https://learn.jamf.com/r/share/technical-articles/Disabling_Data_Syncing_between_Computers_and_Apple_Devices)
 
 Disabling iOS and iPadOS devices from syncing with Finder will restrict and prevent the following functionalities:
 

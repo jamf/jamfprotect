@@ -9,7 +9,7 @@ Customers of Jamf Protect are able to leverage resources in this repository such
 
 Custom Analytic predicates to extend the behavioural detection capability of Jamf Protect.
 
-More information on Analytics can be found [here](https://docs.jamf.com/jamf-protect/documentation/Analytics.html).
+More information on Analytics can be found [here](https://learn.jamf.com/r/share/jamf-protect-documentation/Analytics).
 
 ### Device Controls
 
@@ -27,13 +27,13 @@ This repository contains scripts and resources that can help delivering the best
 
 Unified Log filter predicates to streamline rich system, user, application and network activity data from endpoints to a nominated Security Information and Event Management (SIEM) or third-party data storage tool.
 
-More information on Unified Log filtering can be found [here](https://docs.jamf.com/jamf-protect/documentation/Unified_Logging.html).
+More information on Unified Log filtering can be found [here](https://learn.jamf.com/r/share/jamf-protect-documentation/Unified_Logging).
 
 ### Jamf Protect API Scripts
 
 Jamf Protect's GraphQL API can be used to streamline endpoint and configuration management, compliance reporting and general tenant management.
 
-More information on the Jamf Protect API can be found [here](https://docs.jamf.com/jamf-protect/documentation/Jamf_Protect_API.html).
+More information on the Jamf Protect API can be found [here](https://learn.jamf.com/r/share/jamf-protect-documentation/Jamf_Protect_API).
 
 ### Third Party Integrations
 
@@ -43,19 +43,19 @@ Jamf Protect is able to integrate with many 3rd party solutions, examples and wo
 
 Leverage the powerful integration between Jamf Protect and Jamf Pro to streamline remediation of security incidents on managed endpoints through automation.
 
-More information on this Jamf portfolio integration can be found [here](https://docs.jamf.com/jamf-protect/documentation/Setting_Up_Analytic_Remediation_With_Jamf_Pro.html).
+More information on this Jamf portfolio integration can be found [here](https://learn.jamf.com/r/share/jamf-protect-documentation/Setting_Up_Analytic_Remediation_With_Jamf_Pro).
 
 ### Jamf Pro Extension Attributes
 
 Extend Jamf Pro's natively inventory reporting capabilities with customisable data collection regarding Jamf Protect, enabling powerful remediation and conditional access workflows through device management.  
 
-More information on using Extension Attributes with Jamf Pro can be found [here](https://docs.jamf.com/jamf-pro/administrator-guide/Computer_Extension_Attributes.html).
+More information on using Extension Attributes with Jamf Pro can be found [here](https://learn.jamf.com/r/share/jamf-pro-documentation-current/Computer_Extension_Attributes).
 
 ### Telemetry Examples
 
 Enhance the use of Jamf Protect Telemetry by exploring and implementing a range of common examples that demonstrate best practices and advanced configurations.
 
-More information on using Telemetry can be found [here](https://learn.jamf.com/en-US/bundle/jamf-protect-documentation/page/Telemetry.html).
+More information on using Telemetry can be found [here](https://learn.jamf.com/r/share/jamf-protect-documentation/Telemetry).
 
 ### Please see the [Wiki](https://github.com/jamf/jamfprotect/wiki) for specific information on each resource in this repository.
 

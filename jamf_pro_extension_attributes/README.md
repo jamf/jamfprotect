@@ -1,7 +1,7 @@
 ## Jamf Pro Extension Attributes
 Scripted Extension Attributes in Jamf Pro allow IT teams to extend the native inventory capabilities of the product with customisable data collection to achieve powerful, advanced workflows for the environment.
 
-More information regarding using Extension Attributes in Jamf Pro can be found [here](https://docs.jamf.com/10.32.0/jamf-pro/administrator-guide/Computer_Extension_Attributes.html).
+More information regarding using Extension Attributes in Jamf Pro can be found [here](https://learn.jamf.com/r/share/jamf-pro-documentation-current/Computer_Extension_Attributes).
 
 ## Using Extension Attributes to report on the Jamf Protect installation
 This repository contains many Extension Attribute scripts that can be used to include information about the Jamf Protect installation on an endpoint in the standard inventory submission sent to Jamf Pro.  This information can be used for both reporting but also with Smart Grouping to create dynamic workflows based upon the status of Jamf Protect on that endpoint.

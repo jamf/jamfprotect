@@ -9,10 +9,10 @@ Contained within this repository are predicates that can be used to create Custo
 * The recommended Analytic Level setting
 * The recommended Severity
 
-More information on each of these settings can be found [here](https://docs.jamf.com/jamf-protect/documentation/Analytics.html).
+More information on each of these settings can be found [here](https://learn.jamf.com/r/share/jamf-protect-documentation/Analytics).
 
 ## Creating a Custom Analytic in Jamf Protect from this repository
-Instructions for creating a Custom Analytic using the resources in this repository can be found [here](https://docs.jamf.com/jamf-protect/documentation/Creating_Analytics.html).
+Instructions for creating a Custom Analytic using the resources in this repository can be found [here](https://learn.jamf.com/r/share/jamf-protect-documentation/Creating_Analytics).
 
 When creating a Custom Analytic from this repository it is helpful to use the **Filter Text View** option inside the Analytic Filter builder to simply paste in the predicate expression rather than build it using the Filter Query Builder View.
 

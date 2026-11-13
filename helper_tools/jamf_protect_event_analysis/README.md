@@ -8,7 +8,7 @@ This event analysis tool has been updated to introduce compatibility with the `p
 
 There are certain scenarios and use-cases where high velocity, expected activity in trusted locations on Mac endpoints can be ignored from monitoring and detection to ensure only the necessary analysis (using system resources) is completed.  
 
-The [**Exceptions**](https://docs.jamf.com/jamf-protect/documentation/Exceptions.html) feature in Jamf Protect can be used to limit or ignore such activity, preserving the endpoint's system resources and the end-user's experience.
+The [**Exceptions**](https://learn.jamf.com/r/share/jamf-protect-documentation/Exceptions) feature in Jamf Protect can be used to limit or ignore such activity, preserving the endpoint's system resources and the end-user's experience.
 
 It is **strongly recommended** to only ignore activity on Mac endpoints using the Exceptions feature that is trusted and expected for the host user.
 
