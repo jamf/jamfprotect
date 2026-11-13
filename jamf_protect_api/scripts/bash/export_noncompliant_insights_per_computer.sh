@@ -10,7 +10,7 @@
 # - Only including simple GraphQL API requests in a Bash script is recommended.
 # - This example script leverages the jq command-line tool to parse the JSON returned from the API request.
 
-# After the script runs, a CSV file should be created that lists all noncompliant insights for each computer.  Please see https://docs.jamf.com/jamf-protect/documentation/API_Scripts.html for an example output.
+# After the script runs, a CSV file should be created that lists all noncompliant insights for each computer.  Please see https://learn.jamf.com/r/share/jamf-protect-documentation/Jamf_Protect_API for an example output.
 
 
 PROTECT_INSTANCE=''

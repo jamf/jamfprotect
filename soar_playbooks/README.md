@@ -1,5 +1,5 @@
 # SOAR Playbooks
-The SOAR playbooks contained within this repository are workflows designed to be executed on an endpoint by Jamf Pro, in response to an analytic detection Jamf Protect.  This is achieved through the remediation integration between the two products, detailed [here](https://docs.jamf.com/jamf-protect/documentation/Setting_Up_Analytic_Remediation_With_Jamf_Pro.html).
+The SOAR playbooks contained within this repository are workflows designed to be executed on an endpoint by Jamf Pro, in response to an analytic detection Jamf Protect.  This is achieved through the remediation integration between the two products, detailed [here](https://learn.jamf.com/r/share/jamf-protect-documentation/Setting_Up_Analytic_Remediation_With_Jamf_Pro).
 
 **Leveraging this integration requires the endpoint to be enrolled in both Jamf Protect as well as a Jamf Pro environment.**
 

@@ -3,7 +3,7 @@ The Jamf Protect API is the primary resource for programmatically interacting wi
 
 To learn more about GraphQL, see the [Introduction to GraphQL](https://graphql.org/learn) page on the GraphQL Foundation website.
 
-Documentation on the Jamf Protect API can be found [here](https://docs.jamf.com/jamf-protect/documentation/Jamf_Protect_API.html).
+Documentation on the Jamf Protect API can be found [here](https://learn.jamf.com/r/share/jamf-protect-documentation/Jamf_Protect_API).
 
 ## Jamf Protect API Script Dependencies
 There are a few dependencies that must be met in order to run the Python scripts within this repository, with each only needing to be done once per host machine or script.  They are:
@@ -15,7 +15,7 @@ There are a few dependencies that must be met in order to run the Python scripts
 See below for instructions on completing each of the above.
 
 ### Jamf Protect API Client
-An API Client must be created within Jamf Protect in order to interface with the Jamf Protect GraphQL API.  See the [Jamf Protect Documentation](https://docs.jamf.com/jamf-protect/documentation/Jamf_Protect_API.html) for guidance on creating one within your Jamf Protect tenant.
+An API Client must be created within Jamf Protect in order to interface with the Jamf Protect GraphQL API.  See the [Jamf Protect Documentation](https://learn.jamf.com/r/share/jamf-protect-documentation/Jamf_Protect_API) for guidance on creating one within your Jamf Protect tenant.
 
 The API Client created may be used by other scripts and tools and offers administrative access to your tenant so be sure to **securely** record the Client ID and Password details for future use.
 

@@ -4,7 +4,7 @@ Jamf Protect supports sending alert data to an HTTPS endpoint via the Alert Coll
 
 
 The following must be already configured within Jamf Protect:
-* Configure a Jamf Protect action to send alert data to an HTTPS endpoint [Alert Collection Endpoint](https://docs.jamf.com/jamf-protect/documentation/Creating_an_Action_Configuration.html) inside an Action configuration.
+* Configure a Jamf Protect action to send alert data to an HTTPS endpoint [Alert Collection Endpoint](https://learn.jamf.com/r/share/jamf-protect-documentation/Creating_an_Action_Configuration) inside an Action configuration.
 
 
 ## Serverless Solutions

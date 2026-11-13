@@ -37,7 +37,7 @@ The following Unified Log filters have been removed as these events have been su
 > * Enable data forwarding to a third party storage solution
 
 
-More information on this feature can be found [here](https://docs.jamf.com/jamf-protect/documentation/Unified_Logging.html).
+More information on this feature can be found [here](https://learn.jamf.com/r/share/jamf-protect-documentation/Unified_Logging).
 
 ## Unified Log Filters
 Within this repository are many predicate filters that can be used to stream telemetry on a variety of events across macOS.  Filters are available for macOS user, system and network activity, as well as from third-party applications including Jamf Connect and Jamf Pro.
